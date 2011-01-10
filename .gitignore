@@ -1,0 +1,8 @@
+include/tangerine-config.php
+
+assets/photos/*.jpg
+assets/photos/*.png
+assets/photos/*.gif
+
+assets/audio/*.mp3
+
