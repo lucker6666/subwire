@@ -1,18 +1,16 @@
-/********************************************************
-    vim: expandtab sw=4 ts=4 sts=4:
-    -----------------------------------------------------
-    Blip - Microblogging Platform
-    By Kelli Shaver - kelli@kellishaver.com
-    -----------------------------------------------------
-    Blip is released under the Creative Commons
-    Attribution, Non-Commercial, Share-Alike license.
-
-    http://creativecommons.org/licenses/by-nc-sa/3.0/
-    -----------------------------------------------------
-    Blip Default Theme CSS
-    -----------------------------------------------------
-    Look and Feel for the user-side default Blip theme.
-********************************************************/
+/**
+ * Brain Dump - Public Microblogging Platform
+ * By Benjamin Kammerl - ghost@itws.de
+ * Based on Tangerine by Kelli Shaver - kelli@kellishaver.com
+ *
+ * Brain Dump is released under the Creative Commons
+ * Attribution, Non-Commercial, Share-Alike license.
+ *
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/
+ *
+ * Bain Dump Default Theme CSS
+ * Look and Feel for the user-side default theme.
+ */
 
 body                                    { background: #ddd; margin: 0; padding: 0; text-align: center; font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000; }
 #container                              { width: 740px; margin: 20px auto; padding: 10px; background: #fff; text-align: left; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }

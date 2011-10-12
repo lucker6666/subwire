@@ -14,6 +14,19 @@
     -----------------------------------------------------
     Sanitizes post data and uploads images and audio.
 ********************************************************/
+/**
+ * Brain Dump - Public Microblogging Platform
+ * By Benjamin Kammerl - ghost@itws.de
+ * Based on Tangerine by Kelli Shaver - kelli@kellishaver.com
+ *
+ * Brain Dump is released under the Creative Commons
+ * Attribution, Non-Commercial, Share-Alike license.
+ *
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/
+ *
+ * Admin Post Management
+ * Sanitizes post data and uploads images and audio.
+ */
 
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 

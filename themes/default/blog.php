@@ -1,19 +1,17 @@
 <?php
-/********************************************************
-    vim: expandtab sw=4 ts=4 sts=4:
-    -----------------------------------------------------
-    Tangerine - Microblogging Platform
-    By Kelli Shaver - kelli@kellishaver.com
-    -----------------------------------------------------
-    Tangerine is released under the Creative Commons
-    Attribution, Non-Commercial, Share-Alike license.
-
-    http://creativecommons.org/licenses/by-nc-sa/3.0/
-    -----------------------------------------------------
-    Tangerine Default Theme
-    -----------------------------------------------------
-    Main layout file for the default Tangerine theme.
-********************************************************/
+/**
+ * Brain Dump - Public Microblogging Platform
+ * By Benjamin Kammerl - ghost@itws.de
+ * Based on Tangerine by Kelli Shaver - kelli@kellishaver.com
+ *
+ * Brain Dump is released under the Creative Commons
+ * Attribution, Non-Commercial, Share-Alike license.
+ *
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/
+ *
+ * Bain Dump Default Theme
+ * Main layout file for the default theme.
+ */
 
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 ?>

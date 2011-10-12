@@ -1,21 +1,18 @@
 <?php
-/********************************************************
-    vim: expandtab sw=4 ts=4 sts=4:
-    -----------------------------------------------------
-    Tangerine - Microblogging Platform
-    By Kelli Shaver - kelli@kellishaver.com
-    -----------------------------------------------------
-    Tangerine is released under the Creative Commons
-    Attribution, Non-Commercial, Share-Alike license.
+/**
+ * Brain Dump - Public Microblogging Platform
+ * By Benjamin Kammerl - ghost@itws.de
+ * Based on Tangerine by Kelli Shaver - kelli@kellishaver.com
+ *
+ * Brain Dump is released under the Creative Commons
+ * Attribution, Non-Commercial, Share-Alike license.
+ *
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/
+ *
+ * ssentially functions as a controller for posts.
+ */
 
-    http://creativecommons.org/licenses/by-nc-sa/3.0/
-    -----------------------------------------------------
-    Tangerine Index
-    -----------------------------------------------------
-    Essentially functions as a controller for posts.
-********************************************************/
-
-include 'tangerine.inc.php';
+include 'braindump.inc.php';
 
 // Variables - We'll need these later.
 $body = '';
