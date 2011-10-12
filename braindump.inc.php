@@ -24,7 +24,7 @@ ini_set('display_startup_errors',1);
 
 define('ROOT_DIR',str_replace('\\\\', '/', realpath(dirname(__FILE__))).'/');
 
-require_once rtrim(ROOT_DIR, '/').'/include/tangerine-config.php';
+require_once rtrim(ROOT_DIR, '/').'/include/config.php';
 require_once rtrim(ROOT_DIR, '/').'/include/post_utils.php';
 
 require_once rtrim(ROOT_DIR, '/').'/include/classes/db.php';
