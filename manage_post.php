@@ -121,5 +121,6 @@ switch($action) {
 $body = ob_get_contents();
 ob_end_clean();
 
-include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/main.php';
+include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/header.php';
+include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/footer.php';
 
