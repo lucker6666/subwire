@@ -31,6 +31,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
     <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/highlight.js"></script>
     <script type="text/javascript" src="js/nicEdit.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <link rel="alternate" type="application/rss+xml" title="<?=SITE_NAME?> RSS" href="<?=rtrim(SITE_URL, '/')?>/feed.php">
 </head>
 <body>
     <div id="container">
