@@ -46,7 +46,7 @@ Installation
 ------------
 1. Either download and unpack, or clone everything to a folder on your web site. 
 2. Create a MySQL database.
-3. Using PHPMyAdmin, the command line, etc. import the include schema.sql file into your newly created database.
+3. Import the include schema.sql file into your newly created database.
 4. In a text editor, open include/config.sample.php and edit the values, following the instructions included. Once done, save it as config.php
 5. Make the assets/images/ and assets/audio/ directories writeable by the web suer.
 
