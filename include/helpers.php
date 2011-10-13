@@ -46,11 +46,6 @@ function link_to($link_data, $link_title) {
     else return '<a href="'.rtrim(SITE_URL, '/').'/?'.$link_data[0].'='.$link_data[1].'" title="'.$link_title.'">'.$link_title.'</a>';
 }
 
-function is_admin() {
-    if(isset($_SESSION['is_admin'])) return (Session::getValue('is_admin')==md5(SESSION_SECRET + date("d")));
-    else return false;
-}
-
 function redirect($path='index.php') {
     header("Location: ".$path);
     exit; // this can't be healthy...
