@@ -35,6 +35,9 @@ Features
 - Clean, easy-to-use WYSIWYG editor for posts.
 - Auto-generated RSS feed of recent posts.
 - Rudimentary post tagging.
+- Different colors for each user.
+- Automatic link detection
+- Linklist function.
 
 
 Requirements
