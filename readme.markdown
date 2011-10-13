@@ -1,11 +1,18 @@
 Brain Dump
 ==========
-Brain Dump is a simple blogging platform with one special aspect: everyone can post things. It's meant for team collaboration. Post
-brain dumps, ideas, URLs, screenshots and other images, code and everythin else you can imagine.
+Brain Dump is a kind of simple blogging platform with one special aspect: everyone can post things. It's designed for team
+collaboration or something like this. The main idea is to provide an very easy, intuitive and lightwight platform to share brain
+dumps*, ideas, URLs, screenshots, images, code and everythin else you can imagine and want to share with someone else. Like your
+twitter stream or your facebook wall but not limited to 140 letters and public: everyone can post.
 
-Weighing in at around 300k, Brain Dump is fast, small, and flexible, with a simple theme system for easy customization.
+I've created that app to optimize the information flow in the yaana.de project. Everyday I sent an E-Mail with Nightly Build Release
+Notes. Every Week one Team-Newsletter and everytime we've got to share something our favorite communication tool was E-Mail. But we're
+livin in the 21th centuary. E-Mail is out. And E-Mail uncool. Brain Dump is cool ;)
 
-It's based on the great work of Kelli Shavers Tangarine (https://github.com/kellishaver/Tangerine).
+(* brain dumps (came from core dump) are that kind of raw messy text, which comes up if I simply stream my toughts and everything what crosses
+my mind in a textfield (or a chat window). Mostly thats a mess of unsorted ideas, thoughts, sensless stuff and so on).
+
+It's based on the great work of Kelli Shavers lightweight tumblelog application "Tangarine" (https://github.com/kellishaver/Tangerine).
 
 
 Supported Post Types
@@ -35,7 +42,6 @@ Requirements
 Brain Dump requires PHP5.3, GDLib, Mcrypt, and a reasonably current version of MySQL. Additionally, PHP short open tags should be turned on.
 
 
-
 Installation
 ------------
 1. Either download and unpack, or clone everything to a folder on your web site. 
@@ -46,7 +52,6 @@ Installation
 
 Important: Brain Dump is really public! Everyone can create posts without to login. So it's very important to secure it with an HTTP
 Basic Authentication. This will avoid spam.
-
 
 
 To-Do
