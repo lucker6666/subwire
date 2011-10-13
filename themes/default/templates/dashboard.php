@@ -21,7 +21,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
     <? foreach($posts as $p): ?>
     <div id="post-<?=$p['id']?>" class="post post_type_<?=$p['type']?>">
         <h2>
-            <a href="?id=<?=$p['id']?>"><?=$p['title']?></a>
+            <a href="<?=rtrim(SITE_URL, '/')?>/index.php?id=<?=$p['id']?>"><?=$p['title']?></a>
             <span>
                 <a href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=edit&id=<?=$p['id']?>">edit</a>
                 <a class="delete" href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=delete&id=<?=$p['id']?>">delete</a>
@@ -66,7 +66,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
             <? if(!empty($p['tags'])): ?>
             | <strong>Tags</strong>:
             <? foreach(explode(' ', $p['tags']) as $tag): ?>
-            <a href="?tag=<?=$tag?>"><?=$tag?></a>
+            <a href="<?=rtrim(SITE_URL, '/')?>/index.php?tag=<?=$tag?>"><?=$tag?></a>
             <? endforeach ?>
             <? endif ?>
         </aside>
