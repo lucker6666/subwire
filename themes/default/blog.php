@@ -22,13 +22,13 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
     <title><?=SITE_NAME?> <? if(isset($post)):?> - <?=$post['title']?><?endif?></title>
     <base href="<?=rtrim(SITE_URL, '/')?>/">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" type="text/css" />
-    <link rel="stylesheet" href="<?=rtrim(SITE_URL, '/')?>/themes/<?=THEME?>/tangerine.css" type="text/css" />
+    <link rel="stylesheet" href="<?=rtrim(SITE_URL, '/')?>/themes/<?=THEME?>/braindump.css" type="text/css" />
     <link rel="stylesheet" href="<?=rtrim(SITE_URL, '/')?>/assets/highlight_styles/ir_black.css" type="text/css" />
     <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/html5.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/highlight.js"></script>
-    <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/tangerine.js"></script>
+    <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/braindump.js"></script>
     <link rel="alternate" type="application/rss+xml" title="<?=SITE_NAME?> RSS" href="<?=rtrim(SITE_URL, '/')?>/feed.php">
 </head>
 <body>
@@ -64,8 +64,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <? endif ?>
         </ul>
         <footer>
-            Copyright &copy; <?=date("Y")?> <?=SITE_NAME?> - All rights reserved.<br>
-            <a target="_blank" href="http://github.com/kellishaver/tangerine">Powered by Tangerine</a> | <a href="feed.php">RSS</a>
+            <a target="_blank" href="http://github.com/Itws/Brain-Dump">Powered by Brain Dump</a> | <a href="feed.php">RSS</a>
         </footer>
     </div>
 </body>

@@ -13,7 +13,7 @@
  * For adding, editing, deleting, and managing posts.
  */
 
-include '../tangerine.inc.php';
+include '../braindump.inc.php';
 if(!is_admin()) redirect('login.php');
 
 // Allowable actions and post types.

@@ -9,7 +9,7 @@
  *
  * http://creativecommons.org/licenses/by-nc-sa/3.0/
  *
- * Tangerine Helpers
+ * Brain Dump Helpers
  * A set of useful helper functions, mostly for use in views.
  */
 

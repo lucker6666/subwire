@@ -9,14 +9,14 @@
  *
  * http://creativecommons.org/licenses/by-nc-sa/3.0/
  *
- * Tangerine Config
+ * Brain Dump Config
  * Basic configuration settings for Brain Dump.
  */
 
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 
-define('DB_NAME', 'tangerine');
-define('DB_USER', 'tangerine');
+define('DB_NAME', 'braindump');
+define('DB_USER', 'username');
 define('DB_PASS', 'password');
 define('DB_HOST', 'localhost');
 define('DB_ADAPTER', 'mysql');
@@ -25,10 +25,10 @@ define('DB_ADAPTER', 'mysql');
 define('SESSION_SECRET', "There is one friend in the life of each of us who seems not a separate person, however dear and beloved, but an expansion, an interpretation of one's self, the very meaning of one's soul.");
 
 // What's the name of the site?
-define('SITE_NAME', "Tangerine");
+define('SITE_NAME', "Brain Dump");
 
 // A witty tag-line, perhaps?
-define('TAG_LINE', 'Tangerine is pretty cool tumblelog software.');
+define('TAG_LINE', 'Brain Dump: Powerful Collaboration Tool.');
 
 // What's the URL?
 define('SITE_URL', 'http://example.com');
@@ -46,7 +46,7 @@ define('ADMIN_EMAIL', 'you@yourdomain.com');
 // If you use something other than the assets folder, you
 // will need to modify the template accordingly for audio,
 // and photo posts.
-define('UPLOADS_DIR', '/home/you/www/tangerine/assets/');
+define('UPLOADS_DIR', '/home/you/www/braindump/assets/');
 
 // Which theme do we use?
 define('THEME', 'default');

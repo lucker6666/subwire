@@ -13,7 +13,7 @@
  * The admin dashboard, shows an overview of posts.
  */
 
-include '../tangerine.inc.php';
+include '../braindump.inc.php';
 
 if(!is_admin()) redirect('login.php'); // No access!
 

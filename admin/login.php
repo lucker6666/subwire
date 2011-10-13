@@ -13,7 +13,7 @@
  * User authentication for admin.
  */
 
-include '../tangerine.inc.php';
+include '../braindump.inc.php';
 if(is_admin()) redirect('index.php'); // Already logged in.
 
 $body='';
