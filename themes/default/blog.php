@@ -13,10 +13,7 @@
  * The admin dashboard, shows an overview of posts.
  */
 
+
+include 'templates/header.php';
 include 'templates/dashboard.php';
-
-$body = ob_get_contents();
-ob_end_clean();
-
-include 'templates/main.php';
-
+include 'templates/footer.php';
