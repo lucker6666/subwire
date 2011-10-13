@@ -54,19 +54,6 @@ Important: Brain Dump is really public! Everyone can create posts without to log
 Basic Authentication. This will avoid spam.
 
 
-To-Do
------
-Brain Dump will always remain lightweight and simple, but there are still a few things in the works.
-
-1. Clean up the mess that is post_utils.php
-2. Better validation for video embed codes
-3. Write the .htaccess file for SE-friendly URLs
-4. Better tag filtering
-5. Search and montly archives (with options to enable/disable them)
-6. A browser-based install script to create the database tables and writ ethe config file.
-7. Captcha for unsecured use
-
-
 License
 -------
 Brain Dump is based on Kelli Shavers Tangerine which is released under the Creative Commons Attribution, Non-Commercial, Share-Alike license.
