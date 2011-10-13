@@ -35,6 +35,18 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
 </head>
 <body>
     <div id="container">
+		<?
+			if (count($__linklist) > 0) {
+				echo '<ul class="linklist">';
+				echo '<li><strong>' . LINKLIST_LABEL . ':</strong></li>';
+				
+				foreach ($__linklist as $label=>$url) {
+					echo '<li><a href="' . $url . '" target="_blank">' . $label . '</a></li>';
+				}
+
+				echo '</ul>';
+			}
+		?>
         <header>
             <h1><a href="<?=rtrim(SITE_URL, '/')?>/" title="<?=SITE_NAME?>"><?=SITE_NAME?></a></h1>
         </header>

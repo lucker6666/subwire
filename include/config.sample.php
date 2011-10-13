@@ -65,3 +65,11 @@ define('USE_DST', true);
 define('MAX_IMG_WIDTH', 700);
 define('MAX_IMG_HEIGHT', 500);
 
+
+// some links
+define('LINKLIST_LABEL', 'Linklist');
+
+$__linklist = array(
+	'Example' => 'example.com'
+);
+
