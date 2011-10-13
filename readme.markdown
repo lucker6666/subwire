@@ -44,6 +44,10 @@ Installation
 4. In a text editor, open include/config.sample.php and edit the values, following the instructions included. Once done, save it as config.php
 5. Make the assets/images/ and assets/audio/ directories writeable by the web suer.
 
+Important: Brain Dump is really public! Everyone can create posts without to login. So it's very important to secure it with an HTTP
+Basic Authentication. This will avoid spam.
+
+
 
 To-Do
 -----
@@ -55,6 +59,7 @@ Brain Dump will always remain lightweight and simple, but there are still a few 
 4. Better tag filtering
 5. Search and montly archives (with options to enable/disable them)
 6. A browser-based install script to create the database tables and writ ethe config file.
+7. Captcha for unsecured use
 
 
 License
