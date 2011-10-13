@@ -55,3 +55,27 @@ function token($len=16) { // random token.
     return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'),0,$len);
 }
 
+function user_color($name) {
+	$colors = array(
+		'a75dee',
+		'10a100',
+		'ff4d00',
+		'25cfdb',
+		'b0b500',
+		'5d84ee'
+	);
+
+	$len = strlen($name);
+
+	while (true) {
+		$name = sha1($name);
+
+		for ($i = $len; $i < 40; ++$i) {
+			$index = substr($name, $i, 1);
+
+			if (preg_match('/^[0-5]$/', $index)) {
+				return $colors[$index];
+			}
+		}
+	}
+}

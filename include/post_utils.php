@@ -21,6 +21,7 @@ function cleanup_post($type) {
     $vars=array();
     $vars['type']     = $type;
     $vars['id']       = (isset($_POST['id']))?$_POST['id']:null;
+    $vars['user']       = (isset($_POST['user']))?strtolower($_POST['user']):null;
     $vars['title']    = (isset($_POST['title']))?Format::stripTags($_POST['title']):null;
     $vars['contents'] = (isset($_POST['contents']))?strip_tags($_POST['contents'], '<span><div><br><ol><li><ul><img><a>'):null;
     $vars['code']     = (isset($_POST['code']))?$_POST['code']:null;

@@ -41,7 +41,7 @@ switch($action) {
 
         // Initializing an empty array here with all keys in tact just makes
         // life easier.
-        $vars = array('id'=>'', 'title'=>'', 'tags'=>'', 'code'=>'',
+        $vars = array('id'=>'', 'user'=>'', 'title'=>'', 'tags'=>'', 'code'=>'',
                       'embed'=>'', 'link'=>'', 'contents'=>'', 'byline'=>'',
                       'type'=>$type, 'file'=>'');
 

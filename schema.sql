@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(128) NOT NULL,
   `title` varchar(128) NOT NULL,
   `contents` text NOT NULL,
   `code` text NOT NULL,

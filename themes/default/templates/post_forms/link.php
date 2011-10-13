@@ -18,6 +18,10 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
 <form action="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=<?=$action?>&amp;type=<?=$vars['type']?><?=($action=='edit')?'&amp;id='.$vars['id']:''?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?=$vars['id']?>">
     <div class="row">
+		<label>Your name:</label>
+        <input type="text" name="user" size="128" value="<?=$vars['user']?>">
+    </div>
+    <div class="row">
         <label>Title:</label>
         <input type="text" name="title" size="80" value="<?=$vars['title']?>">
     </div>
