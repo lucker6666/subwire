@@ -85,7 +85,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         </ul>
         <? endif ?>
         <footer>
-            <a target="_blank" href="http://github.com/itws/Brain-Dump">Powered by Brain Dump</a>
+            <a target="_blank" href="http://github.com/itws/Brain-Dump">Powered by Brain Dump</a> | <a href="<?=rtrim(SITE_URL, '/')?>/feed.php">RSS</a>
         </footer>
     </div>
 </body>
