@@ -16,7 +16,7 @@
 function nic_init() {
     new nicEditor({
         iconsPath:'images/nicEditorIcons.gif',
-        buttonList:['bold','italic','underline','left','center','right','justify','ol','ul','indent','outdent','image','link','unlink']
+        buttonList:['bold','italic','underline','left','center','right','justify','ol','ul','indent','outdent','image','link','unlink', 'removeformat', 'hr']
     }).panelInstance('rte');
 }
 
