@@ -9,21 +9,21 @@
  *
  * http://creativecommons.org/licenses/by-nc-sa/3.0/
  *
- * Brain Dump post form partial
- * Video post form.
+ * Brain Dump post form partial.
+ * Link post form.
  */
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 ?>
 
-<form action="manage_post.php?action=<?=$action?>&amp;type=<?=$vars['type']?><?=($action=='edit')?'&amp;id='.$vars['id']:''?>" method="post" enctype="multipart/form-data">
+<form action="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=<?=$action?>&amp;type=<?=$vars['type']?><?=($action=='edit')?'&amp;id='.$vars['id']:''?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?=$vars['id']?>">
     <div class="row">
         <label>Title:</label>
         <input type="text" name="title" size="80" value="<?=$vars['title']?>">
     </div>
     <div class="row">
-        <label>Video Embed Code:</label>
-        <textarea rows="10" cols="80" name="embed"><?=$vars['embed']?></textarea>
+        <label>Link URL:</label>
+        <input type="text" name="link" size="80" value="<?=$vars['link']?>">
     </div>
     <div class="row">
         <textarea id="rte" rows="10" cols="80" name="contents"><?=$vars['contents']?></textarea>

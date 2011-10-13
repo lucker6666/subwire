@@ -15,7 +15,7 @@
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 ?>
 
-<form action="manage_post.php?action=<?=$action?>&amp;type=<?=$vars['type']?><?=($action=='edit')?'&amp;id='.$vars['id']:''?>" method="post" enctype="multipart/form-data">
+<form action="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=<?=$action?>&amp;type=<?=$vars['type']?><?=($action=='edit')?'&amp;id='.$vars['id']:''?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?=$vars['id']?>">
     <div class="row">
         <label>Title:</label>

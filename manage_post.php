@@ -13,8 +13,7 @@
  * For adding, editing, deleting, and managing posts.
  */
 
-include '../braindump.inc.php';
-if(!is_admin()) redirect('login.php');
+include 'braindump.inc.php';
 
 // Allowable actions and post types.
 $actions = array('edit', 'new', 'delete');
@@ -54,7 +53,8 @@ switch($action) {
             if(is_array($new_post)) $errors = $new_post;
             else redirect('index.php');
         }
-        include rtrim(ROOT_DIR, '/').'/admin/templates/post.new.php';
+        include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/post.new.php';
+
     break;
     case 'edit':
         // Make sure the post ID is set and valid.
@@ -88,7 +88,7 @@ switch($action) {
             else redirect('index.php');
         }
 
-        include rtrim(ROOT_DIR, '/').'/admin/templates/post.edit.php';
+        include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/post.edit.php';
     break;
     case 'delete':
         // (Not very DRY, but short)
@@ -121,5 +121,5 @@ switch($action) {
 $body = ob_get_contents();
 ob_end_clean();
 
-include rtrim(ROOT_DIR, '/').'/admin/templates/admin.php';
+include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/main.php';
 

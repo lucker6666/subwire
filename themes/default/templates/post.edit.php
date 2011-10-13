@@ -19,7 +19,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
 <h3>
     Editing Post: <?=$p->getTitle() ?>
     <span>
-        <a class="delete" href="manage_post.php?action=delete&id=<?=$p->getID()?>">delete</a>
+        <a class="delete" href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=delete&id=<?=$p->getID()?>">delete</a>
     </span>
 </h3>
 <? if(isset($errors)): ?>
@@ -32,5 +32,5 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
     </ul>
 </div>
 <? endif ?>
-<? include rtrim(ROOT_DIR, '/').'/admin/templates/post_forms/'.$vars['type'].'.php'; ?>
+<? include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/post_forms/'.$vars['type'].'.php'; ?>
 

@@ -23,8 +23,8 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <h2>
             <a href="?id=<?=$p['id']?>"><?=$p['title']?></a>
             <span>
-                <a href="manage_post.php?action=edit&id=<?=$p['id']?>">edit</a>
-                <a class="delete" href="manage_post.php?action=delete&id=<?=$p['id']?>">delete</a>
+                <a href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=edit&id=<?=$p['id']?>">edit</a>
+                <a class="delete" href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=delete&id=<?=$p['id']?>">delete</a>
             </span>
         </h2>
         <? switch($p['type']):
@@ -62,9 +62,9 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <? break ?>
         <? endswitch ?>
         <aside>
-            <strong>Posted on:</strong> <?=Format::localDateTime($p['posted_on'],$format='F d, Y \a\t g:ia',$offset=TZ,$daylight=USE_DST)?>
+            <strong>Posted on:</strong> <?=Format::localDateTime($p['posted_on'],$format='Y-m-d -  H:i:s',$offset=TZ,$daylight=USE_DST)?>
             <? if(!empty($p['tags'])): ?>
-            - <strong>Tags</strong>:
+            | <strong>Tags</strong>:
             <? foreach(explode(' ', $p['tags']) as $tag): ?>
             <a href="?tag=<?=$tag?>"><?=$tag?></a>
             <? endforeach ?>

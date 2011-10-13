@@ -9,16 +9,22 @@
  *
  * http://creativecommons.org/licenses/by-nc-sa/3.0/
  *
- * Admin Login
- *  The admin login page.
+ * New Post
+ * New Post Form
  */
 
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 ?>
-<h3>Please Log In</h3>
-<form action="login.php" method="post" id="admin_login">
-    <label>Password:</label>
-    <input type="password" size="30" name="password">
-    <input class="btn" type="submit" value="Log In">
-</form>
+<h3>New <?=ucwords($type)?> Post</h3>
+<? if(isset($errors)): ?>
+<div id="form_errors">
+    <h4>The following errors occured:</h4>
+    <ul>
+    <? foreach($errors as $k=>$error) : ?>
+        <li><?=$error?></li>
+    <? endforeach ?>
+    </ul>
+</div>
+<? endif ?>
+<? include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/post_forms/'.$type.'.php'; ?>
 
