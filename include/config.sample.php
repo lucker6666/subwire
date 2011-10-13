@@ -27,9 +27,6 @@ define('SESSION_SECRET', "There is one friend in the life of each of us who seem
 // What's the name of the site?
 define('SITE_NAME', "Brain Dump");
 
-// A witty tag-line, perhaps?
-define('TAG_LINE', 'Brain Dump: Powerful Collaboration Tool.');
-
 // What's the URL?
 define('SITE_URL', 'http://example.com');
 

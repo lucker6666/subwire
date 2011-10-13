@@ -35,7 +35,6 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
     <div id="container">
         <header>
             <h1><a href="<?=SITE_URL?>" title="<?=SITE_NAME?>"><?=SITE_NAME?></a></h1>
-            <p><?=TAG_LINE?></p>
         </header>
         <?=$body?>
         <ul id="pagination">
