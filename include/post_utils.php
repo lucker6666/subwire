@@ -31,6 +31,8 @@ function cleanup_post($type) {
     $vars['embed']    = (isset($_POST['embed']))?$_POST['embed']:null;
     $vars['tags']     = (isset($_POST['tags']))?Format::stripTags($_POST['tags']):null;
 
+    $vars['contents'] = make_clickable($vars['contents']);
+
     // You break it, you fix it.
     // For the record, this code stinks.
     if(isset($_FILES['file'])) {
