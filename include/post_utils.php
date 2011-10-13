@@ -23,7 +23,8 @@ function cleanup_post($type) {
     $vars['id']       = (isset($_POST['id']))?$_POST['id']:null;
     $vars['user']       = (isset($_POST['user']))?strtolower($_POST['user']):null;
     $vars['title']    = (isset($_POST['title']))?Format::stripTags($_POST['title']):null;
-    $vars['contents'] = (isset($_POST['contents']))?strip_tags($_POST['contents'], '<span><div><br><ol><li><ul><img><a>'):null;
+    $vars['contents'] = (isset($_POST['contents']))?strip_tags($_POST['contents'],
+	'<span><div><br><ol><li><ul><img><a><i><b><strong><em><u>'):null;
     $vars['code']     = (isset($_POST['code']))?$_POST['code']:null;
     $vars['link']     = (isset($_POST['link']))?Format::stripTags($_POST['link']):null;
     $vars['byline']   = (isset($_POST['byline']))?Format::stripTags($_POST['byline']):null;
