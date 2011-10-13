@@ -122,5 +122,6 @@ $body = ob_get_contents();
 ob_end_clean();
 
 include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/header.php';
+echo $body;
 include rtrim(ROOT_DIR, '/').'/themes/' . THEME . '/templates/footer.php';
 
