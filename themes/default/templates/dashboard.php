@@ -28,7 +28,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
             </span>
         </h2>
         <? switch($p['type']):
-           case 'text'?>
+           case 'text': ?>
            <?=$p['contents']?>
         <? break ?>
         <? case 'code':?>
