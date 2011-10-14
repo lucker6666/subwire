@@ -3,6 +3,6 @@ include/config.php
 assets/photos/*.jpg
 assets/photos/*.png
 assets/photos/*.gif
-
 assets/audio/*.mp3
 
+.idea/
