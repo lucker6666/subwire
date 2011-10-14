@@ -63,7 +63,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <? endswitch ?>
         <aside>
 			<strong>From: <span style="color: #<?= user_color($p['user']); ?>;"><?= $p['user'] ?></span></strong>
-            <strong>Posted on:</strong> <?=Format::localDateTime($p['posted_on'],$format='Y-m-d -  H:i:s',$offset=TZ,$daylight=USE_DST)?>
+            <strong>Posted on:</strong> <?=Format::localDateTime($p['posted_on'],$format='d. M -  H:i',$offset=TZ,$daylight=USE_DST)?>
             <? if(!empty($p['tags'])): ?>
             | <strong>Tags</strong>:
             <? foreach(explode(' ', $p['tags']) as $tag): ?>
