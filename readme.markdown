@@ -15,6 +15,16 @@ my mind in a textfield (or a chat window). Mostly thats a mess of unsorted ideas
 It's based on the great work of Kelli Shavers lightweight tumblelog application "Tangarine" (https://github.com/kellishaver/Tangerine).
 
 
+Use Cases
+---------
+- Team Collaboration. Installed on an public server with Basic Authentication or within an intranet this can be used for team
+  collaboration. Quick sharing of all kinds of content in your team improves the information flow.
+- Could also be used as your personal startpage. Install it locally on your LAMP/WAMP/whatever or on your server (with a Basic
+  Authentication). Brain-Dump provides the possibility to configure a linklist, which will be displayed on the top. Your favorites may
+  take place here.
+
+
+
 Supported Post Types
 --------------------
 - Text
