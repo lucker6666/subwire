@@ -83,10 +83,10 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <div class="newComment">
             <form method="POST" action="<?=rtrim(SITE_URL, '/')?>/manage_comment.php?action=new&id=<?=$p['id']?>">
                 Name:
-                <input type="text" name="user" />
+                <input type="text" name="user" class="user" />
 
                 Comment:
-                <input type="text" name="contents" />
+                <input type="text" name="contents" class="comment" />
 
                 <input type="submit" class="submit" value="send" style="display: none;" />
             </form>
