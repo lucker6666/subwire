@@ -38,6 +38,7 @@ Features
 - Different colors for each user.
 - Automatic link detection
 - Linklist function.
+- Comment function.
 
 
 Requirements

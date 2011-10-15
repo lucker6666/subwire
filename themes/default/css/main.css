@@ -24,7 +24,9 @@ h2 a, h3 a                              { color: #fff; text-decoration: none; }
 h2 span a, h3 span a                    { font-size:10pt; font-weight:bold; text-shadow:-1px -1px 1px #000; display:inline-block; width:auto; padding:0 6px; background:#3b77af; margin-left:10px;  border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
 h2 span a.delete, h3 span a.delete      { background:#a00; }
 h3                                      { font-size: 12pt; font-weight: normal; margin: 0 0 5px 0; padding:10px; color: #fff; background:#444; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
-aside                                   { display: block; text-align: right; font-size: 10pt; padding-top: 10px; margin-top: 5px; border-top: 1px solid #aaa; }
+aside                                   { display: block; height: 1em; font-size: 10pt; padding-top: 10px; margin-top: 5px; border-top: 1px solid #aaa; }
+aside span.left                         { text-align: left; float: left; }
+aside span.right                        { text-align: right; float: right; }
 footer                                  { display: block; clear: both; padding-top: 10px; text-align: center; font-size: 10pt; }
 a                                       { color: #4685d4 }
 blockquote                              { border-left: 2px solid #ddd; margin-left: 10px; padding-left: 10px; }
@@ -69,7 +71,15 @@ form label                              { display:block; margin-bottom:5px; }
 form div.row input[type=text]           { width:718px; }
 form div.row textarea                   { width:725px; border:1px solid #ddd; background:#fff; }
 
-ul.linklist { list-style-type: none; margin: 0; padding: 0; }
-ul.linklist li { float: left; display: inline; padding: 0 10px; }
-ul.linklist a { color: #000; text-decoration: none; font-size: 16px; }
-ul.linklist a:hover { color: #666; text-decoration: underline; }
+ul.linklist                             { list-style-type: none; margin: 0; padding: 0; }
+ul.linklist li                          { float: left; display: inline; padding: 0 10px; }
+ul.linklist a                           { color: #000; text-decoration: none; font-size: 16px; }
+ul.linklist a:hover                     { color: #666; text-decoration: underline; }
+
+div.newComment                          { display: none; }
+
+ul.comments                             { list-style-type: none; color: #bbb; font-size: 14px; padding-top: 10px; margin-top: 5px;
+border-top: 1px solid #aaa; }
+ul.comments li                          { margin: 4px 0; }
+ul.comments span                        { font-weight: bold; }
+ul.comments i                           { color: #aaa; font-size: 13px; }

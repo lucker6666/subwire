@@ -61,15 +61,58 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
             <p><?=$p['contents']?></p>
         <? break ?>
         <? endswitch ?>
+
+        <?
+            $comments = get_comments($p['id']);
+
+            if (count($comments) > 0):
+        ?>
+            <ul class="comments">
+                <? foreach(get_comments($p['id']) as $c): ?>
+                    <li>
+                        <span style="color: #<?= user_color($c['user']); ?>;"><?= $c['user'] ?>:</span>
+                        <?= $c['contents'] ?>
+						<i>
+						(<?=Format::localDateTime($c['posted_on'],$format='d.m. - H:i',$offset=TZ,$daylight=USE_DST)?>)
+						</i>
+                    </li>
+                <? endforeach; ?>
+            </ul>
+        <? endif; ?>
+
+        <div class="newComment">
+            <form method="POST" action="<?=rtrim(SITE_URL, '/')?>/manage_comment.php?action=new&id=<?=$p['id']?>">
+                Name:
+                <input type="text" name="user" />
+
+                Comment:
+                <input type="text" name="contents" />
+
+                <input type="submit" class="submit" value="send" style="display: none;" />
+            </form>
+        </div>
+        
         <aside>
-			<strong>From: <span style="color: #<?= user_color($p['user']); ?>;"><?= $p['user'] ?></span></strong>
-            <strong>Posted on:</strong> <?=Format::localDateTime($p['posted_on'],$format='d. M -  H:i',$offset=TZ,$daylight=USE_DST)?>
-            <? if(!empty($p['tags'])): ?>
-            | <strong>Tags</strong>:
-            <? foreach(explode(' ', $p['tags']) as $tag): ?>
-            <a href="<?=rtrim(SITE_URL, '/')?>/index.php?tag=<?=$tag?>"><?=$tag?></a>
-            <? endforeach ?>
-            <? endif ?>
+            <span class="left">
+                <a href="#" onclick="toggleComment(this); return false;">Comment</a>
+            </span>
+
+            <span class="right">
+                <strong>
+                    From:
+                    <span style="color: #<?= user_color($p['user']); ?>;"><?= $p['user'] ?></span>
+                </strong>
+
+                <strong>Posted on:</strong>
+                <?=Format::localDateTime($p['posted_on'],$format='d. M - H:i',$offset=TZ,$daylight=USE_DST)?>
+                
+                <? if(!empty($p['tags'])): ?>
+                    | <strong>Tags</strong>:
+                    <? foreach(explode(' ', $p['tags']) as $tag): ?>
+                        <a href="<?=rtrim(SITE_URL, '/')?>/index.php?tag=<?=$tag?>"><?=$tag?></a>
+                    <? endforeach ?>
+                <? endif ?>
+            </span>
         </aside>
     </div>
     <? endforeach ?>

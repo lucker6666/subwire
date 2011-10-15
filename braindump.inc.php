@@ -23,13 +23,16 @@ define('ROOT_DIR',str_replace('\\\\', '/', realpath(dirname(__FILE__))).'/');
 
 require_once rtrim(ROOT_DIR, '/').'/include/config.php';
 require_once rtrim(ROOT_DIR, '/').'/include/post_utils.php';
+require_once rtrim(ROOT_DIR, '/').'/include/comment_utils.php';
 
+require_once rtrim(ROOT_DIR, '/').'/include/classes/comment.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/db.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/format.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/post.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/image.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/session.php';
 require_once rtrim(ROOT_DIR, '/').'/include/classes/validator.php';
+
 require_once rtrim(ROOT_DIR, '/').'/include/helpers.php';
 
 // For establishing database connection.

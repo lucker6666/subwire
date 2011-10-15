@@ -20,6 +20,25 @@ function nic_init() {
     }).panelInstance('rte');
 }
 
+function toggleComment(element) {
+    var commentDiv = $(element).parents('aside').siblings('div.newComment');
+    var inputs = commentDiv.children().children('input');
+
+    commentDiv.fadeIn(function() {
+        inputs[0].focus();
+    });
+
+    inputs.keypress(function(e) {
+        var keyCode = e.which ? e.which : e.keyCode;
+        console.log(keyCode);
+
+        if (keyCode == 13) {
+            $(this).blur();
+            $(this).parents('form').submit();
+        }
+    });
+}
+
 jQuery(function($) {
     setTimeout('$("#flash_error").fadeOut(1000)', 3000);
     setTimeout('$("#flash_notice").fadeOut(1000)', 3000);
