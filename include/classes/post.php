@@ -16,7 +16,7 @@
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwaheri!');
 
 class Post {
-    public $id, $title, $contents, $code, $link, $embed, $file, $byline, $tags, $type, $posted_on, $data;
+    public $id, $title, $name, $contents, $code, $link, $embed, $file, $byline, $tags, $type, $posted_on, $data;
 
     function __construct($id=0) {
         $this->id = 0;
@@ -60,6 +60,7 @@ class Post {
 
         $v->rules['title'] = 'required|min_length(2)|max_length(128)';
         $v->rules['type']  = 'required';
+        $v->rules['name']  = 'required';
 
         switch($vars['type']) {
             case 'audio':
@@ -121,6 +122,7 @@ class Post {
 
     public function getID()       { return $this->id; }
     public function getTitle()    { return $this->title; }
+    public function getName()     { return $this->name; }
     public function getContents() { return $this->contents; }
     public function getCode()     { return $this->code; }
     public function getLink()     { return $this->link; }
