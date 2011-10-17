@@ -53,6 +53,12 @@ Features
 - Comment function.
 
 
+Try it!
+-------
+I've installed a demo version of Brain-Dump just for you. Give it a try ;)
+http://bddemo.itws.de/
+
+
 Requirements
 ------------
 Brain Dump requires PHP5.3, GDLib, Mcrypt, and a reasonably current version of MySQL. Additionally, PHP short open tags should be turned on.
