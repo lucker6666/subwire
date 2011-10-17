@@ -69,7 +69,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         ?>
             <ul class="comments">
                 <? foreach(get_comments($p['id']) as $c): ?>
-                    <li><a name="c<?= $c['id'] ?>" />
+                    <li><a name="c<?= $c['id'] ?>"></a>
                         <span style="color: #<?= user_color($c['user']); ?>;"><?= $c['user'] ?>:</span>
                         <?= $c['contents'] ?>
 						<i>
