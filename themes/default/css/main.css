@@ -13,6 +13,7 @@
     -----------------------------------------------------
     Look and Feel for the Blip admin interface.
 ********************************************************/
+a:active, a:focus                       { outline: none; }
 body                                    { background: #ddd; margin: 0; padding: 0; text-align: center; font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000; }
 #container                              { width: 740px; margin: 20px auto; padding: 10px; background: #fff; text-align: left; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 header                                  { display: block; padding: 20px 0 10px; clear: both; }
@@ -32,15 +33,17 @@ a                                       { color: #4685d4 }
 blockquote                              { border-left: 2px solid #ddd; margin-left: 10px; padding-left: 10px; }
 code                                    { overflow-x: scroll }
 input[type=text], input[type=password]  { height:20px; line-height:20px; padding:4px; border:1px solid #ccc; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
-nav                                     { display:block; height:32px; padding:10px; margin-bottom:10px; background:#eee; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
-nav div.right                           { display: inline; float: right; }
+nav                                     { display:block; height:32px; padding:10px; background:#eee; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+nav div.right                           { display: inline; float: right; margin: -10px; padding: 10px;
+border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius: 10px 10px 0 0; }
+nav div.right.active                    { background-color: #555; }
 nav a                                   { display:block; float:left; margin-right:20px; width:32px; height:32px; }
 nav div.right a                         { margin-right: 0; }
 nav img                                 { border:none; }
 nav #log_out                            { margin-right:0; float:right; }
 cite                                    { display:block; text-align:right; }
 
-.post                                   { background: #555; color: #fff; padding: 10px; margin-bottom: 10px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+.post                                   { background: #555; color: #fff; padding: 10px; margin-top: 20px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 .post a                                 { color: #fff }
 .post_link                              { background: #333; display: block; text-decoration: none; padding: 5px; font-weight: bold; }
 .post_photo                             { background: #fff; padding: 1px; border: 5px solid #000; }
@@ -86,6 +89,10 @@ div.newComment input.comment            { width: 400px; }
 
 ul.comments                             { list-style-type: none; color: #bbb; font-size: 14px; padding-top: 10px; margin-top: 5px;
 border-top: 1px solid #aaa; }
-ul.comments li                          { margin: 4px 0; }
-ul.comments span                        { font-weight: bold; }
-ul.comments i                           { color: #aaa; font-size: 13px; }
+ul.comments li, div#lastComments li     { margin: 4px 0; }
+ul.comments span, div#lastComments span { font-weight: bold; }
+ul.comments i, div#lastComments i       { color: #aaa; font-size: 13px; }
+
+div#lastComments                        { display: none; margin-bottom: 30px; border-radius: 10px 0 10px 10px;
+-moz-border-radius: 10px 0 10px 10px; -webkit-border-radius: 10px 0 10px 10px; margin-top: 0; }
+div#lastComments a                      { text-decoration: none; }

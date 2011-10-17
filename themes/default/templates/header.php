@@ -21,13 +21,12 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><?=SITE_NAME?> <? if(isset($post)):?> - <?=$post['title']?><?endif?></title>
     <base href="<?=rtrim(SITE_URL, '/')?>/themes/<?=THEME?>/">
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" type="text/css">
     <link rel="stylesheet" href="css/main.css" type="text/css" />
     <link rel="stylesheet" href="<?=rtrim(SITE_URL, '/')?>/assets/highlight_styles/ir_black.css" type="text/css">
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/dot-luv/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="css/dot-luv/jquery.ui.css" type="text/css">
     <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/html5.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.js"></script>
     <script type="text/javascript" src="<?=rtrim(SITE_URL, '/')?>/assets/highlight.js"></script>
     <script type="text/javascript" src="js/nicEdit.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -60,20 +59,27 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
             <a href="<?=rtrim(SITE_URL, '/')?>/manage_post.php?action=new&type=code" title="New Code Post"><img src="images/icons/code.png" width="32" height="32" alt="New Code Post"></a>
 
 			<div class="right">
-				<a href="#" title="Show last comments"><img src="images/icons/comments.png" width="32" height="32" alt="Show last
+				<a href="#" title="Show last comments" onclick="toggleLastComments(); return false;"><img src="images/icons/comments.png" width="32" height="32" alt="Show last
 				comments"></a>
 			</div>
         </nav>
 
-		<div class="lastComments">
+		<div id="lastComments" class="post">
+			<h2>Last comments:</h2>
+
 			<ul>
 				<? foreach(get_comments() as $c): ?>
                     <li>
-                        <span style="color: #<?= user_color($c['user']); ?>;"><?= $c['user'] ?>:</span>
-                        <?= $c['contents'] ?>
-						<i>
-						(<?=Format::localDateTime($c['posted_on'],$format='d.m. - H:i',$offset=TZ,$daylight=USE_DST)?>)
-						</i>
+						<i>(<?=Format::localDateTime($c['posted_on'],$format='d.m. - H:i',$offset=TZ,$daylight=USE_DST)?>)</i>
+
+						<span style="color: #<?= user_color($c['user']); ?>;"><?= $c['user'] ?></span>
+						to <strong><a href="<?=rtrim(SITE_URL, '/')?>/index.php?id=<?= $c['post_id'] ?>#c<?= $c['id'] ?>"><?= $c['title']
+						?></a></strong>:
+						
+						<?= substr($c['contents'], 0, 30) ?>
+						
+						<strong><a href="<?=rtrim(SITE_URL, '/')?>/index.php?id=<?= $c['post_id'] ?>#c<?= $c['id']
+						?>">(...)</a></strong>
                     </li>
                 <? endforeach; ?>
 			</ul>

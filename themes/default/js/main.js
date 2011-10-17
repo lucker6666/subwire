@@ -39,6 +39,20 @@ function toggleComment(element) {
     });
 }
 
+function toggleLastComments() {
+    var navRight = $('nav .right');
+    var commentContainer = $('div#lastComments');
+
+    if (navRight.hasClass('active')) {
+        commentContainer.slideUp(function() {    
+            navRight.removeClass('active');
+        });
+    } else {
+        navRight.addClass('active');
+        commentContainer.slideDown();
+    }
+}
+
 jQuery(function($) {
     setTimeout('$("#flash_error").fadeOut(1000)', 3000);
     setTimeout('$("#flash_notice").fadeOut(1000)', 3000);

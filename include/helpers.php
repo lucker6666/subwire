@@ -21,8 +21,13 @@ function list_posts($page=1, $limit=10) {
     return (db()->getResult($sql))?:array();
 }
 
-function get_comments($post_id) {
-    $sql = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY posted_on ASC";
+function get_comments($post_id = 0) {
+	if ($post_id === 0) {
+		$sql = 'SELECT comments.*, posts.title FROM comments LEFT JOIN posts ON posts.id = comments.post_id ORDER BY comments.posted_on DESC LIMIT 10';
+	} else {
+	    $sql = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY posted_on ASC";
+	}
+
     return (db()->getResult($sql))?:array();
 }
 
