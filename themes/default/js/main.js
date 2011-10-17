@@ -30,7 +30,6 @@ function toggleComment(element) {
 
     inputs.keypress(function(e) {
         var keyCode = e.which ? e.which : e.keyCode;
-        console.log(keyCode);
 
         if (keyCode == 13) {
             $(this).blur();
