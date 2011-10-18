@@ -37,7 +37,7 @@ if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('Kwahe
         <input type="text" name="tags" size="80" value="<?=$vars['tags']?>">
     </div>
     <div class="row centered">
-        <a class="cancel" href="#">cancel</a> or <input type="submit" class="btn" value="Save Post">
+        <a class="cancel" href="<?=rtrim(SITE_URL, '/')?>/index.php">cancel</a> or <input type="submit" class="btn" value="Save Post">
     </div>
 </form>
 
