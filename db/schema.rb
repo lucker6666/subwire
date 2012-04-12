@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412055716) do
+ActiveRecord::Schema.define(:version => 20120412070849) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -38,13 +38,16 @@ ActiveRecord::Schema.define(:version => 20120412055716) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login"
-    t.string   "email"
-    t.string   "name"
-    t.string   "password_digest"
-    t.boolean  "is_admin"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "name",                :default => "",    :null => false
+    t.string   "email",               :default => "",    :null => false
+    t.boolean  "is_admin",            :default => false, :null => false
+    t.string   "login",               :default => "",    :null => false
+    t.string   "encrypted_password",  :default => "",    :null => false
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
