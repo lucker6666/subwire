@@ -1,7 +1,13 @@
 class Users < ActiveRecord::Migration
-  def up
-  end
+  def change
+  	create_table :users do |t|
+      t.string :login
+      t.string :email
+      t.string :name
+      t.string :password_digest
+      t.boolean :is_admin
 
-  def down
+      t.timestamps
+    end
   end
 end
