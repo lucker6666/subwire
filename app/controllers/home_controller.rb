@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  # User have to be logged in
-	before_filter :require_login
+	before_filter :authenticate_user!
 
 	def index
 	end

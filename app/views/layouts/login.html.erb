@@ -17,6 +17,9 @@
 
 	<body>
 		<div class="container">
+			<p class="notice"><%= notice %></p>
+       		<p class="alert"><%= alert %></p>
+
 			<div class="row">
 				<div class="span4">&nbsp;</div>
 				<div class="span4">
@@ -25,5 +28,7 @@
 				<div class="span4">&nbsp;</div>
 			</div>
 		</div>
+
+		<% render :partial => 'shared/flash_messages' %>
 	</body>
 </html>
