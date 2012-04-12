@@ -1,0 +1,20 @@
+<% if flash[:messages] %>
+	<script type="text/javascript">
+		$(function() {
+			$.jGrowl.defaults.sticky = true;
+			$.jGrowl.defaults.position = "bottom-right";
+
+			<%
+				if flash[:messages].kind_of?(Array)
+					flash[:messages].each do |message|
+			%>
+				$.jGrowl("<%= message %>");
+			<%
+					end
+				else
+			%>
+				$.jGrowl("<%= flash[:messages] %>");
+			<% end %>
+		});
+	</script>
+<% end %>
