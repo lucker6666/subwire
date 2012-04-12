@@ -34,4 +34,7 @@ BrainDump::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # URL
+  config.action_mailer.default_url_options = { :host => 'localhost:3001' }
 end

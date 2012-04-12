@@ -9,37 +9,6 @@ class ApplicationController < ActionController::Base
 
 	private
 
-	# ================================================================================================
-	# Finds the User with the ID stored in the session with the key
-	# :current_user_id This is a common way to handle user login in
-	# a Rails application; logging in sets the session value and
-	# logging out removes it.
-
-	def current_user
-		@_current_user ||= session[:user_id] && User.find_by_id(session[:user_id])
-	end
-
-
-	# ================================================================================================
-	# Checks if the current user is signed in
-
-	def user_signed_in?
-		current_user.present?
-	end
-
-	helper_method :user_signed_in?
-
-
-	# ================================================================================================
-	# Ensures that user is logged in
-
-	def require_login
-		unless user_signed_in?
-			notify "You have to login first."
-			redirect_to login_path
-		end
-	end
-
 
 	# ================================================================================================
 	# Send a message to the user over the notification system. Will use jGrowl in frontend
