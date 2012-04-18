@@ -25,15 +25,17 @@
 						<span class="icon-bar"></span>
 					</a>
 
-					<a class="brand" href="#">Some Test</a>
+					<a class="brand" href="#">BrainDump</a>
 
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li><%= link_to "Articles", articles_path %></li>
-							<li><%= link_to "Calendar" %></li>
-							<li><%= link_to "Team" %></li>
-							<li><%= link_to "Sign out", destroy_user_session_path,
-										:method => :delete %></li>
+							<% if user_signed_in? %>
+								<li><%= link_to "Articles", articles_path %></li>
+								<li><%= link_to "Calendar" %></li>
+								<li><%= link_to "Team" %></li>
+								<li><%= link_to "Sign out", destroy_user_session_path,
+											:method => :delete %></li>
+							<% end %>
 						</ul>
 					</div>
 				</div>
@@ -41,8 +43,6 @@
 		</div>
 
 		<div class="container">
-			<p class="notice"><%= notice %></p>
-       		<p class="alert"><%= alert %></p>
 			<div class="row">
 				<div class="span9">
 					<%= yield %>
