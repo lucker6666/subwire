@@ -1,13 +1,13 @@
 BrainDump::Application.routes.draw do
   devise_for :users
 
-  resources :comments
-
   resources :links
 
-  resources :articles
+  resources :articles do
+	  resources :comments
+	end
 
 
   get "home/index"
-  root :to => "home#index"
+  root :to => "articles#index"
 end

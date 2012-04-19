@@ -6,10 +6,20 @@ namespace :bootstrap do
     	:name => 'Admin',
     	:email => 'admin@example.com',
     	:is_admin => true,
-    	:password => 'admin'
+    	:password => 'admin',
+      :color => 'f92672'
+    )
+  end
+
+  desc "Add a default article"
+  task :default_article => :environment do
+    Article.create(
+      :title => "Welcome to your new BrainDump!",
+      :content => "Hi, this is your new and fresh BrainDump installation. Have fun! :)",
+      :user => User.find(1)
     )
   end
 
   desc "Run all bootstrapping tasks"
-  task :all => [:default_user]
+  task :all => [:default_user, :default_article]
 end

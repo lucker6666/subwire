@@ -15,3 +15,24 @@
 //= require twitter/bootstrap
 //= require jgrowl.js
 //= require_tree .
+
+$(function() {
+	$('.commentContainer').hide();
+});
+
+function commentToggle(a) {
+	a = $(a);
+	span = a.children('span');
+
+	if (span.hasClass('icon-chevron-down')) {
+		a.siblings('.commentContainer').slideDown();
+		span.removeClass('icon-chevron-down');
+		span.addClass('icon-chevron-up');
+	} else {
+		a.siblings('.commentContainer').slideUp();
+		span.removeClass('icon-chevron-up');
+		span.addClass('icon-chevron-down');
+	}
+
+	return false;
+}
