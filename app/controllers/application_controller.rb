@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
 	# We need all helpers, all the time
 	helper :all
 
+	layout :layout_by_resource
+
+
+  protected
+
+  def layout_by_resource
+    if devise_controller?
+      "login"
+    else
+      "application"
+    end
+  end
+
 
 	private
 
@@ -15,15 +28,15 @@ class ApplicationController < ActionController::Base
 
 	def notify(msg)
 	  # Case 1: null or empty string
-	  if flash[:messages].nil? || flash[:messages].to_s.strip.length == 0
-	    flash[:messages] = msg
+	  if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
+	    flash[:alert] = msg
 	  # Case 2: array
-	  elsif flash[:messages].kind_of?(Array)
-	    flash[:messages].push(msg)
+	  elsif flash[:alert].kind_of?(Array)
+	    flash[:alert].push(msg)
 	  # Case 3: contains a string
 	  else
-	    str = flash[:messages]
-	    flash[:messages] = [str, msg]
+	    str = flash[:alert]
+	    flash[:alert] = [str, msg]
 	  end
 	end
 

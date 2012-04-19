@@ -1,22 +1,19 @@
-<% if flash[:messages] %>
-	<%
-		flash[:messages] = flash[:messages] + notice + alert
-	%>
+<% if flash[:alert] %>
 	<script type="text/javascript">
 		$(function() {
 			$.jGrowl.defaults.sticky = true;
 			$.jGrowl.defaults.position = "bottom-right";
 
 			<%
-				if flash[:messages].kind_of?(Array)
-					flash[:messages].each do |message|
+				if flash[:alert].kind_of?(Array)
+					flash[:alert].each do |message|
 			%>
 				$.jGrowl("<%= message %>");
 			<%
 					end
 				else
 			%>
-				$.jGrowl("<%= flash[:messages] %>");
+				$.jGrowl("<%= flash[:alert] %>");
 			<% end %>
 		});
 	</script>

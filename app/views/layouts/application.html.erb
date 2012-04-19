@@ -29,13 +29,11 @@
 
 					<div class="nav-collapse">
 						<ul class="nav">
-							<% if user_signed_in? %>
-								<li><%= link_to "Articles", articles_path %></li>
-								<li><%= link_to "Calendar" %></li>
-								<li><%= link_to "Team" %></li>
-								<li><%= link_to "Sign out", destroy_user_session_path,
-											:method => :delete %></li>
-							<% end %>
+							<li><%= link_to "Articles", articles_path %></li>
+							<li><%= link_to "Calendar" %></li>
+							<li><%= link_to "Team" %></li>
+							<li><%= link_to "Sign out", destroy_user_session_path,
+									:method => :delete %></li>
 						</ul>
 					</div>
 				</div>
