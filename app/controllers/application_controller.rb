@@ -20,9 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-	private
-
-
 	# ================================================================================================
 	# Send a message to the user over the notification system. Will use jGrowl in frontend
 
