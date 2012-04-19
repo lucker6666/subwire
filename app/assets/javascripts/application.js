@@ -24,14 +24,14 @@ function commentToggle(a) {
 	a = $(a);
 	span = a.children('span');
 
-	if (span.hasClass('icon-chevron-down')) {
+	if (span.hasClass('icon-chevron-right')) {
 		a.siblings('.commentContainer').slideDown();
-		span.removeClass('icon-chevron-down');
-		span.addClass('icon-chevron-up');
+		span.removeClass('icon-chevron-right');
+		span.addClass('icon-chevron-down');
 	} else {
 		a.siblings('.commentContainer').slideUp();
-		span.removeClass('icon-chevron-up');
-		span.addClass('icon-chevron-down');
+		span.removeClass('icon-chevron-down');
+		span.addClass('icon-chevron-right');
 	}
 
 	return false;
