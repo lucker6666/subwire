@@ -25,11 +25,11 @@
 						<span class="icon-bar"></span>
 					</a>
 
-					<a class="brand" href="#">BrainDump</a>
+					<a class="brand" href="/">BrainDump</a>
 
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li><%= link_to "Articles", articles_path %></li>
+							<li><%= link_to 'New Article', new_article_path %>
 							<li><%= link_to "Calendar" %></li>
 							<li><%= link_to "Team" %></li>
 							<li><%= link_to "Sign out", destroy_user_session_path,
@@ -47,8 +47,15 @@
 				</div>
 
 				<div class="span3">
-					<h2>Test</h2>
-					asfasf
+					<h2>Bookmarks</h2>
+
+					<ul>
+						<% Link.all.each do |link| %>
+							<li>
+								<a href="<%= link.href %>"><%= link.name %></a>
+							</li>
+						<% end %>
+					</ul>
 				</div>
 			</div>
 		</div>

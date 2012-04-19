@@ -1,0 +1,55 @@
+/**
+ *	general
+ */
+
+body {
+	background: white url('back.png') repeat fixed 0 0;
+}
+
+h1 {
+	margin-bottom: 1em;
+}
+
+.article h2 {
+	font-size: 1.5em;
+}
+
+
+.article h2 a {
+	color: #000;
+}
+
+.article h2 a:hover {
+	background-color: transparent;
+	text-decoration: none;
+}
+
+.article nobr {
+	display: block;
+	font-size: 0.8em;
+	color: #999;
+}
+
+.article .buttons {
+	visibility: hidden;
+	float: right;
+	margin-bottom: 1em;
+}
+
+.article:hover .buttons {
+	visibility: visible;
+}
+
+.btn-danger {
+	color: #fff !important;
+}
+
+.comments {
+	clear: both;
+	border-top: 1px solid #999;
+}
+
+.comments h1 {
+	font-size: 1em;
+	font-weight: normal;
+}
