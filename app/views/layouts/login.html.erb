@@ -16,10 +16,15 @@
 	</head>
 
 	<body>
-		<div class="container">
-			<p class="notice"><%= notice %></p>
-       		<p class="alert"><%= alert %></p>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#">BrainDump</a>
+				</div>
+			</div>
+		</div>
 
+		<div class="container">
 			<div class="row">
 				<div class="span4">&nbsp;</div>
 				<div class="span4">
@@ -29,6 +34,6 @@
 			</div>
 		</div>
 
-		<% render :partial => 'shared/flash_messages' %>
+		<%= render :partial => 'shared/flash_messages' %>
 	</body>
 </html>

@@ -1,17 +1,34 @@
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :login %><br />
-  <%= f.text_field :login %></div>
+<%= form_for(
+		resource,
+		:as => resource_name,
+		:url => session_path(resource_name),
+		:html => { :class => "well form-inline" }) do |f| %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+	<div>
+		<%= f.label :login %><br />
+  		<%= f.text_field :login %>
+  	</div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+	<br />
 
-  <div><%= f.submit "Sign in" %></div>
+	<div>
+		<%= f.label :password %><br />
+  		<%= f.password_field :password %>
+  	</div>
+
+	<br />
+
+  	<% if devise_mapping.rememberable? -%>
+    	<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  	<% end -%>
+
+	<br />
+
+  	<div align="center">
+  		<%= f.submit "Sign in", :class => "btn btn-primary btn-large" %>
+  	</div>
 <% end %>
 
 <%= render "links" %>
