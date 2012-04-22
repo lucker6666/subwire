@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120419202442) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "notifictations", :force => true do |t|
+  create_table "notifications", :force => true do |t|
     t.string   "type",       :default => "article"
     t.string   "message"
     t.string   "href"
