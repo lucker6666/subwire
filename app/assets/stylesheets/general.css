@@ -31,6 +31,7 @@ a:hover {
 	display: block;
 	font-size: 0.8em;
 	color: #999;
+	margin: -5px 0 1em;
 }
 
 .article .buttons {
@@ -64,6 +65,14 @@ a:hover {
 
 .comments .commentContainer {
 	padding: 1em;
+}
+
+.commentList {
+	margin-top: 2em;
+}
+
+.commentList h5 {
+	margin-bottom: 1em;
 }
 
 ul.bookmarks {
