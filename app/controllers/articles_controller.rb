@@ -45,8 +45,25 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
     @article.user = current_user
 
+    success = @article.save
+
+    # Notify all users
+    if success
+      User.all.each do |user|
+        unless user == current_user
+          Notification.new([
+            :type => "new_article",
+            :message => "<strong>New article:</strong> <br />" + article.title,
+            :href => article_path(@article),
+            :is_read => false,
+             :user => user
+          ])
+        end
+      end
+    end
+
     respond_to do |format|
-      if @article.save
+      if success
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
