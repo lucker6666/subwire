@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(:version => 20120419202442) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "type",       :default => "article"
+    t.string   "notification_type", :default => "article"
     t.string   "message"
     t.string   "href"
     t.boolean  "is_read"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,7 +1,7 @@
 class Notifications < ActiveRecord::Migration
   def change
   	create_table :notifications do |t|
-      t.string :type, :default => "article"
+      t.string :notification_type, :default => "article"
       t.string :message
       t.string :href
       t.boolean :is_read

@@ -2,7 +2,7 @@ module NotificationsHelper
 	def notification_icon(notification)
 		icon = "file"
 
-		case notification.type.internal
+		case notification.notification_type.to_sym
 			when :edit_article
 				icon = "pencil"
 			when :new_comment
@@ -11,6 +11,6 @@ module NotificationsHelper
 				icon = "calendar"
 		end
 
-		return "<i class=\"icon-#{icon}\"></i>"
+		return "<i class=\"icon-#{icon}\"></i>".html_safe
 	end
 end

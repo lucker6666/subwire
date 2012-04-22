@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
       User.all.each do |user|
         unless user == current_user
           notification = Notification.new({
-            :type => "new_comment",
+            :notification_type => "new_comment",
             :message => "<strong>New Comment from #{@article.user.name} to:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
