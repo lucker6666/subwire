@@ -20,6 +20,16 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def check_admin(except)
+  	if current_user.is_admin?
+  		return true
+  	else
+  		notify "You're not an admin!"
+  		redirect_to "/"
+  	end
+  end
+
+
 	# ================================================================================================
 	# Send a message to the user over the notification system. Will use jGrowl in frontend
 

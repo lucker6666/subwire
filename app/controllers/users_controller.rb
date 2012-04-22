@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_admin, :except => [:edit, :update, :show]
 
   # GET /users
   # GET /users.json
@@ -36,7 +37,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    if current_user.is_admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   # POST /users
@@ -58,7 +63,15 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    if current_user.is_admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+
+    if params[:user][:password].empty?
+      params[:user].delete :password
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
