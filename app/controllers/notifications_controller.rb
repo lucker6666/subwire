@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  before_filter :authenticate_user!
+
 	# GET /comments/1
   def show
   	if (params[:id])
