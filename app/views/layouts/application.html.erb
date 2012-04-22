@@ -26,6 +26,7 @@
 							<li class="dropdown">
 							    <% if notifications.length > 0 %>
 								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								    	<i class="icon icon-exclamation-sign"></i>
 								    	Notifications
 
 								    	<span class="badge badge-info">
@@ -46,6 +47,7 @@
 								    </ul>
 								<% else %>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								    	<i class="icon icon-exclamation-sign"></i>
 								    	Notifications
 								        <b class="caret"></b>
 								    </a>
@@ -56,14 +58,35 @@
 							    <% end %>
 							</li>
 
-							<li><%= link_to 'New Article', new_article_path %></li>
+							<li>
+								<%= link_to new_article_path do %>
+							    	<i class="icon icon-file"></i>
+							    	New Article
+								<% end %>
+							</li>
 
 							<% if current_user.is_admin %>
-								<li><%= link_to 'User management', users_path %></li>
+								<li>
+									<%= link_to users_path do %>
+							    		<i class="icon icon-user"></i>
+										User management
+									<% end %>
+								</li>
+
+								<li>
+									<%= link_to links_path do %>
+							    		<i class="icon icon-screenshot"></i>
+										Link management
+									<% end %>
+								</li>
 							<% end %>
 
-							<li><%= link_to "Sign out", destroy_user_session_path,
-									:method => :delete %></li>
+							<li>
+								<%= link_to destroy_user_session_path, :method => :delete do %>
+							    	<i class="icon icon-remove"></i>
+									Logout
+								<% end %>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -79,10 +102,16 @@
 				<div class="span3">
 					<h2>Bookmarks</h2>
 
-					<ul>
+					<ul class="bookmarks">
 						<% Link.all.each do |link| %>
 							<li>
-								<a href="<%= link.href %>"><%= link.name %></a>
+								<a href="<%= link.href %>">
+									<% if !link.icon.empty? %>
+										<i class="icon icon-<%= link.icon %>"></i>
+									<% end %>
+
+									<%= link.name %>
+								</a>
 							</li>
 						<% end %>
 					</ul>

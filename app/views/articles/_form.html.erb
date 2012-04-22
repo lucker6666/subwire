@@ -1,3 +1,10 @@
+<script type="text/javascript" src="/assets/jquery.wysiwyg.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.wysiwyg').wysiwyg();
+});
+</script>
+
 <%= form_for @article, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
@@ -8,7 +15,7 @@
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, :class => 'text_area' %>
+      <%= f.cktext_area :content, :toolbar => 'Basic'  %>
     </div>
   </div>
 
