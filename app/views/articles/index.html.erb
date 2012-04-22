@@ -24,6 +24,7 @@
         <div class="comments">
           <a href="#" onclick="return commentToggle(this);">
             <span class="icon-chevron-right">&nbsp;</span>
+            <%= article.comments.length %>
             Comments
           </a>
 
@@ -35,13 +36,14 @@
                   <td><%= comment.content %></td>
                 </tr>
               <% end %>
-            </table
+            </table>
 
-            <strong>New comment</strong>
+            <br />
 
             <%= form_for([article, article.comments.build]) do |f| %>
-              <%= f.text_field :content %>
-              <%= f.submit %>
+              <div class="input-append">
+                <%= f.text_field :content, :class => "span7" %><%= f.submit "Save", :class => 'btn' %>
+              </div>
             <% end %>
           </div>
         </div>
