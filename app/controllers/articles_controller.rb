@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.reverse
 
     respond_to do |format|
       format.html # index.html.erb
@@ -51,13 +51,15 @@ class ArticlesController < ApplicationController
     if success
       User.all.each do |user|
         unless user == current_user
-          Notification.new([
+          notification = Notification.new({
             :type => "new_article",
             :message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
             :user => user
-          ])
+          })
+
+          notification.save
         end
       end
     end
@@ -83,13 +85,15 @@ class ArticlesController < ApplicationController
     if success
       User.all.each do |user|
         unless user == current_user
-          Notification.new([
+          notification = Notification.new({
             :type => "edit_article",
             :message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
             :user => user
-          ])
+          })
+
+          notification.save
         end
       end
     end
