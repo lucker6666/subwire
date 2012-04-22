@@ -2,6 +2,8 @@ BrainDump::Application.routes.draw do
 	# Devise
   devise_for :users
 
+  resources :users
+
   # Links
   resources :links
 
