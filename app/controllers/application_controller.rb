@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def check_admin(except)
+  def check_admin
   	if current_user.is_admin?
   		return true
   	else
