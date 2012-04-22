@@ -42,12 +42,28 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
     @comment.user = current_user
 
-    if @comment.save
+    success = @comment.save
+
+    # Notify all users
+    if success
+      User.all.each do |user|
+        unless user == current_user
+          Notification.new([
+            :type => "new_comment",
+            :message => "<strong>New Comment from #{@article.user.name} to:</strong> <br />#{@article.title}",
+            :href => article_path(@article),
+            :is_read => false,
+            :user => user
+          ])
+        end
+      end
+    end
+
+    if success
       notify 'Comment was successfully created.'
     else
       errors_to_notfications @comment

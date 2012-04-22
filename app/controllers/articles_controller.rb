@@ -53,10 +53,10 @@ class ArticlesController < ApplicationController
         unless user == current_user
           Notification.new([
             :type => "new_article",
-            :message => "<strong>New article:</strong> <br />" + article.title,
+            :message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
-             :user => user
+            :user => user
           ])
         end
       end
@@ -77,9 +77,25 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.json
   def update
     @article = Article.find(params[:id])
+    success = @article.update_attributes(params[:article])
+
+    # Notify all users
+    if success
+      User.all.each do |user|
+        unless user == current_user
+          Notification.new([
+            :type => "edit_article",
+            :message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
+            :href => article_path(@article),
+            :is_read => false,
+            :user => user
+          ])
+        end
+      end
+    end
 
     respond_to do |format|
-      if @article.update_attributes(params[:article])
+      if success
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
