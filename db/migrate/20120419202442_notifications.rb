@@ -1,4 +1,4 @@
-class Notifictations < ActiveRecord::Migration
+class Notifications < ActiveRecord::Migration
   def change
   	create_table :notifictations do |t|
       t.string :type, :default => "article"
