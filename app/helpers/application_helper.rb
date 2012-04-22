@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def colored_name(user)
-		"<span style='color: \##{user.color};'>#{user.name}</span>".html_safe
+		"<strong style='color: \##{user.color};'>#{user.name}</strong>".html_safe
 	end
 
 	def notifications

@@ -3,6 +3,27 @@
 
 <div class="well">
   <%= @article.content.html_safe %>
+
+  <div class="comments commentList">
+    <h5>Comments:</h5>
+
+    <table>
+      <% @article.comments.each do |comment| %>
+        <tr>
+          <td><%= colored_name(comment.user) %>:</td>
+          <td><%= comment.content %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <br />
+
+    <%= form_for([@article, @article.comments.build]) do |f| %>
+      <div class="input-append">
+        <%= f.text_field :content, :class => "span7" %><%= f.submit "Save", :class => 'btn' %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="form-actions">
