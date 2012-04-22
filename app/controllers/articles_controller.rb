@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
       User.all.each do |user|
         unless user == current_user
           notification = Notification.new({
-            :type => "new_article",
+            :notification_type => "new_article",
             :message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
@@ -86,7 +86,7 @@ class ArticlesController < ApplicationController
       User.all.each do |user|
         unless user == current_user
           notification = Notification.new({
-            :type => "edit_article",
+            :notification_type => "edit_article",
             :message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
             :href => article_path(@article),
             :is_read => false,
