@@ -4,7 +4,7 @@ module ApplicationHelper
 	end
 
 	def notifications
-		notifications = Notification.find_by_user_id(current_user.id)
+		notifications = Notification.find_all_by_user_id(current_user.id)
 
 		if notifications.nil?
 			[]
