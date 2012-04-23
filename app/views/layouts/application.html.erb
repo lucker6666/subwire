@@ -118,7 +118,7 @@
 					<ul class="bookmarks">
 						<% Link.all.each do |link| %>
 							<li>
-								<a href="<%= link.href %>">
+								<a href="<%= link.href %>" target="_blank">
 									<% if !link.icon.empty? %>
 										<i class="icon icon-<%= link.icon %>"></i>
 									<% end %>
