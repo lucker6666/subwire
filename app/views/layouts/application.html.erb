@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>BrainDump</title>
+		<title>
+			BrainDump
+
+			<% if notifications.length > 0 %>
+				(<%= notifications.length %>)
+			<% end %>
+		</title>
 
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript">
