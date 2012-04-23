@@ -12,13 +12,15 @@
         <%= article.content.html_safe %>
 
         <div class="buttons">
-          <%= link_to 'edit', edit_article_path(article), :class => 'btn btn-mini' %>
+          <% if current_user.is_admin? || article.user == current_user %>
+            <%= link_to 'edit', edit_article_path(article), :class => 'btn btn-mini' %>
 
-          <%= link_to 'delete',
-                    article_path(article),
-                    :method => :delete,
-                    :confirm => 'Are you sure?',
-                    :class => 'btn btn-mini btn-danger' %>
+            <%= link_to 'delete',
+                      article_path(article),
+                      :method => :delete,
+                      :confirm => 'Are you sure?',
+                      :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </div>
 
         <div class="comments">
