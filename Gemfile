@@ -11,3 +11,5 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'devise'
 gem "ckeditor", "3.7.0.rc3"
+gem 'will_paginate'
+gem "will_paginate_twitter_bootstrap"
