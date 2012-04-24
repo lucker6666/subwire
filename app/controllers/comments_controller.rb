@@ -71,7 +71,7 @@ class CommentsController < ApplicationController
       errors_to_notfications @comment
     end
 
-    redirect_to :back
+    redirect_to article_path(@article)
   end
 
   # PUT /comments/1
@@ -96,9 +96,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
-    end
+    redirect_to :back
   end
 end

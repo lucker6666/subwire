@@ -13,13 +13,16 @@
 
         <div class="buttons">
           <% if current_user.is_admin? || article.user == current_user %>
-            <%= link_to 'edit', edit_article_path(article), :class => 'btn btn-mini' %>
+            <%= link_to edit_article_path(article), :class => 'btn btn-mini' do %>
+              <i class="icon icon-pencil"></i>
+            <% end %>
 
-            <%= link_to 'delete',
-                      article_path(article),
+            <%= link_to article_path(article),
                       :method => :delete,
                       :confirm => 'Are you sure?',
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon icon-trash"></i>
+            <% end %>
           <% end %>
         </div>
 
@@ -34,8 +37,21 @@
             <table>
               <% article.comments.each do |comment| %>
                 <tr>
-                  <td><%= colored_name(comment.user) %>:</td>
-                  <td><%= comment.content %></td>
+                  <th><%= colored_name(comment.user) %>:</th>
+                  <td>
+                    <%= comment.content %>
+
+                    <div class="commentButtons">
+                      <% if current_user.is_admin? || comment.user == current_user %>
+                        <%= link_to article_comment_path(article, comment),
+                                  :method => :delete,
+                                  :confirm => 'Are you sure?',
+                                  :class => 'btn btn-mini btn-danger' do %>
+                          <i class="icon icon-trash"></i>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </td>
                 </tr>
               <% end %>
             </table>

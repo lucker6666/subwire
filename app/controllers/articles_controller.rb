@@ -17,6 +17,16 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
+    @notifications = Notification.find_all_by_user_id(current_user.id)
+
+    unless @notifications.nil?
+      @notifications.each do |notification|
+        if notification.href == article_path(@article)
+          notification.destroy
+        end
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }

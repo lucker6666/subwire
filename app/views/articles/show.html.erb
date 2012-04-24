@@ -11,7 +11,20 @@
       <% @article.comments.each do |comment| %>
         <tr>
           <td><%= colored_name(comment.user) %>:</td>
-          <td><%= comment.content %></td>
+          <td>
+            <%= comment.content %>
+
+            <div class="commentButtons">
+              <% if current_user.is_admin? || comment.user == current_user %>
+                <%= link_to article_comment_path(@article, comment),
+                          :method => :delete,
+                          :confirm => 'Are you sure?',
+                          :class => 'btn btn-mini btn-danger' do %>
+                  <i class="icon icon-trash"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
         </tr>
       <% end %>
     </table>
@@ -27,13 +40,13 @@
 </div>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              articles_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_article_path(@article), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              article_path(@article),
+  <%= link_to edit_article_path(@article), :class => 'btn' do %>
+    <i class="icon icon-pencil"></i>
+  <% end %>
+  <%= link_to article_path(@article),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger' do %>
+    <i class="icon icon-trash"></i>
+  <% end %>
 </div>
