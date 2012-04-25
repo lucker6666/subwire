@@ -1,22 +1,9 @@
-<script type="text/javascript" src="/assets/jquery.wysiwyg.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('.wysiwyg').wysiwyg();
-});
-</script>
-
 <%= form_for @article, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text_field' %>
-    </div>
+    <%= f.text_field :title, :class => 'text_field span9', :placeholder => "Title" %>
   </div>
   <div class="control-group">
-    <%= f.label :content, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.cktext_area :content, :toolbar => 'Basic'  %>
-    </div>
+    <%= f.cktext_area :content %>
   </div>
 
   <div class="form-actions">

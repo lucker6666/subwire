@@ -1,4 +1,6 @@
 BrainDump::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
 	# Devise
   devise_for :users
 
