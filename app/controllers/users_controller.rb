@@ -88,6 +88,10 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    @notifications = Notification.find_all_by_user_id(@user.id)
+    @notifications.each do |n|
+      n.destroy
+    end
     @user.destroy
 
     respond_to do |format|

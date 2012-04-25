@@ -94,6 +94,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+
+    @notifications = Notification.find_all_by_href(article_path(@comment.article))
+    @notifications.each do |n|
+      n.destroy
+    end
+
     @comment.destroy
 
     redirect_to :back

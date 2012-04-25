@@ -123,6 +123,16 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
+    @notifications = Notification.find_all_by_href(article_path(@article))
+    @notifications.each do |n|
+      n.destroy
+    end
+
+    @comments = Comment.find_all_by_article_id(@article.id)
+    @comments.each do |c|
+      c.destroy
+    end
+
     @article.destroy
 
     respond_to do |format|
