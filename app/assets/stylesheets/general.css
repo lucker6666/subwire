@@ -33,12 +33,44 @@
  *	Nav
  */
 
- 	#date {
- 		float: right;
- 		padding: 10px 100px 11px 10px;
-		line-height: 19px;
-		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-		display: block;
+ 	.dropdown-menu {
+ 		padding: 0.5em;
+ 	}
+
+ 	td.green,
+ 	td.yellow,
+ 	td.red {
+ 		text-align: center;
+ 	}
+
+ 	td.green,
+ 	table.table-striped tr:nth-child(odd) td.green {
+ 		background-color: #D1F3D1;
+ 		color: #34A634;
+ 	}
+
+ 	.table tbody tr:hover td.green {
+ 		background-color: #BFE1BF;
+ 	}
+
+ 	td.yellow,
+ 	table.table-striped tr:nth-child(odd) td.yellow {
+ 		background-color: #ffffcc;
+ 		color: #ffcc00;
+ 	}
+
+ 	.table tbody tr:hover td.yellow {
+ 		background-color: #EEEEB3;
+ 	}
+
+ 	td.red,
+ 	table.table-striped tr:nth-child(odd) td.red {
+ 		background-color: #ffccca;
+ 		color: #a63333;
+ 	}
+
+ 	.table tbody tr:hover td.red {
+ 		background-color: #EAB8B6;
  	}
 
 
