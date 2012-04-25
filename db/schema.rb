@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425135802) do
+ActiveRecord::Schema.define(:version => 20120425135803) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20120425135802) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "availabilities", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "date"
+    t.boolean  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "availabilities", ["user_id"], :name => "index_availabilities_on_user_id"
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false

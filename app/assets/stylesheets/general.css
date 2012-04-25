@@ -49,6 +49,11 @@
  		color: #34A634;
  	}
 
+ 	td.green a,
+ 	td.green a:hover {
+ 		color: #34A634;
+ 	}
+
  	.table tbody tr:hover td.green {
  		background-color: #BFE1BF;
  	}
@@ -59,6 +64,11 @@
  		color: #ffcc00;
  	}
 
+ 	td.yellow a,
+ 	td.yellow a:hover {
+ 		color: #ffcc00;
+ 	}
+
  	.table tbody tr:hover td.yellow {
  		background-color: #EEEEB3;
  	}
@@ -66,6 +76,11 @@
  	td.red,
  	table.table-striped tr:nth-child(odd) td.red {
  		background-color: #ffccca;
+ 		color: #a63333;
+ 	}
+
+ 	td.red a,
+ 	td.red a:hover {
  		color: #a63333;
  	}
 
