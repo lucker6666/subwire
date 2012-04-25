@@ -17,6 +17,7 @@ BrainDump::Application.routes.draw do
 	# Notifications
 	resources :notifications, :only => [:show]
 
+  post "availability", :to => "availabilities#set"
 
 	# Start page
   get "home/index"

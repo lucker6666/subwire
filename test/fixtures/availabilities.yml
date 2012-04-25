@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  date: 2012-04-25 15:15:25
+  value: false
+
+two:
+  user: 
+  date: 2012-04-25 15:15:25
+  value: false

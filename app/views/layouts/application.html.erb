@@ -114,48 +114,7 @@
 						    </a>
 
 						    <div class="dropdown-menu">
-						    	<table class="table table-striped table-bordered table-condensed">
-						    		<thead>
-						    			<tr>
-						    				<th>&nbsp;</th>
-						    				<th><nobr>15. May</nobr> (Mon)</th>
-						    				<th><nobr>16. May</nobr> (Tue)</th>
-						    				<th><nobr>17. May</nobr> (Wed)</th>
-						    				<th><nobr>18. May</nobr> (Thu)</th>
-						    				<th><nobr>19. May</nobr> (Fri)</th>
-						    				<th><nobr>20. May</nobr> (Sat)</th>
-						    				<th><nobr>21. May</nobr> (Sun)</th>
-						    			</tr>
-						    		</thead>
-
-						    		<tbody>
-						    			<% User.all.each do |user| %>
-							    			<tr>
-							    				<th><%= user.name %></th>
-
-							    				<%
-							    					7.times do |i|
-							    						color = rand(1..3)
-
-							    						if color == 1
-							    				%>
-									    					<td class="green">
-									    						<i class="icon icon-ok"></i>
-									    					</td>
-						    					<%		elsif color == 2 %>
-						    								<td class="yellow">
-									    						<i class="icon icon-question-sign"></i>
-									    					</td>
-						    					<%		else %>
-						    								<td class="red">
-									    						<i class="icon icon-remove"></i>
-									    					</td>
-						    					<%		end %>
-							    				<% 	end %>
-							    			</tr>
-							    		<% end %>
-						    		</tbody>
-						    	</table>
+						    	<%= render :partial => 'shared/availability' %>
 						    </div>
 						</li>
 					</ul>

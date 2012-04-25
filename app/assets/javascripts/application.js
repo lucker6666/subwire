@@ -19,7 +19,41 @@
 
 $(function() {
 	$('.commentContainer').hide();
+	$('a.availability_cell').click(switchAvailability);
 });
+
+function switchAvailability(event) {
+	var a = $(event.currentTarget);
+	var icon = a.children('i');
+	var td = a.closest('td');
+
+	switch (td.attr('class')) {
+		case "yellow":
+		case "red":
+			td.removeClass('yellow').removeClass('red').addClass('green');
+			icon.removeClass('icon-remove').removeClass('icon-question-sign').addClass('icon-ok');
+
+			$.post("/availability", {
+				date: a.attr('alt'),
+				value: true
+			});
+
+			break;
+
+		case "green":
+			td.removeClass('green').addClass('red');
+			icon.removeClass('icon-ok').addClass('icon-remove');
+
+			$.post("/availability", {
+				date: a.attr('alt'),
+				value: false
+			});
+
+			break;
+	}
+
+	return false;
+}
 
 function commentToggle(a) {
 	a = $(a);
