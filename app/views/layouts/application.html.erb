@@ -110,6 +110,16 @@
 						    	<i class="icon icon-calendar"></i>
 								<%=l Date.today, format: :long %>
 
+								<%
+									availabilities = Availability.where(
+										"date > ? and user_id = ?", Date.today + 1, current_user.id
+									)
+
+									if !availabilities.any?
+								%>
+									<span class="badge badge-warning">!</span>
+								<% end %>
+
 						        <b class="caret"></b>
 						    </a>
 
