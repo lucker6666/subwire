@@ -27,6 +27,8 @@ class ArticlesController < ApplicationController
       end
     end
 
+    @notifications = Notification.find_all_by_user_id(current_user.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }
