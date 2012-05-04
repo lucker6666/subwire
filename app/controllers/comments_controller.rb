@@ -79,14 +79,18 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
 
-    respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    if current_user == @comment.user || current_user.is_admin?
+      respond_to do |format|
+        if @comment.update_attributes(params[:comment])
+          format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to :back
     end
   end
 
@@ -95,12 +99,14 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
 
-    @notifications = Notification.find_all_by_href(article_path(@comment.article))
-    @notifications.each do |n|
-      n.destroy
-    end
+    if current_user == @comment.user || current_user.is_admin?
+      @notifications = Notification.find_all_by_href(article_path(@comment.article))
+      @notifications.each do |n|
+        n.destroy
+      end
 
-    @comment.destroy
+      @comment.destroy
+    end
 
     redirect_to :back
   end
