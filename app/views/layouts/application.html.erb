@@ -112,10 +112,10 @@
 
 								<%
 									availabilities = Availability.where(
-										"date > ? and user_id = ?", Date.today + 1, current_user.id
+										"date >= ? and user_id = ?", Date.today, current_user.id
 									)
 
-									if !availabilities.any?
+									if availabilities.length < 7
 								%>
 									<span class="badge badge-warning">!</span>
 								<% end %>
