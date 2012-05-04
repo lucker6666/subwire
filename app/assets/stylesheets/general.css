@@ -177,6 +177,7 @@
 	.comments .commentButtons {
 		visibility: hidden;
 		float: right;
+		display: inline;
 	}
 
 	.comments tr:hover .commentButtons {
