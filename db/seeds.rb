@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+User.create(
+	:login => 'admin',
+	:name => 'Admin',
+	:email => 'admin@example.com',
+	:is_admin => true,
+	:password => 'admin',
+  :color => 'f92672'
+)
+
+Article.create(
+	:title => "Welcome to your new BrainDump!",
+	:content => "Hi, this is your new and fresh BrainDump installation. Have fun! :)",
+	:user => User.find(1)
+)

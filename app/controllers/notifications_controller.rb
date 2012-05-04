@@ -1,9 +1,9 @@
 class NotificationsController < ApplicationController
-  before_filter :authenticate_user!
+	before_filter :authenticate_user!
 
 	# GET /notifications/1
 	def show
-	  	if (params[:id])
+		if (params[:id])
 			notification = Notification.find(params[:id])
 			target = "/"
 
@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
 				notification.destroy
 			end
 
-	   		redirect_to target
-	  	end
+			redirect_to target
+		end
 	 end
 end
