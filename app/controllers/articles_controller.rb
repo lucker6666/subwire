@@ -91,33 +91,38 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.json
   def update
     @article = Article.find(params[:id])
-    success = @article.update_attributes(params[:article])
 
-    # Notify all users
-    if success
-      User.all.each do |user|
-        unless user == current_user
-          notification = Notification.new({
-            :notification_type => "edit_article",
-            :message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
-            :href => article_path(@article),
-            :is_read => false,
-            :user => user
-          })
+    if current_user == @article.user || current_user.is_admin?
+      success = @article.update_attributes(params[:article])
 
-          notification.save
+      # Notify all users
+      if success
+        User.all.each do |user|
+          unless user == current_user
+            notification = Notification.new({
+              :notification_type => "edit_article",
+              :message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
+              :href => article_path(@article),
+              :is_read => false,
+              :user => user
+            })
+
+            notification.save
+          end
         end
       end
-    end
 
-    respond_to do |format|
-      if success
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if success
+          format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @article.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to :back
     end
   end
 
@@ -125,21 +130,26 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
-    @notifications = Notification.find_all_by_href(article_path(@article))
-    @notifications.each do |n|
-      n.destroy
-    end
 
-    @comments = Comment.find_all_by_article_id(@article.id)
-    @comments.each do |c|
-      c.destroy
-    end
+    if current_user == @article.user || current_user.is_admin?
+      @notifications = Notification.find_all_by_href(article_path(@article))
+      @notifications.each do |n|
+        n.destroy
+      end
 
-    @article.destroy
+      @comments = Comment.find_all_by_article_id(@article.id)
+      @comments.each do |c|
+        c.destroy
+      end
 
-    respond_to do |format|
-      format.html { redirect_to articles_url }
-      format.json { head :no_content }
+      @article.destroy
+
+      respond_to do |format|
+        format.html { redirect_to articles_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to :back
     end
   end
 end
