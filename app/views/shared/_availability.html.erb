@@ -6,10 +6,11 @@
 			<%
 				date = Date.today
 				7.times do
+				day = l(date, format: :day)
 			%>
-				<th>
+				<th class="<%= (day == 'Sat' || day == 'Sun' ? 'weekend' : '') %>">
 					<nobr><%= l date, format: :short %></nobr>
-					<%= l date, format: :day %>
+					<%= day %>
 				</th>
 			<%
 					date = date + 1
