@@ -73,6 +73,11 @@ class UsersController < ApplicationController
       params[:user].delete :password
     end
 
+    # make sure that there is no is_admin-value while user is not a admin
+    if !params[:user][:is_admin].nil? && !current_user.is_admin
+      params[:user][:is_admin] = false
+    end
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

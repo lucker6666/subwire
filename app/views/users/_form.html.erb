@@ -11,12 +11,14 @@
       <%= f.text_field :email, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :is_admin, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :is_admin, :class => 'check_box' %>
+  <% if current_user.is_admin? %>
+    <div class="control-group">
+      <%= f.label :is_admin, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_admin, :class => 'check_box' %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="control-group">
     <%= f.label :login, :class => 'control-label' %>
     <div class="controls">
