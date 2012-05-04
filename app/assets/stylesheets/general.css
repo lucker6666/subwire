@@ -178,6 +178,7 @@
 		visibility: hidden;
 		float: right;
 		display: inline;
+		margin-left: 5px;
 	}
 
 	.comments tr:hover .commentButtons {
