@@ -6,7 +6,7 @@ Installation
 * $ git clone https://itws@github.com/YaanaLabs/BrainDump.git
 * $ cd BrainDump
 * $ bundle
-* cp config/database.example.yml config/database.yml
-* vim config/database.yml
+* $ cp config/database.example.yml config/database.yml
+* $ vim config/database.yml
 * change database connection configuration
-* rake db:setup; rake db:migrate
+* $ rake db:setup; rake db:migrate
