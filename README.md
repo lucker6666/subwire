@@ -3,9 +3,10 @@ Work in progress. Stay tuned!
 
 Installation
 ============
-* clone
-* bundle install
+* $ git clone https://itws@github.com/YaanaLabs/BrainDump.git
+* $ cd BrainDump
+* $ bundle
 * cp config/database.example.yml config/database.yml
-* change database connection config
+* vim config/database.yml
+* change database connection configuration
 * rake db:setup; rake db:migrate
-* rake bootstrap:all

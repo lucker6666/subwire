@@ -1,17 +1,6 @@
 module ApplicationHelper
+	# Returns the colored user name
 	def colored_name(user)
 		"<strong style='color: \##{user.color};'>#{user.name}</strong>".html_safe
-	end
-
-	def notifications
-		if @notifications.nil?
-			@notifications = Notification.find_all_by_user_id(current_user.id)
-
-			if @notifications.nil?
-				@notifications = []
-			end
-		end
-
-		@notifications
 	end
 end

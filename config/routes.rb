@@ -11,7 +11,7 @@ BrainDump::Application.routes.draw do
 
   # Articles and comments
   resources :articles do
-	  resources :comments
+	  resources :comments, :only => [:create, :update, :destroy]
 	end
 
 	# Notifications

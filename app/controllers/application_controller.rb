@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   		return true
   	else
   		notify "You're not an admin!"
-  		redirect_to "/"
+  		redirect_to :back
   	end
   end
 
