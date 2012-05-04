@@ -12,18 +12,17 @@
         <tr>
           <td><%= colored_name(comment.user) %>:</td>
           <td>
-            <%= comment.content %>
-
             <div class="commentButtons">
               <% if current_user.is_admin? || comment.user == current_user %>
                 <%= link_to article_comment_path(@article, comment),
                           :method => :delete,
-                          :confirm => 'Are you sure?',
-                          :class => 'btn btn-mini btn-danger' do %>
-                  <i class="icon icon-trash"></i>
+                          :confirm => 'Are you sure?' do %>
+                  <i class="icon icon-remove"></i>
                 <% end %>
               <% end %>
             </div>
+
+            <%= comment.content %>
           </td>
         </tr>
       <% end %>
