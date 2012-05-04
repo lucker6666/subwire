@@ -156,6 +156,18 @@
 							<% end %>
 						</ul>
 					</div>
+
+					<div class="well">
+						<h2>User</h2>
+
+						<ul class="users nav nav-list">
+							<% User.all.each do |user| %>
+								<li>
+									<%= link_to user.name, user_path(user) %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
 				</div>
 			</div>
 
