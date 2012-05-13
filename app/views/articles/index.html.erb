@@ -48,10 +48,26 @@
                                   :confirm => 'Are you sure?' do %>
                           <i class="icon icon-remove"></i>
                         <% end %>
+
+                         <a href="#" onClick="editComment('<%= comment.id %>')">
+                            <i class="icon icon-edit"></i>
+                        </a>
+
                       <% end %>
                     </div>
 
+                   <div class="comment" id="comment<%= comment.id %>">
                     <%= comment.content %>
+                  </div>
+                  
+                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">       
+                    <%= form_for([article, comment]) do |f| %>
+                    <div class="input-append">
+                      <%= f.text_field :content, :class => "span6" %><%= f.submit "Save", :class => 'btn' %>
+                    </div>
+                  <% end %>
+                </div>
+
                   </td>
                 </tr>
               <% end %>

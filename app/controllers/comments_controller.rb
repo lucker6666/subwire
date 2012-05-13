@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 				unless user == current_user
 					notification = Notification.new({
 						:notification_type => "new_comment",
-						:message => "<strong>New Comment from #{@article.user.name} to:</strong> <br />#{@article.title}",
+						:message => "<strong>New Comment from #{@comment.user.name} to:</strong> <br />#{@article.title}",
 						:href => article_path(@article),
 						:is_read => false,
 						:user => user
@@ -44,8 +44,9 @@ class CommentsController < ApplicationController
 		if current_user == @comment.user || current_user.is_admin?
 			respond_to do |format|
 				if @comment.update_attributes(params[:comment])
-					format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+					format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
 					format.json { head :no_content }
+					notify 'Comment was successfully updated.'
 				else
 					format.html { render action: "edit" }
 					format.json { render json: @comment.errors, status: :unprocessable_entity }

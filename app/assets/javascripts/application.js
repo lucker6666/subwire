@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jgrowl.js
-//= require ckeditor/init
+
 //= require_tree .
 
 $(function() {
@@ -58,4 +58,11 @@ function commentToggle(a) {
 	}
 
 	return false;
+}
+
+function editComment(comment) {
+	$('.comment-edit').hide("slow");
+	$('.comment').show("slow");
+	$('#comment' + comment).hide("slow");
+	$('#comment' + comment + 'edit').show("slow");
 }
