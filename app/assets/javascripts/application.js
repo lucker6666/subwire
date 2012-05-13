@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jgrowl.js
-
+//= require ckeditor/init
 //= require_tree .
 
 $(function() {
