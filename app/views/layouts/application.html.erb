@@ -35,13 +35,13 @@
 								    	<i class="icon icon-exclamation-sign"></i>
 								    	Notifications
 
-								    	<span class="badge badge-info">
+								    	<span class="notification-badge badge badge-info">
 								    		<%= notifications.length %>
 								    	</span>
 								        <b class="caret"></b>
 								    </a>
 
-								    <ul class="dropdown-menu">
+								    <ul class="notification-dropdown dropdown-menu">
 								    	<% notifications.each do |notification| %>
 									    	<li>
 									    		<a href="<%= notification_path(notification) %>">
@@ -55,6 +55,9 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								    	<i class="icon icon-exclamation-sign"></i>
 								    	Notifications
+
+								    	<span class="notification-badge">
+								    	</span>
 								        <b class="caret"></b>
 								    </a>
 
