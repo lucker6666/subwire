@@ -15,7 +15,7 @@ BrainDump::Application.routes.draw do
 	end
 
 	# Notifications
-	resources :notifications, :only => [:show]
+	resources :notifications, :only => [:index, :show]
 
   post "availability", :to => "availabilities#set"
 

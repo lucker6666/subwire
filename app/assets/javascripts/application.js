@@ -66,3 +66,37 @@ function editComment(comment) {
 	$('#comment' + comment).hide("slow");
 	$('#comment' + comment + 'edit').show("slow");
 }
+
+function updateNotifications() {
+  $.getJSON('/notifications.json', function(data) {
+	  var notifications = "";
+	  var notificationsCount = 0;
+	  $.each(data, function(key, val) {
+
+	  	var notificationIcon = "";
+
+	  	switch(val.notification_type) {
+	  		case "edit_article":
+	  		  notificationIcon = "pencil";
+	  		  break;
+	  		case "new_comment":
+	  		  notificationIcon = "comment";
+	  		  break;
+	  		case "new_calendar":
+	  		  notificationIcon = "calendar";
+	  		  break;
+	  		default:
+	  	}
+	    notifications += '<li><a href="/notifications/'+val.id+'"><i class="icon-'+notificationIcon+'"></i>'+val.message+'</a></li>';
+	    notificationsCount++;
+	  });
+
+	  if(notificationsCount > 0) {
+	  	$('.notification-dropdown').html(notifications);
+		$('.notification-badge').html(notificationsCount).addClass('badge').addClass('badge-info');
+		$('title').html('BrainDump ('+notificationsCount+')');
+	  }
+  });
+}
+
+setInterval("updateNotifications();", 300000);
