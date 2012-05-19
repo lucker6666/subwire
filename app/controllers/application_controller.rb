@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
 	# Enable CSRF protection
 	protect_from_forgery
+	before_filter :set_locale
 
 	# We need all helpers, all the time
 	helper :all
@@ -24,10 +25,11 @@ class ApplicationController < ActionController::Base
   	if current_user.is_admin?
   		return true
   	else
-  		notify "You're not an admin!"
+  		notify t :application.no_admin
   		redirect_to :back
   	end
   end
+
 
 
 	# ================================================================================================
@@ -56,4 +58,25 @@ class ApplicationController < ActionController::Base
 	    notify message
 	  end
 	end
+
+	private
+
+	def set_locale
+	  I18n.locale = params[:locale] || I18n.default_locale
+	end
+
+	def default_url_options(options=[])
+	  { :locale => I18n.locale }
+	end
+
+	def locale_path(locale)
+		locale_regexp = %r{/(en|de)/?}
+		if request.env['PATH_INFO'] =~ locale_regexp
+			"#{request.env['PATH_INFO']}".
+			gsub(locale_regexp, "/#{locale}/")
+		else
+			"/#{locale}#{request.env['PATH_INFO']}"
+		end
+	end
+	helper_method :locale_path
 end
