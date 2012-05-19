@@ -33,7 +33,7 @@
 							    <% if notifications.length > 0 %>
 								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								    	<i class="icon icon-exclamation-sign"></i>
-								    	Notifications
+								    	<%= t "application.notifications" %>
 
 								    	<span class="notification-badge badge badge-info">
 								    		<%= notifications.length %>
@@ -54,7 +54,7 @@
 								<% else %>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								    	<i class="icon icon-exclamation-sign"></i>
-								    	Notifications
+								    	<%= t "application.notifications" %>
 
 								    	<span class="notification-badge">
 								    	</span>
@@ -62,7 +62,7 @@
 								    </a>
 
 									<ul class="dropdown-menu">
-										<li>There are no unread notifications.</li>
+										<li><%= t "application.notifications_unread" %></li>
 									</ul>
 							    <% end %>
 							</li>
@@ -70,7 +70,7 @@
 							<li>
 								<%= link_to new_article_path do %>
 							    	<i class="icon icon-file"></i>
-							    	New Article
+							    	<%= t "application.new_article" %>
 								<% end %>
 							</li>
 
@@ -78,31 +78,45 @@
 								<li>
 									<%= link_to users_path do %>
 							    		<i class="icon icon-user"></i>
-										User management
+										<%= t "application.user_management" %>
 									<% end %>
 								</li>
 
 								<li>
 									<%= link_to links_path do %>
 							    		<i class="icon icon-screenshot"></i>
-										Link management
+										<%= t "application.link_management" %>
 									<% end %>
 								</li>
 							<% else %>
 								<li>
 									<%= link_to edit_user_path(current_user) do %>
 							    		<i class="icon icon-user"></i>
-										Your profile
+										<%= t "application.your_profile" %>
 									<% end %>
 								</li>
 							<% end %>
+							<li>
+								<% if I18n.locale == :en %>
+									<%= link_to locale_path("de") do %>
+										<i class="icon icon-flag"></i>
+										<%= t "application.german" %>
+									<% end %>
+								<% else %>
+									<%= link_to locale_path("en") do %>
+										<i class="icon icon-flag"></i>
+										<%= t "application.english" %>
+									<% end %>
+								<% end %>
 
+							</li>
 							<li>
 								<%= link_to destroy_user_session_path, :method => :delete do %>
 							    	<i class="icon icon-remove"></i>
-									Logout
+									<%= t "application.logout" %>
 								<% end %>
 							</li>
+
 						</ul>
 
 						<ul class="nav pull-right">
@@ -143,7 +157,7 @@
 
 				<div class="span3 sidebar">
 					<div class="well">
-						<h2>Bookmarks</h2>
+						<h2><%= t "application.bookmarks" %></h2>
 
 						<ul class="bookmarks nav nav-list">
 							<% Link.all.each do |link| %>
@@ -161,7 +175,7 @@
 					</div>
 
 					<div class="well">
-						<h2>User</h2>
+						<h2><%= t "application.user" %></h2>
 
 						<ul class="users nav nav-list">
 							<% User.all.each do |user| %>
