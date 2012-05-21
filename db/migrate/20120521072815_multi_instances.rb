@@ -27,7 +27,6 @@ class MultiInstances < ActiveRecord::Migration
     create_table :relationships do |t|
       t.references 	:user, :null => false
       t.references 	:instance, :null => false
-      t.boolean			:admin, :null => false, :default => false
     end
 
     add_index :relationships, :instance_id

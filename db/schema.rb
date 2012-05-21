@@ -93,9 +93,8 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer "user_id",                        :null => false
-    t.integer "instance_id",                    :null => false
-    t.boolean "admin",       :default => false, :null => false
+    t.integer "user_id",     :null => false
+    t.integer "instance_id", :null => false
   end
 
   add_index "relationships", ["instance_id"], :name => "index_relationships_on_instance_id"
