@@ -17,10 +17,9 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.integer  "instance_id",                        :null => false
-    t.string   "type",        :default => "article", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "instance_id", :null => false
   end
 
   add_index "articles", ["instance_id"], :name => "index_articles_on_instance_id"
@@ -93,8 +92,9 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer "user_id",     :null => false
-    t.integer "instance_id", :null => false
+    t.integer "user_id",                       :null => false
+    t.integer "instance_id",                   :null => false
+    t.boolean "admin",       :default => true, :null => false
   end
 
   add_index "relationships", ["instance_id"], :name => "index_relationships_on_instance_id"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
     t.datetime "updated_at",                             :null => false
     t.string   "color",               :default => "000", :null => false
     t.string   "lang",                :default => "en",  :null => false
-    t.string   "avatar",                                 :null => false
+    t.string   "avatar"
     t.string   "superadmin",          :default => "0",   :null => false
   end
 
