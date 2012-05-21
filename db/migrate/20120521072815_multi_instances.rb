@@ -27,19 +27,16 @@ class MultiInstances < ActiveRecord::Migration
     create_table :relationships do |t|
       t.references 	:user, :null => false
       t.references 	:instance, :null => false
+      t.boolean			:admin, :null => false, :default => true
     end
 
     add_index :relationships, :instance_id
     add_index :relationships, :user_id
 
 
-    # article type column
-    add_column :articles, :type, :string, :null => false, :default => 'article'
-
-
     # user language, avatar and superadmin flag columns
     add_column :users, :lang, :string, :null => false, :default => 'en'
-    add_column :users, :avatar, :string, :null => false
+    add_column :users, :avatar, :string, :null => true
     add_column :users, :superadmin, :string, :null => false, :default => false
   end
 end
