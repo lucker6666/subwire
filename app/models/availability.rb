@@ -1,5 +1,6 @@
 class Availability < ActiveRecord::Base
-	belongs_to :user
-
 	attr_accessible :date, :value, :user
+
+	belongs_to :user
+	belongs_to :instance
 end
