@@ -38,6 +38,6 @@ class MultiInstances < ActiveRecord::Migration
     add_column :users, :lang, :string, :null => false, :default => 'en'
     add_column :users, :avatar, :string, :null => true
     add_column :users, :superadmin, :string, :null => false, :default => false
-    remove_cloumn :users, :login
+    remove_column :users, :login
   end
 end

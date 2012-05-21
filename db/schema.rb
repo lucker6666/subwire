@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
     t.string   "name",                :default => "",    :null => false
     t.string   "email",               :default => "",    :null => false
     t.boolean  "is_admin",            :default => false, :null => false
-    t.string   "login",               :default => "",    :null => false
     t.string   "encrypted_password",  :default => "",    :null => false
     t.datetime "remember_created_at"
     t.datetime "created_at",                             :null => false
@@ -114,7 +113,5 @@ ActiveRecord::Schema.define(:version => 20120521072815) do
     t.string   "avatar"
     t.string   "superadmin",          :default => "0",   :null => false
   end
-
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
