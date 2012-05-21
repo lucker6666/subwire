@@ -35,8 +35,9 @@ class MultiInstances < ActiveRecord::Migration
     add_column :articles, :type, :string, :null => false, :default => 'article'
 
 
-    # user language and avatar columns
+    # user language, avatar and superadmin flag columns
     add_column :users, :lang, :string, :null => false, :default => 'en'
     add_column :users, :avatar, :string, :null => false
+    add_column :users, :superadmin, :string, :null => false, :default => false
   end
 end
