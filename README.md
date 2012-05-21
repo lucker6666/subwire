@@ -10,3 +10,6 @@ Installation
 * $ vim config/database.yml
 * change database connection configuration
 * $ rake db:setup; rake db:migrate
+* $ rake braindump:all
+
+Finished! Now you can login with 'admin@example.com' and the password 'admin'.
