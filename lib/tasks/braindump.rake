@@ -8,10 +8,9 @@ namespace :braindump do
     )
   end
 
-  desc "Add the default superadmin 'admin' with password 'admin'"
+  desc "Add the default superadmin 'admin@example.com' with password 'admin'"
   task :default_user => :environment do
     User.create(
-    	:login => 'admin',
     	:name => 'Admin',
     	:email => 'admin@example.com',
     	:is_admin => true,
