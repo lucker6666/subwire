@@ -6,7 +6,6 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:is_admin) %></th>
-      <th><%= model_class.human_attribute_name(:login) %></th>
       <th><%= model_class.human_attribute_name(:color) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -17,7 +16,6 @@
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
         <td><%= user.is_admin %></td>
-        <td><%= user.login %></td>
         <td><%= user.color %></td>
         <td>
           <%= link_to edit_user_path(user), :class => 'btn btn-mini' do %>

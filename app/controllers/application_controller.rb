@@ -30,6 +30,15 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def check_superadmin
+  	if current_user.is_admin?
+  		return true
+  	else
+  		notify t :application.no_superadmin
+  		redirect_to :back
+  	end
+  end
+
 
 
 	# ================================================================================================
