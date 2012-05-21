@@ -1,7 +1,7 @@
 class MultiInstances < ActiveRecord::Migration
   def change
   	# instances table and the references
-  	create_table :instances do |i|
+  	create_table :instances do |t|
       t.string 	:name, :null => false
       t.string 	:defaultLanguage, :null => false, :default => 'en'
       t.boolean :advertising, :null => false, :default => true
@@ -18,6 +18,9 @@ class MultiInstances < ActiveRecord::Migration
 
     add_column :availabilities, :instance_id, :integer, :null => false
     add_index :availabilities, :instance_id
+
+    add_column :notifications, :instance_id, :integer, :null => false
+    add_index :notifications, :instance_id
 
 
     # relationships table
