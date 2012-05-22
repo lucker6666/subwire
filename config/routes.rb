@@ -6,6 +6,8 @@ BrainDump::Application.routes.draw do
   devise_for :users
 
   scope "(:locale)", locale: /en|de/ do
+  	resources :instances
+
     resources :users
 
     # Links

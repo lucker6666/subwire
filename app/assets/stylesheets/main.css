@@ -225,7 +225,7 @@
  	}
 
 	.login-form {
-		width: 220px;
+		width: 250px;
 	}
 
 	.login-form {
@@ -247,6 +247,32 @@
 	.login-form form input.btn {
 		margin-top: 1.5em;
 	}
+
+
+
+/**
+ *	Instance Chooster
+ */
+
+ 	div.instanceChooser h1 {
+ 		text-align: center;
+ 		margin-bottom: 0;
+ 	}
+
+ 	div.instanceChooser ul {
+ 		width: 100px;
+ 		margin: 1em auto 0;
+ 		font-size: 1.25em;
+ 	}
+
+ 	div.instanceChooser li {
+ 		line-height: 1.3em;
+ 	}
+
+ 	div.instanceChooser .buttons {
+ 		text-align: center;
+ 		margin-top: 2em;
+ 	}
 
 
 
