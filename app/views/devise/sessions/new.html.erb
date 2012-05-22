@@ -1,27 +1,24 @@
-<div class="login-form">
-	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<fieldset>
+        <div class="clearfix">
+  			<%= f.text_field :email, :class => 'text_field', :placeholder => "Email"  %>
+        </div>
 
-		<fieldset>
-            <div class="clearfix">
-	  			<%= f.text_field :email, :class => 'text_field', :placeholder => "Email"  %>
-            </div>
+        <div class="clearfix">
+  			<%= f.password_field :password, :class => 'text_field', :placeholder => "Password" %>
+        </div>
 
-            <div class="clearfix">
-	  			<%= f.password_field :password, :class => 'text_field', :placeholder => "Password" %>
-            </div>
+        <% if devise_mapping.rememberable? -%>
+            <label class="checkbox">
+	    		<%= f.check_box :remember_me %>
+                Remeber me
+            </label>
+	  	<% end -%>
 
-            <% if devise_mapping.rememberable? -%>
-	            <label class="checkbox">
-		    		<%= f.check_box :remember_me %>
-	                Remeber me
-	            </label>
-		  	<% end -%>
+	  	<div align="center">
+	  		<%= f.submit "Login", :class => "btn btn btn-success btn-large" %>
+	  	</div>
+    </fieldset>
 
-		  	<div align="center">
-		  		<%= f.submit "Login", :class => "btn btn btn-success btn-large" %>
-		  	</div>
-        </fieldset>
-	<% end %>
-</div>
-
-<%= render "links" %>
+	<%= render "links" %>
+<% end %>
