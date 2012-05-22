@@ -1,7 +1,7 @@
 BrainDump::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  
+
 	# Devise
   devise_for :users
 
@@ -20,11 +20,10 @@ BrainDump::Application.routes.draw do
   	resources :notifications, :only => [:index, :show]
 
     post "availability", :to => "availabilities#set"
-
   end
 
 	# Start page
   get "home/index"
-  get '/:locale' => 'articles#index'
-  root :to => "articles#index"
+  get '/:locale' => 'home#index'
+  root :to => "home#index"
 end
