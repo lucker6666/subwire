@@ -197,7 +197,7 @@ de:
     pm: nachmittags
 
   application:
-    no_admin: Du bist kein Admin
+    no_admin: Du bist kein Admin!
     notifications: Benachrichtigungen
     notifications_unread: Keine ungelesenen Benachrichtigungen.
     user_management: Benutzer Verwaltung
@@ -209,6 +209,7 @@ de:
     user: Benutzer
     german: Deutsch
     english: Englisch
+    no_permission_for_instance: Du darfst diese Instanz nicht sehen!
 
   comments:
     new_success: Comment was successfully created.

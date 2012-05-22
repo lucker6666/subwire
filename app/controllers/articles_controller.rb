@@ -8,7 +8,8 @@ class ArticlesController < ApplicationController
 		@articles = Article.paginate(
 			:page => params[:page],
 			:per_page => 5,
-			:order => "created_at DESC"
+			:order => "created_at DESC",
+			:conditions => { :instance_id => current_instance.id }
 		)
 
 		respond_to do |format|
@@ -22,7 +23,10 @@ class ArticlesController < ApplicationController
 	def show
 		@article = Article.find(params[:id])
 
-		@notifications = Notification.find_all_by_user_id(current_user.id)
+		@notifications = Notification.where(
+			:user_id => current_user.id,
+			:instance_id => current_instance.id
+		)
 
 		# Delete all notifications regarding that article
 		unless @notifications.nil?
@@ -62,24 +66,17 @@ class ArticlesController < ApplicationController
 	def create
 		@article = Article.new(params[:article])
 		@article.user = current_user
+		@article.instance = current_instance
 
 		success = @article.save
 
 		# Notify all users
 		if success
-			User.all.each do |user|
-				unless user == current_user
-					notification = Notification.new({
-						:notification_type => "new_article",
-						:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
-						:href => article_path(@article),
-						:is_read => false,
-						:user => user
-					})
-
-					notification.save
-				end
-			end
+			notify_all_users({
+				:notification_type => "new_article",
+				:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
+				:href => article_path(@article)
+			})
 		end
 
 		respond_to do |format|
@@ -103,19 +100,11 @@ class ArticlesController < ApplicationController
 
 			# Notify all users
 			if success
-				User.all.each do |user|
-					unless user == current_user
-						notification = Notification.new({
-							:notification_type => "edit_article",
-							:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
-							:href => article_path(@article),
-							:is_read => false,
-							:user => user
-						})
-
-						notification.save
-					end
-				end
+				notify_all_users({
+					:notification_type => "edit_article",
+					:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
+					:href => article_path(@article)
+				})
 			end
 
 			respond_to do |format|
@@ -139,7 +128,11 @@ class ArticlesController < ApplicationController
 
 		if current_user == @article.user || current_user.is_admin?
 			# Delete all notifications
-			@notifications = Notification.find_all_by_href(article_path(@article))
+			@notifications = Notification.where(
+				:href => article_path(@article),
+				:instance_id => current_instance.id
+			)
+
 			@notifications.each do |n|
 				n.destroy
 			end

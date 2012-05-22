@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
 	# Enable CSRF protection
 	protect_from_forgery
-	before_filter :set_locale
+	before_filter :set_locale, :check_permissions
 
 	# We need all helpers, all the time
 	helper :all
@@ -77,7 +77,45 @@ class ApplicationController < ActionController::Base
 	  end
 	end
 
+	def notify_all_users(data)
+		User.find_all_by_instance(current_instance).each do |user|
+			unless user == current_user
+				notification = Notification.new({
+					:notification_type => data[:notification_type],
+					:message => data[:message],
+					:href => data[:href],
+					:is_read => false,
+					:user => user,
+					:instance => current_instance
+				})
+
+				notification.save
+			end
+		end
+	end
+
+
+
+
 	private
+
+	def check_permissions
+		unless current_user.is_admin?
+			relationships = Relationship.where(
+				:user_id => current_user.id,
+				:instance_id => current_instance.id)
+
+			unless relationships.any?
+				notify t :application.no_permission_for_instance
+
+				if relationships.length > 1
+	  			redirect_to instances_path
+	  		else
+	  			redirect_to destroy_user_session_path, :method => :delete
+	  		end
+			end
+		end
+	end
 
 	def set_locale
 	  I18n.locale = params[:locale] || I18n.default_locale

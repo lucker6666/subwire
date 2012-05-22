@@ -9,4 +9,8 @@ module ApplicationHelper
 		rel = Relationship.where(:user_id => current_user.id, :instance_id => current_instance.id).first
 		rel.admin?
 	end
+
+	def current_instance
+		session[:instance]
+	end
 end
