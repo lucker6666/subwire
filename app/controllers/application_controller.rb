@@ -9,8 +9,16 @@ class ApplicationController < ActionController::Base
 
 	layout :layout_by_resource
 
+	def current_instance
+		session[:instance]
+	end
+
 
   protected
+
+	def set_current_instance(instance)
+		session[:instance] = instance
+	end
 
   def layout_by_resource
     if devise_controller?
@@ -20,9 +28,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def check_admin
   	if current_user.is_admin?
+  		return true
+  	elsif is_admin_of_instance?
   		return true
   	else
   		notify t :application.no_admin
