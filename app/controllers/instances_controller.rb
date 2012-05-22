@@ -1,7 +1,6 @@
 class InstancesController < ApplicationController
 	before_filter :authenticate_user!
 
-
 	# GET /instance
 	# GET /instance.json
 	def index

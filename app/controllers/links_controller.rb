@@ -5,7 +5,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.find_by_instance(current_instance)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +44,7 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(params[:link])
+    @link.instance = current_instance
 
     respond_to do |format|
       if @link.save

@@ -3,7 +3,10 @@ class NotificationsController < ApplicationController
 
 	# GET /notifications.json
 	def index
-		@notifications = Notification.find_all_by_user_id(current_user.id)
+		@notifications = Notification.where(
+			:user_id => current_user.id,
+			:instance_id => current_instance.id
+		)
 
 		respond_to do |format|
 			#format.html # index.html.erb
@@ -17,7 +20,9 @@ class NotificationsController < ApplicationController
 			notification = Notification.find(params[:id])
 			target = "/"
 
-			if notification && notification.user == current_user
+			if notification && notification.user == current_user &&
+				notification.instance == current_instance
+
 				target = notification.href
 				notification.destroy
 			end

@@ -12,19 +12,11 @@ class CommentsController < ApplicationController
 
 		# Notify all users
 		if success
-			User.all.each do |user|
-				unless user == current_user
-					notification = Notification.new({
-						:notification_type => "new_comment",
-						:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
-						:href => article_path(@article),
-						:is_read => false,
-						:user => user
-					})
-
-					notification.save
-				end
-			end
+			notify_all_users({
+				:notification_type => "new_comment",
+				:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
+				:href => article_path(@article)
+			})
 		end
 
 		if success

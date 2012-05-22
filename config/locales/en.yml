@@ -211,6 +211,7 @@ en:
     user: User
     german: German
     english: English
+    no_permission_for_instance: You\'re not allowed to see this instance!
 
   comments:
     new_success: Comment was successfully created.
