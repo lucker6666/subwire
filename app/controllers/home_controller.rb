@@ -10,9 +10,7 @@ class HomeController < ApplicationController
 		)
 
 		if @instances.length > 1
-			respond_to do |format|
-				format.html # home/index.html.erb
-	    end
+			redirect_to instances_path
 		else
 			set_current_instance @instances.first
 			redirect_to articles_path

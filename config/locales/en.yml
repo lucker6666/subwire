@@ -9,7 +9,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -36,7 +36,7 @@ en:
       day: "%a"
       short: ! '%b %d'
     month_names:
-    - 
+    -
     - January
     - February
     - March
@@ -216,6 +216,10 @@ en:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
+
+  instances:
+    new: Create new instance!
+    your_instances: Your instances
 
 
 

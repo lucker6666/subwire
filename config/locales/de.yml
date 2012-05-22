@@ -9,7 +9,7 @@ de:
     - Fr
     - Sa
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mär
@@ -36,7 +36,7 @@ de:
       short: ! '%e. %b'
       day: "%a"
     month_names:
-    - 
+    -
     - Januar
     - Februar
     - März
@@ -214,6 +214,10 @@ de:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
+
+  instances:
+    new: Erstelle eine neue Instanz!
+    your_instances: Deine Instanzen
 
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

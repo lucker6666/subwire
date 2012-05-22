@@ -1,0 +1,18 @@
+<%- model_class = Instance.new.class -%>
+
+<div class="instanceChooser">
+	<h1><%= t('instances.your_instances') %></h1>
+
+	<ul>
+		<% @instances.each do |instance| %>
+			<li><%= link_to instance.name, instance_path(instance) %></li>
+		<% end %>
+	</ul>
+
+	<div class="buttons">
+		<%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
+			<i class="icon icon-home"></i>
+			<%= t('instances.new') %>
+		<% end %>
+	</div>
+</div>
