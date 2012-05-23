@@ -244,6 +244,10 @@
 		margin: 0;
 	}
 
+	.login-form input.text_field {
+		width: 240px;
+	}
+
 	.login-form form input.btn {
 		margin-top: 1.5em;
 	}
