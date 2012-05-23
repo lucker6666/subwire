@@ -35,6 +35,38 @@
  *	Nav
  */
 
+ 	.nav-collapse {
+ 		font-size: 1.1em;
+ 	}
+
+ 	.iconOnly i {
+ 		font-size: 1.6em;
+ 	}
+
+ 	li.iconOnly > a.dropdown-toggle {
+ 		position: relative;
+ 		padding: 10px 4px 8px;
+ 	}
+
+ 	a.dropdown-toggle span.badge {
+ 		position: absolute;
+		left: 21px;
+		text-shadow: none;
+		top: 4px;
+		padding: 0px 4px 0px;
+		font-size: 7px;
+		line-height: 14px;
+	}
+
+	li.planner a.dropdown-toggle span.badge {
+		top: 7px;
+		left: 20px;
+	}
+
+	li.instances ul a {
+		padding: 3px 0;
+	}
+
  	.dropdown-menu {
  		padding: 0.5em;
  	}

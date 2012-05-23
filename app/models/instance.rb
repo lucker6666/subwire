@@ -17,4 +17,12 @@ class Instance < ActiveRecord::Base
 			}
 		)
 	end
+
+	def self.find_all_by_user(user)
+		find(
+			:all,
+			:joins => :relationships,
+			:conditions => { "relationships.user_id" => user.id }
+		)
+	end
 end

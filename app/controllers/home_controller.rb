@@ -3,11 +3,7 @@ class HomeController < ApplicationController
 
 	# GET /
 	def index
-		@instances = Instance.find(
-			:all,
-			:joins => :relationships,
-			:conditions => { "relationships.user_id" => current_user.id }
-		)
+		@instances = Instance.find_all_by_user(current_user)
 
 		if @instances.length > 1
 			redirect_to instances_path
