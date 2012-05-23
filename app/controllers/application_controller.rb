@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
 	# Enable CSRF protection
 	protect_from_forgery
-	before_filter :set_locale, :check_permissions
+	before_filter :set_locale, :refresh_config, :check_permissions
 
 	# We need all helpers, all the time
 	helper :all
@@ -98,6 +98,12 @@ class ApplicationController < ActionController::Base
 
 
 	private
+
+	def refresh_config
+		if current_instance
+			set_current_instance Instance.find(current_instance.id)
+		end
+	end
 
 	def check_permissions
 		if current_user
