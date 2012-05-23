@@ -13,4 +13,12 @@ module ApplicationHelper
 	def current_instance
 		session[:instance]
 	end
+
+	def display_ads
+		if current_user.is_admin?
+  		return false
+  	end
+
+		current_instance.advertising
+	end
 end
