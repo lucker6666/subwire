@@ -287,7 +287,7 @@
 
 
 /**
- *	Instance Chooster
+ *	Instance stuff
  */
 
  	div.instanceChooser h1 {
@@ -309,6 +309,26 @@
  		text-align: center;
  		margin-top: 2em;
  	}
+
+ 	div.newInstance {
+ 		width: 410px;
+ 	}
+
+ 	div.newInstance h1 {
+ 		text-align: center;
+ 	}
+
+	div.newInstance form input.btn {
+		margin-top: 0;
+	}
+
+	div.newInstance .control-label {
+		width: 80px;
+	}
+
+	div.newInstance .controls {
+		margin-left: 90px;
+	}
 
 
 
