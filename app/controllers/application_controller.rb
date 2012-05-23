@@ -100,19 +100,21 @@ class ApplicationController < ActionController::Base
 	private
 
 	def check_permissions
-		unless current_user.is_admin?
-			relationships = Relationship.where(
-				:user_id => current_user.id,
-				:instance_id => current_instance.id)
+		if current_user
+			unless current_user.is_admin?
+				relationships = Relationship.where(
+					:user_id => current_user.id,
+					:instance_id => current_instance.id)
 
-			unless relationships.any?
-				notify t :application.no_permission_for_instance
+				unless relationships.any?
+					notify t :application.no_permission_for_instance
 
-				if relationships.length > 1
-	  			redirect_to instances_path
-	  		else
-	  			redirect_to destroy_user_session_path, :method => :delete
-	  		end
+					if relationships.length > 1
+		  			redirect_to instances_path
+		  		else
+		  			redirect_to destroy_user_session_path, :method => :delete
+		  		end
+				end
 			end
 		end
 	end
