@@ -9,10 +9,14 @@
 		<% end %>
 	</ul>
 
-	<div class="buttons">
-		<%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
-			<i class="icon icon-home"></i>
-			<%= t('instances.new') %>
-		<% end %>
-	</div>
+	<% if @adminCount > 4 %>
+		<%= t('instances.hit_limit') %>
+	<% else %>
+		<div class="buttons">
+			<%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
+				<i class="icon icon-home"></i>
+				<%= t('instances.new') %>
+			<% end %>
+		</div>
+	<% end %>
 </div>

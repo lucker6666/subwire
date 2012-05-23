@@ -10,6 +10,8 @@ class InstancesController < ApplicationController
 			:conditions => { "relationships.user_id" => current_user.id }
 		)
 
+		@adminCount = Instance.find_all_where_user_is_admin(current_user).length
+
 		respond_to do |format|
 			format.html { render 'index', layout: 'login' } # home/index.html.erb
     end

@@ -219,6 +219,7 @@ de:
   instances:
     new: Erstelle eine neue Instanz!
     your_instances: Deine Instanzen
+    hit_limit: Du hast die maximale Anzahl von Instanzen erreicht. Wenn du noch mehr benötigst, kontaktiere uns bitte per info@yaana.de.
 
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
