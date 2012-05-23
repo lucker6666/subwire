@@ -221,6 +221,7 @@ en:
   instances:
     new: Create new instance!
     your_instances: Your instances
+    hit_limit: You\'ve reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
 
 
 

@@ -6,4 +6,15 @@ class Instance < ActiveRecord::Base
 	has_many :notifications
 	has_many :relationships
 	has_many :users, :through => :relationships
+
+	def self.find_all_where_user_is_admin(user)
+		find(
+			:all,
+			:joins => :relationships,
+			:conditions => {
+				"relationships.user_id" => user.id,
+				"relationships.admin" => true
+			}
+		)
+	end
 end
