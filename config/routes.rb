@@ -6,6 +6,7 @@ BrainDump::Application.routes.draw do
   devise_for :users
 
   scope "(:locale)", locale: /en|de/ do
+    get "instances/unset", :to => "instances#unset"
   	resources :instances
 
     resources :users

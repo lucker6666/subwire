@@ -96,7 +96,11 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 
-		@notifications = Notification.find_all_by_user_id(@user.id)
+		@notifications = Notification.where(
+			:user_id => @user.id,
+			:instance_id => current_instance
+		)
+
 		@notifications.each do |n|
 			n.destroy
 		end
