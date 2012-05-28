@@ -26,6 +26,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :lang, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :lang, ["en", "de"] %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :color, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :color, :class => 'text_field' %>

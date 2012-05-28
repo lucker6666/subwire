@@ -126,21 +126,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def set_locale
-	  I18n.locale = params[:locale] || I18n.default_locale
+		if current_user
+	  		I18n.locale = current_user.lang || I18n.default_locale 
+	  	else
+			I18n.locale = I18n.default_locale
+	  	end
 	end
 
-	def default_url_options(options=[])
-	  { :locale => I18n.locale }
-	end
 
-	def locale_path(locale)
-		locale_regexp = %r{/(en|de)/?}
-		if request.env['PATH_INFO'] =~ locale_regexp
-			"#{request.env['PATH_INFO']}".
-			gsub(locale_regexp, "/#{locale}/")
-		else
-			"/#{locale}#{request.env['PATH_INFO']}"
-		end
-	end
-	helper_method :locale_path
 end

@@ -196,6 +196,8 @@ de:
       short: ! '%d. %B, %H:%M Uhr'
     pm: nachmittags
 
+
+
   application:
     no_admin: Du bist kein Admin!
     notifications: Benachrichtigungen

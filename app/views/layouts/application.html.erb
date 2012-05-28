@@ -117,20 +117,7 @@
 									<% end %>
 								</li>
 							<% end %>
-							<li>
-								<% if I18n.locale == :en %>
-									<%= link_to locale_path("de") do %>
-										<i class="icon icon-flag"></i>
-										<%= t "application.german" %>
-									<% end %>
-								<% else %>
-									<%= link_to locale_path("en") do %>
-										<i class="icon icon-flag"></i>
-										<%= t "application.english" %>
-									<% end %>
-								<% end %>
-
-							</li>
+							
 							<li>
 								<%= link_to destroy_user_session_path, :method => :delete do %>
 							    	<i class="icon icon-remove"></i>
