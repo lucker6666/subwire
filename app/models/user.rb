@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :rememberable, :validatable
 
 	attr_accessible :is_admin, :name, :email, :password, :password_confirmation,
-		:remember_me, :color, :last_seen, :relationship
+		:remember_me, :color, :last_seen, :relationship, :lang
 
 	has_many :comments
 	has_many :articles
