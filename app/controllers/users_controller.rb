@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	# GET /users
 	# GET /users.json
 	def index
-		@users = User.find_all_by_instance(current_instance)
+		@users = Relationship.find_all_users_by_instance(current_instance)
 
 		respond_to do |format|
 			format.html # index.html.erb
