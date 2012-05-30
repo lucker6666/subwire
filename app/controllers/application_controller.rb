@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def notify_all_users(data)
-		User.find_all_by_instance(current_instance).each do |user|
+		Relationship.find_all_users_by_instance(current_instance).each do |user|
 			unless user == current_user
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
 
 	def set_locale
 		if current_user
-	  		I18n.locale = current_user.lang || I18n.default_locale 
+	  		I18n.locale = current_user.lang || I18n.default_locale
 	  	else
 			I18n.locale = I18n.default_locale
 	  	end
