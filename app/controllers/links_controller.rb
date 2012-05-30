@@ -4,7 +4,7 @@ class LinksController < ApplicationController
 
   # GET /links
   def index
-    @links = Link.find_by_instance_id(current_instance.id)
+    @links = Link.find_all_by_instance_id(current_instance.id)
   end
 
   # GET /links/1
