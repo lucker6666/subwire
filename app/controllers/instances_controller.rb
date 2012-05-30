@@ -2,7 +2,6 @@ class InstancesController < ApplicationController
 	before_filter :authenticate_user!
 
 	# GET /instance
-	# GET /instance.json
 	def index
 		@instances = Instance.find(
 			:all,
@@ -12,9 +11,7 @@ class InstancesController < ApplicationController
 
 		@adminCount = Instance.find_all_where_user_is_admin(current_user).length
 
-		respond_to do |format|
-			format.html { render 'index', layout: 'login' } # home/index.html.erb
-    end
+		render 'index', layout: 'login'
 	end
 
 	# GET /instances/1
@@ -25,7 +22,6 @@ class InstancesController < ApplicationController
 	end
 
 	# GET /instances/new
-	# GET /instances/new.json
 	def new
 		if Instance.find_all_where_user_is_admin(current_user).length > 4
 			notify t('instances.hit_limit')
@@ -35,10 +31,7 @@ class InstancesController < ApplicationController
 
 			@containerClass = "newInstance"
 
-			respond_to do |format|
-				format.html { render 'new', layout: 'login' } # new.html.erb
-				format.json { render json: @instance }
-			end
+			render 'new', layout: 'login'
 		end
 	end
 
@@ -55,36 +48,29 @@ class InstancesController < ApplicationController
 	end
 
 	# POST /instances
-	# POST /instances.json
 	def create
 		if current_user.is_admin? or
 			Relationship.is_user_admin_of_instance?(current_user, current_instance)
 
 			@instance = Instance.new(params[:instance])
-			success = @instance.save
 
-			if success
+			if @instance.save
 				Relationship.create(
 					:user => current_user,
 					:instance => @instance,
 					:admin => true
 				)
-			end
 
-			respond_to do |format|
-				if success
-					format.html { redirect_to @instance, notice: 'Instance was successfully created.' }
-					format.json { render json: @instance, status: :created, location: @instance }
-				else
-					format.html { render action: "new" }
-					format.json { render json: @instance.errors, status: :unprocessable_entity }
-				end
+				notify t('instances.created')
+				redirect_to instance_path(@instance)
+			else
+				notify t('instances.not_created')
+				render action: "new"
 			end
 		end
 	end
 
 	# PUT /instances/1
-	# PUT /instances/1.json
 	def update
 		if current_user.is_admin? or
 			Relationship.is_user_admin_of_instance?(current_user, current_instance)
@@ -100,19 +86,16 @@ class InstancesController < ApplicationController
 			params[:instance][:advertising] = true
 		end
 
-		respond_to do |format|
-			if @instance.update_attributes(params[:instance])
-				format.html { redirect_to @instance, notice: 'Instance was successfully updated.' }
-				format.json { head :no_content }
-			else
-				format.html { render action: "edit" }
-				format.json { render json: @instance.errors, status: :unprocessable_entity }
-			end
+		if @instance.update_attributes(params[:instance])
+			notify t('instances.updated')
+			redirect_to instance_path(@instance)
+		else
+			notify t('instances.not_updated')
+			render action: "edit"
 		end
 	end
 
 	# DELETE /instances/1
-	# DELETE /instances/1.json
 	def destroy
 		if current_user.is_admin? or
 			Relationship.is_user_admin_of_instance?(current_user, current_instance)
@@ -126,13 +109,11 @@ class InstancesController < ApplicationController
 
 			@instance.destroy
 
-			respond_to do |format|
-				format.html { redirect_to instances_url }
-				format.json { head :no_content }
-			end
+			redirect_to instances_path
 		end
 	end
 
+	# GET /instances/unset
 	def unset
 		set_current_instance nil
 		redirect_to "/"

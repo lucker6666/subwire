@@ -9,7 +9,6 @@ class NotificationsController < ApplicationController
 		)
 
 		respond_to do |format|
-			#format.html # index.html.erb
 			format.json { render json: @notifications }
 		end
 	end

@@ -133,5 +133,9 @@ class ApplicationController < ActionController::Base
 	  	end
 	end
 
-
+	def choose_instance!
+		if not current_instance
+			redirect_to "/"
+		end
+	end
 end
