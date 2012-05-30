@@ -1,9 +1,8 @@
 class ArticlesController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :choose_instance!
 
 
 	# GET /articles
-	# GET /articles.json
 	def index
 		@articles = Article.paginate(
 			:page => params[:page],
@@ -11,15 +10,9 @@ class ArticlesController < ApplicationController
 			:order => "created_at DESC",
 			:conditions => { :instance_id => current_instance.id }
 		)
-
-		respond_to do |format|
-			format.html # articles/index.html.erb
-			format.json { render json: @articles }
-    end
   end
 
 	# GET /articles/1
-	# GET /articles/1.json
 	def show
 		@article = Article.find(params[:id])
 
@@ -38,22 +31,11 @@ class ArticlesController < ApplicationController
 		end
 
 		@notifications = Notification.find_all_by_user_id(current_user.id)
-
-		respond_to do |format|
-			format.html # articles/show.html.erb
-			format.json { render json: @article }
-		end
 	end
 
 	# GET /articles/new
-	# GET /articles/new.json
 	def new
 		@article = Article.new
-
-		respond_to do |format|
-			format.html # articles/new.html.erb
-			format.json { render json: @article }
-		end
 	end
 
 	# GET /articles/1/edit
@@ -62,7 +44,6 @@ class ArticlesController < ApplicationController
 	end
 
 	# POST /articles
-	# POST /articles.json
 	def create
 		@article = Article.new(params[:article])
 		@article.user = current_user
@@ -77,44 +58,32 @@ class ArticlesController < ApplicationController
 				:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
 				:href => article_path(@article)
 			})
-		end
 
-		respond_to do |format|
-			if success
-				format.html { redirect_to @article, notice: 'Article was successfully created.' }
-				format.json { render json: @article, status: :created, location: @article }
-			else
-				format.html { render action: "new" }
-				format.json { render json: @article.errors, status: :unprocessable_entity }
-			end
+			notify t('articles.created')
+			redirect_to article_path(@article)
+		else
+			notify t('articles.not_created')
+			render action: "new"
 		end
 	end
 
 	# PUT /articles/1
-	# PUT /articles/1.json
 	def update
 		@article = Article.find(params[:id])
 
 		if current_user == @article.user || current_user.is_admin?
-			success = @article.update_attributes(params[:article])
-
-			# Notify all users
-			if success
+			if @article.update_attributes(params[:article])
+				# Notify all users
 				notify_all_users({
 					:notification_type => "edit_article",
 					:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
 					:href => article_path(@article)
 				})
-			end
 
-			respond_to do |format|
-				if success
-					format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-					format.json { head :no_content }
-				else
-					format.html { render action: "edit" }
-					format.json { render json: @article.errors, status: :unprocessable_entity }
-				end
+				notify t('articles.updated')
+				redirect_to article_path(@article)
+			else
+				render action: "edit"
 			end
 		else
 			redirect_to :back
@@ -122,7 +91,6 @@ class ArticlesController < ApplicationController
 	end
 
 	# DELETE /articles/1
-	# DELETE /articles/1.json
 	def destroy
 		@article = Article.find(params[:id])
 
@@ -145,10 +113,7 @@ class ArticlesController < ApplicationController
 
 			@article.destroy
 
-			respond_to do |format|
-				format.html { redirect_to articles_url }
-				format.json { head :no_content }
-			end
+			redirect_to articles_url
 		else
 			redirect_to :back
 		end

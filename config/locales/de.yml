@@ -222,6 +222,30 @@ de:
     new: Erstelle eine neue Instanz!
     your_instances: Deine Instanzen
     hit_limit: Du hast die maximale Anzahl von Instanzen erreicht. Wenn du noch mehr benötigst, kontaktiere uns bitte per info@yaana.de.
+    created: Instanz wurde erfolgreich erstellt.
+    not_created: Instanz konnte nicht erstellt werden.
+    updated: Instanz aktualisiert.
+    not_updated: Instanz konnte nicht gespeichert werden.
+
+  articles:
+    created: Artikel wurde erfolgreich erstellt.
+    not_created: Artikel konnte nicht erstellt werden.
+    updated: Artikel aktualisiert.
+    not_updated: Artikel konnte nicht gespeichert werden.
+
+  users:
+    add: Benutzer hinzufügen
+    already_added: Der Benutzer ist dieser Instanz bereits zugeordnet.
+    added: Benutzer hinzugefügt.
+    updated: Benutzer gespeichert.
+    not_updated: Benutzer konnte nicht gespeichert werden.
+    removed: Benutzer wurde aus dieser Instanz entfernt.
+
+  links:
+    created: Link wurde erfolgreich erstellt.
+    not_created: Link konnte nicht erstellt werden.
+    updated: Link aktualisiert.
+    not_updated: Link konnte nicht gespeichert werden.
 
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

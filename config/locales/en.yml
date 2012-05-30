@@ -223,6 +223,30 @@ en:
     new: Create new instance!
     your_instances: Your instances
     hit_limit: You\'ve reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
+    created: Instance was successfully created.
+    not_created: Instance couldn\'t be created.
+    updated: Instance was successfully updated.
+    not_updated: Instance couldn\'t be saved.
+
+  articles:
+    created: Article was successfully created.
+    not_created: Article couldn\'t be created.
+    updated: Article was successfully updated.
+    not_updated: Article couldn\'t be saved.
+
+  users:
+    add: Add user
+    already_added: That user is already associated with this instance.
+    added: User was successfully added.
+    updated: User was successfully updated.
+    not_updated: User couldn\'t be saved.
+    removed: User was removed from this instance.
+
+  links:
+    created: Link was successfully created.
+    not_created: Link couldn\'t be created.
+    updated: Link was successfully updated.
+    not_updated: Link couldn\'t be saved.
 
 
 

@@ -1,37 +1,53 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :choose_instance!
 	before_filter :check_admin, :except => [:edit, :update, :show]
 
 	# GET /users
-	# GET /users.json
 	def index
 		@users = Relationship.find_all_users_by_instance(current_instance)
-
-		respond_to do |format|
-			format.html # index.html.erb
-			format.json { render json: @users }
-		end
 	end
 
 	# GET /users/1
-	# GET /users/1.json
 	def show
 		@user = User.find(params[:id])
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @user }
-		end
 	end
 
-	# GET /users/new
-	# GET /users/new.json
-	def new
-		@user = User.new
+	# GET /users/add
+	def add
+	end
 
-		respond_to do |format|
-			format.html # new.html.erb
-			format.json { render json: @user }
+	# POST /users/add
+	def add2
+		# Check wether this users already exists
+		user = User.find(params[:email]).first
+
+		if user.any
+			# Check wether user is already associated with this instance
+			if (Relationship.where(:instance_id => current_instance.id, :user_id => user.id))
+				# User is already associated with this instance, do nothing but notify the user
+				notify t("users.already_added")
+				redirect_to :back
+			else
+				# User is not associated, create a Relationship
+				Relationship.create(
+					:instance => current_instance,
+					:user => user,
+					:admin => current_user.is_admin? && params[:admin]
+				)
+
+				notify t("users.added")
+				redirect_to user_path(user)
+			end
+		else
+			# User doesn't already exist, create one
+			User.create(
+				:email => params[:email]
+			)
+
+			# TODO Send E-Mail with invitation link to user
+
+			notify t("users.added")
+			redirect_to user_path(user)
 		end
 	end
 
@@ -44,25 +60,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-	# POST /users
-	# POST /users.json
-	def create
-		@user = User.new(params[:user])
-		@user.instance = current_instance
-
-		respond_to do |format|
-			if @user.save
-				format.html { redirect_to @user, notice: 'User was successfully created.' }
-				format.json { render json: @user, status: :created, location: @user }
-			else
-				format.html { render action: "new" }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
-			end
-		end
-	end
-
 	# PUT /users/1
-	# PUT /users/1.json
 	def update
 		if current_user.is_admin?
 			@user = User.find(params[:id])
@@ -79,20 +77,16 @@ class UsersController < ApplicationController
 			params[:user][:is_admin] = false
 		end
 
-		respond_to do |format|
-			if @user.update_attributes(params[:user])
-				format.html { redirect_to @user, notice: 'User was successfully updated.' }
-				format.json { head :no_content }
-			else
-				format.html { render action: "edit" }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
-			end
+		if @user.update_attributes(params[:user])
+			notify t('users.updated')
+			redirect_to @user
+		else
+			notify t('users.not_updated')
+			render action: "edit"
 		end
 	end
 
 	# DELETE /users/1
-	# DELETE /users/1.json
-	# TODO Multiinstance: how is the behaviour here if a user is deleted?
 	def destroy
 		@user = User.find(params[:id])
 
@@ -105,11 +99,15 @@ class UsersController < ApplicationController
 			n.destroy
 		end
 
-		@user.destroy
+		@relationship = Relationship.where(
+			:user_id => @user.id,
+			:instance_id => current_instance.id
+		)
 
-		respond_to do |format|
-			format.html { redirect_to users_url }
-			format.json { head :no_content }
-		end
+		@relationship.destroy
+
+		notify t('users.removed')
+
+		redirect_to users_url
 	end
 end
