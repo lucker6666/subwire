@@ -1,12 +1,12 @@
 <%- model_class = Article.new.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <% @articles.each do |article| %>
     <div class="article well">
         <h2><%= link_to article.title, article_path(article) %></h2>
 
         <nobr>
-            <%= colored_name(article.user) %> at <%=l article.created_at, format: :short %>
+            <%= colored_name(article.user) %>  <%=l article.created_at, format: :short %>
         </nobr>
 
         <%= article.content.html_safe %>
@@ -30,7 +30,7 @@
           <a href="#" onclick="return commentToggle(this);">
             <span class="icon-chevron-right">&nbsp;</span>
             <%= article.comments.length %>
-            Comments
+            <%=t 'comments.plural' %>
           </a>
 
           <div class="commentContainer">
@@ -49,14 +49,14 @@
                           <i class="icon icon-remove"></i>
                         <% end %>
 
-                         <a href="#" onClick="editComment('<%= comment.id %>')">
+                         <a href="#" onClick="return editComment('<%= comment.id %>')">
                             <i class="icon icon-edit"></i>
                         </a>
 
                       <% end %>
                     </div>
 
-                   <div class="comment" id="comment<%= comment.id %>">
+                   <div class="comment" id="comment<%= comment.id %>" onClick="return editComment('<%= comment.id %>')">
                     <%= comment.content %>
                   </div>
                   

@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
 		if current_user
 	  		I18n.locale = current_user.lang || I18n.default_locale
 	  	else
-			I18n.locale = I18n.default_locale
+			I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
 	  	end
 	end
 

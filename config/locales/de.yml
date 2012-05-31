@@ -132,6 +132,11 @@ de:
       create: ! '%{model} erstellen'
       submit: ! '%{model} speichern'
       update: ! '%{model} aktualisieren'
+      new: ! 'Neues %{model} erstellen'
+    links:
+      cancel: Abbrechen
+    actions: Aktionen
+    title: Überschrift
   number:
     currency:
       format:
@@ -217,6 +222,7 @@ de:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
+    plural: Kommentar(e)
 
   instances:
     new: Erstelle eine neue Instanz!
@@ -247,10 +253,21 @@ de:
     updated: Link aktualisiert.
     not_updated: Link konnte nicht gespeichert werden.
 
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
+
+
   activerecord:
-    errors:
-      <<: *errors
+    models:
+      article: Artikel
+      user: Benutzer
+      instance: Instanz
+      comment: Kommentar
+      link: Lesezeichen
+      notification: Benachrichtigung
+    attributes:
+      link:
+        name: Bezeichnung
+        href: URL
+        icon: Icon
+        created_at: Erstellt am
+
+
