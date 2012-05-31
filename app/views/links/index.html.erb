@@ -1,5 +1,5 @@
 <%- model_class = Link.new.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -33,6 +33,7 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t(t '.title', :default => t('helpers.submit.new', :model => model_class.model_name.human,
+                               :default => "New #{model_class.model_name.human}")),
             new_link_path,
             :class => 'btn btn-primary' %>

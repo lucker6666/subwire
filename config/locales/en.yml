@@ -249,13 +249,11 @@ en:
     not_updated: Link couldn\'t be saved.
 
 
-
-
-
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
-    errors:
-      <<: *errors
+    models:
+      article: Article
+      user: User
+      instance: Instance
+      comment: Comment
+      link: Bookmark
+      notification: Notification
