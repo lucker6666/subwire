@@ -1,5 +1,5 @@
 class AvailabilitiesController < ApplicationController
-	# POST /availabilities
+	# POST /availabilities/set
 	def set
 		paramSet = {
 			:date => params[:date],
@@ -15,8 +15,8 @@ class AvailabilitiesController < ApplicationController
 		).first
 
 		if availability.nil?
-			availability.save
 			availability = Availability.new(paramSet)
+			availability.save
 		else
 			availability.update_attributes(paramSet)
 		end
