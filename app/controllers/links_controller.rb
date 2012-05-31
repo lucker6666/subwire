@@ -1,6 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!, :choose_instance!
-  before_filter :check_admin
+  before_filter :authenticate_user!, :choose_instance!, :check_permissions, :check_admin
 
   # GET /links
   def index

@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
 	# Enable CSRF protection
 	protect_from_forgery
-	before_filter :set_locale, :refresh_config, :check_permissions
+	before_filter :set_locale, :refresh_config
 
 	# We need all helpers, all the time
 	helper :all
@@ -14,39 +14,39 @@ class ApplicationController < ActionController::Base
 	end
 
 
-  protected
+	protected
 
 	def set_current_instance(instance)
 		session[:instance] = instance
 	end
 
-  def layout_by_resource
-    if devise_controller?
-      "login"
-    else
-      "application"
-    end
-  end
+	def layout_by_resource
+		if devise_controller?
+			"login"
+		else
+			"application"
+		end
+	end
 
-  def check_admin
-  	if current_user.is_admin?
-  		return true
-  	elsif is_admin_of_instance?
-  		return true
-  	else
-  		notify t :application.no_admin
-  		redirect_to :back
-  	end
-  end
+	def check_admin
+		if current_user.is_admin?
+			return true
+		elsif is_admin_of_instance?
+			return true
+		else
+			notify t :application.no_admin
+			redirect_to :back
+		end
+	end
 
-  def check_superadmin
-  	if current_user.is_admin?
-  		return true
-  	else
-  		notify t :application.no_superadmin
-  		redirect_to :back
-  	end
-  end
+	def check_superadmin
+		if current_user.is_admin?
+			return true
+		else
+			notify t :application.no_superadmin
+			redirect_to :back
+		end
+	end
 
 
 
@@ -54,17 +54,17 @@ class ApplicationController < ActionController::Base
 	# Send a message to the user over the notification system. Will use jGrowl in frontend
 
 	def notify(msg)
-	  # Case 1: null or empty string
-	  if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
-	    flash[:alert] = msg
-	  # Case 2: array
-	  elsif flash[:alert].kind_of?(Array)
-	    flash[:alert].push(msg)
-	  # Case 3: contains a string
-	  else
-	    str = flash[:alert]
-	    flash[:alert] = [str, msg]
-	  end
+		# Case 1: null or empty string
+		if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
+			flash[:alert] = msg
+		# Case 2: array
+		elsif flash[:alert].kind_of?(Array)
+			flash[:alert].push(msg)
+		# Case 3: contains a string
+		else
+			str = flash[:alert]
+			flash[:alert] = [str, msg]
+		end
 	end
 
 
@@ -72,9 +72,9 @@ class ApplicationController < ActionController::Base
 	# Convert all errors of a model to notifications
 
 	def errors_to_notifications(model)
-	  model.errors.each do |error, message|
-	    notify message
-	  end
+		model.errors.each do |error, message|
+			notify message
+		end
 	end
 
 	def notify_all_users(data)
@@ -107,35 +107,39 @@ class ApplicationController < ActionController::Base
 
 	def check_permissions
 		if current_user
-			unless current_user.is_admin?
-				relationships = Relationship.where(
-					:user_id => current_user.id,
-					:instance_id => current_instance.id)
+			if current_instance
+				unless current_user.is_admin?
+					relationships = Relationship.where(
+						:user_id => current_user.id,
+						:instance_id => current_instance.id)
 
-				unless relationships.any?
-					notify t :application.no_permission_for_instance
+					unless relationships.any?
+						notify t :application.no_permission_for_instance
 
-					if relationships.length > 1
-		  			redirect_to instances_path
-		  		else
-		  			redirect_to destroy_user_session_path, :method => :delete
-		  		end
+						if relationships.length > 1
+							redirect_to instances_path
+						else
+							redirect_to destroy_user_session_path, :method => :delete
+						end
+					end
 				end
+			else
+				redirect_to instances_path
 			end
 		end
 	end
 
 	def set_locale
 		if current_user
-	  		I18n.locale = current_user.lang || I18n.default_locale
-	  	else
+				I18n.locale = current_user.lang || I18n.default_locale
+			else
 			I18n.locale = I18n.default_locale
-	  	end
+			end
 	end
 
 	def choose_instance!
 		if not current_instance
-			redirect_to "/"
+			redirect_to instances_path
 		end
 	end
 end

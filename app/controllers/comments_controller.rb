@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 
 	# POST /comments
 	# POST /comments.json
