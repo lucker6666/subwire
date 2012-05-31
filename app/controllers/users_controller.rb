@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 				Relationship.create(
 					:instance => current_instance,
 					:user => user,
-					:admin => current_user.is_admin_for_instance? && params[:is_admin_for_instance]
+					:admin => current_user.is_admin_of_instance?(current_instance) && params[:is_admin_of_instance]
 				)
 
 				notify t("users.added")
@@ -59,6 +59,8 @@ class UsersController < ApplicationController
 		else
 			@user = current_user
 		end
+
+		@is_admin_of_instance = current_user.is_admin_of_instance?(current_instance)
 	end
 
 	# PUT /users/1
@@ -73,16 +75,16 @@ class UsersController < ApplicationController
 			params[:user].delete :password
 		end
 
-		if params[:user][:is_admin_for_instance].nil? && current_user.is_admin_for_instance
+		if params[:user][:is_admin_of_instance].nil? && current_user.is_admin_of_instance?(current_instance)
 			rel = Relationship.where(
 				:instance_id => current_instance.id,
 				:user_id => current_user.id
 			)
 
-			rel.update_attributes(:is_admin => params[:user][:is_admin_for_instance])
+			rel.update_attributes(:is_admin => params[:user][:is_admin_of_instance])
 		end
 
-		params[:user].delete :is_admin_for_instance
+		params[:user].delete :is_admin_of_instance
 
 		if @user.update_attributes(params[:user])
 			notify t('users.updated')
