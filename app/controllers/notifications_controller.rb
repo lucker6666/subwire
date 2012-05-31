@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :check_permissions
 
 	# GET /notifications.json
 	def index

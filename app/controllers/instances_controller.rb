@@ -1,5 +1,6 @@
 class InstancesController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :check_permissions, :except => [:index, :new, :create, :show]
 
 	# GET /instance
 	def index
@@ -49,24 +50,20 @@ class InstancesController < ApplicationController
 
 	# POST /instances
 	def create
-		if current_user.is_admin? or
-			Relationship.is_user_admin_of_instance?(current_user, current_instance)
+		@instance = Instance.new(params[:instance])
 
-			@instance = Instance.new(params[:instance])
+		if @instance.save
+			Relationship.create(
+				:user => current_user,
+				:instance => @instance,
+				:admin => true
+			)
 
-			if @instance.save
-				Relationship.create(
-					:user => current_user,
-					:instance => @instance,
-					:admin => true
-				)
-
-				notify t('instances.created')
-				redirect_to instance_path(@instance)
-			else
-				notify t('instances.not_created')
-				render action: "new"
-			end
+			notify t('instances.created')
+			redirect_to instance_path(@instance)
+		else
+			notify t('instances.not_created')
+			render action: "new"
 		end
 	end
 

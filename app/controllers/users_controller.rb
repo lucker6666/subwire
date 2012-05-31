@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 	before_filter :check_admin, :except => [:edit, :update, :show]
 
 	# GET /users
