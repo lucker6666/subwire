@@ -11,14 +11,11 @@ class User < ActiveRecord::Base
 	has_many :relationships
 	has_many :instances, :through => :relationships
 
-	def is_admin_for_instance?
+	def is_admin_of_instance?(instance)
 		if is_admin
 			true
 		else
-			Relationship.where(
-				:instance_id => current_instance.id,
-				:user_id => id
-			).is_admin
+			Relationship.is_user_admin_of_instance(self, instance)
 		end
 	end
 end
