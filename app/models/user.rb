@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 		if is_admin
 			true
 		else
-			Relationship.is_user_admin_of_instance(self, instance)
+			Relationship.is_user_admin_of_instance?(self, instance)
 		end
 	end
 end

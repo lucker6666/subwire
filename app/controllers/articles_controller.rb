@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+	# User have to be logged in, choosed an instance and have to be allowed to see that instance
 	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 
 	# GET /articles
@@ -9,7 +10,7 @@ class ArticlesController < ApplicationController
 			:order => "created_at DESC",
 			:conditions => { :instance_id => current_instance.id }
 		)
-  end
+  	end
 
 	# GET /articles/1
 	def show
@@ -48,20 +49,18 @@ class ArticlesController < ApplicationController
 		@article.user = current_user
 		@article.instance = current_instance
 
-		success = @article.save
-
 		# Notify all users
-		if success
-			notify_all_users({
+		if @article.save
+			Notification.notify_all_users({
 				:notification_type => "new_article",
 				:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
 				:href => article_path(@article)
 			})
 
-			notify t('articles.created')
+			feedback t('articles.created')
 			redirect_to article_path(@article)
 		else
-			notify t('articles.not_created')
+			feedback t('articles.not_created')
 			render action: "new"
 		end
 	end
@@ -73,13 +72,13 @@ class ArticlesController < ApplicationController
 		if current_user == @article.user || current_user.is_admin?
 			if @article.update_attributes(params[:article])
 				# Notify all users
-				notify_all_users({
+				Notification.notify_all_users({
 					:notification_type => "edit_article",
 					:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
 					:href => article_path(@article)
 				})
 
-				notify t('articles.updated')
+				feedback t('articles.updated')
 				redirect_to article_path(@article)
 			else
 				render action: "edit"
@@ -111,6 +110,8 @@ class ArticlesController < ApplicationController
 			end
 
 			@article.destroy
+
+			feedback t('articles.destroyed')
 
 			redirect_to articles_url
 		else
