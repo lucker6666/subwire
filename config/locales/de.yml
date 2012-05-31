@@ -137,6 +137,8 @@ de:
       cancel: Abbrechen
     actions: Aktionen
     title: Überschrift
+    email: E-Mail
+    password: Passwort
   number:
     currency:
       format:
@@ -269,5 +271,10 @@ de:
         href: URL
         icon: Icon
         created_at: Erstellt am
+      user:
+        name: Name
+        email: E-Mail
+        is_admin: Admin?
+        color: Farbe
 
 
