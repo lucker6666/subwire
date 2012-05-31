@@ -1,17 +1,17 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 	<fieldset>
         <div class="clearfix">
-  			<%= f.text_field :email, :class => 'text_field', :placeholder => "Email"  %>
+  			<%= f.text_field :email, :class => 'text_field', :placeholder => t('helpers.email')  %>
         </div>
 
         <div class="clearfix">
-  			<%= f.password_field :password, :class => 'text_field', :placeholder => "Password" %>
+  			<%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
             <label class="checkbox">
 	    		<%= f.check_box :remember_me %>
-                Remeber me
+                <%=t 'devise.remember_me' %>
             </label>
 	  	<% end -%>
 

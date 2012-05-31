@@ -138,6 +138,13 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+      new: Create new %{model}
+    links:
+      cancel: Cancel
+    actions: Actions
+    title: Title
+    email: E-Mail
+    password: Password
   number:
     currency:
       format:
@@ -218,6 +225,7 @@ en:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
+    plural: Comment(s)
 
   instances:
     new: Create new instance!
@@ -257,3 +265,14 @@ en:
       comment: Comment
       link: Bookmark
       notification: Notification
+    attributes:
+      link:
+        name: Name
+        href: URL
+        icon: Icon
+        created_at: Created at
+      user:
+        name: Name
+        email: E-Mail
+        is_admin: Admin?
+        color: Color
