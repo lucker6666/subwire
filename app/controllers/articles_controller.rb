@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!
-
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 
 	# GET /articles
 	def index
