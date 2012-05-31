@@ -24,7 +24,7 @@
     <table>
       <% @article.comments.each do |comment| %>
         <tr>
-          <td><%= colored_name(comment.user) %>:</td>
+          <th><%= colored_name(comment.user) %>:</th>
           <td>
             <div class="commentButtons">
               <% if current_user.is_admin? || comment.user == current_user %>
