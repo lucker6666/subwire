@@ -2,144 +2,120 @@
 class ApplicationController < ActionController::Base
 	# Enable CSRF protection
 	protect_from_forgery
+
+	# set_locale: Determines the language of the user
+	# refresh_config: Reloads the current instance config from database
 	before_filter :set_locale, :refresh_config
 
 	# We need all helpers, all the time
 	helper :all
 
+	# Changes layout depending on controller
 	layout :layout_by_resource
-
-	def current_instance
-		session[:instance]
-	end
 
 
 	protected
 
-	def set_current_instance(instance)
-		session[:instance] = instance
-	end
-
-	def layout_by_resource
-		if devise_controller?
-			"login"
-		else
-			"application"
-		end
-	end
-
-	def check_admin
-		if current_user.is_admin?
-			return true
-		elsif is_admin_of_instance?
-			return true
-		else
-			notify t :application.no_admin
-			redirect_to :back
-		end
-	end
-
-	def check_superadmin
-		if current_user.is_admin?
-			return true
-		else
-			notify t :application.no_superadmin
-			redirect_to :back
-		end
-	end
-
-
-
-	# ================================================================================================
-	# Send a message to the user over the notification system. Will use jGrowl in frontend
-
-	def notify(msg)
-		# Case 1: null or empty string
-		if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
-			flash[:alert] = msg
-		# Case 2: array
-		elsif flash[:alert].kind_of?(Array)
-			flash[:alert].push(msg)
-		# Case 3: contains a string
-		else
-			str = flash[:alert]
-			flash[:alert] = [str, msg]
-		end
-	end
-
-
-	# ================================================================================================
-	# Convert all errors of a model to notifications
-
-	def errors_to_notifications(model)
-		model.errors.each do |error, message|
-			notify message
-		end
-	end
-
-	def notify_all_users(data)
-		Relationship.find_all_users_by_instance(current_instance).each do |user|
-			unless user == current_user
-				notification = Notification.new({
-					:notification_type => data[:notification_type],
-					:message => data[:message],
-					:href => data[:href],
-					:is_read => false,
-					:user => user,
-					:instance => current_instance
-				})
-
-				notification.save
+		# Changes layout depending on controller
+		def layout_by_resource
+			if devise_controller?
+				"login"
+			else
+				"application"
 			end
 		end
-	end
 
-
-
-
-	private
-
-	def refresh_config
-		if current_instance
-			set_current_instance Instance.find(current_instance.id)
+		# Sends a message to the user over the feedback system. Will use jGrowl in frontend.
+		def feedback(msg)
+			# Case 1: null or empty string
+			if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
+				return
+			# Case 2: array
+			elsif flash[:alert].kind_of?(Array)
+				flash[:alert].push(msg)
+			# Case 3: contains a string
+			else
+				str = flash[:alert]
+				flash[:alert] = [str, msg]
+			end
 		end
-	end
 
-	def check_permissions
-		if current_user
+		# Converts all errors of a model to feedback messages
+		def errors_to_feedback(model)
+			model.errors.each do |error, message|
+				feedback message
+			end
+		end
+
+		# Reloads the current instance config from database
+		def refresh_config
 			if current_instance
-				unless current_user.is_admin?
-					relationships = Relationship.where(
-						:user_id => current_user.id,
-						:instance_id => current_instance.id)
+				set_current_instance Instance.find(current_instance.id)
+			end
+		end
 
-					unless relationships.any?
-						notify t :application.no_permission_for_instance
+		# Checks wether the current user is allowed to see the requested instance. If not,
+		# the user will be redirected to the instance overview.
+		def check_permissions
+			# Logged in? If not, redirect to login mask
+			if current_user
+				# Is there a instance choosen? If not, redirect to the instance overview
+				if current_instance
+					# If the user is a superadmin everything is ok
+					unless current_user.is_admin?
+						# Get the relationship between current_user and current_instance)
+						current_rs
 
-						if relationships.length > 1
+						# If there is no relationship, the user is not allowed to see that instance.
+						# So redirect to instances overview. Otherwise everything is ok
+						unless current_rs
+							notify t :application.no_permission_for_instance
 							redirect_to instances_path
-						else
-							redirect_to destroy_user_session_path, :method => :delete
 						end
 					end
+				else
+					redirect_to instances_path
 				end
 			else
+				redirect_to "/"
+			end
+		end
+
+
+		# Filters:
+
+		# Filter that returns true if the user has admin privileges. That's if the user is a superadmin
+		#  (is_admin flag of user) or the user is admin for current_instance.
+		# Otherwise it redirects back and notify the user.
+		def restricted_to_admin
+			unless has_admin_privileges?
+				feedback t :application.no_admin
+				redirect_to :back
+			end
+		end
+
+		# Filter that returns true if the current user is a superadmin (is_admin flag of user).
+		# Otherwise it redirects back and notify the user.
+		def restricted_to_superadmin
+			unless has_superadmin_privileges?
+				feedback t :application.no_superadmin
+				redirect_to :back
+			end
+		end
+
+		# Filter which determines the language of the current user
+		def set_locale
+			if current_user
+		  		I18n.locale = current_user.lang || I18n.default_locale
+		  	else
+				I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+		  	end
+		end
+
+		# Filter which forces the user to choose an instance
+		def choose_instance!
+			unless current_instance
 				redirect_to instances_path
 			end
 		end
-	end
-
-	def set_locale
-		if current_user
-	  		I18n.locale = current_user.lang || I18n.default_locale
-	  	else
-			I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
-	  	end
-	end
-
-	def choose_instance!
-		if not current_instance
-			redirect_to instances_path
-		end
-	end
 end

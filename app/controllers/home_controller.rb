@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+	# User have to be logged in
 	before_filter :authenticate_user!
 
 	# GET /

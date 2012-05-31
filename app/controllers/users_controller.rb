@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 			@user = current_user
 		end
 
-		@is_admin_of_instance = current_user.is_admin_of_instance?(current_instance)
+		@is_admin_of_instance = Relationship.is_user_admin_of_instance?(@user, current_instance)
 	end
 
 	# PUT /users/1
@@ -75,13 +75,19 @@ class UsersController < ApplicationController
 			params[:user].delete :password
 		end
 
-		if params[:user][:is_admin_of_instance].nil? && current_user.is_admin_of_instance?(current_instance)
+		if current_user.is_admin_of_instance?(current_instance)
 			rel = Relationship.where(
 				:instance_id => current_instance.id,
-				:user_id => current_user.id
-			)
+				:user_id => @user.id
+			).first
 
-			rel.update_attributes(:is_admin => params[:user][:is_admin_of_instance])
+			if params[:user][:is_admin_of_instance]
+				rel.admin = true
+			else
+				rel.admin = false
+			end
+
+			rel.save
 		end
 
 		params[:user].delete :is_admin_of_instance

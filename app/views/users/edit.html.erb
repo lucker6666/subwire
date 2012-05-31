@@ -1,50 +1,64 @@
 <%- model_class = @user.class -%>
-<h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
-                                 :default => "Edit #{model_class.model_name.human}") %></h1>
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
-  </div>
-  <% if current_user.is_admin? %>
-    <div class="control-group">
-      <%= f.label :is_admin, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_admin_of_instance?, {:class => 'check_box'}, @is_admin_of_instance %>
-      </div>
-    </div>
-  <% end %>
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :lang, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :lang, ["en", "de"] %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :color, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :color, :class => 'text_field' %>
-    </div>
-  </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
-  </div>
+<h1>
+	<%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+		 :default => "Edit #{model_class.model_name.human}") %>
+</h1>
+
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="control-group">
+		<%= f.label :name, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :name, :class => 'text_field' %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :email, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :email, :class => 'text_field' %>
+		</div>
+	</div>
+
+	<% if current_user.is_admin? %>
+		<div class="control-group">
+			<%= f.label :is_admin_of_instance, :class => 'control-label' %>
+
+			<div class="controls">
+				<% if @is_admin_of_instance %>
+					<%= check_box :user, :is_admin_of_instance, {:class => 'check_box', :checked => 'checked'}, true, false %>
+				<% else %>
+					<%= check_box :user, :is_admin_of_instance, {:class => 'check_box'}, true, false %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="control-group">
+		<%= f.label :password, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.password_field :password, :class => 'text_field' %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :lang, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :lang, ["en", "de"] %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :color, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :color, :class => 'text_field' %>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<%= f.submit nil, :class => 'btn btn-primary' %>
+		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+			users_path, :class => 'btn' %>
+	</div>
 <% end %>
 

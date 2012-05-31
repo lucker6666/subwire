@@ -275,4 +275,5 @@ en:
         name: Name
         email: E-Mail
         is_admin: Admin?
+        is_admin_of_instance: Admin dieser Instanz?
         color: Color
