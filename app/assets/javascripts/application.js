@@ -99,4 +99,4 @@ function updateNotifications() {
   });
 }
 
-setInterval("updateNotifications();", 300000);
+setInterval("updateNotifications();", 300);
