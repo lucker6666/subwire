@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
 	# GET /users/add
 	def add
+		render action: "new"
 	end
 
 	# POST /users/add
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
 				Relationship.create(
 					:instance => current_instance,
 					:user => user,
-					:admin => current_user.is_admin? && params[:admin]
+					:admin => current_user.is_admin_for_instance? && params[:is_admin_for_instance]
 				)
 
 				notify t("users.added")
@@ -72,10 +73,16 @@ class UsersController < ApplicationController
 			params[:user].delete :password
 		end
 
-		# make sure that there is no is_admin-value while user is not a admin
-		if !params[:user][:is_admin].nil? && !current_user.is_admin
-			params[:user][:is_admin] = false
+		if params[:user][:is_admin_for_instance].nil? && current_user.is_admin_for_instance
+			rel = Relationship.where(
+				:instance_id => current_instance.id,
+				:user_id => current_user.id
+			)
+
+			rel.update_attributes(:is_admin => params[:user][:is_admin_for_instance])
 		end
+
+		params[:user].delete :is_admin_for_instance
 
 		if @user.update_attributes(params[:user])
 			notify t('users.updated')
