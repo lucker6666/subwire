@@ -1,6 +1,6 @@
 class InstancesController < ApplicationController
 	before_filter :authenticate_user!
-	before_filter :check_permissions, :except => [:index, :new, :create, :show]
+	before_filter :check_permissions, :except => [:index, :new, :create, :show, :unset]
 
 	# GET /instance
 	def index
@@ -113,6 +113,6 @@ class InstancesController < ApplicationController
 	# GET /instances/unset
 	def unset
 		set_current_instance nil
-		redirect_to "/"
+		redirect_to instances_path
 	end
 end
