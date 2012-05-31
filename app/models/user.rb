@@ -10,4 +10,15 @@ class User < ActiveRecord::Base
 	has_many :notifications
 	has_many :relationships
 	has_many :instances, :through => :relationships
+
+	def is_admin_for_instance?
+		if is_admin
+			true
+		else
+			Relationship.where(
+				:instance_id => current_instance.id,
+				:user_id => id
+			).is_admin
+		end
+	end
 end

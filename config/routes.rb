@@ -8,9 +8,9 @@ BrainDump::Application.routes.draw do
   get "instances/unset", :to => "instances#unset"
 	resources :instances
 
+  get "users/add", :to => "users#add"
+  post "users/add", :to => "users#add2"
   resources :users, :only => [:index, :show, :edit, :update, :destroy]
-  post "users/add", :to => "users#add"
-  get "users/add", :to => "users#add2"
 
   # Links
   resources :links
