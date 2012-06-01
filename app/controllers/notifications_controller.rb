@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+	# User have to be logged in and have to be allowed to see that instance
 	before_filter :authenticate_user!, :check_permissions
 
 	# GET /notifications.json
@@ -17,7 +18,7 @@ class NotificationsController < ApplicationController
 	def show
 		if (params[:id])
 			notification = Notification.find(params[:id])
-			target = "/"
+			target = :back
 
 			if notification && notification.user == current_user &&
 				notification.instance == current_instance
