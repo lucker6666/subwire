@@ -142,9 +142,13 @@ en:
     links:
       cancel: Cancel
     actions: Actions
+    name: Name
     title: Title
     email: E-Mail
     password: Password
+    password_confirmation: Password confirmation
+    sign_in: Login
+    sign_up: Sign Up
   number:
     currency:
       format:
