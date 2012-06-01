@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!, :check_permissions, :check_admin
+	# User have to be logged in, choosed an instance and have to be allowed to see that instance
+	# and have to be at least admin of that instance
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions, :restricted_to_admin
 
 	# GET /links
 	def index
