@@ -29,8 +29,6 @@
 		color: #fff !important;
 	}
 
-
-
 /**
  *	Nav
  */
@@ -280,7 +278,7 @@
 		width: 240px;
 	}
 
-	.login-form form input.btn {
+	.login-form form .btn {
 		margin-top: 1.5em;
 	}
 
