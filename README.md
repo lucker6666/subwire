@@ -1,5 +1,7 @@
 Work in progress. Stay tuned!
 
+[![Build Status](https://secure.travis-ci.org/YaanaLabs/BrainDump.png?branch=master)](http://travis-ci.org/#!/YaanaLabs/BrainDump)
+
 
 Installation
 ============
