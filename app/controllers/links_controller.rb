@@ -1,86 +1,59 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :check_admin
+	# User have to be logged in, choosed an instance and have to be allowed to see that instance
+	# and have to be at least admin of that instance
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions, :restricted_to_admin
 
-  # GET /links
-  # GET /links.json
-  def index
-    @links = Link.all
+	# GET /links
+	def index
+		@links = Link.find_all_by_instance_id(current_instance.id)
+	end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @links }
-    end
-  end
+	# GET /links/1
+	def show
+		@link = Link.find(params[:id])
+	end
 
-  # GET /links/1
-  # GET /links/1.json
-  def show
-    @link = Link.find(params[:id])
+	# GET /links/new
+	def new
+		@link = Link.new
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @link }
-    end
-  end
+	# GET /links/1/edit
+	def edit
+		@link = Link.find(params[:id])
+	end
 
-  # GET /links/new
-  # GET /links/new.json
-  def new
-    @link = Link.new
+	# POST /links
+	def create
+		@link = Link.new(params[:link])
+		@link.instance = current_instance
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @link }
-    end
-  end
+		if @link.save
+			notify t('links.created')
+			redirect_to links_path
+		else
+			notify t('links.not_created')
+			render action: "new"
+		end
+	end
 
-  # GET /links/1/edit
-  def edit
-    @link = Link.find(params[:id])
-  end
+	# PUT /links/1
+	def update
+		@link = Link.find(params[:id])
 
-  # POST /links
-  # POST /links.json
-  def create
-    @link = Link.new(params[:link])
+		if @link.update_attributes(params[:link])
+			notify t('users.updated')
+			redirect_to link_path(@link)
+		else
+			render action: "edit"
+		end
+	end
 
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render json: @link, status: :created, location: @link }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# DELETE /links/1
+	def destroy
+		@link = Link.find(params[:id])
+		@link.destroy
 
-  # PUT /links/1
-  # PUT /links/1.json
-  def update
-    @link = Link.find(params[:id])
-
-    respond_to do |format|
-      if @link.update_attributes(params[:link])
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /links/1
-  # DELETE /links/1.json
-  def destroy
-    @link = Link.find(params[:id])
-    @link.destroy
-
-    respond_to do |format|
-      format.html { redirect_to links_url }
-      format.json { head :no_content }
-    end
-  end
+		redirect_to links_url
+	end
 end

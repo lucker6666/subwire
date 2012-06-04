@@ -1,36 +1,24 @@
 class CommentsController < ApplicationController
-	before_filter :authenticate_user!
+	# User have to be logged in, choosed an instance and have to be allowed to see that instance
+	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 
 	# POST /comments
-	# POST /comments.json
 	def create
 		@article = Article.find(params[:article_id])
 		@comment = @article.comments.build(params[:comment])
 		@comment.user = current_user
 
-		success = @comment.save
-
 		# Notify all users
-		if success
-			User.all.each do |user|
-				unless user == current_user
-					notification = Notification.new({
-						:notification_type => "new_comment",
-						:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
-						:href => article_path(@article),
-						:is_read => false,
-						:user => user
-					})
+		if @comment.save
+			Notification.notify_all_users({
+				:notification_type => "new_comment",
+				:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
+				:href => article_path(@article)
+			})
 
-					notification.save
-				end
-			end
-		end
-
-		if success
-			notify t("comments.new_success")
+			feedback t("comments.new_success")
 		else
-			errors_to_notfications @comment
+			errors_to_feedback @comment
 		end
 
 		redirect_to article_path(@article)
@@ -41,12 +29,12 @@ class CommentsController < ApplicationController
 	def update
 		@comment = Comment.find(params[:id])
 
-		if current_user == @comment.user || current_user.is_admin?
+		# Make sure the user is the author of the comment or user is admin
+		if current_user == @comment.user || has_admin_privileges?
 			respond_to do |format|
 				if @comment.update_attributes(params[:comment])
-					format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
+					format.html { redirect_to :back, notice: t("comments.update_success") }
 					format.json { head :no_content }
-					notify t("comments.update_success")
 				else
 					format.html { render action: "edit" }
 					format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -58,17 +46,19 @@ class CommentsController < ApplicationController
 	end
 
 	# DELETE /comments/1
-	# DELETE /comments/1.json
 	def destroy
 		@comment = Comment.find(params[:id])
 
-		if current_user == @comment.user || current_user.is_admin?
+		# Make sure the user is the author of the comment or user is admin
+		if current_user == @comment.user || has_admin_privileges?
 			@notifications = Notification.find_all_by_href(article_path(@comment.article))
 			@notifications.each do |n|
 				n.destroy
 			end
 
 			@comment.destroy
+
+			feedback t('comments.destroyed')
 		end
 
 		redirect_to :back

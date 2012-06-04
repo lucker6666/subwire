@@ -18,7 +18,10 @@ module NotificationsHelper
 	# Returns an array of notifications for the current user
 	def notifications
 		if @notifications.nil?
-			@notifications = Notification.find_all_by_user_id(current_user.id)
+			@notifications = Notification.where(
+				:user_id => current_user.id,
+				:instance_id => current_instance.id
+			)
 
 			if @notifications.nil?
 				@notifications = []

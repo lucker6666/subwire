@@ -25,47 +25,78 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="/">BrainDump</a>
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+  					</a>
+
+					<ul class="nav">
+						<li class="dropdown iconOnly">
+						    <% if notifications.length > 0 %>
+							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+
+							    	<span class="notification-badge badge badge-info">
+							    		<%= notifications.length %>
+							    	</span>
+							    </a>
+
+							    <ul class="notification-dropdown dropdown-menu">
+							    	<% notifications.each do |notification| %>
+								    	<li>
+								    		<a href="<%= notification_path(notification) %>">
+								    			<%= notification_icon(notification) %>
+								    			<%= notification.message.html_safe %>
+								    		</a>
+								    	</li>
+								    <% end %>
+							    </ul>
+							<% else %>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+
+							    	<span class="notification-badge badge badge-info">
+							    	</span>
+							    </a>
+
+								<ul class="dropdown-menu">
+									<li><%= t "application.notifications_unread" %></li>
+								</ul>
+						    <% end %>
+						</li>
+
+						<li class="dropdown iconOnly">
+							<% if instances.length > 0 %>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-home"></i>
+							    </a>
+
+								<ul class="notification-dropdown dropdown-menu">
+							    	<% instances.each do |instance| %>
+								    	<li>
+								    		<%=
+								    			link_to instance.name,
+								    			instance_path(instance)
+								    		%>
+								    	</li>
+								    <% end %>
+
+								    <li>
+								    	<%= link_to "Back to overview", "/instances/unset" %>
+								    </li>
+							    </ul>
+							<% end %>
+						</li>
+					</ul>
+
+  					<div class="nav-collapse">
+						<%= link_to current_instance.name, articles_path, :class => "brand" %>
+					</div>
 
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li class="dropdown">
-							    <% if notifications.length > 0 %>
-								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-exclamation-sign"></i>
-								    	<%= t "application.notifications" %>
-
-								    	<span class="notification-badge badge badge-info">
-								    		<%= notifications.length %>
-								    	</span>
-								        <b class="caret"></b>
-								    </a>
-
-								    <ul class="notification-dropdown dropdown-menu">
-								    	<% notifications.each do |notification| %>
-									    	<li>
-									    		<a href="<%= notification_path(notification) %>">
-									    			<%= notification_icon(notification) %>
-									    			<%= notification.message.html_safe %>
-									    		</a>
-									    	</li>
-									    <% end %>
-								    </ul>
-								<% else %>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-exclamation-sign"></i>
-								    	<%= t "application.notifications" %>
-
-								    	<span class="notification-badge">
-								    	</span>
-								        <b class="caret"></b>
-								    </a>
-
-									<ul class="dropdown-menu">
-										<li><%= t "application.notifications_unread" %></li>
-									</ul>
-							    <% end %>
-							</li>
+							<li class="divider-vertical"></li>
 
 							<li>
 								<%= link_to new_article_path do %>
@@ -96,32 +127,18 @@
 									<% end %>
 								</li>
 							<% end %>
-							<li>
-								<% if I18n.locale == :en %>
-									<%= link_to locale_path("de") do %>
-										<i class="icon icon-flag"></i>
-										<%= t "application.german" %>
-									<% end %>
-								<% else %>
-									<%= link_to locale_path("en") do %>
-										<i class="icon icon-flag"></i>
-										<%= t "application.english" %>
-									<% end %>
-								<% end %>
 
-							</li>
 							<li>
 								<%= link_to destroy_user_session_path, :method => :delete do %>
 							    	<i class="icon icon-remove"></i>
 									<%= t "application.logout" %>
 								<% end %>
 							</li>
-
 						</ul>
 
 						<ul class="nav pull-right">
 							<li class="divider-vertical"></li>
-							<li class="dropdown">
+							<li class="dropdown planner">
 							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							    	<i class="icon icon-calendar"></i>
 									<%=l Date.today, format: :long %>
@@ -185,6 +202,24 @@
 							<% end %>
 						</ul>
 					</div>
+
+					<% if display_ads %>
+						<div class="well">
+							<div style="width: 200px; margin: 0 auto;">
+								<script type="text/javascript"><!--
+								google_ad_client = "ca-pub-4129785061498511";
+								/* BrainDump Sidebar */
+								google_ad_slot = "4641294977";
+								google_ad_width = 200;
+								google_ad_height = 200;
+								//-->
+								</script>
+								<script type="text/javascript"
+								src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+								</script>
+							</div>
+						</div>
+					<% end %>
 				</div>
 			</div>
 

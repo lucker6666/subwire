@@ -9,7 +9,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -36,7 +36,7 @@ en:
       day: "%a"
       short: ! '%b %d'
     month_names:
-    - 
+    -
     - January
     - February
     - March
@@ -138,6 +138,19 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+      new: Create new %{model}
+    links:
+      cancel: Cancel
+    actions: Actions
+    name: Name
+    title: Title
+    email: E-Mail
+    password: Password
+    password_confirmation: Password confirmation
+    sign_in: Login
+    sign_up: Sign Up
+    advertising: Advertising
+    planningTool: Planning tool
   number:
     currency:
       format:
@@ -198,6 +211,7 @@ en:
       short: ! '%d %b %H:%M'
     pm: pm
 
+
   application:
     no_admin: You\'re not an admin!
     notifications: Notifications
@@ -211,18 +225,62 @@ en:
     user: User
     german: German
     english: English
+    no_permission_for_instance: You\'re not allowed to see this instance!
 
   comments:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
+    plural: Comment(s)
+
+  instances:
+    new: Create new instance!
+    create: Create Instance!
+    your_instances: Your instances
+    hit_limit: You\'ve reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
+    created: Instance was successfully created.
+    not_created: Instance couldn\'t be created.
+    updated: Instance was successfully updated.
+    not_updated: Instance couldn\'t be saved.
+
+  articles:
+    created: Article was successfully created.
+    not_created: Article couldn\'t be created.
+    updated: Article was successfully updated.
+    not_updated: Article couldn\'t be saved.
+
+  users:
+    add: Add user
+    already_added: That user is already associated with this instance.
+    added: User was successfully added.
+    updated: User was successfully updated.
+    not_updated: User couldn\'t be saved.
+    removed: User was removed from this instance.
+
+  links:
+    created: Link was successfully created.
+    not_created: Link couldn\'t be created.
+    updated: Link was successfully updated.
+    not_updated: Link couldn\'t be saved.
 
 
-
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
-    errors:
-      <<: *errors
+    models:
+      article: Article
+      user: User
+      instance: Instance
+      comment: Comment
+      link: Bookmark
+      notification: Notification
+    attributes:
+      link:
+        name: Name
+        href: URL
+        icon: Icon
+        created_at: Created at
+      user:
+        name: Name
+        email: E-Mail
+        is_admin: Admin?
+        is_admin_of_instance: Admin dieser Instanz?
+        color: Color

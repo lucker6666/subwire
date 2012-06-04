@@ -2,7 +2,21 @@
 <h1><%= @article.title %></h1>
 
 <div class="well">
-  <%= @article.content.html_safe %>
+	<%= @article.content.html_safe %>
+
+	<% if display_ads %>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-4129785061498511";
+		/* BrainDump Artikel */
+		google_ad_slot = "0223575696";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	<% end %>
 
   <div class="comments commentList">
     <h5>Comments:</h5>
@@ -10,7 +24,7 @@
     <table>
       <% @article.comments.each do |comment| %>
         <tr>
-          <td><%= colored_name(comment.user) %>:</td>
+          <th><%= colored_name(comment.user) %>:</th>
           <td>
             <div class="commentButtons">
               <% if current_user.is_admin? || comment.user == current_user %>
@@ -29,8 +43,8 @@
                    <div class="comment" id="comment<%= comment.id %>">
                     <%= comment.content %>
                   </div>
-                  
-                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">       
+
+                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
                     <%= form_for([@article, comment]) do |f| %>
                     <div class="input-append">
                       <%= f.text_field :content, :class => "span6" %><%= f.submit "Save", :class => 'btn' %>

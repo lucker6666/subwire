@@ -60,11 +60,13 @@ function commentToggle(a) {
 	return false;
 }
 
+
 function editComment(comment) {
 	$('.comment-edit').hide("slow");
 	$('.comment').show("slow");
 	$('#comment' + comment).hide("slow");
 	$('#comment' + comment + 'edit').show("slow");
+	return false;
 }
 
 function updateNotifications() {

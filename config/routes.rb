@@ -1,30 +1,32 @@
 BrainDump::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  
+
 	# Devise
   devise_for :users
 
-  scope "(:locale)", locale: /en|de/ do
-    resources :users
+  get "instances/unset", :to => "instances#unset"
+	resources :instances
 
-    # Links
-    resources :links
+  get "users/add", :to => "users#add"
+  post "users/add", :to => "users#add2"
+  resources :users, :only => [:index, :show, :edit, :update, :destroy]
 
-    # Articles and comments
-    resources :articles do
-  	  resources :comments, :only => [:create, :update, :destroy]
-  	end
+  # Links
+  resources :links
 
-  	# Notifications
-  	resources :notifications, :only => [:index, :show]
+  # Articles and comments
+  resources :articles do
+	  resources :comments, :only => [:create, :update, :destroy]
+	end
 
-    post "availability", :to => "availabilities#set"
+	# Notifications
+	resources :notifications, :only => [:index, :show]
 
-  end
+  post "availability", :to => "availabilities#set"
 
 	# Start page
   get "home/index"
-  get '/:locale' => 'articles#index'
-  root :to => "articles#index"
+  #get '/:locale' => 'home#index'
+  root :to => "home#index"
 end

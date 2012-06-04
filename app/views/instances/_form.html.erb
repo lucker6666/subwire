@@ -1,0 +1,29 @@
+<%= form_for @instance do |f| %>
+
+	<fieldset>
+	    <div class="clearfix">
+			<%= f.text_field :name, :class => 'text_field', :placeholder => t('helpers.name')  %>
+	    </div>
+
+	    <div class="clearfix">
+	    	<%= select :instance, :defaultLanguage, [["Deutsch", 1], ["English", 2]] %>
+		</div>
+
+	    <% if current_user.is_admin? %>
+		    <div class="clearfix">
+		    	<%= f.check_box :advertising, :class => 'check_box' %>
+		    	<%= t('helpers.advertisting') %>
+		    </div>
+	    <% end %>
+
+	    <div class="clearfix">
+	    	<%= f.check_box :planningTool, :class => 'check_box' %>
+	    	<%= t('helpers.planningTool') %>
+		</div>
+
+	  	<div align="center">
+	  		<%= f.submit t("instances.create"), :class => 'btn btn-success btn-large' %>
+			<%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large' %>
+	  	</div>
+	</fieldset>
+<% end %>

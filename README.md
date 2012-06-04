@@ -5,10 +5,14 @@ Work in progress. Stay tuned!
 
 Installation
 ============
-* $ git clone https://itws@github.com/YaanaLabs/BrainDump.git
+* $ git clone --quiet https://itws@github.com/YaanaLabs/BrainDump.git
 * $ cd BrainDump
-* $ bundle
-* $ cp config/database.example.yml config/database.yml
+* $ bundle install
+* For MySQL: $ cp config/database.mysql.yml config/database.yml
+* For SQLite: $ cp config/database.sqlite.yml config/database.yml
 * $ vim config/database.yml
 * change database connection configuration
-* $ rake db:setup; rake db:migrate
+* $ rake db:create; rake db:migrate
+* $ rake braindump:setup
+
+Finished! Now you can login with 'admin@example.com' and the password 'admin'.
