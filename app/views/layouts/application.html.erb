@@ -25,67 +25,77 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<%= link_to current_instance.name, articles_path, :class => "brand" %>
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+  					</a>
+
+					<ul class="nav">
+						<li class="dropdown iconOnly">
+						    <% if notifications.length > 0 %>
+							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+
+							    	<span class="notification-badge badge badge-info">
+							    		<%= notifications.length %>
+							    	</span>
+							    </a>
+
+							    <ul class="notification-dropdown dropdown-menu">
+							    	<% notifications.each do |notification| %>
+								    	<li>
+								    		<a href="<%= notification_path(notification) %>">
+								    			<%= notification_icon(notification) %>
+								    			<%= notification.message.html_safe %>
+								    		</a>
+								    	</li>
+								    <% end %>
+							    </ul>
+							<% else %>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+
+							    	<span class="notification-badge badge badge-info">
+							    	</span>
+							    </a>
+
+								<ul class="dropdown-menu">
+									<li><%= t "application.notifications_unread" %></li>
+								</ul>
+						    <% end %>
+						</li>
+
+						<li class="dropdown iconOnly">
+							<% if instances.length > 0 %>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-home"></i>
+							    </a>
+
+								<ul class="notification-dropdown dropdown-menu">
+							    	<% instances.each do |instance| %>
+								    	<li>
+								    		<%=
+								    			link_to instance.name,
+								    			instance_path(instance)
+								    		%>
+								    	</li>
+								    <% end %>
+
+								    <li>
+								    	<%= link_to "Back to overview", "/instances/unset" %>
+								    </li>
+							    </ul>
+							<% end %>
+						</li>
+					</ul>
+
+  					<div class="nav-collapse">
+						<%= link_to current_instance.name, articles_path, :class => "brand" %>
+					</div>
 
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li class="dropdown iconOnly">
-								<% if instances.length > 0 %>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-home"></i>
-								    </a>
-
-									<ul class="notification-dropdown dropdown-menu">
-								    	<% instances.each do |instance| %>
-									    	<li>
-									    		<%=
-									    			link_to instance.name,
-									    			instance_path(instance)
-									    		%>
-									    	</li>
-									    <% end %>
-
-									    <li>
-									    	<%= link_to "Back to overview", "/instances/unset" %>
-									    </li>
-								    </ul>
-								<% end %>
-							</li>
-
-							<li class="dropdown iconOnly">
-							    <% if notifications.length > 0 %>
-								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-exclamation-sign"></i>
-
-								    	<span class="notification-badge badge badge-info">
-								    		<%= notifications.length %>
-								    	</span>
-								    </a>
-
-								    <ul class="notification-dropdown dropdown-menu">
-								    	<% notifications.each do |notification| %>
-									    	<li>
-									    		<a href="<%= notification_path(notification) %>">
-									    			<%= notification_icon(notification) %>
-									    			<%= notification.message.html_safe %>
-									    		</a>
-									    	</li>
-									    <% end %>
-								    </ul>
-								<% else %>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-exclamation-sign"></i>
-
-								    	<span class="notification-badge badge badge-info">
-								    	</span>
-								    </a>
-
-									<ul class="dropdown-menu">
-										<li><%= t "application.notifications_unread" %></li>
-									</ul>
-							    <% end %>
-							</li>
-
 							<li class="divider-vertical"></li>
 
 							<li>
