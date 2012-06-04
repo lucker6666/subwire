@@ -1,68 +1,29 @@
-<%= form_for @instance, :html => { :class => 'form-horizontal' } do |f| %>
-	<div class="control-group">
-		<%= f.label :name, :class => 'control-label' %>
+<%= form_for @instance do |f| %>
 
-		<div class="controls">
-			<%= f.text_field :name, :class => 'text_field' %>
+	<fieldset>
+	    <div class="clearfix">
+			<%= f.text_field :name, :class => 'text_field', :placeholder => t('helpers.name')  %>
+	    </div>
 
-			<br />
-			<span class="muted">
-				<i class="icon icon-info-sign"></i>
-				Enter the desired name of your BrainDump instance. That name will be displayed on the
-				left side of the navigation bar.
-			</span>
+	    <div class="clearfix">
+	    	<%= select :instance, :defaultLanguage, [["Deutsch", 1], ["English", 2]] %>
 		</div>
-	</div>
 
-	<div class="control-group">
-		<%= f.label "Language", :class => 'control-label' %>
+	    <% if current_user.is_admin? %>
+		    <div class="clearfix">
+		    	<%= f.check_box :advertising, :class => 'check_box' %>
+		    	<%= t('helpers.advertisting') %>
+		    </div>
+	    <% end %>
 
-		<div class="controls">
-			<%= select :instance, :defaultLanguage, [["de", 1], ["en", 2]] %>
-
-			<br />
-			<span class="muted">
-				<i class="icon icon-info-sign"></i>
-				That's the default language for new users, which will be created by admins of that
-				instance.
-			</span>
+	    <div class="clearfix">
+	    	<%= f.check_box :planningTool, :class => 'check_box' %>
+	    	<%= t('helpers.planningTool') %>
 		</div>
-	</div>
 
-	<% if current_user.is_admin? %>
-		<div class="control-group">
-			<%= f.label :advertising, :class => 'control-label' %>
-			<div class="controls">
-				<%= f.check_box :advertising, :class => 'check_box' %>
-
-			<br />
-			<span class="muted">
-				<i class="icon icon-info-sign"></i>
-				Activate or deactivate the advertising in that instance.
-			</span>
-			</div>
-		</div>
-	<% end %>
-
-	<div class="control-group">
-		<%= f.label :planningTool, :class => 'control-label' %>
-
-		<div class="controls">
-			<%= f.check_box :planningTool, :class => 'check_box' %>
-
-			<br />
-			<span class="muted">
-				<i class="icon icon-info-sign"></i>
-				The planning tool allows you to find a date for meetings, events, etc. Each user
-				gets a calender which allows him to mark that days on which he doesn't have any time
-				for events.
-			</span>
-		</div>
-	</div>
-
-	<div class="form-actions">
-		<%= f.submit nil, :class => 'btn btn-primary' %>
-		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-			users_path, :class => 'btn' %>
-	</div>
+	  	<div align="center">
+	  		<%= f.submit t("instances.create"), :class => 'btn btn-success btn-large' %>
+			<%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large' %>
+	  	</div>
+	</fieldset>
 <% end %>

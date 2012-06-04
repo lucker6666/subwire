@@ -149,6 +149,8 @@ en:
     password_confirmation: Password confirmation
     sign_in: Login
     sign_up: Sign Up
+    advertising: Advertising
+    planningTool: Planning tool
   number:
     currency:
       format:
@@ -233,6 +235,7 @@ en:
 
   instances:
     new: Create new instance!
+    create: Create Instance!
     your_instances: Your instances
     hit_limit: You\'ve reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
     created: Instance was successfully created.
