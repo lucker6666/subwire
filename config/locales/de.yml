@@ -143,6 +143,8 @@ de:
     password_confirmation: Passwort bestätigen
     sign_in: Login
     sign_up: Registrieren
+    advertising: Werbebanner
+    planningTool: Planungs-Werkzeug
   number:
     currency:
       format:
@@ -232,6 +234,7 @@ de:
 
   instances:
     new: Erstelle eine neue Instanz!
+    create: Instanz erstellen!
     your_instances: Deine Instanzen
     hit_limit: Du hast die maximale Anzahl von Instanzen erreicht. Wenn du noch mehr benötigst, kontaktiere uns bitte per info@yaana.de.
     created: Instanz wurde erfolgreich erstellt.

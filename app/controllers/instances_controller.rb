@@ -33,7 +33,6 @@ class InstancesController < ApplicationController
 			redirect_to :back
 		else
 			@instance = Instance.new
-			@containerClass = "newInstance"
 
 			render 'new', layout: 'login'
 		end
