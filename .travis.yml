@@ -1,6 +1,15 @@
+evn:
+	- DB=mysql
+	- DB=sqlite
 language: ruby
 rvm:
   - 1.9.2
   - 1.9.3
   - jruby-19mode
   - rbx-19mode
+before_script:
+	- "cp config/database.$DB.yml config/database.yml"
+	- "bundle exec rake db:create RAILS_ENV=test"
+	- "bundle exec rake db:migrate RAILS_ENV=test"
+	- "bundle exec rake braindump:setup RAILS_ENV=test"
+script: "bundle exec rake braindump:test"
