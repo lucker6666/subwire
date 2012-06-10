@@ -10,24 +10,24 @@ class MultiInstances < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_column :links, :instance_id, :integer, :null => false
+    add_column :links, :instance_id, :integer, :null => false, :default => 1
     add_index :links, :instance_id
 
-    add_column :articles, :instance_id, :integer, :null => false
+    add_column :articles, :instance_id, :integer, :null => false, :default => 1
     add_index :articles, :instance_id
 
-    add_column :availabilities, :instance_id, :integer, :null => false
+    add_column :availabilities, :instance_id, :integer, :null => false, :default => 1
     add_index :availabilities, :instance_id
 
-    add_column :notifications, :instance_id, :integer, :null => false
+    add_column :notifications, :instance_id, :integer, :null => false, :default => 1
     add_index :notifications, :instance_id
 
 
     # relationships table
     create_table :relationships do |t|
-      t.references 	:user, :null => false
-      t.references 	:instance, :null => false
-      t.boolean			:admin, :null => false, :default => true
+      t.references 	:user, :null => false, :default => 1
+      t.references 	:instance, :null => false, :default => 1
+      t.boolean		:admin, :null => false, :default => true
     end
 
     add_index :relationships, :instance_id
