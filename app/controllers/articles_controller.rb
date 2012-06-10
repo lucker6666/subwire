@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
 				:notification_type => "new_article",
 				:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
 				:href => article_path(@article)
-			})
+			}, current_instance, current_user)
 
 			feedback t('articles.created')
 			redirect_to article_path(@article)
@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
 					:notification_type => "edit_article",
 					:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
 					:href => article_path(@article)
-				})
+				}, current_instance, current_user)
 
 				feedback t('articles.updated')
 				redirect_to article_path(@article)

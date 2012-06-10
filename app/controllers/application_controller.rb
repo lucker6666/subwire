@@ -64,11 +64,11 @@ class ApplicationController < ActionController::Base
 					# If the user is a superadmin everything is ok
 					unless current_user.is_admin?
 						# Get the relationship between current_user and current_instance)
-						current_rs
+						rs = current_rs
 
 						# If there is no relationship, the user is not allowed to see that instance.
 						# So redirect to instances overview. Otherwise everything is ok
-						unless current_rs
+						unless rs
 							notify t :application.no_permission_for_instance
 							redirect_to instances_path
 						end

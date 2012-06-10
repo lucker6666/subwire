@@ -12,7 +12,7 @@ module Session
 
 	# Returns the relationship between current_user ans current_instance
 	def current_rs
-		return Relationship.where(
+		Relationship.where(
 			:user_id => current_user.id,
 			:instance_id => current_instance.id
 		).first
@@ -27,6 +27,4 @@ module Session
 	end
 end
 
-ActiveRecord::Base.send :include, Session
 ActionController::Base.send :include, Session
-ApplicationHelper.send :include, Session

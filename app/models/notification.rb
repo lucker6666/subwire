@@ -4,8 +4,8 @@ class Notification < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :instance
 
-	def notify_all_users(data)
-		Relationship.find_all_users_by_instance(current_instance).each do |user|
+	def self.notify_all_users(data, instance, current_user)
+		Relationship.find_all_users_by_instance(instance).each do |user|
 			unless user == current_user
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
@@ -13,7 +13,7 @@ class Notification < ActiveRecord::Base
 					:href => data[:href],
 					:is_read => false,
 					:user => user,
-					:instance => current_instance
+					:instance => instance
 				})
 
 				notification.save
