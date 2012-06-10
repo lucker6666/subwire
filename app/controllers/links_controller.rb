@@ -29,10 +29,10 @@ class LinksController < ApplicationController
 		@link.instance = current_instance
 
 		if @link.save
-			notify t('links.created')
+			feedback t('links.created')
 			redirect_to links_path
 		else
-			notify t('links.not_created')
+			feedback t('links.not_created')
 			render action: "new"
 		end
 	end
@@ -42,7 +42,7 @@ class LinksController < ApplicationController
 		@link = Link.find(params[:id])
 
 		if @link.update_attributes(params[:link])
-			notify t('users.updated')
+			feedback t('users.updated')
 			redirect_to link_path(@link)
 		else
 			render action: "edit"
