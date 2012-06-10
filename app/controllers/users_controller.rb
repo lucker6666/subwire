@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!, :choose_instance!, :check_permissions
-	before_filter :check_admin, :except => [:edit, :update, :show]
+	before_filter :restricted_to_admin, :except => [:edit, :update, :show]
 
 	# GET /users
 	def index
@@ -26,17 +26,17 @@ class UsersController < ApplicationController
 			# Check wether user is already associated with this instance
 			if (Relationship.where(:instance_id => current_instance.id, :user_id => user.id))
 				# User is already associated with this instance, do nothing but notify the user
-				notify t("users.already_added")
+				feedback t("users.already_added")
 				redirect_to :back
 			else
 				# User is not associated, create a Relationship
 				Relationship.create(
 					:instance => current_instance,
 					:user => user,
-					:admin => current_user.is_admin_of_instance?(current_instance) && params[:is_admin_of_instance]
+					:admin => has_admin_privileges? && params[:is_admin_of_instance]
 				)
 
-				notify t("users.added")
+				feedback t("users.added")
 				redirect_to user_path(user)
 			end
 		else
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
 			# TODO Send E-Mail with invitation link to user
 
-			notify t("users.added")
+			feedback t("users.added")
 			redirect_to user_path(user)
 		end
 	end
@@ -75,13 +75,13 @@ class UsersController < ApplicationController
 			params[:user].delete :password
 		end
 
-		if current_user.is_admin_of_instance?(current_instance)
+		if has_admin_privileges?
 			rel = Relationship.where(
 				:instance_id => current_instance.id,
 				:user_id => @user.id
 			).first
 
-			if params[:user][:is_admin_of_instance]
+			if params[:is_admin_of_instance]
 				rel.admin = true
 			else
 				rel.admin = false
@@ -90,13 +90,13 @@ class UsersController < ApplicationController
 			rel.save
 		end
 
-		params[:user].delete :is_admin_of_instance
+		params.delete :is_admin_of_instance
 
 		if @user.update_attributes(params[:user])
-			notify t('users.updated')
+			feedback t('users.updated')
 			redirect_to @user
 		else
-			notify t('users.not_updated')
+			feedback t('users.not_updated')
 			render action: "edit"
 		end
 	end
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
 
 		@relationship.destroy
 
-		notify t('users.removed')
+		feedback t('users.removed')
 
 		redirect_to users_url
 	end
