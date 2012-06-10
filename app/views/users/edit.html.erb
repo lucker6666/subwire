@@ -20,16 +20,13 @@
 		</div>
 	</div>
 
-	<% if current_user.is_admin? %>
+	<% if has_admin_privileges? %>
 		<div class="control-group">
 			<%= f.label :is_admin_of_instance, :class => 'control-label' %>
 
 			<div class="controls">
-				<% if @is_admin_of_instance %>
-					<%= check_box :user, :is_admin_of_instance, {:class => 'check_box', :checked => 'checked'}, true, false %>
-				<% else %>
-					<%= check_box :user, :is_admin_of_instance, {:class => 'check_box'}, true, false %>
-				<% end %>
+				<%= check_box_tag :is_admin_of_instance, true, @is_admin_of_instance,
+					{:class => 'check_box'} %>
 			</div>
 		</div>
 	<% end %>
