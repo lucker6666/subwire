@@ -29,3 +29,4 @@ end
 
 ActiveRecord::Base.send :include, Session
 ActionController::Base.send :include, Session
+ApplicationHelper.send :include, Session
