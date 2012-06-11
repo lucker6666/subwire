@@ -60,7 +60,7 @@
 							    	</span>
 							    </a>
 
-								<ul class="dropdown-menu">
+								<ul class="notifications-dropdown dropdown-menu">
 									<li><%= t "application.notifications_unread" %></li>
 								</ul>
 						    <% end %>
@@ -72,12 +72,16 @@
 							    	<i class="icon icon-home"></i>
 							    </a>
 
-								<ul class="notification-dropdown dropdown-menu">
+								<ul class="instances-dropdown dropdown-menu">
 							    	<% instances.each do |instance| %>
 								    	<li>
 								    		<%=
 								    			link_to instance.name,
-								    			instance_path(instance)
+								    			instance_path(instance),
+								    			{
+								    				:class =>
+								    				(instance == current_instance ? "active" : "")
+								    			}
 								    		%>
 								    	</li>
 								    <% end %>

@@ -33,6 +33,7 @@
 		width: 250px;
 	}
 
+
 /**
  *	Nav
  */
@@ -65,8 +66,8 @@
 		left: 20px;
 	}
 
-	li.instances ul a {
-		padding: 3px 0;
+	ul.instances-dropdown a.active {
+		font-weight: bold;
 	}
 
  	.dropdown-menu {
