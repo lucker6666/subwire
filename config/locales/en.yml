@@ -213,7 +213,7 @@ en:
 
 
   application:
-    no_admin: You\'re not an admin!
+    no_admin: You're not an admin!
     notifications: Notifications
     notifications_unread: There are no unread notifications.
     user_management: User Management
@@ -225,7 +225,7 @@ en:
     user: User
     german: German
     english: English
-    no_permission_for_instance: You\'re not allowed to see this instance!
+    no_permission_for_instance: You're not allowed to see this instance!
 
   comments:
     new_success: Comment was successfully created.
@@ -237,31 +237,31 @@ en:
     new: Create new instance!
     create: Create Instance!
     your_instances: Your instances
-    hit_limit: You\'ve reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
+    hit_limit: You've reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
     created: Instance was successfully created.
-    not_created: Instance couldn\'t be created.
+    not_created: Instance couldn't be created.
     updated: Instance was successfully updated.
-    not_updated: Instance couldn\'t be saved.
+    not_updated: Instance couldn't be saved.
 
   articles:
     created: Article was successfully created.
-    not_created: Article couldn\'t be created.
+    not_created: Article couldn't be created.
     updated: Article was successfully updated.
-    not_updated: Article couldn\'t be saved.
+    not_updated: Article couldn't be saved.
 
   users:
     add: Add user
     already_added: That user is already associated with this instance.
     added: User was successfully added.
     updated: User was successfully updated.
-    not_updated: User couldn\'t be saved.
+    not_updated: User couldn't be saved.
     removed: User was removed from this instance.
 
   links:
     created: Link was successfully created.
-    not_created: Link couldn\'t be created.
+    not_created: Link couldn't be created.
     updated: Link was successfully updated.
-    not_updated: Link couldn\'t be saved.
+    not_updated: Link couldn't be saved.
 
 
   activerecord:
