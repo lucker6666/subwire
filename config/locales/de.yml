@@ -283,5 +283,9 @@ de:
         email: E-Mail
         is_admin: Admin?
         color: Farbe
-
-
+    errors:
+      models:
+        instance:
+          attributes:
+            name:
+              too_long: Name zu lang. Maximal 20 Buchstaben erlaubt.

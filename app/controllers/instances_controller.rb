@@ -30,7 +30,7 @@ class InstancesController < ApplicationController
 	def new
 		if Instance.find_all_where_user_is_admin(current_user).length > 4
 			feedback t('instances.hit_limit')
-			redirect_to :back
+			redirect_to instances_path
 		else
 			@instance = Instance.new
 
@@ -67,7 +67,8 @@ class InstancesController < ApplicationController
 				redirect_to instance_path(@instance)
 			else
 				feedback t('instances.not_created')
-				render action: "new"
+				errors_to_feedback(@instance)
+				render action: "new", layout: 'login'
 			end
 		end
 	end

@@ -284,3 +284,9 @@ en:
         is_admin: Admin?
         is_admin_of_instance: Admin dieser Instanz?
         color: Color
+    errors:
+      models:
+        instance:
+          attributes:
+            name:
+              too_long: Name too long. 20 characters maximum allowed.
