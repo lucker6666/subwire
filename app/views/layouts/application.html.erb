@@ -177,7 +177,7 @@
 						<h2><%= t "application.bookmarks" %></h2>
 
 						<ul class="bookmarks nav nav-list">
-							<% Link.all.each do |link| %>
+							<% @links.each do |link| %>
 								<li>
 									<a href="<%= link.href %>" target="_blank">
 										<% if !link.icon.empty? %>
@@ -195,7 +195,7 @@
 						<h2><%= t "application.user" %></h2>
 
 						<ul class="users nav nav-list">
-							<% User.all.each do |user| %>
+							<% @users.each do |user| %>
 								<li>
 									<%= link_to user.name, user_path(user) %>
 								</li>
