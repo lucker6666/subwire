@@ -37,8 +37,9 @@ class ApplicationController < ActionController::Base
 
 		# Sends a message to the user over the feedback system. Will use jGrowl in frontend.
 		def feedback(msg)
-			# Case 1: null or empty string
+			# Case 1: nil or empty string
 			if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
+				flash[:alert] = [msg]
 				return
 			# Case 2: array
 			elsif flash[:alert].kind_of?(Array)
