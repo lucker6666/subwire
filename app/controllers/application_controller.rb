@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	# set_locale: Determines the language of the user
 	# refresh_config: Reloads the current instance config from database
-	before_filter :set_locale, :refresh_config
+	before_filter :set_locale, :refresh_config, :globals
 
 	# We need all helpers, all the time
 	helper :all
@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
 
 
 	protected
+
+		# Set some global variables, which are required in the views of each request
+		def globals
+			if current_instance
+				@users = Relationship.find_all_users_by_instance(current_instance)
+				@links = Link.where(:instance_id => current_instance.id)
+			end
+
+			return true
+		end
 
 		# Changes layout depending on controller
 		def layout_by_resource
