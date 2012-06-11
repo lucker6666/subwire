@@ -20,14 +20,18 @@
 	</thead>
 
 	<tbody>
-		<% User.all.each do |user| %>
+		<% @users.each do |user| %>
 			<tr>
 				<th><%= user.name %></th>
 
 				<%
 					date = Date.today
 					7.times do |i|
-						a = Availability.where("date = ? and user_id = ?", date, user.id).first
+						a = Availability.where(
+							:date => date,
+							:user_id => user.id,
+							:instance_id => current_instance.id
+						).first
 
 						if a.nil?
 							color = 3
