@@ -7,6 +7,10 @@ class Instance < ActiveRecord::Base
 	has_many :relationships
 	has_many :users, :through => :relationships
 
+  validates :name, :length => {
+  	:maximum => 20
+  }
+
 	def self.find_all_where_user_is_admin(user)
 		find(
 			:all,
