@@ -10,7 +10,12 @@
 	</ul>
 
 	<% if !has_superadmin_privileges? && @adminCount > 4 %>
-		<%= t('instances.hit_limit') %>
+		<br />
+
+		<div class="alert alert-error">
+			<i class="icon  icon-exclamation-sign"></i>
+			<%= t('instances.hit_limit') %>
+		</div>
 	<% else %>
 		<div class="buttons">
 			<%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
