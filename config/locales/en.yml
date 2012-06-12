@@ -237,7 +237,7 @@ en:
     new: Create new instance!
     create: Create Instance!
     your_instances: Your instances
-    hit_limit: You've reached the maximum number of instances! If you need some more, please contact us via info@yaana.de.
+    hit_limit: You can't be an admin of more then 5 instances at the same time. If you need some more instances, please contact us via info@yaana.de.
     created: Instance was successfully created.
     not_created: Instance couldn't be created.
     updated: Instance was successfully updated.
