@@ -3,7 +3,7 @@ class InstancesController < ApplicationController
 	before_filter :authenticate_user!
 
 	# User must be allowed to see the instance to edit and update
-	before_filter :check_permissions, :except => [:index, :new, :create, :show, :unset]
+	before_filter :check_permissions, :only => [:show]
 
 	# GET /instance
 	def index
@@ -46,6 +46,8 @@ class InstancesController < ApplicationController
 			feedback "Access denied!"
 			redirect_to :back
 		end
+
+		render 'edit', layout: 'login'
 	end
 
 	# POST /instances
@@ -82,7 +84,7 @@ class InstancesController < ApplicationController
 		end
 
 		# Make sure that there is no advertising-value while user is not a admin
-		if !params[:instance][:advertising].nil? && !has_superadmin_privileges
+		if !params[:instance][:advertising].nil? && !has_superadmin_privileges?
 			params[:instance][:advertising] = true
 		end
 
@@ -109,6 +111,9 @@ class InstancesController < ApplicationController
 
 			feedback t('instances.destroyed')
 
+			redirect_to instances_path
+		else
+			feedback t('application.permission_denied')
 			redirect_to instances_path
 		end
 	end
