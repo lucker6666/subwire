@@ -2,9 +2,6 @@ class InstancesController < ApplicationController
 	# User have to be logged in
 	before_filter :authenticate_user!
 
-	# User must be allowed to see the instance to edit and update
-	before_filter :check_permissions, :only => [:show]
-
 	# GET /instance
 	def index
 		@instances = Instance.find(
