@@ -42,13 +42,21 @@
  		font-size: 1.1em;
  	}
 
+ 	.navbar .nav > li > a.brand {
+ 		padding-right: 0;
+ 	}
+
  	.iconOnly i {
  		font-size: 1.6em;
  	}
 
  	li.iconOnly > a.dropdown-toggle {
  		position: relative;
- 		padding: 10px 4px 8px;
+ 		padding: 10px 0 8px 1.1em;
+ 	}
+
+ 	li.iconOnly.instanceChooserCaret a.dropdown-toggle {
+ 		padding-left: 6px;
  	}
 
  	a.dropdown-toggle span.badge {

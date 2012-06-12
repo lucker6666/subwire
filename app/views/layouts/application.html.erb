@@ -32,44 +32,14 @@
   					</a>
 
 					<ul class="nav">
-						<li class="dropdown iconOnly">
-						    <% if notifications.length > 0 %>
-							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-exclamation-sign"></i>
-
-							    	<span class="notification-badge badge badge-info">
-							    		<%= notifications.length %>
-							    	</span>
-							    </a>
-
-							    <ul class="notification-dropdown dropdown-menu">
-							    	<% notifications.each do |notification| %>
-								    	<li>
-								    		<a href="<%= notification_path(notification) %>">
-								    			<%= notification_icon(notification) %>
-								    			<%= notification.message.html_safe %>
-								    		</a>
-								    	</li>
-								    <% end %>
-							    </ul>
-							<% else %>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-exclamation-sign"></i>
-
-							    	<span class="notification-badge badge badge-info">
-							    	</span>
-							    </a>
-
-								<ul class="notifications-dropdown dropdown-menu">
-									<li><%= t "application.notifications_unread" %></li>
-								</ul>
-						    <% end %>
+						<li>
+							<%= link_to current_instance.name, articles_path, :class => "brand" %>
 						</li>
 
-						<li class="dropdown iconOnly">
+						<li class="dropdown iconOnly instanceChooserCaret">
 							<% if instances.length > 0 %>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-home"></i>
+							    	<b class="caret"></b>
 							    </a>
 
 								<ul class="instances-dropdown dropdown-menu">
@@ -92,11 +62,43 @@
 							    </ul>
 							<% end %>
 						</li>
-					</ul>
 
-  					<div class="nav-collapse">
-						<%= link_to current_instance.name, articles_path, :class => "brand" %>
-					</div>
+						<li class="dropdown iconOnly">
+						    <% if notifications.length > 0 %>
+							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+							    	<b class="caret"></b>
+
+							    	<span class="notification-badge badge badge-info">
+							    		<%= notifications.length %>
+							    	</span>
+							    </a>
+
+							    <ul class="notification-dropdown dropdown-menu">
+							    	<% notifications.each do |notification| %>
+								    	<li>
+								    		<a href="<%= notification_path(notification) %>">
+								    			<%= notification_icon(notification) %>
+								    			<%= notification.message.html_safe %>
+								    		</a>
+								    	</li>
+								    <% end %>
+							    </ul>
+							<% else %>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							    	<i class="icon icon-exclamation-sign"></i>
+							    	<b class="caret"></b>
+
+							    	<span class="notification-badge badge badge-info">
+							    	</span>
+							    </a>
+
+								<ul class="notifications-dropdown dropdown-menu">
+									<li><%= t "application.notifications_unread" %></li>
+								</ul>
+						    <% end %>
+						</li>
+					</ul>
 
 					<div class="nav-collapse">
 						<ul class="nav">
