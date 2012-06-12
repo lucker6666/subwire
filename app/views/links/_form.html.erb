@@ -1,26 +1,41 @@
 <%= form_for @link, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
+	<%= f.label :name, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.text_field :name, :class => 'text_field' %>
+	</div>
   </div>
   <div class="control-group">
-    <%= f.label :href, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :href, :class => 'text_field' %>
-    </div>
+	<%= f.label :href, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.text_field :href, :class => 'text_field' %>
+	</div>
   </div>
   <div class="control-group">
-    <%= f.label :icon, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :icon, :class => 'text_field' %>
-    </div>
+	<%= f.label :icon, :class => 'control-label' %>
+	<div class="controls">
+		<%= f.select :icon, icons, :class => 'text_field' %>
+		&nbsp;
+		<i class="icon icon-glass"></i>
+	</div>
   </div>
 
+  <script type="text/javascript">
+	$(function() {
+		select = $('#link_icon');
+		i = $('#link_icon + i');
+
+		select.change(function(e) {
+			i.attr('class', 'icon icon-' + select.val());
+		});
+
+		i.attr('class', 'icon icon-' + select.val());
+	});
+  </script>
+
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                links_path, :class => 'btn' %>
+	<%= f.submit nil, :class => 'btn btn-primary' %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+				links_path, :class => 'btn' %>
   </div>
 <% end %>
