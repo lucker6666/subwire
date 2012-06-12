@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 			:order => "created_at DESC",
 			:conditions => { :instance_id => current_instance.id }
 		)
-  	end
+	end
 
 	# GET /articles/1
 	def show
