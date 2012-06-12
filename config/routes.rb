@@ -5,12 +5,17 @@ BrainDump::Application.routes.draw do
 	# Devise
   devise_for :users
 
+  # Unset current instance
   get "instances/unset", :to => "instances#unset"
+
+  # Instances
 	resources :instances
 
-  get "users/add", :to => "users#add"
-  post "users/add", :to => "users#add2"
+	# Users
   resources :users, :only => [:index, :show, :edit, :update, :destroy]
+
+  # Relationships
+  resources :relationships, :only => [:index, :create, :new, :edit, :update, :destroy]
 
   # Links
   resources :links
@@ -23,10 +28,10 @@ BrainDump::Application.routes.draw do
 	# Notifications
 	resources :notifications, :only => [:index, :show]
 
+	# Availability Tool
   post "availability", :to => "availabilities#set"
 
 	# Start page
   get "home/index"
-  #get '/:locale' => 'home#index'
   root :to => "home#index"
 end
