@@ -6,7 +6,7 @@
 			<th><%= model_class.human_attribute_name(:name) %></th>
 			<th><%= model_class.human_attribute_name(:email) %></th>
 			<th><%= model_class.human_attribute_name(:is_admin) %></th>
-			<th><%= model_class.human_attribute_name(:color) %></th>
+			<th><%= t('users.instances_count') %></th>
 			<th><%=t '.actions', :default => t("helpers.actions") %></th>
 		</tr>
 	</thead>
@@ -14,27 +14,29 @@
 		<% @users.each do |user| %>
 			<tr>
 				<td><%= link_to user.name, user_path(user) %></td>
+
 				<td><%= user.email %></td>
+
 				<td>
 					<% if user.is_admin? %>
-						<i class="icon icon-star">
+						<i class="icon icon-ok">
 					<% else %>
-						<% if Relationship.is_user_admin_of_instance?(user, current_instance) %>
-							<i class="icon icon-ok">
-						<% else %>
-							<i class="icon icon-remove">
-						<% end %>
+						<i class="icon icon-remove">
 					<% end %>
 				</td>
-				<td><%= user.color %></td>
+
+				<td>
+					<%= user.instance_count %>
+				</td>
+
 				<td>
 					<%= link_to edit_user_path(user), :class => 'btn btn-mini' do %>
 						<i class="icon icon-pencil"></i>
 					<% end %>
 					<%= link_to user_path(user),
-											:method => :delete,
-											:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-											:class => 'btn btn-mini btn-danger' do %>
+						:method => :delete,
+						:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+						:class => 'btn btn-mini btn-danger' do %>
 						<i class="icon icon-trash"></i>
 					<% end %>
 				</td>
@@ -44,5 +46,5 @@
 </table>
 
 <%= link_to t('users.add', :default => t("helpers.links.new")),
-						"/users/add",
-						:class => 'btn btn-primary' %>
+	"/users/add",
+	:class => 'btn btn-primary' %>
