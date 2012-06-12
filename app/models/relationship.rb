@@ -17,4 +17,15 @@ class Relationship < ActiveRecord::Base
 
 		return result
 	end
+
+	def self.find_by_instance_and_user(instance, user)
+		where(
+			:instance_id => instance.id,
+			:user_id => user.id
+		).first
+	end
+
+	def email
+		user.email
+	end
 end
