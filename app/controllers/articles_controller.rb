@@ -61,6 +61,7 @@ class ArticlesController < ApplicationController
 			redirect_to article_path(@article)
 		else
 			feedback t('articles.not_created')
+			errors_to_feedback @article
 			render action: "new"
 		end
 	end
@@ -69,7 +70,7 @@ class ArticlesController < ApplicationController
 	def update
 		@article = Article.find(params[:id])
 
-		if current_user == @article.user || current_user.is_admin?
+		if current_user == @article.user || has_admin_privileges?
 			if @article.update_attributes(params[:article])
 				# Notify all users
 				Notification.notify_all_users({
@@ -81,6 +82,7 @@ class ArticlesController < ApplicationController
 				feedback t('articles.updated')
 				redirect_to article_path(@article)
 			else
+				errors_to_feedback @article
 				render action: "edit"
 			end
 		else
@@ -92,7 +94,7 @@ class ArticlesController < ApplicationController
 	def destroy
 		@article = Article.find(params[:id])
 
-		if current_user == @article.user || current_user.is_admin?
+		if current_user == @article.user || has_admin_privileges?
 			# Delete all notifications
 			@notifications = Notification.where(
 				:href => article_path(@article),
@@ -112,7 +114,6 @@ class ArticlesController < ApplicationController
 			@article.destroy
 
 			feedback t('articles.destroyed')
-
 			redirect_to articles_url
 		else
 			redirect_to :back
