@@ -90,6 +90,7 @@ class InstancesController < ApplicationController
 			redirect_to instance_path(@instance)
 		else
 			feedback t('instances.not_updated')
+			errors_to_feedback(@instance)
 			render action: "edit", layout: 'login'
 		end
 	end
