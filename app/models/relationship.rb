@@ -26,6 +26,10 @@ class Relationship < ActiveRecord::Base
 	end
 
 	def email
-		user.email
+		unless user.nil?
+			return user.email
+		end
+
+		return ""
 	end
 end
