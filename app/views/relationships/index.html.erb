@@ -12,6 +12,7 @@
 	</thead>
 	<tbody>
 		<% @users.each do |user| %>
+			<% relationship = Relationship.find_by_instance_and_user(current_instance, user) %>
 			<tr>
 				<td><%= link_to user.name, user_path(user) %></td>
 				<td><%= user.email %></td>
@@ -19,7 +20,7 @@
 					<% if user.is_admin? %>
 						<i class="icon icon-star">
 					<% else %>
-						<% if Relationship.is_user_admin_of_instance?(user, current_instance) %>
+						<% if relationship.admin %>
 							<i class="icon icon-ok">
 						<% else %>
 							<i class="icon icon-remove">
@@ -28,13 +29,14 @@
 				</td>
 				<td><%= user.color %></td>
 				<td>
-					<%= link_to edit_user_path(user), :class => 'btn btn-mini' do %>
+					<%= link_to edit_relationship_path(relationship), :class => 'btn btn-mini' do %>
 						<i class="icon icon-pencil"></i>
 					<% end %>
-					<%= link_to user_path(user),
-											:method => :delete,
-											:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-											:class => 'btn btn-mini btn-danger' do %>
+					<%= link_to relationship_path(relationship),
+						:method => :delete,
+						:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+						:class => 'btn btn-mini btn-danger' do %>
+
 						<i class="icon icon-trash"></i>
 					<% end %>
 				</td>
