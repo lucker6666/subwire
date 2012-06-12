@@ -2,8 +2,6 @@ class RelationshipsController < ApplicationController
 	before_filter :authenticate_user!, :choose_instance!, :check_permissions
 	before_filter :restricted_to_admin, :except => [:destroy]
 
-	# TODO actions: create, update
-
 	# GET /relationships
 	def index
 		@relationships = Relationship.find_all_by_instance_id(current_instance.id)
@@ -23,6 +21,9 @@ class RelationshipsController < ApplicationController
 	def create
 		@relationship = Relationship.new(params[:relationship])
 		@relationship.user = User.find(params[:relationship][:user])
+
+		# TODO: Create User and send email, if doesn't exist
+
 		@relationship.instance = current_instance
 
 		if @relationship.save
