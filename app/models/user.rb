@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
 			Relationship.is_user_admin_of_instance?(self, instance)
 		end
 	end
+
+	def instance_count
+		Relationship.find_all_by_user_id(id).length
+	end
 end
