@@ -11,19 +11,21 @@
 				<tr>
 					<td><%= link_to instance.name, instance_path(instance) %></td>
 					<td>
-						<div align="right">
-							<%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
-								<i class="icon icon-pencil"></i>
-							<% end %>
+						<% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
+							<div align="right">
+								<%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
+									<i class="icon icon-pencil"></i>
+								<% end %>
 
-							<%= link_to instance_path(instance),
-								:method => :delete,
-								:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-								:class => 'btn btn-mini btn-danger' do %>
+								<%= link_to instance_path(instance),
+									:method => :delete,
+									:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+									:class => 'btn btn-mini btn-danger' do %>
 
-								<i class="icon icon-trash"></i>
-							<% end %>
-						</div>
+									<i class="icon icon-trash"></i>
+								<% end %>
+							</div>
+						<% end %>
 					</td>
 				</tr>
 			<% end %>
