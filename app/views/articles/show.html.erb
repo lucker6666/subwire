@@ -47,7 +47,7 @@
                   <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
                     <%= form_for([@article, comment]) do |f| %>
                     <div class="input-append">
-                      <%= f.text_field :content, :class => "span6" %><%= f.submit "Save", :class => 'btn' %>
+                      <%= f.text_field :content, { :class => "span6", :autocomplete => :off } %><%= f.submit "Save", :class => 'btn' %>
                     </div>
                   <% end %>
                 </div>
@@ -60,7 +60,7 @@
 
     <%= form_for([@article, @article.comments.build]) do |f| %>
       <div class="input-append">
-        <%= f.text_field :content, :class => "span7" %><%= f.submit "Save", :class => 'btn' %>
+        <%= f.text_field :content, { :class => "span7", :autocomplete => :off } %><%= f.submit "Save", :class => 'btn' %>
       </div>
     <% end %>
   </div>

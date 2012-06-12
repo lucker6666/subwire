@@ -2,7 +2,7 @@
 
 	<fieldset>
 	    <div class="clearfix">
-			<%= f.text_field :name, :class => 'text_field', :placeholder => t('helpers.name')  %>
+			<%= f.text_field :name, { :class => 'text_field', :placeholder => t('helpers.name'), :autocomplete => :off }  %>
 	    </div>
 
 	    <div class="clearfix">
