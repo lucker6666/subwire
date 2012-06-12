@@ -9,7 +9,7 @@
 		<% end %>
 	</ul>
 
-	<% if @adminCount > 4 %>
+	<% if not has_superadmin_privileges? && @adminCount > 4 %>
 		<%= t('instances.hit_limit') %>
 	<% else %>
 		<div class="buttons">

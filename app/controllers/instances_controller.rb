@@ -50,7 +50,7 @@ class InstancesController < ApplicationController
 
 	# POST /instances
 	def create
-		if Instance.find_all_where_user_is_admin(current_user).length > 4
+		if not has_superadmin_privileges? && Instance.find_all_where_user_is_admin(current_user).length > 4
 			feedback t('instances.hit_limit')
 			redirect_to :back
 		else
