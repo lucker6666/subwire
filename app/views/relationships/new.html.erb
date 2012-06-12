@@ -1,0 +1,25 @@
+<%- model_class = @user.class -%>
+<h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                               :default => "New #{model_class.model_name.human}") %></h1>
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <% if current_user.is_admin? %>
+    <div class="control-group">
+      <%= f.label :is_admin, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_admin, :class => 'check_box' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit t('users.add'), :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn' %>
+  </div>
+<% end %>
