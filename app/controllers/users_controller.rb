@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!, :choose_instance!, :check_permissions
+	before_filter :restricted_to_superadmin, :only => [:index]
 
 	# TODO actions: update
 
@@ -24,9 +25,13 @@ class UsersController < ApplicationController
 
 		# Make sure the user tries to edit himself or the user is superadmin
 		if current_user == @user || has_superadmin_privileges?
+			if params[:user][:password].empty?
+				params[:user].delete :password
+			end
+
 			if @user.update_attributes(params[:user])
 				if has_superadmin_privileges?
-					@user.admin = params[:user][:admin]
+					@user.is_admin = params[:user][:admin]
 				end
 
 				feedback t('users.updated')
