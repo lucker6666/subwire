@@ -250,7 +250,7 @@ en:
     not_created: Article couldn't be created.
     updated: Article was successfully updated.
     not_updated: Article couldn't be saved.
-    new_notification: 
+    new_notification: Article created from %{user}
     edit_notification: Article edited from %{user}
 
   users:

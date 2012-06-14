@@ -5,7 +5,7 @@
 	    </div>
 
 	    <div class="clearfix">
-	    	<%= select :instance, :defaultLanguage, [["Deutsch", 1], ["English", 2]] %>
+	    	<%= select :instance, :defaultLanguage, [[t("application.german"), "de"], [t("application.english"), "en"]] %>
 		</div>
 
 	    <% if current_user.is_admin? %>

@@ -22,24 +22,23 @@ class UsersController < ApplicationController
 	# PUT /users/1
 	def update
 		@user = User.find(params[:id])
-
 		# Make sure the user tries to edit himself or the user is superadmin
 		if current_user == @user || has_superadmin_privileges?
-			if params[:user][:password].empty?
-				params[:user].delete :password
-			end
-
-			if @user.update_attributes(params[:user])
-				if has_superadmin_privileges?
-					@user.is_admin = params[:user][:admin]
+				if params[:user][:password].empty?
+					params[:user].delete :password
 				end
 
-				feedback t('users.updated')
-				redirect_to user_path(@user)
-			else
-				render action: "edit"
-				errors_to_feedback @user
-			end
+				if @user.update_attributes(params[:user])
+					if has_superadmin_privileges?
+						@user.is_admin = params[:user][:admin]
+					end
+
+					feedback t('users.updated')
+					redirect_to user_path(@user)
+				else
+					render action: "edit"
+					errors_to_feedback @user
+				end
 		else
 			redirect_to :back
 		end
