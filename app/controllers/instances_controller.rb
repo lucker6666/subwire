@@ -90,6 +90,8 @@ class InstancesController < ApplicationController
 			params[:instance][:advertising] = true
 		end
 
+		params[:instance].delete :advertising
+
 		if @instance.update_attributes(params[:instance])
 			feedback t('instances.updated')
 			redirect_to instance_path(@instance)
