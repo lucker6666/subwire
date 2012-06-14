@@ -18,7 +18,7 @@ namespace :braindump do
 			:color => 'f92672'
 		)
 
-		user.admin = true
+		user.is_admin = true
 
 		rel = Relationship.new
 		rel.instance = Instance.find(1)
