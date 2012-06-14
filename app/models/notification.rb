@@ -1,5 +1,24 @@
+#   Schema
+# ==========
+# 	table: notifications
+#
+# 	notification_id			:integer		not null, primary key
+# 	user_id							:integer
+# 	instance_id					:integer		not null, index
+# 	notification_type		:string			default => "article"
+# 	message							:string
+# 	href								:string
+# 	is_read							:boolean
+# 	created_at					:datetime		not null
+# 	updated_at					:datetime		not null
+#
+# TODO: index for instance_id
+# TODO: index for user_id
+# TODO: not null user_id, notification_type
+
+
 class Notification < ActiveRecord::Base
-	attr_accessible :notification_type, :message, :href, :is_read, :user, :instance
+	attr_accessible :notification_type, :message, :href
 
 	belongs_to :user
 	belongs_to :instance

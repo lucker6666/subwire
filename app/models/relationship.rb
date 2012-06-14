@@ -1,5 +1,16 @@
+#   Schema
+# ==========
+# 	table: relationships
+#
+# 	relationship_id			:integer		not null, primary key
+# 	user_id							:integer		not null, index
+# 	instance_id					:integer		not null, index
+# 	admin								:boolean		not null, default => true
+#
+# TODO: default false for admin?
+
 class Relationship < ActiveRecord::Base
-	attr_accessible :admin, :instance, :user
+	attr_protected :user_id, :instance_id, :admin
 
 	belongs_to :instance
 	belongs_to :user

@@ -25,6 +25,10 @@ class UsersController < ApplicationController
 		# Make sure the user tries to edit himself or the user is superadmin
 		if current_user == @user || has_superadmin_privileges?
 			if @user.update_attributes(params[:user])
+				if has_superadmin_privileges?
+					@user.admin = params[:user][:admin]
+				end
+
 				feedback t('users.updated')
 				redirect_to user_path(@user)
 			else
