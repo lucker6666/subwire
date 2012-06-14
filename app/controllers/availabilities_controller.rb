@@ -3,9 +3,7 @@ class AvailabilitiesController < ApplicationController
 	def set
 		paramSet = {
 			:date => params[:date],
-			:value => params[:value],
-			:user => current_user,
-			:instance => current_instance
+			:value => params[:value]
 		}
 
 		availability = Availability.where(
@@ -15,7 +13,9 @@ class AvailabilitiesController < ApplicationController
 		).first
 
 		if availability.nil?
-			availability = Availability.create(paramSet)
+			availability = Availability.create(paramSet),
+			availability.user = current_user
+			availability.instance = current_instance
 		else
 			availability.update_attributes(paramSet)
 		end

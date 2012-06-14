@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
 
 	# POST /comments
 	def create
+		# TODO check if the article is visible for the user to avoid cross-instance-hacks/-spam
+
 		@article = Article.find(params[:article_id])
 		@comment = @article.comments.build(params[:comment])
 		@comment.user = current_user
@@ -27,6 +29,7 @@ class CommentsController < ApplicationController
 	# PUT /comments/1
 	# PUT /comments/1.json
 	def update
+		# TODO check if the article is visible for the user to avoid cross-instance-hacks/-spam
 		@comment = Comment.find(params[:id])
 
 		# Make sure the user is the author of the comment or user is admin

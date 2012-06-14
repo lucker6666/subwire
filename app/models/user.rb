@@ -1,8 +1,28 @@
+#   Schema
+# ==========
+# 	table: users
+#
+# 	user_id								:integer		not null, primary key
+# 	name									:string			not null
+# 	email									:string			not null
+# 	is_admin							:boolean		not null, default => false
+#		encrypted_password		:string			not null
+#		remember_created_at		:datetime
+#		color									:string			not null, default => "000"
+#		lang									:string			not null, default => "en"
+# 	avatar								:string
+# 	superadmin						:boolean		not null, default => "0"
+#		created_at 						:datetime		not null
+#		updated_at 						:datetime		ot null
+#
+# TODO: remove superadmin
+
+
 class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable, :rememberable, :validatable
 
-	attr_accessible :is_admin, :name, :email, :password, :password_confirmation,
-		:remember_me, :color, :last_seen, :relationship, :lang, :instance
+	attr_accessible :name, :email, :password, :password_confirmation,
+		:remember_me, :color, :last_seen, :lang, :avatar
 
 	has_many :comments
 	has_many :articles

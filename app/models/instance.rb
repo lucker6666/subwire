@@ -1,5 +1,17 @@
+#   Schema
+# ==========
+# 	table: instances
+#
+# 	instance_id				:integer		not null, primary key
+# 	name							:string			not null
+# 	defaultLanguage 	:string			not null, default => "en"
+# 	advertising				:boolean		not null, default => true
+# 	planningTool			:boolean		not null, default => false
+# 	created_at				:datetime		not null
+# 	updated_at				:datetime		not null
+
 class Instance < ActiveRecord::Base
-	attr_accessible :name, :defaultLanguage, :advertising, :planningTool
+	attr_accessible :name, :defaultLanguage, :planningTool
 
 	has_many :articles
 	has_many :availabilities

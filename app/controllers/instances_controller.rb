@@ -55,12 +55,16 @@ class InstancesController < ApplicationController
 		else
 			@instance = Instance.new(params[:instance])
 
+			if has_superadmin_privileges?
+				@instance.advertising = params[:instance][:advertising]
+			end
+
 			if @instance.save
-				Relationship.create(
-					:user => current_user,
-					:instance => @instance,
-					:admin => true
-				)
+				rel = Relationship.new
+				rel.user = current_user
+				rel.instance = @instance
+				rel.admin = true
+				rel.save
 
 				feedback t('instances.created')
 				redirect_to instance_path(@instance)
@@ -119,6 +123,10 @@ class InstancesController < ApplicationController
 	# GET /instances/unset
 	def unset
 		set_current_instance nil
+
+			if has_superadmin_privileges?
+				@instance.advertising = params[:instance][:advertising]
+			end
 		redirect_to instances_path
 	end
 end

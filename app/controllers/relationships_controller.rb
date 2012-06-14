@@ -19,8 +19,13 @@ class RelationshipsController < ApplicationController
 
 	# POST /relationships
 	def create
-		@relationship = Relationship.new(params[:relationship])
+		@relationship = Relationship.new
 		@relationship.user = User.find(params[:relationship][:user])
+		@relationship.instance = current_instance
+
+		if has_admin_privileges?
+			@relationship.admin = params[:relationship][:admin]
+		end
 
 		# TODO: Create User and send email, if doesn't exist
 
@@ -38,6 +43,10 @@ class RelationshipsController < ApplicationController
 	# PUT /relationships/1
 	def update
 		@relationship = Relationship.find(params[:id])
+
+		if has_admin_privileges?
+			@relationship.admin = params[:relationship][:admin]
+		end
 
 		if current_user == @relationship.user || has_admin_privileges?
 			if @relationship.update_attributes(params[:relationship])
