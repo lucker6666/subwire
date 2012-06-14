@@ -48,6 +48,8 @@ class RelationshipsController < ApplicationController
 			@relationship.admin = params[:relationship][:admin]
 		end
 
+		params[:relationship].delete :admin
+
 		if current_user == @relationship.user || has_admin_privileges?
 			if @relationship.update_attributes(params[:relationship])
 				feedback t('relationships.updated')
