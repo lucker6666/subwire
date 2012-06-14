@@ -6,6 +6,11 @@ module ApplicationHelper
 		"<strong style='color: \##{user.color};'>#{user.name}</strong>".html_safe
 	end
 
+	# Display boolean values as icon
+	def boolean_icon(expression)
+		content_tag :i, "", :class => (expression ? "icon icon-ok" : "icon icon-remove")
+	end
+
 	# Returns true if ad banner should be displayed
 	def display_ads
 		if current_user.is_admin?
