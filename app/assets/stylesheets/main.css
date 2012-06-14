@@ -82,10 +82,6 @@
  		padding: 0.5em;
  	}
 
- 	.table thead th {
- 		text-align: center;
- 	}
-
  	thead th.weekend {
  		background-color: whiteSmoke;
  	}

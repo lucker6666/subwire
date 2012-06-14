@@ -1,6 +1,7 @@
 class InstancesController < ApplicationController
 	# User have to be logged in
 	before_filter :authenticate_user!
+	before_filter :restricted_to_superadmin, :only => [:all]
 
 	# GET /instance
 	def index
@@ -124,9 +125,11 @@ class InstancesController < ApplicationController
 	def unset
 		set_current_instance nil
 
-			if has_superadmin_privileges?
-				@instance.advertising = params[:instance][:advertising]
-			end
 		redirect_to instances_path
+	end
+
+	# GET /instances/all
+	def all
+		@instances = Instance.all
 	end
 end

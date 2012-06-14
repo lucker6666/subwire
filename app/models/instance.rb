@@ -19,9 +19,9 @@ class Instance < ActiveRecord::Base
 	has_many :relationships
 	has_many :users, :through => :relationships
 
-  validates :name, :length => {
-  	:maximum => 20
-  }
+	validates :name, :length => {
+		:maximum => 20
+	}
 
 	def self.find_all_where_user_is_admin(user)
 		find(
@@ -40,5 +40,13 @@ class Instance < ActiveRecord::Base
 			:joins => :relationships,
 			:conditions => { "relationships.user_id" => user.id }
 		)
+	end
+
+	def article_count
+		Article.find_all_by_instance_id(id).length
+	end
+
+	def user_count
+		Relationship.find_all_by_instance_id(id).length
 	end
 end
