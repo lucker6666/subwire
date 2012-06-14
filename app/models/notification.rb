@@ -29,11 +29,12 @@ class Notification < ActiveRecord::Base
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
 					:message => data[:message],
-					:href => data[:href],
-					:is_read => false,
-					:user => user,
-					:instance => instance
+					:href => data[:href]
 				})
+
+				notification.is_read = false
+				notification.user = user
+				notification.instance = instance
 
 				notification.save
 			end
