@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	# set_locale: Determines the language of the user
 	# refresh_config: Reloads the current instance config from database
-	before_filter :set_locale, :refresh_config, :globals
+	before_filter :set_locale, :refresh_config, :globals, :set_timezone
 
 	# We need all helpers, all the time
 	helper :all
@@ -94,6 +94,10 @@ class ApplicationController < ActionController::Base
 		  	else
 				I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
 		  	end
+		end
+
+		def set_timezone
+			Time.zone = current_user.timezone || 'Central Time (US & Canada)'
 		end
 
 		# Filter which forces the user to choose an instance

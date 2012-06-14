@@ -45,6 +45,13 @@
 	</div>
 
 	<div class="control-group">
+		<%= f.label :lang, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :timezone, ["Hawaii", "International Date Line West", "Alaska", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Central America", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "London", "Berlin", "Amsterdam", "Bern", "Madrid", "Paris", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji"] %>
+		</div>
+	</div>
+
+	<div class="control-group">
 		<%= f.label :color, :class => 'control-label' %>
 		<div class="controls">
 			<%= f.text_field :color, :class => 'text_field' %>
