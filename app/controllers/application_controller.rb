@@ -97,7 +97,12 @@ class ApplicationController < ActionController::Base
 		end
 
 		def set_timezone
-			Time.zone = current_user.timezone || 'Central Time (US & Canada)'
+			if current_user
+				Time.zone =  'Central Time (US & Canada)'
+			else
+				Time.zone = current_user.timezone || 'Central Time (US & Canada)'
+			end
+			
 		end
 
 		# Filter which forces the user to choose an instance

@@ -260,6 +260,7 @@ en:
     updated: User was successfully updated.
     not_updated: User couldn't be saved.
     removed: User was removed from this instance.
+    password_error: The passwords must be identical
 
   links:
     created: Link was successfully created.
@@ -286,8 +287,11 @@ en:
         name: Name
         email: E-Mail
         is_admin: Admin?
+        password: Password
+        password_confirmation: Confirm Password
         is_admin_of_instance: Admin dieser Instanz?
         color: Color
+        timezone: Timezone
     errors:
       models:
         instance:
