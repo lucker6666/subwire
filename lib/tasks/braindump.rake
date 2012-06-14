@@ -2,7 +2,7 @@ namespace :braindump do
 	desc "Add the default instance 'BrainDump'"
 	task :default_instance => :environment do
 		ins = Instance.new(
-			:name => 'BrainDump'
+			:name => 'BrainDump',
 			:planningTool => true
 		)
 
