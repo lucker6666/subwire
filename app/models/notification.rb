@@ -23,9 +23,9 @@ class Notification < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :instance
 
-	def self.notify_all_users(data, instance, current_user)
+	def self.notify_all_users(data, instance, user)
 		Relationship.find_all_users_by_instance(instance).each do |user|
-			unless user == current_user
+			unless user == user
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
 					:message => data[:message],

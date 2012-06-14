@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 				:notification_type => "new_comment",
 				:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
 				:href => article_path(@article)
-			})
+			}, current_instance, current_user)
 
 			feedback t("comments.new_success")
 		else
