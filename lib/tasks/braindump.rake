@@ -1,11 +1,12 @@
 namespace :braindump do
 	desc "Add the default instance 'BrainDump'"
 	task :default_instance => :environment do
-		Instance.create(
-			:name => 'BrainDump',
-			:advertising => false,
+		ins = Instance.new(
+			:name => 'BrainDump'
 			:planningTool => true
 		)
+
+		ins.advertising = false
 	end
 
 	desc "Add the default superadmin 'admin@example.com' with password 'admin'"
