@@ -141,6 +141,8 @@ en:
       new: Create new %{model}
     links:
       cancel: Cancel
+      new: New
+      confirm: Are you sure?
     actions: Actions
     name: Name
     title: Title
@@ -248,6 +250,8 @@ en:
     not_created: Article couldn't be created.
     updated: Article was successfully updated.
     not_updated: Article couldn't be saved.
+    new_notification: 
+    edit_notification: Article edited from %{user}
 
   users:
     add: Add user

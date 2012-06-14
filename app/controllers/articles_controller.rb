@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
 		if @article.save
 			Notification.notify_all_users({
 				:notification_type => "new_article",
-				:message => "<strong>New article from #{@article.user.name}:</strong> <br />#{@article.title}",
+				:message => "<strong>"+t("articles.new_notification", user: @article.user.name) + ":</strong> <br />#{@article.title}",
 				:href => article_path(@article)
 			}, current_instance, current_user)
 
@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
 				# Notify all users
 				Notification.notify_all_users({
 					:notification_type => "edit_article",
-					:message => "<strong>Article edited from #{@article.user.name}:</strong> <br />#{@article.title}",
+					:message => "<strong>" + t("articles.edit_notification", user: @article.user.name) + ":</strong> <br />#{@article.title}",
 					:href => article_path(@article)
 				}, current_instance, current_user)
 
