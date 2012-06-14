@@ -2,7 +2,7 @@
 <h1><%= @article.title %></h1>
 
 <div class="well">
-	<%= @article.content.html_safe %>
+	<%= auto_link(@article.content.html_safe) %>
 
 	<% if display_ads %>
 		<script type="text/javascript"><!--
@@ -40,8 +40,8 @@
                       <% end %>
                     </div>
 
-                   <div class="comment" id="comment<%= comment.id %>">
-                    <%= comment.content %>
+                   <div class="comment" id="comment<%= comment.id %>" align="left">
+                    <%= auto_link(comment.content.html_safe) %>
                   </div>
 
                   <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
