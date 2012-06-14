@@ -132,21 +132,21 @@
 										</li>
 
 										<% if has_superadmin_privileges? %>
-									    	<li>
-									    		<%= link_to users_path do %>
-									    			<i class="icon icon-user"></i>
-									    			<%= t('application.all_users') %>
-									    		<% end %>
-									    	</li>
+										    	<li>
+										    		<%= link_to users_path do %>
+										    			<i class="icon icon-user"></i>
+										    			<%= t('application.all_users') %>
+										    		<% end %>
+										    	</li>
 
-									    	<li>
-									    		<%= link_to "/instances/all" do %>
-									    			<i class="icon icon-list-alt"></i>
-									    			<%= t('application.all_instances') %>
-									    		<% end %>
-									    	</li>
-								    	<% end %>
-								    </ul>
+										    	<li>
+										    		<%= link_to "/instances/all" do %>
+										    			<i class="icon icon-list-alt"></i>
+										    			<%= t('application.all_instances') %>
+										    		<% end %>
+										    	</li>
+									    	<% end %>
+								    	</ul>
 								</li>
 							<% else %>
 								<li>
