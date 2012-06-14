@@ -38,6 +38,13 @@
 	</div>
 
 	<div class="control-group">
+		<%= f.label :password_confirmation, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.password_field :password_confirmation, :class => 'text_field' %>
+		</div>
+	</div>
+
+	<div class="control-group">
 		<%= f.label :lang, :class => 'control-label' %>
 		<div class="controls">
 			<%= f.select :lang, ["en", "de"] %>
@@ -45,7 +52,7 @@
 	</div>
 
 	<div class="control-group">
-		<%= f.label :lang, :class => 'control-label' %>
+		<%= f.label :timezone, :class => 'control-label' %>
 		<div class="controls">
 			<%= f.select :timezone, ["Hawaii", "International Date Line West", "Alaska", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Central America", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "London", "Berlin", "Amsterdam", "Bern", "Madrid", "Paris", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji"] %>
 		</div>

@@ -259,6 +259,7 @@ de:
     updated: Benutzer gespeichert.
     not_updated: Benutzer konnte nicht gespeichert werden.
     removed: Benutzer wurde aus dieser Instanz entfernt.
+    password_error: Die Passwörter müssen identisch sein
 
   links:
     created: Link wurde erfolgreich erstellt.
@@ -286,7 +287,10 @@ de:
         name: Name
         email: E-Mail
         is_admin: Admin?
+        password: Passwort
+        password_confirmation: Passwort bestätigen
         color: Farbe
+        timezone: Zeitzone
     errors:
       models:
         instance:
