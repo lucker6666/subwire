@@ -7,6 +7,7 @@ namespace :braindump do
 		)
 
 		ins.advertising = false
+		ins.save
 	end
 
 	desc "Add the default superadmin 'admin@example.com' with password 'admin'"
@@ -19,11 +20,13 @@ namespace :braindump do
 		)
 
 		user.is_admin = true
+		user.save
 
 		rel = Relationship.new
-		rel.instance = Instance.find(1)
-		rel.user = User.find(1)
+		rel.instance = Instance.first
+		rel.user = user
 		rel.admin = true
+		rel.save
 	end
 
 	desc "Add a default article"
@@ -33,8 +36,10 @@ namespace :braindump do
 			:content => "Hi, this is your new and fresh BrainDump installation. Have fun! :)",
 		)
 
-		article.user = User.find(1)
-		article.instance = Instance.find(1)
+		article.user = User.first
+		article.instance = Instance.first
+
+		article.save
 	end
 
 	desc "Run all setup tasks"
