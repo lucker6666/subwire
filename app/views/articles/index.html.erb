@@ -9,7 +9,7 @@
             <%= colored_name(article.user) %>  <%=l article.created_at, format: :short %>
         </nobr>
 
-        <%= article.content.html_safe %>
+        <%= auto_link(article.content.html_safe) %>
 
         <div class="buttons">
           <% if current_user.is_admin? || article.user == current_user %>
@@ -56,11 +56,11 @@
                       <% end %>
                     </div>
 
-                   <div class="comment" id="comment<%= comment.id %>" onClick="return editComment('<%= comment.id %>')">
-                    <%= comment.content %>
+                   <div class="comment" id="comment<%= comment.id %>" onClick="return editComment('<%= comment.id %>')" align="left">
+                    <%= auto_link(comment.content.html_safe) %>
                   </div>
-                  
-                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">       
+
+                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
                     <%= form_for([article, comment]) do |f| %>
                     <div class="input-append">
                       <%= f.text_field :content, :class => "span6" %><%= f.submit "Save", :class => 'btn' %>
