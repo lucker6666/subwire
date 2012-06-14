@@ -19,7 +19,7 @@
 
             <%= link_to article_path(article),
                       :method => :delete,
-                      :confirm => 'Are you sure?',
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' do %>
               <i class="icon icon-trash"></i>
             <% end %>
@@ -45,7 +45,7 @@
                       <% if current_user.is_admin? || comment.user == current_user %>
                         <%= link_to article_comment_path(article, comment),
                                   :method => :delete,
-                                  :confirm => 'Are you sure?' do %>
+                                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) do %>
                           <i class="icon icon-remove"></i>
                         <% end %>
 

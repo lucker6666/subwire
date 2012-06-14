@@ -135,6 +135,8 @@ de:
       new: ! 'Neues %{model} erstellen'
     links:
       cancel: Abbrechen
+      new: Neu
+      confirm: Bist du dir sicher?
     actions: Aktionen
     title: Überschrift
     name: Name
@@ -227,9 +229,9 @@ de:
     no_permission_for_instance: Du darfst diese Instanz nicht sehen!
 
   comments:
-    new_success: Comment was successfully created.
-    new_notification: New Comment from %{user} to
-    update_success: Comment was successfully updated.
+    new_success: Dein Kommentar wurde gespeichert
+    new_notification: Neuer Kommentar von %{user} zu
+    update_success: Deine Änderungen wurden erfolgreich übernommen
     plural: Kommentar(e)
 
   instances:
@@ -247,6 +249,8 @@ de:
     not_created: Artikel konnte nicht erstellt werden.
     updated: Artikel aktualisiert.
     not_updated: Artikel konnte nicht gespeichert werden.
+    new_notification: Neuer Artikel von %{user}
+    edit_notification: Artikel von %{user} bearbeitet
 
   users:
     add: Benutzer hinzufügen
