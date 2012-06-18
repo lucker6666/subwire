@@ -143,6 +143,10 @@
  *	Articles
  */
 
+ 	.article {
+ 		word-wrap: break-word;
+ 	}
+
 	.article h2 a {
 		color: #000;
 	}
@@ -247,6 +251,10 @@
 	ul.bookmarks {
 		list-style-type: none;
 		margin: 0;
+	}
+
+	ul.bookmarks li {
+		word-wrap: break-word;
 	}
 
 
