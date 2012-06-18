@@ -1,20 +1,16 @@
-<% if flash[:alert] %>
-	<script type="text/javascript">
-		$(function() {
-			$.jGrowl.defaults.sticky = true;
-			$.jGrowl.defaults.position = "bottom-right";
+<script type="text/javascript">
+	$(function() {
+		$.jGrowl.defaults.sticky = true;
+		$.jGrowl.defaults.position = "bottom-right";
 
-			<%
-				if flash[:alert].kind_of?(Array)
-					flash[:alert].each do |message|
-			%>
+		<% flash.each do |key, message| %>
+			<% if message.kind_of? Array %>
+				<% message.each do |msg| %>
+					$.jGrowl("<%= msg %>");
+				<% end %>
+			<% else %>
 				$.jGrowl("<%= message %>");
-			<%
-					end
-				else
-			%>
-				$.jGrowl("<%= flash[:alert] %>");
 			<% end %>
-		});
-	</script>
-<% end %>
+		<% end %>
+	});
+</script>
