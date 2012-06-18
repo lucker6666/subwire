@@ -15,8 +15,7 @@ namespace :braindump do
 		user = User.new(
 			:name => 'Admin',
 			:email => 'admin@example.com',
-			:password => 'admin',
-			:color => 'f92672'
+			:password => 'admin'
 		)
 
 		user.is_admin = true
