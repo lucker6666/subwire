@@ -8,13 +8,15 @@
 # 	is_admin							:boolean		not null, default => false
 #		encrypted_password		:string			not null
 #		remember_created_at		:datetime
-#		color									:string			not null, default => "000"
 #		lang									:string			not null, default => "en"
-# 	avatar								:string
 # 	superadmin						:boolean		not null, default => "0"
 #		created_at 						:datetime		not null
-#		updated_at 						:datetime		ot null
-# 	timezone						:string not null, default => "Central Time (US & Canada)"
+#		updated_at 						:datetime		not null
+# 	timezone							:string 		not null, default => "Central Time (US & Canada)"
+# 	avatar_file_name"			:string
+# 	avatar_content_type"	:string
+# 	avatar_file_size"			:integer
+# 	avatar_updated_at"		:datetime
 #
 # TODO: remove superadmin
 
@@ -23,7 +25,7 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable, :rememberable, :validatable
 
 	attr_accessible :name, :email, :password, :password_confirmation,
-		:remember_me, :color, :last_seen, :lang, :avatar, :timezone
+		:remember_me, :last_seen, :lang, :avatar, :timezone
 
 	has_many :comments
 	has_many :articles
@@ -31,6 +33,11 @@ class User < ActiveRecord::Base
 	has_many :notifications
 	has_many :relationships
 	has_many :instances, :through => :relationships
+
+	has_attached_file :avatar, :default_style => :default, :styles => {
+		:small => "50x50#",
+		:default => "100x100#"
+	}
 
 	def is_admin_of_instance?(instance)
 		if is_admin

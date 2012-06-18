@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614174652) do
+ActiveRecord::Schema.define(:version => 20120618124754) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -110,9 +110,12 @@ ActiveRecord::Schema.define(:version => 20120614174652) do
     t.datetime "updated_at",                                                    :null => false
     t.string   "color",               :default => "000",                        :null => false
     t.string   "lang",                :default => "en",                         :null => false
-    t.string   "avatar"
     t.string   "superadmin",          :default => "0",                          :null => false
     t.string   "timezone",            :default => "Central Time (US & Canada)", :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end
