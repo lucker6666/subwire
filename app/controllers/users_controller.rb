@@ -36,8 +36,8 @@ class UsersController < ApplicationController
 					feedback t('users.updated')
 					redirect_to user_path(@user)
 				else
-					render action: "edit"
 					errors_to_feedback @user
+					render action: "edit"
 				end
 		else
 			redirect_to :back
