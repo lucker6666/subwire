@@ -157,10 +157,8 @@
 		border-radius: 5px;
  	}
 
- 	table.article td .icon.icon-file {
+ 	table.article td img.avatar {
 		float: left;
-		font-size: 48px;
-		line-height: 48px;
 		margin-right: 10px;
 		margin-top: 4px;
  	}
@@ -189,7 +187,7 @@
 		display: block;
 		font-size: 0.8em;
 		color: #999;
-		margin: -5px 0 2em;
+		margin: -5px 0 0;
 	}
 
 	table.article nobr:after {
@@ -210,6 +208,11 @@
 		visibility: visible;
 	}
 
+	table.article .ad {
+		width: 728px;
+		margin: 0 auto;
+	}
+
 
 
 /**
@@ -227,37 +230,43 @@
 
 	.comments table {
 		width: 100%;
+		border: 0;
 	}
 
-	.comments td {
+	table.article .comments table td,
+	table.article .comments table tr:hover td {
 		text-align: left;
-		padding: 2px 10px 2px 0;
+		padding: 2px 10px 6px 0;
 		vertical-align: top;
+		background-color: transparent;
+		border-left: 0;
+		border-right: 0;
 	}
 
-	.comments th {
+	table.article .comments table th,
+	table.article .comments table tr:hover th {
 		text-align: right;
 		width: 1px;
-		padding: 2px 4px 2px 10px;
+		padding: 2px 9px 6px 10px;
 		vertical-align: top;
+		width: 50px;
+		background-color: transparent;
+		border-left: 0;
+		border-right: 0;
 	}
 
-	.comments tr:hover {
+	.comments table tr:hover {
 		background-color: #eee;
 	}
 
-	.comments .commentContainer {
-		padding: 1em;
-	}
-
-	.comments .commentButtons {
+	.comments table .commentButtons {
 		visibility: hidden;
 		float: right;
 		display: inline;
 		margin-left: 5px;
 	}
 
-	.comments tr:hover .commentButtons {
+	.comments table tr:hover .commentButtons {
 		visibility: visible;
 	}
 
@@ -268,6 +277,12 @@
 	.commentList h5 {
 		margin-bottom: 1em;
 	}
+
+	.comment table td .avatar {
+		float: none;
+		margin: 0;
+	}
+
 
 
 

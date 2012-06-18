@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 		if current_user == @user || has_superadmin_privileges?
 				if params[:user][:password].empty?
 					params[:user].delete :password
+					params[:user].delete :password_confirmation
 				end
 
 				if @user.update_attributes(params[:user])
