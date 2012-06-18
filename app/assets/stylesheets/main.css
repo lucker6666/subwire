@@ -5,7 +5,7 @@
  */
 
 	body {
-		background: white url('back.gif') repeat fixed 0 0;
+		background-color: whiteSmoke;
 		padding-top: 60px;
 	}
 
@@ -152,7 +152,6 @@
  */
 
  	table.article {
- 		word-wrap: break-word;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
@@ -170,6 +169,7 @@
  	table.article tr:hover td {
  		background-color: #fff;
  		padding: 10px;
+ 		word-wrap: break-word;
  	}
 
 	table.article h2 {
