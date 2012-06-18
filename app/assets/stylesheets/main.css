@@ -5,7 +5,7 @@
  */
 
 	body {
-		background: white url('back.png') repeat fixed 0 0;
+		background: white url('back.gif') repeat fixed 0 0;
 		padding-top: 60px;
 	}
 
@@ -21,16 +21,24 @@
 		text-decoration: none;
 	}
 
-	.article h2 {
-		font-size: 1.5em;
-	}
-
 	.btn-danger {
 		color: #fff !important;
 	}
 
 	select {
 		width: 250px;
+	}
+
+	.well {
+		background-color: #fff;
+		min-height: 20px;
+		padding: 19px;
+		margin-bottom: 20px;
+		border: 1px solid #bbb;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
 	}
 
 
@@ -143,33 +151,62 @@
  *	Articles
  */
 
- 	.article {
+ 	table.article {
  		word-wrap: break-word;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
  	}
 
-	.article h2 a {
+ 	table.article td .icon.icon-file {
+		float: left;
+		font-size: 48px;
+		line-height: 48px;
+		margin-right: 10px;
+		margin-top: 4px;
+ 	}
+
+ 	table.article td,
+ 	table.article tr:hover td {
+ 		background-color: #fff;
+ 		padding: 10px;
+ 	}
+
+	table.article h2 {
+		font-size: 1.5em;
+	}
+
+	table.article h2 a {
 		color: #000;
 	}
 
-	.article h2 a:hover {
+	table.article h2 a:hover {
 		background-color: transparent;
 		text-decoration: none;
 	}
 
-	.article nobr {
+	table.article nobr {
 		display: block;
 		font-size: 0.8em;
 		color: #999;
-		margin: -5px 0 1em;
+		margin: -5px 0 2em;
 	}
 
-	.article .buttons {
+	table.article nobr:after {
+		content: ".";
+		clear: both;
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+
+	table.article .buttons {
 		visibility: hidden;
 		float: right;
 		margin-bottom: 1em;
 	}
 
-	.article:hover .buttons {
+	table.article:hover .buttons {
 		visibility: visible;
 	}
 
@@ -178,12 +215,6 @@
 /**
  *	Comments
  */
-
-	.comments {
-		clear: both;
-		border-top: 1px solid #999;
-		padding-top: 4px;
-	}
 
 	.comments h1 {
 		font-size: 1em;
@@ -243,10 +274,6 @@
 /**
  *	Sidebar
  */
-
-	div.sidebar {
-		margin-top: 66px;
-	}
 
 	ul.bookmarks {
 		list-style-type: none;

@@ -205,7 +205,10 @@
 
 				<div class="span3 sidebar">
 					<div class="well">
-						<h2><%= t "application.bookmarks" %></h2>
+						<h3>
+							<i class="icon icon-heart"></i>
+							<%= t "application.bookmarks" %>
+						</h3>
 
 						<ul class="bookmarks nav nav-list">
 							<% @links.each do |link| %>
@@ -223,7 +226,10 @@
 					</div>
 
 					<div class="well">
-						<h2><%= t "application.user" %></h2>
+						<h3>
+							<i class="icon icon-user"></i>
+							<%= t "application.user" %>
+						</h3>
 
 						<ul class="users nav nav-list">
 							<% @users.each do |user| %>
