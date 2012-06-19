@@ -13,9 +13,10 @@ class AvailabilitiesController < ApplicationController
 		).first
 
 		if availability.nil?
-			availability = Availability.create(paramSet),
+			availability = Availability.new(paramSet)
 			availability.user = current_user
 			availability.instance = current_instance
+			availability.save
 		else
 			availability.update_attributes(paramSet)
 		end
