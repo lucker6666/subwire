@@ -12,6 +12,9 @@ Installation
 * For SQLite: $ cp config/database.sqlite.yml config/database.yml
 * $ vim config/database.yml
 * change database connection configuration
+* $ cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
+* $ vim config/initializers/secret_token.rb
+* Specify a secret token!
 * $ rake db:create; rake db:migrate
 * $ rake braindump:setup
 
