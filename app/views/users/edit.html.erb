@@ -5,8 +5,6 @@
 		 :default => "Edit #{model_class.model_name.human}") %>
 </h1>
 
-<%= image_tag @user.avatar.url %>
-
 <%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
 	<div class="control-group">
 		<%= f.label :name, :class => 'control-label' %>
@@ -64,6 +62,10 @@
 		<%= f.label :avatar, :class => 'control-label' %>
 		<div class="controls">
 			<%= f.file_field :avatar %>
+
+			<br /><br />
+
+			<%= image_tag @user.avatar.url %>
 		</div>
 	</div>
 
