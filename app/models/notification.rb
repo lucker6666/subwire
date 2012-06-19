@@ -18,10 +18,19 @@
 
 
 class Notification < ActiveRecord::Base
+	### Attributes
 	attr_accessible :notification_type, :message, :href
 
+	### Associations
 	belongs_to :user
 	belongs_to :instance
+
+	### Validations
+	# Make sure, notification_type, message, href, is_read are not empty
+	validates :notification_type, :message, :href, :is_read, :presence => true
+
+
+	### Methods
 
 	def self.notify_all_users(data, instance, current_user)
 		Relationship.find_all_users_by_instance(instance).each do |user|

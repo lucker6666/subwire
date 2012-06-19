@@ -14,9 +14,15 @@
 # TODO: user_id, title -> not_null?
 
 class Article < ActiveRecord::Base
+	### Attributes
 	attr_accessible :content, :title
 
+	### Associations
 	belongs_to :user
 	belongs_to :instance
 	has_many :comments
+
+	### Validations
+	# Make sure, title and content are not empty
+	validates :title, :content, :presence => true
 end
