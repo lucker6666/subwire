@@ -25,6 +25,10 @@ class LinksController < ApplicationController
 
 	# POST /links
 	def create
+		unless params[:link][:href].starts_with? 'http://'
+			params[:link][:href] = 'http://' + params[:link][:href]
+		end
+
 		@link = Link.new(params[:link])
 		@link.instance = current_instance
 
@@ -39,6 +43,10 @@ class LinksController < ApplicationController
 
 	# PUT /links/1
 	def update
+		unless params[:link][:href].starts_with? 'http://'
+			params[:link][:href] = 'http://' + params[:link][:href]
+		end
+
 		@link = Link.find(params[:id])
 
 		if @link.update_attributes(params[:link])
