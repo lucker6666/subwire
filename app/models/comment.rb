@@ -12,8 +12,14 @@
 # TODO: article_id, user_id not null?
 
 class Comment < ActiveRecord::Base
+	### Attributes
 	attr_accessible :content, :article_id
 
+	### Associations
 	belongs_to :article
 	belongs_to :user
+
+	### Validations
+	# Make sure, content is not empty
+	validates :content, :presence => true
 end

@@ -11,17 +11,28 @@
 # 	updated_at				:datetime		not null
 
 class Instance < ActiveRecord::Base
+	### Attributes
 	attr_accessible :name, :defaultLanguage, :planningTool
 
+	### Associations
 	has_many :articles
 	has_many :availabilities
 	has_many :notifications
 	has_many :relationships
 	has_many :users, :through => :relationships
 
-	validates :name, :length => {
+	### Validations
+	# Make sure, name is not empty and maximum 30 chars length
+	validates :name, :presence => true, :length => {
 		:maximum => 30
 	}
+
+	validates :defaultLanguage, :inclusion => {
+		:in => %w(en de)
+	}
+
+
+	### Methods
 
 	def self.find_all_where_user_is_admin(user)
 		find(

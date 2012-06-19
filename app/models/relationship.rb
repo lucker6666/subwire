@@ -10,10 +10,15 @@
 # TODO: default false for admin?
 
 class Relationship < ActiveRecord::Base
+	### Attributes
 	attr_protected :user_id, :instance_id, :admin
 
+	### Associations
 	belongs_to :instance
 	belongs_to :user
+
+
+	### Methods
 
 	def self.is_user_admin_of_instance?(user, instance)
 		where(:instance_id => instance.id, :user_id => user.id, :admin => true).any?
