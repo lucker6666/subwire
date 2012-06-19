@@ -38,10 +38,13 @@ class User < ActiveRecord::Base
 	has_many :instances, :through => :relationships
 
 	### Paperclip Avatar
-	has_attached_file :avatar, :default_style => :default, :styles => {
-		:small => "50x50#",
-		:default => "100x100#"
-	}
+	has_attached_file :avatar,
+		:default_style => :default,
+		:default_url => '/assets/anonymous.png',
+		:styles => {
+			:small => "50x50#",
+			:default => "100x100#"
+		}
 
 	### Validations
 	# Make sure, name, email, lang, timezone are not empty
