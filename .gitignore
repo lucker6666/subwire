@@ -6,3 +6,4 @@
 /config/database.yml
 /public/assets/
 /public/ckeditor_assets/
+/public/system/users/
