@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BrainDump::Application.load_tasks
+Subwire::Application.load_tasks

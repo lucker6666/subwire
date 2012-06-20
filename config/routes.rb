@@ -1,4 +1,4 @@
-BrainDump::Application.routes.draw do
+Subwire::Application.routes.draw do
 	mount Ckeditor::Engine => '/ckeditor'
 
 	# Devise

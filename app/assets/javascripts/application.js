@@ -96,7 +96,7 @@ function updateNotifications() {
 	  if(notificationsCount > 0) {
 	  	$('.notification-dropdown').html(notifications);
 		$('.notification-badge').html(notificationsCount).addClass('badge').addClass('badge-info');
-		$('title').html('BrainDump ('+notificationsCount+')');
+		$('title').html(window.subwireTitle + ' ('+notificationsCount+')');
 	  }
   });
 }

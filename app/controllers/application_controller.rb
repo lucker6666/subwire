@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
 				@links = Link.where(:instance_id => current_instance.id)
 			end
 
+			@subwireTitle = Subwire::Application.config.subwire.title
+
 			return true
 		end
 
