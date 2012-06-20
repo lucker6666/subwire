@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20120619174702) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "instance_id", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "instance_id", :default => 1, :null => false
   end
 
   add_index "articles", ["instance_id"], :name => "index_articles_on_instance_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120619174702) do
     t.integer "user_id"
     t.date    "date"
     t.boolean "value"
-    t.integer "instance_id", :null => false
+    t.integer "instance_id", :default => 1, :null => false
   end
 
   add_index "availabilities", ["instance_id"], :name => "index_availabilities_on_instance_id"
@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(:version => 20120619174702) do
     t.string   "name"
     t.string   "href"
     t.string   "icon"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "instance_id", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "instance_id", :default => 1, :null => false
   end
 
   add_index "links", ["instance_id"], :name => "index_links_on_instance_id"
@@ -84,14 +84,14 @@ ActiveRecord::Schema.define(:version => 20120619174702) do
     t.integer  "user_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.integer  "instance_id",                              :null => false
+    t.integer  "instance_id",       :default => 1,         :null => false
   end
 
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer "user_id",                       :null => false
-    t.integer "instance_id",                   :null => false
+    t.integer "user_id",     :default => 1,    :null => false
+    t.integer "instance_id", :default => 1,    :null => false
     t.boolean "admin",       :default => true, :null => false
   end
 
