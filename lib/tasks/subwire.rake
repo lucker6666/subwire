@@ -1,8 +1,8 @@
-namespace :braindump do
-	desc "Add the default instance 'BrainDump'"
+namespace :subwire do
+	desc "Add the default instance 'Default'"
 	task :default_instance => :environment do
 		ins = Instance.new(
-			:name => 'BrainDump',
+			:name => 'Default',
 			:planningTool => true
 		)
 
@@ -31,8 +31,8 @@ namespace :braindump do
 	desc "Add a default article"
 	task :default_article => :environment do
 		article = Article.new(
-			:title => "Welcome to your new BrainDump!",
-			:content => "Hi, this is your new and fresh BrainDump installation. Have fun! :)",
+			:title => "Welcome to your new subwire installation!",
+			:content => "Hi, this is your new and fresh subwire installation. Have fun! :)",
 		)
 
 		article.user = User.first
