@@ -4,7 +4,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: braindump_development
+  database: subwire_development
   user: root
   password: root
   pool: 5
@@ -15,7 +15,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: braindump_test
+  database: subwire_test
   username: root
   password: 
   pool: 5
@@ -23,7 +23,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: braindump
+  database: subwire
   pool: 5
   username: root
   password: root

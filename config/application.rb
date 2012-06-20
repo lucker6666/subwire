@@ -9,8 +9,11 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module BrainDump
+module Subwire
   class Application < Rails::Application
+	# Title of the application
+	config.subwire.title = "subwire"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
