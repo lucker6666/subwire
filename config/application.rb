@@ -12,7 +12,7 @@ end
 module Subwire
   class Application < Rails::Application
 	# Title of the application
-	config.subwire.title = "subwire"
+	config.subwire_title = "subwire"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
