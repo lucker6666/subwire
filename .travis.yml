@@ -10,7 +10,8 @@ rvm:
   - 1.9.3
 before_script:
   - "cp config/database.$DB.yml config/database.yml"
+  - "cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb"
   - "bundle exec rake db:create RAILS_ENV=test"
   - "bundle exec rake db:migrate RAILS_ENV=test"
-  - "bundle exec rake braindump:setup RAILS_ENV=test"
-script: "bundle exec rake braindump:test"
+  - "bundle exec rake subwire:setup RAILS_ENV=test"
+script: "bundle exec rake subwire:test"
