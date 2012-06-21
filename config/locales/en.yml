@@ -244,6 +244,7 @@ en:
     not_created: Instance couldn't be created.
     updated: Instance was successfully updated.
     not_updated: Instance couldn't be saved.
+    destroyed: Instance deleted!
 
   articles:
     created: Article was successfully created.
@@ -252,6 +253,7 @@ en:
     not_updated: Article couldn't be saved.
     new_notification: Article created from %{user}
     edit_notification: Article edited from %{user}
+    destroyed: Article deleted
     standard_title: Welcome in your new and fresh Instance
     standard_content: This is the first Article in your new Instance! <br />You can create new Articles or bring me a cookie or something...
 
@@ -267,6 +269,7 @@ en:
     adminCount: Owns instances
     articlesCount: Articles total
     commentsCount: Comments total
+    destroyed: User deleted
 
   links:
     created: Link was successfully created.
