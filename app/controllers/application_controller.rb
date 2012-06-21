@@ -22,7 +22,12 @@ class ApplicationController < ActionController::Base
 		def globals
 			if params[:id]
 				resource = params[:controller].capitalize.singularize.constantize
-				current_instnace = resource.find(params[:id]).instance
+				instance_backup = session[:instance]
+				session[:instance] = resource.find(params[:id]).instance
+
+				if session[:instance].nil?
+					session[:instance] = instance_backup
+				end
 			end
 
 			if current_instance
