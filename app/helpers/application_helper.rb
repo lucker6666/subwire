@@ -16,11 +16,12 @@ module ApplicationHelper
 	end
 
 
-	def avatar(user, size = :small)
+	def avatar(user, size = :small, className = "")
 		if size == :small
-			image_tag user.avatar.url(size), :class => 'avatar', :width => 50, :height => 50
+			image_tag user.avatar.url(size), :class => 'avatar ' + className,
+				:width => 50, :height => 50
 		else
-			image_tag user.avatar.url(size), :class => 'avatar'
+			image_tag user.avatar.url(size), :class => 'avatar ' + className
 		end
 	end
 
