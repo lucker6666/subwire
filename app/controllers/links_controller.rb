@@ -51,7 +51,7 @@ class LinksController < ApplicationController
 
 		if @link.update_attributes(params[:link])
 			feedback t('users.updated')
-			redirect_to link_path(@link)
+			redirect_to links_path
 		else
 			render action: "edit"
 		end
@@ -62,6 +62,6 @@ class LinksController < ApplicationController
 		@link = Link.find(params[:id])
 		@link.destroy
 
-		redirect_to links_url
+		redirect_to links_path
 	end
 end
