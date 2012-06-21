@@ -68,7 +68,9 @@ class ApplicationController < ActionController::Base
 		# Reloads the current instance config from database
 		def refresh_config
 			if current_instance
-				set_current_instance Instance.find(current_instance.id)
+				if defined?(resource) && !resource.n
+					set_current_instance Instance.find(ressource.instance_id)
+				end
 			end
 		end
 
