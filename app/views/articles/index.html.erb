@@ -2,7 +2,7 @@
 	<table class="table table-bordered table-condensed article">
 		<tr>
 			<td>
-				<%= image_tag article.user.avatar.url(:small), :class => 'avatar' %>
+				<%= avatar(article.user) %>
 
 				<h2>
 					<%= link_to article.title, article_path(article) %>

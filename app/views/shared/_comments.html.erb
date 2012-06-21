@@ -5,7 +5,7 @@
 	  <% article.comments.each do |comment| %>
 		<tr>
 		  <th class="avatar">
-			<%= image_tag comment.user.avatar.url(:small), :class => 'avatar' %>
+			<%= avatar(comment.user) %>
 		 	</th>
 
 		  <td>

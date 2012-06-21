@@ -15,6 +15,15 @@ module ApplicationHelper
 		current_instance.advertising
 	end
 
+
+	def avatar(user, size = :small)
+		if size == :small
+			image_tag user.avatar.url(size), :class => 'avatar', :width => 50, :height => 50
+		else
+			image_tag user.avatar.url(size), :class => 'avatar'
+		end
+	end
+
 	def icons
 		[
 			 'glass',
