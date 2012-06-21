@@ -1,22 +1,60 @@
 <%- model_class = @user.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<h1><%= @user.name %></h1>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
-  <%= @user.name %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:email) %>:</strong><br>
-  <%= @user.email %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:is_admin) %>:</strong><br>
-  <%= @user.is_admin %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:color) %>:</strong><br>
-  <%= @user.color %>
-</p>
+<div class="well">
+  <div class="row">
+    <div class="span6">
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <td rowspan="<%= has_superadmin_privileges? ? 8 : 7 %>" class="span2 avatarCell">
+            <%= avatar(@user, :default) %>
+          </td>
+        </tr>
+
+        <% if has_superadmin_privileges? %>
+          <tr>
+            <th><%= model_class.human_attribute_name(:email) %>:</th>
+            <td><%= @user.email %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <th><%= model_class.human_attribute_name(:is_admin) %>:</th>
+          <td><%= boolean_icon(@user.is_admin) %></td>
+        </tr>
+
+        <tr>
+          <th><%= model_class.human_attribute_name(:lang) %>:</th>
+          <td><%= t("application." + @user.lang) %></td>
+        </tr>
+
+        <tr>
+          <th><%=t 'users.assignedCount' %>:</th>
+          <td><%= @assignedCount %></td>
+        </tr>
+
+        <tr>
+          <th><%=t 'users.adminCount' %>:</th>
+          <td><%= @adminCount %></td>
+        </tr>
+
+        <tr>
+          <th><%=t 'users.articlesCount' %>:</th>
+          <td><%= @articlesCount %></td>
+        </tr>
+
+        <tr>
+          <th><%=t 'users.commentsCount' %>:</th>
+          <td><%= @commentsCount %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="span2">
+
+    </div>
+  </div>
+</div>
 
 <% if has_superadmin_privileges? %>
   <div class="form-actions">

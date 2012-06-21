@@ -224,8 +224,8 @@ de:
     logout: Ausloggen
     bookmarks: Lesezeichen
     user: Benutzer
-    german: Deutsch
-    english: Englisch
+    de: Deutsch
+    en: Englisch
     no_permission_for_instance: Du darfst diese Instanz nicht sehen!
 
   comments:
@@ -262,6 +262,10 @@ de:
     not_updated: Benutzer konnte nicht gespeichert werden.
     removed: Benutzer wurde aus dieser Instanz entfernt.
     password_error: Die Passwörter müssen identisch sein
+    assignedCount: Zugewiesene Instanzen
+    adminCount: Eigene Instanzen
+    articlesCount: Artikel gesamt
+    commentsCount: Kommentare gesamt
 
   links:
     created: Link wurde erfolgreich erstellt.
@@ -288,10 +292,10 @@ de:
       user:
         name: Name
         email: E-Mail
-        is_admin: Admin?
+        is_admin: Duperadmin
         password: Passwort
         password_confirmation: Passwort bestätigen
-        color: Farbe
+        lang: Sprache
         timezone: Zeitzone
     errors:
       models:

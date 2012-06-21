@@ -47,7 +47,7 @@
 	<div class="control-group">
 		<%= f.label :lang, :class => 'control-label' %>
 		<div class="controls">
-			<%= f.select :lang, ["en", "de"] %>
+			<%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
 		</div>
 	</div>
 
