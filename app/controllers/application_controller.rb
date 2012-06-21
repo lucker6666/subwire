@@ -20,13 +20,15 @@ class ApplicationController < ActionController::Base
 
 		# Set some global variables, which are required in the views of each request
 		def globals
-			if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
-				resource = params[:controller].capitalize.singularize.constantize
-				instance_backup = session[:instance]
-				session[:instance] = resource.find(params[:id]).instance
+			unless current_user.is_admin?
+				if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
+					resource = params[:controller].capitalize.singularize.constantize
+					instance_backup = session[:instance]
+					session[:instance] = resource.find(params[:id]).instance
 
-				if session[:instance].nil?
-					session[:instance] = instance_backup
+					if session[:instance].nil?
+						session[:instance] = instance_backup
+					end
 				end
 			end
 
@@ -141,7 +143,7 @@ class ApplicationController < ActionController::Base
 						# If there is no relationship, the user is not allowed to see that instance.
 						# So redirect to instances overview. Otherwise everything is ok
 						unless rs
-							feedback t :application.no_permission_for_instance
+							feedback t 'application.no_permission_for_instance'
 							redirect_to instances_path
 						end
 					end

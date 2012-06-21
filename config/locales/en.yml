@@ -218,6 +218,7 @@ en:
     no_admin: You're not an admin!
     notifications: Notifications
     notifications_unread: There are no unread notifications.
+    no_permission_for_instance: Permission denied!
     user_management: User Management
     link_management: Link Management
     new_article: New Article

@@ -217,6 +217,7 @@ de:
     no_admin: Du bist kein Admin!
     notifications: Benachrichtigungen
     notifications_unread: Keine ungelesenen Benachrichtigungen.
+    no_permission_for_instance: Zugriff verweigert!
     user_management: Benutzer Verwaltung
     link_management: Verweise verwalten
     new_article: Neuer Artikel
@@ -254,7 +255,7 @@ de:
     edit_notification: Artikel von %{user} bearbeitet
     destroyed: Artikel erfolgreich gelöscht.
     standard_title: Herzlich Willkommen in deiner neuen Instanz
-    standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben! 
+    standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben!
 
   users:
     add: Benutzer hinzufügen
