@@ -143,7 +143,7 @@ class ApplicationController < ActionController::Base
 						# If there is no relationship, the user is not allowed to see that instance.
 						# So redirect to instances overview. Otherwise everything is ok
 						unless rs
-							feedback t :application.no_permission_for_instance
+							feedback t 'application.no_permission_for_instance'
 							redirect_to instances_path
 						end
 					end
