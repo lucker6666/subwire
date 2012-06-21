@@ -292,7 +292,7 @@ de:
       user:
         name: Name
         email: E-Mail
-        is_admin: Duperadmin
+        is_admin: Superadmin
         password: Passwort
         password_confirmation: Passwort bestätigen
         lang: Sprache
