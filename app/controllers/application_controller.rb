@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
 
 		# Set some global variables, which are required in the views of each request
 		def globals
+			if params[:id]
+				resource = params[:controller].capitalize.singularize.constantize
+				current_instnace = resource.find(params[:id]).instance
+			end
+
 			if current_instance
 				@sidebar_users = Relationship.find_all_users_by_instance(current_instance)
 				@sidebar_links = Link.where(:instance_id => current_instance.id)
