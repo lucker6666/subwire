@@ -252,6 +252,8 @@ en:
     not_updated: Article couldn't be saved.
     new_notification: Article created from %{user}
     edit_notification: Article edited from %{user}
+    standard_title: Welcome in your new and fresh Instance
+    standard_content: This is the first Article in your new Instance! <br />You can create new Articles or bring me a cookie or something...
 
   users:
     add: Add user
