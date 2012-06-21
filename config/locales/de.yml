@@ -243,6 +243,7 @@ de:
     not_created: Instanz konnte nicht erstellt werden.
     updated: Instanz aktualisiert.
     not_updated: Instanz konnte nicht gespeichert werden.
+    destroyed: Die Instanz wurde erfolgreich gelöscht.
 
   articles:
     created: Artikel wurde erfolgreich erstellt.
@@ -251,6 +252,7 @@ de:
     not_updated: Artikel konnte nicht gespeichert werden.
     new_notification: Neuer Artikel von %{user}
     edit_notification: Artikel von %{user} bearbeitet
+    destroyed: Artikel erfolgreich gelöscht.
     standard_title: Herzlich Willkommen in deiner neuen Instanz
     standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben! 
 
@@ -266,6 +268,7 @@ de:
     adminCount: Eigene Instanzen
     articlesCount: Artikel gesamt
     commentsCount: Kommentare gesamt
+    destroyed: Der Benutzer wurde erfolgreich gelöscht
 
   links:
     created: Link wurde erfolgreich erstellt.
