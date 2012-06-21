@@ -45,6 +45,10 @@
 		margin-top: 5em;
 	}
 
+	div.container {
+		position: relative;
+	}
+
 
 /**
  *	Nav
@@ -147,6 +151,12 @@
 
  	.table tbody tr:hover td.red {
  		background-color: #EAB8B6;
+ 	}
+
+ 	ul.nav.logout {
+ 		position: absolute;
+ 		right: 0;
+ 		left: auto;
  	}
 
 

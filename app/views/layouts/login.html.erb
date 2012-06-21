@@ -19,6 +19,18 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
+					<% if current_user %>
+						<ul class="nav logout">
+							<li>
+								<%= link_to destroy_user_session_path, :method => :delete do %>
+
+							    	<i class="icon icon-remove"></i>
+									<%= t "application.logout" %>
+								<% end %>
+							</li>
+						</ul>
+					<% end %>
+
 					<a class="brand" href="/">Subwire</a>
 				</div>
 			</div>
