@@ -54,11 +54,16 @@ class InstancesController < ApplicationController
 			feedback t('instances.hit_limit')
 			redirect_to :back
 		else
-			@instance = Instance.new(params[:instance])
-
 			if has_superadmin_privileges?
-				@instance.advertising = params[:instance][:advertising]
+				advertising = params[:instance][:advertising]
+			else
+				advertising = true
 			end
+
+			params[:instance].delete :advertising
+
+			@instance = Instance.new(params[:instance])
+			@instance.advertising = advertising
 
 			if @instance.save
 				rel = Relationship.new
