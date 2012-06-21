@@ -225,8 +225,8 @@ en:
     logout: Logout
     bookmarks: Bookmarks
     user: User
-    german: German
-    english: English
+    de: German
+    en: English
     no_permission_for_instance: You're not allowed to see this instance!
 
   comments:
@@ -263,6 +263,10 @@ en:
     not_updated: User couldn't be saved.
     removed: User was removed from this instance.
     password_error: The passwords must be identical
+    assignedCount: Assigned instances
+    adminCount: Owns instances
+    articlesCount: Articles total
+    commentsCount: Comments total
 
   links:
     created: Link was successfully created.
@@ -288,11 +292,11 @@ en:
       user:
         name: Name
         email: E-Mail
-        is_admin: Admin?
+        is_admin: Superadmin
         password: Password
         password_confirmation: Confirm Password
         is_admin_of_instance: Admin dieser Instanz?
-        color: Color
+        lang: Language
         timezone: Timezone
     errors:
       models:
