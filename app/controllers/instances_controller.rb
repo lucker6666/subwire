@@ -72,6 +72,13 @@ class InstancesController < ApplicationController
 				rel.admin = true
 				rel.save
 
+				article = Article.new
+				article.user = current_user
+				article.instance = @instance
+				article.title = t('articles.standard_title', :locale => @instance.defaultLanguage)
+				article.content = t('articles.standard_content', :locale => @instance.defaultLanguage)
+				article.save
+
 				feedback t('instances.created')
 				redirect_to instance_path(@instance)
 			else
