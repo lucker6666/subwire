@@ -6,24 +6,22 @@
 			<th><%= model_class.human_attribute_name(:name) %></th>
 			<th><%= model_class.human_attribute_name(:email) %></th>
 			<th><%= model_class.human_attribute_name(:is_admin) %></th>
-			<th><%= model_class.human_attribute_name(:color) %></th>
 			<th><%=t '.actions', :default => t("helpers.actions") %></th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @users.each do |user| %>
-			<% relationship = Relationship.find_by_instance_and_user(current_instance, user) %>
+		<% @relationships.each do |relationship| %>
+			<% relationship = Relationship.find_by_instance_and_user(current_instance, relationship.user) %>
 			<tr>
-				<td><%= link_to user.name, user_path(user) %></td>
-				<td><%= user.email %></td>
+				<td><%= link_to relationship.user.name, user_path(relationship.user) %></td>
+				<td><%= relationship.user.email %></td>
 				<td>
-					<% if user.is_admin? %>
+					<% if relationship.user.is_admin? %>
 						<i class="icon icon-star">
 					<% else %>
 						<%= boolean_icon(relationship.admin) %>
 					<% end %>
 				</td>
-				<td><%= user.color %></td>
 				<td>
 					<%= link_to edit_relationship_path(relationship), :class => 'btn btn-mini' do %>
 						<i class="icon icon-pencil"></i>
