@@ -60,4 +60,11 @@ class Instance < ActiveRecord::Base
 	def user_count
 		Relationship.find_all_by_instance_id(id).length
 	end
+
+	def notification_count(user)
+		Notification.where(
+			:instance_id => id,
+			:user_id => user.id
+		).length
+	end
 end

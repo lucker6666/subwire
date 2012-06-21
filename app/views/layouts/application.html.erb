@@ -50,7 +50,14 @@
 
 								<ul class="instances-dropdown dropdown-menu">
 							    	<% instances.each do |instance| %>
+							    		<% notificationCount = instance.notification_count(current_user) %>
 								    	<li>
+								    		<% if notificationCount > 0 %>
+								    			<span class="notification-badge badge badge-info">
+									    			<%= notificationCount %>
+									    		</span>
+								    		<% end %>
+
 								    		<%=
 								    			link_to instance.name,
 								    			instance_path(instance),
@@ -214,7 +221,7 @@
 								<i class="icon icon-heart"></i>
 								<%= t "application.bookmarks" %>
 							</h3>
-							
+
 							<ul class="bookmarks nav nav-list">
 								<% @sidebar_links.each do |link| %>
 									<li>
