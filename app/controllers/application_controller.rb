@@ -18,15 +18,22 @@ class ApplicationController < ActionController::Base
 
 	protected
 
-		# Set some global variables, which are required in the views of each request
+		# Set some global variables, which are required in the views of each request.
+		# Additionally, set the session[:instance] field to the instance, which is display currently
+		# Thats required to handle manual URL changes thru the user, which may cause an instance
+		# switch. However, thats somewhat tricky und unfancy right now. If someone has a better
+		# idea, refactor this, pls.
 		def globals
+			# If user it not logged in, this is irrelevant
 			if current_user
+				# And if the user is a superadmin thats irrelevant too
 				unless current_user.is_admin?
 					if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
 						resource = params[:controller].capitalize.singularize.constantize
 						instance_backup = session[:instance]
 						session[:instance] = resource.find(params[:id]).instance
 
+						# session[:instance] should never be null after that
 						if session[:instance].nil?
 							session[:instance] = instance_backup
 						end
@@ -157,6 +164,8 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		# A little hack to convert the flash[:notice] messages to flash[:alert] to display the
+		# flash messages from the devise stuff
 		def convert_devise_flash_messages
 			if defined?(resource) && !resource.nil?
 				resource.errors.full_messages.map do |msg|
