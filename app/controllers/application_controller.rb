@@ -20,14 +20,16 @@ class ApplicationController < ActionController::Base
 
 		# Set some global variables, which are required in the views of each request
 		def globals
-			unless current_user.is_admin?
-				if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
-					resource = params[:controller].capitalize.singularize.constantize
-					instance_backup = session[:instance]
-					session[:instance] = resource.find(params[:id]).instance
+			if current_user
+				unless current_user.is_admin?
+					if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
+						resource = params[:controller].capitalize.singularize.constantize
+						instance_backup = session[:instance]
+						session[:instance] = resource.find(params[:id]).instance
 
-					if session[:instance].nil?
-						session[:instance] = instance_backup
+						if session[:instance].nil?
+							session[:instance] = instance_backup
+						end
 					end
 				end
 			end
