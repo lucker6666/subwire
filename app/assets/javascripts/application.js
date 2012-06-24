@@ -74,22 +74,7 @@ function updateNotifications() {
 	  var notifications = "";
 	  var notificationsCount = 0;
 	  $.each(data, function(key, val) {
-
-	  	var notificationIcon = "";
-
-	  	switch(val.notification_type) {
-	  		case "edit_article":
-	  		  notificationIcon = "pencil";
-	  		  break;
-	  		case "new_comment":
-	  		  notificationIcon = "comment";
-	  		  break;
-	  		case "new_calendar":
-	  		  notificationIcon = "calendar";
-	  		  break;
-	  		default:
-	  	}
-	    notifications += '<li><a href="/notifications/'+val.id+'"><i class="icon-'+notificationIcon+'"></i>'+val.message+'</a></li>';
+	    notifications += '<li><a href="/notifications/'+val.id+'">'+val.message+'</a></li>';
 	    notificationsCount++;
 	  });
 
@@ -101,4 +86,4 @@ function updateNotifications() {
   });
 }
 
-setInterval("updateNotifications();", 300000);
+setInterval("updateNotifications();", 60000);

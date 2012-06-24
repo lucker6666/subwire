@@ -19,15 +19,16 @@
 
 class Notification < ActiveRecord::Base
 	### Attributes
-	attr_accessible :notification_type, :message, :href
+	attr_accessible :notification_type, :message, :href, :created_by
 
 	### Associations
 	belongs_to :user
+	belongs_to :user, :foreign_key => "created_by"
 	belongs_to :instance
 
 	### Validations
 	# Make sure, notification_type, message, href, is_read are not empty
-	validates :notification_type, :message, :href, :is_read, :presence => true
+	validates :notification_type, :created_by, :message, :href, :presence => true
 
 
 	### Methods
@@ -38,7 +39,8 @@ class Notification < ActiveRecord::Base
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
 					:message => data[:message],
-					:href => data[:href]
+					:href => data[:href],
+					:created_by => current_user
 				})
 
 				notification.is_read = false

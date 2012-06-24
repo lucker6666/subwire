@@ -277,6 +277,9 @@ de:
     updated: Link aktualisiert.
     not_updated: Link konnte nicht gespeichert werden.
 
+  relationships:
+    new: Benutzer hinzufügen
+
 
 
   activerecord:

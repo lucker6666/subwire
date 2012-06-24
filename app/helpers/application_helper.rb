@@ -18,11 +18,18 @@ module ApplicationHelper
 
 	def avatar(user, size = :small, className = "")
 		if size == :small
-			image_tag user.avatar.url(size), :class => 'avatar ' + className,
-				:width => 50, :height => 50
+			width = 50
+			height = 50
+		elsif size == :tiny
+			width = 30
+			height = 30
 		else
-			image_tag user.avatar.url(size), :class => 'avatar ' + className
+			width = 100
+			height = 100
 		end
+
+		image_tag user.avatar.url(size), :class => 'avatar ' + className,
+				:width => width, :height => height
 	end
 
 	def icons

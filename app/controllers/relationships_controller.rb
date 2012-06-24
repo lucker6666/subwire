@@ -20,23 +20,32 @@ class RelationshipsController < ApplicationController
 	# POST /relationships
 	def create
 		@relationship = Relationship.new
-		@relationship.user = User.find(params[:relationship][:user])
-		@relationship.instance = current_instance
 
-		if has_admin_privileges?
-			@relationship.admin = params[:relationship][:admin]
-		end
+		user = User.find_by_email(params[:relationship][:email])
 
-		# TODO: Create User and send email, if doesn't exist
-
-		@relationship.instance = current_instance
-
-		if @relationship.save
-			feedback t('relationships.created')
-			redirect_to relationships_path(@article)
-		else
-			feedback t('relationships.not_created')
+		unless user
+			# TODO !
+			feedback "TODO ! user doesn't exist!"
 			render action: "new"
+		else
+			@relationship.user = user
+			@relationship.instance = current_instance
+
+			if has_admin_privileges?
+				@relationship.admin = params[:relationship][:admin]
+			end
+
+			# TODO: Create User and send email, if doesn't exist
+
+			@relationship.instance = current_instance
+
+			if @relationship.save
+				feedback t('relationships.created')
+				redirect_to relationships_path(@article)
+			else
+				feedback t('relationships.not_created')
+				render action: "new"
+			end
 		end
 	end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619174702) do
+ActiveRecord::Schema.define(:version => 20120624202801) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120619174702) do
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.integer  "instance_id",       :default => 1,         :null => false
+    t.integer  "created_by"
   end
 
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"

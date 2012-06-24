@@ -52,20 +52,22 @@
 							    	<% instances.each do |instance| %>
 							    		<% notificationCount = instance.notification_count(current_user) %>
 								    	<li>
-								    		<% if notificationCount > 0 %>
-								    			<span class="notification-badge badge badge-info">
-									    			<%= notificationCount %>
-									    		</span>
-								    		<% end %>
-
 								    		<%=
-								    			link_to instance.name,
-								    			instance_path(instance),
-								    			{
+								    			link_to instance_path(instance), {
 								    				:class =>
 								    				(instance == current_instance ? "active" : "")
-								    			}
+								    			} do
 								    		%>
+								    			<% if notificationCount > 0 %>
+									    			<span class="notification-badge badge badge-info">
+										    			<%= notificationCount %>
+										    		</span>
+									    		<% end %>
+
+									    		&nbsp;
+
+									    		<%= instance.name %>
+								    		<% end %>
 								    	</li>
 								    <% end %>
 
@@ -91,7 +93,7 @@
 							    	<% notifications.each do |notification| %>
 								    	<li>
 								    		<a href="<%= notification_path(notification) %>">
-								    			<%= notification_icon(notification) %>
+								    			<%= avatar(User.find(notification.created_by), :tiny) %>
 								    			<%= notification.message.html_safe %>
 								    		</a>
 								    	</li>
