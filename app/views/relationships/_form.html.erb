@@ -4,7 +4,7 @@
 			<%= f.label :email, :class => 'control-label' %>
 
 			<div class="controls">
-				<%= f.text_field :email, { :class => 'text_field', :autocomplete => :off } %>
+				<%= f.text_field :email, { :value => "", :class => 'text_field', :autocomplete => :off } %>
 			</div>
 		</div>
 	<% end %>
@@ -13,12 +13,12 @@
 		<%= f.label :admin, :class => 'control-label' %>
 
 		<div class="controls">
-			<%= f.check_box :admin, :class => 'check_box' %>
+			<%= f.check_box :admin, :class => 'check_box', :checked => "" %>
 		</div>
 	</div>
 
 	<div class="form-actions">
-    	<%= f.submit nil, :class => 'btn btn-primary' %>
+    	<%= f.submit t('relationships.new'), :class => 'btn btn-primary' %>
     	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
 			relationships_path, :class => 'btn' %>
 	</div>
