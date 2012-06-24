@@ -278,6 +278,9 @@ en:
     updated: Link was successfully updated.
     not_updated: Link couldn't be saved.
 
+  relationships:
+    new: Add user
+
 
   activerecord:
     models:
@@ -302,6 +305,15 @@ en:
         is_admin_of_instance: Admin dieser Instanz?
         lang: Language
         timezone: Timezone
+      notification:
+        notification_type: Type
+        message: Message
+        href: Link target
+        is_read: Is read
+        user_id: User ID
+        instance_id: Instance ID
+        user: User
+        instance: Instance
     errors:
       models:
         instance:
