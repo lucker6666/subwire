@@ -73,14 +73,26 @@ function updateNotifications() {
   $.getJSON('/notifications.json', function(data) {
 	  var notifications = "";
 	  var notificationsCount = 0;
+
 	  $.each(data, function(key, val) {
-	    notifications += '<li><a href="/notifications/'+val.id+'">'+val.message+'</a></li>';
-	    notificationsCount++;
+	    notifications += '<li><a href="/notifications/' + val.id + '">';
+	    notifications += '<img class="avatar" height="30" src="' + val.avatar_path + '" width="30">';
+	    notifications +=  val.message + '</a></li>';
+	    ++notificationsCount;
 	  });
 
 	  if(notificationsCount > 0) {
-	  	$('.notification-dropdown').html(notifications);
-		$('.notification-badge').html(notificationsCount).addClass('badge').addClass('badge-info');
+	  	var ul = $('ul.notification-dropdown');
+	  	var a = ul.siblings("a");
+	  	ul.html(notifications);
+
+	  	if (a.children("span").length > 0) {
+	  		a.children("span").html(notificationsCount);
+	  	} else {
+		  	a.append("<span class='notification-badge badge badge-info'>" +
+		  		notificationsCount + "</span>");
+	  	}
+
 		$('title').html(window.subwireTitle + ' ('+notificationsCount+')');
 	  }
   });

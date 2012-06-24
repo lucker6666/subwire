@@ -51,4 +51,8 @@ class Notification < ActiveRecord::Base
 			end
 		end
 	end
+
+	def avatar_path
+		user.avatar.url
+	end
 end
