@@ -18,20 +18,20 @@ module NotificationsHelper
 	# Returns an array of notifications for the current user
 	def all_notifications
 		if current_instance.nil?
-					@notifications = []
+					@all_notifications_cached = []
 		else
-			if @notifications.nil?
-				@notifications = Notification.order("is_read").where(
+			if @all_notifications_cached.nil?
+				@all_notifications_cached = Notification.order("is_read").where(
 					:user_id => current_user.id,
 					:instance_id => current_instance.id
 				)
 
-				if @notifications.nil?
-					@notifications = []
+				if @all_notifications_cached.nil?
+					@all_notifications_cached = []
 				end
 			end
 
-			@notifications
+			@all_notifications_cached
 		end
 	end
 end
