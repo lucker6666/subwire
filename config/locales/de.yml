@@ -211,7 +211,7 @@ de:
       short: ! '%d. %B, %H:%M Uhr'
     pm: nachmittags
 
-
+  ad: Anzeige
 
   application:
     no_admin: Du bist kein Admin!
