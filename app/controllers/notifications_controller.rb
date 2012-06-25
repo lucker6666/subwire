@@ -24,9 +24,7 @@ class NotificationsController < ApplicationController
 				notification.instance == current_instance
 
 				target = notification.href
-				feedback notification.inspect
 				notification.read!
-				feedback notification.inspect
 			end
 
 			redirect_to target
