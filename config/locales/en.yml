@@ -213,6 +213,8 @@ en:
       short: ! '%d %b %H:%M'
     pm: pm
 
+  ad: Advertisement
+
 
   application:
     no_admin: You're not an admin!
