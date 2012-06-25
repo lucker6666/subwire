@@ -49,6 +49,19 @@
 		position: relative;
 	}
 
+/**
+ * 	Forms
+ */
+
+ 	.field_with_errors .control-label {
+ 		color: #b94a48;
+ 	}
+
+ 	.field_with_errors input {
+ 		color: #B94A48;
+		border-color: #B94A48;
+ 	}
+
 
 /**
  *	Nav
