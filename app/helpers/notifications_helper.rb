@@ -16,12 +16,12 @@ module NotificationsHelper
 	end
 
 	# Returns an array of notifications for the current user
-	def notifications
+	def all_notifications
 		if current_instance.nil?
 					@notifications = []
 		else
 			if @notifications.nil?
-				@notifications = Notification.where(
+				@notifications = Notification.order("is_read").where(
 					:user_id => current_user.id,
 					:instance_id => current_instance.id
 				)

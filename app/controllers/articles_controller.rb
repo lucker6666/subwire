@@ -18,14 +18,15 @@ class ArticlesController < ApplicationController
 
 		@notifications = Notification.where(
 			:user_id => current_user.id,
-			:instance_id => current_instance.id
+			:instance_id => current_instance.id,
+			:is_read => false
 		)
 
 		# Delete all notifications regarding that article
 		unless @notifications.nil?
 			@notifications.each do |notification|
 				if notification.href == article_path(@article)
-					notification.destroy
+					notification.read!
 				end
 			end
 		end

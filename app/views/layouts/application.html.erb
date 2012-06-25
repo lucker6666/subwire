@@ -4,8 +4,8 @@
 		<title>
 			<%= @subwireTitle %>
 
-			<% if notifications.length > 0 %>
-				(<%= notifications.length %>)
+			<% if all_notifications.length > 0 %>
+				(<%= all_notifications.length %>)
 			<% end %>
 		</title>
 
@@ -78,38 +78,7 @@
 							<% end %>
 						</li>
 
-						<li class="dropdown iconOnly">
-						    <% if notifications.length > 0 %>
-							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-exclamation-sign"></i>
-							    	<b class="caret"></b>
-
-							    	<span class="notification-badge badge badge-info">
-							    		<%= notifications.length %>
-							    	</span>
-							    </a>
-
-							    <ul class="notification-dropdown dropdown-menu">
-							    	<% notifications.each do |notification| %>
-								    	<li>
-								    		<a href="<%= notification_path(notification) %>">
-								    			<%= avatar(User.find(notification.created_by), :tiny) %>
-								    			<%= notification.message.html_safe %>
-								    		</a>
-								    	</li>
-								    <% end %>
-							    </ul>
-							<% else %>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-exclamation-sign"></i>
-							    	<b class="caret"></b>
-							    </a>
-
-								<ul class="notifications-dropdown dropdown-menu">
-									<li><%= t "application.notifications_unread" %></li>
-								</ul>
-						    <% end %>
-						</li>
+						<%= render :partial => 'shared/notifications' %>
 					</ul>
 
 					<div class="nav-collapse">
@@ -147,21 +116,21 @@
 										</li>
 
 										<% if has_superadmin_privileges? %>
-										    	<li>
-										    		<%= link_to users_path do %>
-										    			<i class="icon icon-user"></i>
-										    			<%= t('application.all_users') %>
-										    		<% end %>
-										    	</li>
+									    	<li>
+									    		<%= link_to users_path do %>
+									    			<i class="icon icon-user"></i>
+									    			<%= t('application.all_users') %>
+									    		<% end %>
+									    	</li>
 
-										    	<li>
-										    		<%= link_to "/instances/all" do %>
-										    			<i class="icon icon-list-alt"></i>
-										    			<%= t('application.all_instances') %>
-										    		<% end %>
-										    	</li>
-									    	<% end %>
-								    	</ul>
+									    	<li>
+									    		<%= link_to "/instances/all" do %>
+									    			<i class="icon icon-list-alt"></i>
+									    			<%= t('application.all_instances') %>
+									    		<% end %>
+									    	</li>
+								    	<% end %>
+							    	</ul>
 								</li>
 							<% end %>
 

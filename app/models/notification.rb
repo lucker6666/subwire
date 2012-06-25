@@ -55,4 +55,9 @@ class Notification < ActiveRecord::Base
 	def avatar_path
 		user.avatar.url
 	end
+
+	def read!
+		self.is_read = true
+		self.save
+	end
 end
