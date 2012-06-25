@@ -64,7 +64,8 @@ class Instance < ActiveRecord::Base
 	def notification_count(user)
 		Notification.where(
 			:instance_id => id,
-			:user_id => user.id
+			:user_id => user.id,
+			:is_read => false
 		).length
 	end
 end
