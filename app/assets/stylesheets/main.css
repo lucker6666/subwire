@@ -190,7 +190,22 @@
  	table.article tr:hover td {
  		background-color: #fff;
  		padding: 10px;
+ 	}
+
+ 	table.article tr td,
+ 	table.article tr td p {
  		word-wrap: break-word;
+ 		width: 840px;
+ 	}
+
+ 	table.article div.commentList td,
+ 	table.article div.commentList td div.comment {
+ 		word-wrap: break-word;
+ 		width: 760px;
+ 	}
+
+ 	table.article table th.avatar {
+ 		width: 50px;
  	}
 
 	table.article h2 {
