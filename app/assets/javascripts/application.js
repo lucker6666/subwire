@@ -70,32 +70,38 @@ function editComment(comment) {
 }
 
 function updateNotifications() {
-  $.getJSON('/notifications.json', function(data) {
-	  var notifications = "";
-	  var notificationsCount = 0;
+	$.getJSON('/notifications.json', function(data) {
+		var notifications = "";
+		var notificationsCount = 0;
 
-	  $.each(data, function(key, val) {
-	    notifications += '<li><a href="/notifications/' + val.id + '">';
-	    notifications += '<img class="avatar" height="30" src="' + val.avatar_path + '" width="30">';
-	    notifications +=  val.message + '</a></li>';
-	    ++notificationsCount;
-	  });
+		$.each(data, function(key, val) {
+			classAttr = '';
 
-	  if(notificationsCount > 0) {
-	  	var ul = $('ul.notification-dropdown');
-	  	var a = ul.siblings("a");
-	  	ul.html(notifications);
+			if (!val.is_read) {
+				classAttr = ' class="read"';
+				++notificationsCount;
+			}
 
-	  	if (a.children("span").length > 0) {
-	  		a.children("span").html(notificationsCount);
-	  	} else {
-		  	a.append("<span class='notification-badge badge badge-info'>" +
-		  		notificationsCount + "</span>");
-	  	}
+			notifications += '<li' + classAttr + '><a href="/notifications/' + val.id + '">';
+			notifications += '<img class="avatar" height="30" src="' + val.avatar_path + '" width="30">';
+			notifications +=  val.message + '</a></li><li class="divider"></li>';
+		});
 
-		$('title').html(window.subwireTitle + ' ('+notificationsCount+')');
-	  }
-  });
+		var ul = $('ul.notification-dropdown');
+		var a = ul.siblings("a");
+		ul.html(notifications);
+
+		if(notificationsCount > 0) {
+			if (a.children("span").length > 0) {
+				a.children("span").html(notificationsCount);
+			} else {
+		  		a.append("<span class='notification-badge badge badge-info'>" +
+		  			notificationsCount + "</span>");
+			}
+
+			$('title').html(window.subwireTitle + ' ('+notificationsCount+')');
+		}
+	});
 }
 
 setInterval("updateNotifications();", 60000);

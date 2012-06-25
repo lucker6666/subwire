@@ -164,6 +164,10 @@
  		margin: 3px 8px 0 -9px;
  	}
 
+ 	.notification-dropdown li.read {
+ 		opacity: 0.5;
+ 	}
+
 
 
 /**

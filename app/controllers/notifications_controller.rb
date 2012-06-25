@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
 
 	# GET /notifications.json
 	def index
-		@notifications = Notification.where(
+		@notifications = Notification.order("is_read").where(
 			:user_id => current_user.id,
 			:instance_id => current_instance.id
 		)
@@ -24,7 +24,9 @@ class NotificationsController < ApplicationController
 				notification.instance == current_instance
 
 				target = notification.href
-				notification.destroy
+				feedback notification.inspect
+				notification.read!
+				feedback notification.inspect
 			end
 
 			redirect_to target
