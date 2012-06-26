@@ -282,9 +282,9 @@ en:
 
   relationships:
     new: Add 
-    created: Benutzer erfolgreich hinzugefügt
-    updated: Benutzer erfolgreich aktualisiert
-    destroyed: Benutzer erfolgreich entfernt
+    created: User successfully added
+    updated: User successfully updated
+    destroyed: User successfully deleted
 
 
   activerecord:
