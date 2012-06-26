@@ -65,21 +65,11 @@ class Notification < ActiveRecord::Base
 	def self.find_all_relevant(instance, user)
 		return if instance.nil?
 
-		notifications = order("created_by").where(
+
+			notifications = order("is_read").order("created_at").limit(5).where(
 			:user_id => user.id,
-			:instance_id => instance.id,
-			:is_read => false
-		)
-
-		diff = (notifications.length - 5).abs
-
-		if diff > 0
-			notifications = notifications + limit(diff).order("created_by").where(
-				:user_id => user.id,
-				:instance_id => instance.id,
-				:is_read => true
+			:instance_id => instance.id
 			)
-		end
 
 		if notifications.nil?
 			notifications = []
