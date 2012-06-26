@@ -281,7 +281,10 @@ en:
     not_updated: Link couldn't be saved.
 
   relationships:
-    new: Add user
+    new: Add 
+    created: Benutzer erfolgreich hinzugefügt
+    updated: Benutzer erfolgreich aktualisiert
+    destroyed: Benutzer erfolgreich entfernt
 
 
   activerecord:
@@ -304,7 +307,7 @@ en:
         is_admin: Superadmin
         password: Password
         password_confirmation: Confirm Password
-        is_admin_of_instance: Admin dieser Instanz?
+        is_admin_of_instance: Admin of this Instance?
         lang: Language
         timezone: Timezone
       notification:
@@ -316,6 +319,16 @@ en:
         instance_id: Instance ID
         user: User
         instance: Instance
+      relationship:
+        instance_id: Instance ID
+        user_id: User ID
+        admin: Admin?
+      instance:
+        instace_id: Instance ID
+        name: Name
+        defaultLangugage: default Language
+        advertising: Advertising?
+        planningTool: Planning Tool?
     errors:
       models:
         instance:
