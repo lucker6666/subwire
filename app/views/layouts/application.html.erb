@@ -4,8 +4,8 @@
 		<title>
 			<%= @subwireTitle %>
 
-			<% if all_notifications.length > 0 %>
-				(<%= all_notifications.length %>)
+			<% if @unread_notification_count > 0 %>
+				(<%= @unread_notification_count %>)
 			<% end %>
 		</title>
 

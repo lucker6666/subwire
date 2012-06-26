@@ -1,20 +1,18 @@
-<% @unread = all_notifications.find_all{|n| n.is_read == false }.length %>
-
 <li class="dropdown iconOnly">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<i class="icon icon-exclamation-sign"></i>
 		<b class="caret"></b>
 
 
-		<% if @unread > 0 %>
+		<% if @unread_notification_count > 0 %>
 			<span class="notification-badge badge badge-info">
-				<%= @unread %>
+				<%= @unread_notification_count %>
 			</span>
 		<% end %>
 	</a>
 
 	<ul class="notification-dropdown dropdown-menu">
-		<% all_notifications.each do |notification| %>
+		<% @all_notifications.each do |notification| %>
 			<li class="<%= notification.is_read ? 'read' : '' %>">
 				<a href="<%= notification_path(notification) %>">
 					<%= avatar(User.find(notification.created_by), :tiny) %>
