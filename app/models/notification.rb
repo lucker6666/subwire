@@ -60,4 +60,31 @@ class Notification < ActiveRecord::Base
 		self.is_read = true
 		self.save
 	end
+
+	# Returns an array of notifications for an user and an instance
+	def self.find_all_relevant(instance, user)
+		return if instance.nil?
+
+		notifications = order("created_by").where(
+			:user_id => user.id,
+			:instance_id => instance.id,
+			:is_read => false
+		)
+
+		diff = (notifications.length - 5).abs
+
+		if diff > 0
+			notifications = notifications + limit(diff).order("created_by").where(
+				:user_id => user.id,
+				:instance_id => instance.id,
+				:is_read => true
+			)
+		end
+
+		if notifications.nil?
+			notifications = []
+		end
+
+		notifications
+	end
 end
