@@ -279,6 +279,9 @@ de:
 
   relationships:
     new: Benutzer hinzufügen
+    created: Benutzer erfolgreich hinzugefügt
+    updated: Benutzer erfolgreich aktualisiert
+    destroyed: Benutzer erfolgreich entfernt
 
 
 
@@ -304,6 +307,25 @@ de:
         password_confirmation: Passwort bestätigen
         lang: Sprache
         timezone: Zeitzone
+      notification:
+        notification_type: Type
+        message: Nachricht
+        href: Verweisziel
+        is_read: Gelesen
+        user_id: Benutzer ID
+        instance_id: Instanz ID
+        user: User
+        instance: Instanz
+      relationship:
+        instance_id: Instanz ID
+        user_id: Benutzer ID
+        admin: Admin?
+      instance:
+        instace_id: Instanz ID
+        name: Name
+        defaultLangugage: Standardsprache
+        advertising: Werbung?
+        planningTool: Planungstool?
     errors:
       models:
         instance:
