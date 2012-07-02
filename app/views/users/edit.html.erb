@@ -5,74 +5,75 @@
 		 :default => "Edit #{model_class.model_name.human}") %>
 </h1>
 
-<%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
-	<div class="control-group">
-		<%= f.label :name, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.text_field :name, :class => 'text_field' %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :email, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.text_field :email, :class => 'text_field' %>
-		</div>
-	</div>
-
-	<% if has_superadmin_privileges? %>
+<div class="well">
+	<%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
 		<div class="control-group">
-			<%= f.label :is_admin, :class => 'control-label' %>
-
+			<%= f.label :name, :class => 'control-label' %>
 			<div class="controls">
-				<%= check_box_tag :is_admin, true, {:class => 'check_box'} %>
+				<%= f.text_field :name, :class => 'text_field' %>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<%= f.label :email, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :email, :class => 'text_field' %>
+			</div>
+		</div>
+
+		<% if has_superadmin_privileges? %>
+			<div class="control-group">
+				<%= f.label :is_admin, :class => 'control-label' %>
+
+				<div class="controls">
+					<%= check_box_tag :is_admin, true, {:class => 'check_box'} %>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="control-group">
+			<%= f.label :password, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.password_field :password, :class => 'text_field' %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :password_confirmation, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.password_field :password_confirmation, :class => 'text_field' %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :lang, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :timezone, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.select :timezone, ["Hawaii", "International Date Line West", "Alaska", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Central America", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "London", "Berlin", "Amsterdam", "Bern", "Madrid", "Paris", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji"] %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :avatar, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.file_field :avatar %>
+
+				<br /><br />
+
+				<%= image_tag @user.avatar.url %>
+			</div>
+		</div>
+
+		<div class="form-actions with-padding">
+			<%= f.submit nil, :class => 'btn btn-primary' %>
+			<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+				users_path, :class => 'btn' %>
+		</div>
 	<% end %>
-
-	<div class="control-group">
-		<%= f.label :password, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.password_field :password, :class => 'text_field' %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :password_confirmation, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.password_field :password_confirmation, :class => 'text_field' %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :lang, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :timezone, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.select :timezone, ["Hawaii", "International Date Line West", "Alaska", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Central America", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "London", "Berlin", "Amsterdam", "Bern", "Madrid", "Paris", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji"] %>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<%= f.label :avatar, :class => 'control-label' %>
-		<div class="controls">
-			<%= f.file_field :avatar %>
-
-			<br /><br />
-
-			<%= image_tag @user.avatar.url %>
-		</div>
-	</div>
-
-	<div class="form-actions">
-		<%= f.submit nil, :class => 'btn btn-primary' %>
-		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-			users_path, :class => 'btn' %>
-	</div>
-<% end %>
-
+</div>

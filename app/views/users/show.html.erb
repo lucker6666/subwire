@@ -1,61 +1,63 @@
 <%- model_class = @user.class -%>
 <h1><%= @user.name %></h1>
 
-<table class="table table-striped table-bordered table-condensed">
-  <tr>
-    <td rowspan="<%= has_superadmin_privileges? ? 8 : 7 %>" class="span2 avatarCell">
-      <%= avatar(@user, :default) %>
-    </td>
-  </tr>
+<div class="well">
+	<table class="table table-striped table-bordered table-condensed">
+		<tr>
+		<td rowspan="<%= has_superadmin_privileges? ? 8 : 7 %>" class="span2 avatarCell">
+		  <%= avatar(@user, :default) %>
+		</td>
+		</tr>
 
-  <% if has_superadmin_privileges? %>
-    <tr>
-      <th class="span3"><%= model_class.human_attribute_name(:email) %>:</th>
-      <td><%= @user.email %></td>
-    </tr>
-  <% end %>
+		<% if has_superadmin_privileges? %>
+		<tr>
+		  <th class="span3"><%= model_class.human_attribute_name(:email) %>:</th>
+		  <td><%= @user.email %></td>
+		</tr>
+		<% end %>
 
-  <tr>
-    <th class="span3"><%= model_class.human_attribute_name(:is_admin) %>:</th>
-    <td><%= boolean_icon(@user.is_admin) %></td>
-  </tr>
+		<tr>
+		<th class="span3"><%= model_class.human_attribute_name(:is_admin) %>:</th>
+		<td><%= boolean_icon(@user.is_admin) %></td>
+		</tr>
 
-  <tr>
-    <th class="span3"><%= model_class.human_attribute_name(:lang) %>:</th>
-    <td><%= t("application." + @user.lang) %></td>
-  </tr>
+		<tr>
+		<th class="span3"><%= model_class.human_attribute_name(:lang) %>:</th>
+		<td><%= t("application." + @user.lang) %></td>
+		</tr>
 
-  <tr>
-    <th class="span3"><%=t 'users.assignedCount' %>:</th>
-    <td><%= @assignedCount %></td>
-  </tr>
+		<tr>
+		<th class="span3"><%=t 'users.assignedCount' %>:</th>
+		<td><%= @assignedCount %></td>
+		</tr>
 
-  <tr>
-    <th class="span3"><%=t 'users.adminCount' %>:</th>
-    <td><%= @adminCount %></td>
-  </tr>
+		<tr>
+		<th class="span3"><%=t 'users.adminCount' %>:</th>
+		<td><%= @adminCount %></td>
+		</tr>
 
-  <tr>
-    <th class="span3"><%=t 'users.articlesCount' %>:</th>
-    <td><%= @articlesCount %></td>
-  </tr>
+		<tr>
+		<th class="span3"><%=t 'users.articlesCount' %>:</th>
+		<td><%= @articlesCount %></td>
+		</tr>
 
-  <tr>
-    <th class="span3"><%=t 'users.commentsCount' %>:</th>
-    <td><%= @commentsCount %></td>
-  </tr>
-</table>
+		<tr>
+		<th class="span3"><%=t 'users.commentsCount' %>:</th>
+		<td><%= @commentsCount %></td>
+		</tr>
+	</table>
 
-<% if has_superadmin_privileges? %>
-  <div class="form-actions">
-    <%= link_to edit_user_path(@user), :class => 'btn' do %>
-      <i class="icon icon-pencil"></i>
-    <% end %>
-    <%= link_to user_path(@user),
-        :method => 'delete',
-        :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-        :class => 'btn btn-danger' do %>
-      <i class="icon icon-trash"></i>
-    <% end %>
-  </div>
-<% end %>
+	<% if has_superadmin_privileges? %>
+	  <div class="form-actions">
+	    <%= link_to edit_user_path(@user), :class => 'btn' do %>
+	      <i class="icon icon-pencil"></i>
+	    <% end %>
+	    <%= link_to user_path(@user),
+	        :method => 'delete',
+	        :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+	        :class => 'btn btn-danger' do %>
+	      <i class="icon icon-trash"></i>
+	    <% end %>
+	  </div>
+	<% end %>
+</div>
