@@ -58,6 +58,10 @@
 		position: relative;
 	}
 
+	.pagination ul {
+		background-color: #fff;
+	}
+
 
 
 /**
