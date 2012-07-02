@@ -19,6 +19,6 @@ class Availability < ActiveRecord::Base
 	belongs_to :instance
 
 	### Validations
-	# Make sure, value and date are not empty
-	validates :value, :date, :presence => true
+	# Make sure, date is not empty
+	validates :date, :presence => true
 end
