@@ -3,6 +3,19 @@
 <table class="table table-bordered table-condensed article">
 	<tr>
 		<td>
+			<div class="pull-right">
+				<%= link_to edit_article_path(@article), :class => 'btn' do %>
+					<i class="icon icon-pencil"></i>
+				<% end %>
+
+				<%= link_to article_path(@article),
+					:method => 'delete',
+					:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+					:class => 'btn btn-danger' do %>
+
+					<i class="icon icon-trash"></i>
+				<% end %>
+			</div>
 
 			<%= avatar(@article.user) %>
 
@@ -50,15 +63,3 @@
 		</td>
 	</tr>
 </table>
-
-<div class="form-actions">
-  <%= link_to edit_article_path(@article), :class => 'btn' do %>
-	<i class="icon icon-pencil"></i>
-  <% end %>
-  <%= link_to article_path(@article),
-			  :method => 'delete',
-			  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-			  :class => 'btn btn-danger' do %>
-	<i class="icon icon-trash"></i>
-  <% end %>
-</div>

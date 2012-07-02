@@ -1,12 +1,33 @@
-
-
-/**
- *	general
+/*
+ *	General
  */
 
 	body {
-		background-color: whiteSmoke;
-		padding-top: 60px;
+		background-color: #eee;
+		padding-top: 80px;
+	}
+
+	.well {
+		background-color: #fff;
+		min-height: 20px;
+		padding: 19px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		box-shadow: 2px 2px 8px #ccc;
+	}
+
+	.big-icon {
+		font-size: 5em;
+		line-height: 1em;
+		text-align: right;
+	}
+
+	.navbar .nav > li > a.brand {
+		color: #fff;
+		font-size: 2em;
 	}
 
 	body.login {
@@ -14,7 +35,7 @@
 	}
 
 	h1 {
-		margin-bottom: 1em;
+		margin-bottom: 29px;
 	}
 
 	a:hover {
@@ -29,18 +50,6 @@
 		width: 250px;
 	}
 
-	.well {
-		background-color: #fff;
-		min-height: 20px;
-		padding: 19px;
-		margin-bottom: 20px;
-		border: 1px solid #bbb;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-	}
-
 	.sidebar {
 		margin-top: 5em;
 	}
@@ -48,6 +57,8 @@
 	div.container {
 		position: relative;
 	}
+
+
 
 /**
  * 	Forms
@@ -60,6 +71,26 @@
  	.field_with_errors input {
  		color: #B94A48;
 		border-color: #B94A48;
+ 	}
+
+ 	.form-actions {
+ 		background-color: transparent;
+ 		padding-left: 0;
+ 		padding-right: 0;
+ 		border-top: 1px solid #aaa;
+ 	}
+
+ 	.well .form-actions {
+ 		padding: 0;
+ 		border-top: 0;
+ 	}
+
+ 	.well .form-actions.with-padding {
+ 		padding-left: 160px;
+ 	}
+
+ 	input.article-title {
+ 		width: 820px;
  	}
 
 
@@ -188,9 +219,15 @@
  */
 
  	table.article {
+		background-color: #fff;
+		border-top: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
+		box-shadow: 2px 2px 8px #ccc;
  	}
 
  	table.article td img.avatar {
@@ -433,11 +470,29 @@
  */
 
  	footer {
+ 		clear: both;
  		text-align: center;
  		color: #666;
- 		margin-left: -30px;
+ 		padding: 0.6em 0;
+ 		border-top: 1px solid #ccc;
+ 		margin-top: 2em;
  	}
 
  	footer a {
  		color: #666;
+ 	}
+
+ 	footer ul {
+ 		list-style-type: none;
+ 		margin: 1em 0;
+ 	}
+
+ 	footer ul li {
+ 		display: inline;
+ 		border-left: 1px solid #999;
+ 		padding-left: 5px;
+ 	}
+
+ 	footer ul li:first-child {
+ 		border-left: none;
  	}

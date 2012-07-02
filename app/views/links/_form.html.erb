@@ -1,41 +1,43 @@
-<%= form_for @link, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-	<%= f.label :name, :class => 'control-label' %>
-	<div class="controls">
-	  <%= f.text_field :name, { :class => 'text_field', :autocomplete => :off } %>
-	</div>
-  </div>
-  <div class="control-group">
-	<%= f.label :href, :class => 'control-label' %>
-	<div class="controls">
-	  <%= f.text_field :href, { :class => 'text_field', :autocomplete => :off } %>
-	</div>
-  </div>
-  <div class="control-group">
-	<%= f.label :icon, :class => 'control-label' %>
-	<div class="controls">
-		<%= f.select :icon, icons, :class => 'text_field' %>
-		&nbsp;
-		<i class="icon icon-glass"></i>
-	</div>
-  </div>
+<div class="well">
+	<%= form_for @link, :html => { :class => 'form-horizontal' } do |f| %>
+	  <div class="control-group">
+		<%= f.label :name, :class => 'control-label' %>
+		<div class="controls">
+		  <%= f.text_field :name, { :class => 'text_field', :autocomplete => :off } %>
+		</div>
+	  </div>
+	  <div class="control-group">
+		<%= f.label :href, :class => 'control-label' %>
+		<div class="controls">
+		  <%= f.text_field :href, { :class => 'text_field', :autocomplete => :off } %>
+		</div>
+	  </div>
+	  <div class="control-group">
+		<%= f.label :icon, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :icon, icons, :class => 'text_field' %>
+			&nbsp;
+			<i class="icon icon-glass"></i>
+		</div>
+	  </div>
 
-  <script type="text/javascript">
-	$(function() {
-		select = $('#link_icon');
-		i = $('#link_icon + i');
+	  <script type="text/javascript">
+		$(function() {
+			select = $('#link_icon');
+			i = $('#link_icon + i');
 
-		select.change(function(e) {
+			select.change(function(e) {
+				i.attr('class', 'icon icon-' + select.val());
+			});
+
 			i.attr('class', 'icon icon-' + select.val());
 		});
+	  </script>
 
-		i.attr('class', 'icon icon-' + select.val());
-	});
-  </script>
-
-  <div class="form-actions">
-	<%= f.submit nil, :class => 'btn btn-primary' %>
-	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-				links_path, :class => 'btn' %>
-  </div>
-<% end %>
+	  <div class="form-actions with-padding">
+		<%= f.submit nil, :class => 'btn btn-primary' %>
+		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+					links_path, :class => 'btn' %>
+	  </div>
+	<% end %>
+</div>
