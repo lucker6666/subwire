@@ -24,8 +24,8 @@ class RelationshipsController < ApplicationController
 		user = User.find_by_email(params[:relationship][:email])
 
 		unless user
-			# TODO !
-			feedback "TODO ! user doesn't exist!"
+			# TODO create new user!
+			feedback "TODO ! user doesn't exist!" # TODO translate
 			render action: "new"
 		else
 			@relationship.user = user
@@ -40,6 +40,13 @@ class RelationshipsController < ApplicationController
 			@relationship.instance = current_instance
 
 			if @relationship.save
+				Notification.notify_all_users {
+					:notification_type => "new_user",
+					:message => "<strong>"+t("relationships.new_notification", user: user.name) +
+						":</strong> <br />#{@article.title}",
+					:href => user_path(user)
+				}, current_instance, current_user, :except => user
+
 				feedback t('relationships.created')
 				redirect_to relationships_path(@article)
 			else
