@@ -3,7 +3,22 @@
  */
 
 	body {
-		background-color: #eee;
+		background-image: linear-gradient(bottom, #f8f8f8 35%, #eee 68%);
+		background-image: -o-linear-gradient(bottom, #f8f8f8 35%, #eee 68%);
+		background-image: -moz-linear-gradient(bottom, #f8f8f8 35%, #eee 68%);
+		background-image: -webkit-linear-gradient(bottom, #f8f8f8 35%, #eee 68%);
+		background-image: -ms-linear-gradient(bottom, #f8f8f8 35%, #eee 68%);
+
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.35, #f8f8f8),
+			color-stop(0.68, #eee)
+		);
+
+		background-attachment: fixed;
+
 		padding-top: 80px;
 	}
 
@@ -23,11 +38,6 @@
 		font-size: 5em;
 		line-height: 1em;
 		text-align: right;
-	}
-
-	.navbar .nav > li > a.brand {
-		color: #fff;
-		font-size: 2em;
 	}
 
 	body.login {
@@ -108,6 +118,9 @@
 
  	.navbar .nav > li > a.brand {
  		padding-right: 0;
+ 		padding-left: 20px;
+		color: #fff;
+		font-size: 2em;
  	}
 
  	.iconOnly i {
