@@ -8,6 +8,16 @@
 $(function() {
 	$('.commentContainer').hide();
 	$('a.availability_cell').click(switchAvailability);
+
+	$('.btn').click(function() {
+		if ($(this).hasClass('btn-disabled')) {
+			e.preventDefault();
+			return false;
+		} else {
+			$(this).addClass('btn-disabled');
+			return true;
+		}
+	});
 });
 
 function switchAvailability(event) {
