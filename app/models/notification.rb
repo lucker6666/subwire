@@ -33,9 +33,11 @@ class Notification < ActiveRecord::Base
 
 	### Methods
 
-	def self.notify_all_users(data, instance, current_user)
+	def self.notify_all_users(data, instance, current_user, options = {})
+		except = options[:except] || []
+
 		Relationship.find_all_users_by_instance(instance).each do |user|
-			unless user == current_user
+			unless user == current_user or except.include?(user)
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
 					:message => data[:message],
