@@ -45,7 +45,7 @@ class RelationshipsController < ApplicationController
 					:message => "<strong>"+t("relationships.new_notification", user: user.name) +
 						":</strong> <br />",
 					:href => user_path(user)
-				}, current_instance, current_user, :except => user)
+				}, current_instance, current_user, :except => [user])
 
 				feedback t('relationships.created')
 				redirect_to relationships_path(@article)
