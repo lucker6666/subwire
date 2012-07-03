@@ -8,3 +8,4 @@
 /public/ckeditor_assets/
 /public/system/users/
 /config/initializers/secret_token.rb
+/config/initializers/setup_mail.rb
