@@ -35,10 +35,10 @@
 			<%= auto_link(@article.content.html_safe) %>
 
 			<br /><br /><br />
-
-			<div class="ad">
-				<%= t('ad') %>
-				<% if display_ads %>
+		
+			<% if display_ads %>
+				<div class="ad">
+					<%= t('ad') %>
 					<script type="text/javascript"><!--
 					google_ad_client = "ca-pub-4129785061498511";
 					/* Subwire Artikel */
@@ -50,8 +50,8 @@
 					<script type="text/javascript"
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
-				<% end %>
-			</div>
+				</div>
+			<% end %>
 		</td>
 	</tr>
 
