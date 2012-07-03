@@ -31,6 +31,9 @@ Subwire::Application.routes.draw do
 	# Availability Tool
 	post "availability", :to => "availabilities#set"
 
+	# Inactive user
+	get "inactive", :to => "home#inactive"
+
 	# Start page
 	get "home/index"
 	root :to => "home#index"
