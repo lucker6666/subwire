@@ -1,7 +1,12 @@
 <%- model_class = Instance.new.class -%>
 
 <div class="instanceChooser">
-	<h1><%= t('instances.your_instances') %></h1>
+	<h1>
+		<%= t('instances.your_instances') %>
+		<a href="#" rel="popover" data-content="<%= t('popover.instances_content') %>" data-original-title="<%= t('popover.instances_title') %>">
+			<i class="icon icon-question-sign"></i>
+		</a>
+	</h1>
 
 	<br />
 

@@ -1,5 +1,10 @@
 <%- model_class = @relationship.class -%>
-<h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                               :default => "New #{model_class.model_name.human}") %></h1>
+<h1>
+	<%=t '.title', :default => t('helpers.submit.create', :model => model_class.model_name.human,
+                               :default => "New #{model_class.model_name.human}") %>
+		<a href="#" rel="popover" data-content="<%= t('popover.relationship_content') %>" data-original-title="<%= t('popover.relationship_title') %>">
+			<i class="icon icon-question-sign"></i>
+		</a>
+</h1>
 
 <%= render :partial => 'form' %>
