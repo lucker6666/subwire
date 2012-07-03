@@ -229,6 +229,10 @@
  		opacity: 0.5;
  	}
 
+ 	.availabilitites div.dropdown-menu {
+ 		font-size: 0.9em;
+ 	}
+
 
 
 /**
