@@ -236,7 +236,8 @@ en:
     new_success: Comment was successfully created.
     new_notification: New Comment from %{user} to
     update_success: Comment was successfully updated.
-    plural: Comment(s)
+    plural: Comment(s
+    destroyed: Comment deleted
 
   instances:
     new: Create new instance!
@@ -285,6 +286,7 @@ en:
     created: User successfully added
     updated: User successfully updated
     destroyed: User successfully deleted
+    new_user: User %{user} joined
 
 
   activerecord:
