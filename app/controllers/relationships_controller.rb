@@ -43,7 +43,7 @@ class RelationshipsController < ApplicationController
 				Notification.notify_all_users({
 					:notification_type => "new_user",
 					:message => "<strong>"+t("relationships.new_notification", user: user.name) +
-						":</strong> <br />#{@article.title}",
+						":</strong> <br />",
 					:href => user_path(user)
 				}, current_instance, current_user, :except => user)
 
