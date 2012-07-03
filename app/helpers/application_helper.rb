@@ -15,6 +15,30 @@ module ApplicationHelper
 		current_instance.advertising
 	end
 
+	def flash_messages
+		if defined?(@user) && !@user.nil? && !@user.errors.empty?
+			flash[:alert] ||= []
+			@user.errors.full_messages.map do |msg|
+				flash[:alert].push(msg)
+    	end
+  	end
+
+  	messages = []
+
+		flash.each do |key, message|
+			if message.kind_of? Array
+				message.each do |msg|
+					messages.push("$.jGrowl(\"#{msg}\");")
+				end
+			else
+				messages.push("$.jGrowl(\"#{message}\");")
+			end
+		end
+
+		flash.clear
+
+		messages.join.html_safe
+	end
 
 	def avatar(user, size = :small, className = "")
 		if size == :small

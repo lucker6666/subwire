@@ -3,14 +3,6 @@
 		$.jGrowl.defaults.sticky = true;
 		$.jGrowl.defaults.position = "bottom-right";
 
-		<% flash.each do |key, message| %>
-			<% if message.kind_of? Array %>
-				<% message.each do |msg| %>
-					$.jGrowl("<%= msg %>");
-				<% end %>
-			<% else %>
-				$.jGrowl("<%= message %>");
-			<% end %>
-		<% end %>
+		<%= flash_messages() %>
 	});
 </script>
