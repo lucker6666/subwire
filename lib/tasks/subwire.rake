@@ -19,6 +19,7 @@ namespace :subwire do
 		)
 
 		user.is_admin = true
+		user.confirmed_at = Time.now
 		user.save
 
 		rel = Relationship.new
