@@ -233,7 +233,8 @@ de:
     new_success: Dein Kommentar wurde gespeichert
     new_notification: Neuer Kommentar von %{user} zu
     update_success: Deine Änderungen wurden erfolgreich übernommen
-    plural: Kommentar(e)
+    plural: Kommentar(e
+    destroyed: Kommentar gelöscht
 
   instances:
     new: Erstelle eine neue Instanz!
@@ -282,7 +283,7 @@ de:
     created: Benutzer erfolgreich hinzugefügt
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
-
+    new_user: Benutzer %{user} wurde hinzugefügt
 
 
   activerecord:
