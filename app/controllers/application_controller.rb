@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 	# refresh_config: Reloads the current instance config from database
 	before_filter :set_locale, :refresh_config, :globals, :set_timezone
 
-	after_filter :convert_devise_flash_messages
-
 	# We need all helpers, all the time
 	helper :all
 
@@ -164,15 +162,5 @@ class ApplicationController < ActionController::Base
 			else
 				redirect_to "/"
 			end
-		end
-
-		# A little hack to convert the flash[:notice] messages to flash[:alert] to display the
-		# flash messages from the devise stuff
-		def convert_devise_flash_messages
-			if defined?(resource) && !resource.nil?
-				resource.errors.full_messages.map do |msg|
-		    	feedback msg
-		    end
-		  end
 		end
 end
