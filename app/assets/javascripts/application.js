@@ -87,8 +87,9 @@ function updateNotifications() {
 		$.each(data, function(key, val) {
 			classAttr = '';
 
-			if (!val.is_read) {
+			if (val.is_read) {
 				classAttr = ' class="read"';
+			} else {
 				++notificationsCount;
 			}
 
