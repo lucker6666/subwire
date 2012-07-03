@@ -304,6 +304,7 @@ en:
     models:
       article: Article
       user: User
+      relationship: User
       instance: Instance
       comment: Comment
       link: Bookmark

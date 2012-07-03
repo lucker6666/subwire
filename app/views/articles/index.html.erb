@@ -1,5 +1,5 @@
 <%- model_class = Article.new.class -%>
-<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <% @articles.each do |article| %>
 	<table class="table table-bordered table-condensed article">

@@ -300,6 +300,7 @@ de:
     models:
       article: Artikel
       user: Benutzer
+      relationship: Benutzer
       instance: Instanz
       comment: Kommentar
       link: Lesezeichen
