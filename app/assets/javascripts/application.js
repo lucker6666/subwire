@@ -9,7 +9,7 @@ $(function() {
 	$('.commentContainer').hide();
 	$('a.availability_cell').click(switchAvailability);
 
-	$('.btn').click(function(e) {
+	$('.btn').not('.no-lock').click(function(e) {
 		if ($(this).hasClass('btn-disabled')) {
 			e.preventDefault();
 			return false;

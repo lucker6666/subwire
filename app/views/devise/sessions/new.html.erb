@@ -8,17 +8,59 @@
   			<%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
         </div>
 
-        <% if devise_mapping.rememberable? -%>
-            <label class="checkbox">
-	    		<%= f.check_box :remember_me %>
-                <%=t 'devise.remember_me' %>
-            </label>
-	  	<% end -%>
+  		<button class="btn btn-success pull-right" name="commit" type="submit">
+  			<i class="icon icon-off"></i> <%= t("helpers.sign_in") %>
+  		</button>
 
-	  	<div align="center">
-	  		<%= f.submit t("helpers.sign_in"), :class => "btn btn btn-success btn-large" %>
-            <%= link_to t("helpers.sign_up"), new_registration_path(resource_name), :class => "btn btn btn-large" %>
-	  	</div>
+		<div class="btn-group">
+        	<button class="btn btn-inverse no-lock" id="remember-me" type="button"
+        		data-toggle="button">
+
+        		<i class="icon-lock icon-white"></i>
+        		<%= t("devise.remember_me") %>
+        	</button>
+
+			<a class="btn btn-inverse dropdown-toggle"
+				data-toggle="dropdown">
+				<i class="icon icon-cog"></i>
+			</a>
+
+			<ul class="dropdown-menu">
+				<li>
+					<a href="#">
+						<i class="icon icon-lock"></i>
+        				<%= t("users.password_lost") %>
+					</a>
+				</li>
+
+				<li>
+					<a href="<%= new_registration_path(resource_name) %>">
+						<i class="icon icon-check"></i>
+						<%= t("helpers.sign_up") %>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+    	<script>
+    		$(function() {
+    			$("button#remember-me").click(function(e) {
+    				var target = $(event.target);
+    				var active = target.hasClass('active');
+    				var i = target.children("i");
+
+    				$('input#remember-me-input').val(active ? 0 : 1);
+
+    				if (active) {
+						i.removeClass("icon-ok").addClass("icon-lock");
+    				} else {
+    					i.removeClass("icon-lock").addClass("icon-ok");
+    				}
+    			});
+    		});
+    	</script>
+
+  		<input name="user[remember_me]" type="hidden" value="0" id="remember-me-input" />
     </fieldset>
 
 	<%= render "links" %>

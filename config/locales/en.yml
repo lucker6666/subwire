@@ -282,7 +282,7 @@ en:
     not_updated: Link couldn't be saved.
 
   relationships:
-    new: Add 
+    new: Add
     created: User successfully added
     updated: User successfully updated
     destroyed: User successfully deleted
@@ -295,7 +295,7 @@ en:
 
   popover:
     instances_title: Instances
-    instances_content: An instance is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an instance for your company, one for your clique and one for your private project team. Only the users, which are assigned to an instance, are able to see the content of it. 
+    instances_content: An instance is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an instance for your company, one for your clique and one for your private project team. Only the users, which are assigned to an instance, are able to see the content of it.
     relationship_title: User
     relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
 
@@ -321,6 +321,7 @@ en:
         is_admin: Superadmin
         password: Password
         password_confirmation: Confirm Password
+        password_lost: Lost password?
         is_admin_of_instance: Admin of this Instance?
         lang: Language
         timezone: Timezone
