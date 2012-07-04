@@ -65,7 +65,6 @@ class ApplicationController < ActionController::Base
 			# Case 1: nil or empty string or empty array
 			if flash[:alert].nil? || flash[:alert].to_s.strip.length == 0
 				flash[:alert] = [msg]
-				return
 			# Case 2: array
 			elsif flash[:alert].kind_of?(Array)
 				flash[:alert].push(msg)
