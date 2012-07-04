@@ -15,23 +15,27 @@ module ApplicationHelper
 		current_instance.advertising
 	end
 
-	def flash_messages
-		if defined?(@user) && !@user.nil? && !@user.errors.empty?
-			flash[:alert] ||= []
-			@user.errors.full_messages.map do |msg|
-				flash[:alert].push(msg)
-    	end
-  	end
+	# Convert String to jGrowl Notification JS Code
+	def jGrowl_message(msg)
+		"$.jGrowl(\"#{msg}\");"
+	end
 
+	# Returns the JS Code of all flash messages including Devise model errors
+	def flash_messages
   	messages = []
 
+  	# Add all Devise model errors to the result array
+		if defined?(@user) && !@user.nil? && !@user.errors.empty?
+			@user.errors.full_messages.map { |msg| messages.push(jGrowl_message(msg)) }
+  	end
+
+  	# Add all flash messages to the result array
 		flash.each do |key, message|
+			# In some cases message maybe an array too
 			if message.kind_of? Array
-				message.each do |msg|
-					messages.push("$.jGrowl(\"#{msg}\");")
-				end
+				message.each { |msg| messages.push(jGrowl_message(msg)) }
 			else
-				messages.push("$.jGrowl(\"#{message}\");")
+				messages.push(jGrowl_message(message))
 			end
 		end
 
