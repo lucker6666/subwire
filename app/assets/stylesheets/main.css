@@ -452,11 +452,15 @@
 	}
 
 	.login-form input.text_field {
-		width: 240px;
+		width: 250px;
 	}
 
 	.login-form form .btn {
 		margin-top: 1.5em;
+	}
+
+	.login-form #remember-me i.icon-lock {
+		margin-right: 4px;
 	}
 
 

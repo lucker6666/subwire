@@ -266,6 +266,7 @@ de:
     not_updated: Benutzer konnte nicht gespeichert werden.
     removed: Benutzer wurde aus dieser Instanz entfernt.
     password_error: Die Passwörter müssen identisch sein
+    password_lost: Passwort vergessen?
     assignedCount: Zugewiesene Instanzen
     adminCount: Eigene Instanzen
     articlesCount: Artikel gesamt
@@ -286,10 +287,10 @@ de:
     new_user: Benutzer %{user} wurde hinzugefügt
 
   tooltip:
-    planningTool: Aktiviert ein Tool zum finden eines gemeinsamen Termins. 
+    planningTool: Aktiviert ein Tool zum finden eines gemeinsamen Termins.
     comment_edit: Kommentar bearbeiten
     comment_delete: Kommentar löschen
-  
+
   popover:
     instances_title: Instanzen
     instances_content: Eine Instanz ist ein unabhängiger Teil des Systems mit eigenen Artikeln, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst also eine Instanz für deine Firma, deinen Verein, deine Clique oder ähnliches haben. Nur die Benutzer, die zu einer Instanz eningeladen wurden haben auch Zugriff auf diese Instanz.
