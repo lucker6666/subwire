@@ -272,6 +272,7 @@ de:
     articlesCount: Artikel gesamt
     commentsCount: Kommentare gesamt
     destroyed: Der Benutzer wurde erfolgreich gelöscht
+    forgot_password: Passwort vergessen?
 
   links:
     created: Link wurde erfolgreich erstellt.

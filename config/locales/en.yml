@@ -274,6 +274,7 @@ en:
     articlesCount: Articles total
     commentsCount: Comments total
     destroyed: User deleted
+    forgot_password: Forgot your password?
 
   links:
     created: Link was successfully created.
