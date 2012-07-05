@@ -12,10 +12,10 @@ class UsersController < ApplicationController
 	# GET /users/1
 	def show
 		@user = User.find(params[:id])
-		@assignedCount = Relationship.where(:user_id => current_user.id).length
-		@adminCount = Relationship.where(:user_id => current_user.id, :admin => true).length
-		@articlesCount = Article.where(:user_id => current_user.id).length
-		@commentsCount = Comment.where(:user_id => current_user.id).length
+		@assignedCount = Relationship.where(:user_id => @user.id).length
+		@adminCount = Relationship.where(:user_id => @user.id, :admin => true).length
+		@articlesCount = Article.where(:user_id => @user.id).length
+		@commentsCount = Comment.where(:user_id => @user.id).length
 	end
 
 	# GET /users/edit/1
