@@ -304,6 +304,8 @@ de:
     instances_content: Eine Instanz ist ein unabhängiger Teil des Systems mit eigenen Artikeln, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst also eine Instanz für deine Firma, deinen Verein, deine Clique oder ähnliches haben. Nur die Benutzer, die zu einer Instanz eningeladen wurden haben auch Zugriff auf diese Instanz.
     relationship_title: Benutzer
     relationship_content: Hier kannst du einen Benutzer deiner Instanz hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist bekommt er eine E-Mail und wird nach der Anmeldung sofort deiner Instanz zugeordnet.
+    links_title: Lesezeichen
+    links_content: Jede Instanz kann eigene Lesezeichen zu euren wichtigsten Seiten für euer Team beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
 
   activerecord:
     models:

@@ -523,3 +523,9 @@
  	footer ul li:first-child {
  		border-left: none;
  	}
+
+ 	.popover_help {
+ 		float:right;
+ 		font-size:20pt;
+ 		margin-top:0.3em;
+ 	}
