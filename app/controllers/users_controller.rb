@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 	# GET /users
 	def index
-		@users = User.all
+		@users = User.where(:is_deleted => false)
 	end
 
 	# GET /users/1
@@ -61,12 +61,41 @@ class UsersController < ApplicationController
 
 		# Make sure the user tries to delete himself or the user is superadmin
 		if current_user == @user || has_superadmin_privileges?
+
+			#Check Instances from the User
+			@ownInstances = Relationship.where(:user_id => @user.id, :admin => true)
+			@ownInstances.each do |o|
+				@userInInstance = Relationship.find_all_users_by_instance(o)
+
+				if(@userInInstance.length > 1)
+					#Another Admin in this Instance?
+					if(@userInInstance.where(:is_admin => true).length < 2)
+						feedback "You have an Instance with no other Admin!"
+						redirect_to :back
+					end
+				else
+					#Delete the Instance
+					@instance = Instance.find(o.instance_id)
+					@instance.destroy
+				end
+			end
+
+
+			#Delete Notifications: useless
 			@notifications = Notification.find_all_by_user_id(@user.id)
 			@notifications.each do |n|
 				n.destroy
 			end
 
-			@user.destroy
+			#Delete all relationships
+			@relationships = Relationship.where(:user_id => @user.id)
+			@relationships.each do |r|
+				r.destroy
+			end
+
+			#Destry the user not really, set only a flag
+			@user.is_deleted = true
+			@user.save
 
 			# End session
 			if @user == current_user

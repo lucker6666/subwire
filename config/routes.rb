@@ -2,7 +2,7 @@ Subwire::Application.routes.draw do
 	mount Ckeditor::Engine => '/ckeditor'
 
 	# Devise
-	devise_for :users
+	devise_for :users, :controllers => {:registrations => "registrations"}
 
 	# Unset current instance
 	get "instances/unset", :to => "instances#unset"
