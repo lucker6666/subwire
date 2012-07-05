@@ -466,6 +466,10 @@
 		margin-right: 4px;
 	}
 
+	.login-form .btn-group.pull-left {
+		margin-right: 0.8em;
+	}
+
 
 
 /**

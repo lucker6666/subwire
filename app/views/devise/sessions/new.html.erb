@@ -8,11 +8,7 @@
   			<%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
         </div>
 
-  		<button class="btn btn-success pull-right" name="commit" type="submit">
-  			<i class="icon icon-off"></i> <%= t("helpers.sign_in") %>
-  		</button>
-
-		<div class="btn-group">
+		<div class="btn-group pull-left">
         	<button class="btn btn-inverse no-lock" id="remember-me" type="button"
         		data-toggle="button">
 
@@ -41,6 +37,10 @@
 				</li>
 			</ul>
 		</div>
+
+  		<button class="btn btn-success" name="commit" type="submit">
+  			<i class="icon icon-off"></i> <%= t("helpers.sign_in") %>
+  		</button>
 
     	<script>
     		$(function() {
