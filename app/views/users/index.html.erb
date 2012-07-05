@@ -5,6 +5,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th><i class="icon icon-user"></i></th>
 				<th><%= model_class.human_attribute_name(:name) %></th>
 				<th><%= model_class.human_attribute_name(:email) %></th>
 				<th><%= model_class.human_attribute_name(:is_admin) %></th>
@@ -15,6 +16,7 @@
 		<tbody>
 			<% @users.each do |user| %>
 				<tr>
+					<td><%= avatar(user, :list) %></td>
 					<td><%= link_to user.name, user_path(user) %></td>
 					<td><%= user.email %></td>
 					<td><%= boolean_icon(user.is_admin?) %></td>

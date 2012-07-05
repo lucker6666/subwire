@@ -45,12 +45,19 @@ module ApplicationHelper
 	end
 
 	def avatar(user, size = :small, className = "")
-		if size == :small
+		case size
+		when :small
 			width = 50
 			height = 50
-		elsif size == :tiny
+
+		when :tiny
 			width = 30
 			height = 30
+
+		when :list
+			width = 16
+			height = 16
+
 		else
 			width = 100
 			height = 100

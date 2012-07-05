@@ -416,6 +416,12 @@
 		word-wrap: break-word;
 	}
 
+ 	ul.users .avatar {
+ 		float: left;
+ 		margin-right: 5px;
+		margin-top: 4px;
+ 	}
+
 
 
 /**
