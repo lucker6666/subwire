@@ -7,7 +7,6 @@ Subwire::Application.routes.draw do
 		:confirmations => "confirmations"
 	}
 
-	get "confirmations/finish", :to => "confirmations#finish"
 
 	# Unset current instance
 	get "instances/unset", :to => "instances#unset"
@@ -17,6 +16,8 @@ Subwire::Application.routes.draw do
 	resources :instances
 
 	# Users
+	get "users/finish", :to => "users#finish"
+	post "users/finish", :to => "users#finish_save"
 	resources :users, :only => [:index, :show, :edit, :update, :destroy]
 
 	# Relationships
