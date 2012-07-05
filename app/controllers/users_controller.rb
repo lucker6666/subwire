@@ -20,7 +20,12 @@ class UsersController < ApplicationController
 
 	# GET /users/edit/1
 	def edit
-		@user = User.find(params[:id])
+		#Man darf nur sich selber bearbeiten, es sei denn man ist super admin
+		if current_user == @user || has_superadmin_privileges?
+			@user = User.find(params[:id])
+		else
+			@user = current_user
+		end
 	end
 
 	# PUT /users/1
