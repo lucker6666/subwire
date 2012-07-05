@@ -1,6 +1,6 @@
 <h1><%= t('users.finish_registration') %></h1>
 
-<%= form_for(current_user, :url => users_finish_path, :method => :post) do |f| %>
+<%= form_for(@user, :url => users_finish_path, :method => :post) do |f| %>
 	<fieldset>
         <div class="clearfix">
   			<%= f.text_field :name, :class => 'text_field', :placeholder => t('helpers.name')  %>

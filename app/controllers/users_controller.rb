@@ -111,7 +111,8 @@ class UsersController < ApplicationController
 	end
 
 	def finish
-		current_user.name = ""
+		@user = User.find(current_user.id)
+		@user.name = ""
 		render :finish, :layout => "login"
 	end
 
@@ -119,6 +120,9 @@ class UsersController < ApplicationController
 		user = current_user
 
 		if user.update_attributes(params[:user])
+			user.invitation_pending = false
+			user.save
+
 			feedback t('users.invitation_finished')
 			redirect_to "/"
 		else
