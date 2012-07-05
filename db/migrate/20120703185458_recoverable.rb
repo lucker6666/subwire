@@ -1,8 +1,7 @@
 class Recoverable < ActiveRecord::Migration
 	def change
-	  change_table(:users) do |t|
-	    t.confirmable
-	  end
+	  add_column :users, :reset_password_token, :string
+    add_column :users, :reset_password_sent_at, :datetime
 
   	add_index :users, :reset_password_token, :unique => true
 	end
