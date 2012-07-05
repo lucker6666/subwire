@@ -5,6 +5,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th><i class="icon icon-user"></i></th>
 				<th><%= model_class.human_attribute_name(:name) %></th>
 				<th><%= model_class.human_attribute_name(:email) %></th>
 				<th><%= model_class.human_attribute_name(:is_admin) %></th>
@@ -15,6 +16,7 @@
 			<% @relationships.each do |relationship| %>
 				<% relationship = Relationship.find_by_instance_and_user(current_instance, relationship.user) %>
 				<tr>
+					<td><%= avatar(relationship.user, :list) %></td>
 					<td><%= link_to relationship.user.name, user_path(relationship.user) %></td>
 					<td><%= relationship.user.email %></td>
 					<td>
