@@ -24,9 +24,37 @@ class RelationshipsController < ApplicationController
 		user = User.find_by_email(params[:relationship][:email])
 
 		unless user
-			# TODO create new user!
-			feedback "TODO ! user doesn't exist!" # TODO translate
-			render action: "new"
+			password =
+			user = User.new
+			user.name = "unkown"
+			user.email = params[:relationship][:email]
+			user.password = Digest::MD5.hexdigest(Random.rand(10000).to_s)
+			user.timezone = current_user.timezone
+			user.invitation_pending = true
+			user.skip_confirmation!
+			user.confirmation_token = User.confirmation_token
+			user.confirmation_sent_at = Time.now.utc
+
+			unless user.save
+				errors_to_feedback(user)
+				render action: "new"
+				return
+			end
+
+			rel = Relationship.new
+			rel.user = user
+			rel.instance = current_instance
+
+			if has_admin_privileges?
+				rel.admin = params[:relationship][:admin]
+			end
+
+			rel.save
+
+			RelationshipMailer.invitation(user, current_user).deliver
+
+			feedback t('relationships.invited')
+			redirect_to relationships_path
 		else
 			@relationship.user = user
 			@relationship.instance = current_instance

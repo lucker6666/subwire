@@ -286,6 +286,13 @@ de:
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
     new_user: Benutzer %{user} wurde hinzugefügt
+    mail:
+      invitation:
+        subject: '%{user} hat dich zu subwire.net eingeladen!'
+        greet: Hallo!
+        content: '%{user} hat dich zu %{link} eingeladen.'
+        activate_link: Klicke hier um dich zu registrieren!
+        activate_link_text: 'Rufe folgende Adresse auf um dich zu registrieren:'
 
   tooltip:
     planningTool: Aktiviert ein Tool zum finden eines gemeinsamen Termins.
