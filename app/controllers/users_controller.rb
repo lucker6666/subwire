@@ -111,9 +111,13 @@ class UsersController < ApplicationController
 	end
 
 	def finish
-		@user = User.find(current_user.id)
-		@user.name = ""
-		render :finish, :layout => "login"
+		if current_user.invitation_pending
+			@user = User.find(current_user.id)
+			@user.name = ""
+			render :finish, :layout => "login"
+		else
+			redirect_to "/"
+		end
 	end
 
 	def finish_save
