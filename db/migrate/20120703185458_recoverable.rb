@@ -1,7 +1,7 @@
 class Recoverable < ActiveRecord::Migration
-  def up
-  end
-
-  def down
-  end
+	def change
+	  change_table(:users) do |t|
+	    t.confirmable
+	  end
+	end
 end
