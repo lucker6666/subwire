@@ -40,7 +40,8 @@ class UsersController < ApplicationController
 
 				if @user.update_attributes(params[:user])
 					if has_superadmin_privileges?
-						@user.is_admin = params[:user][:admin]
+						@user.is_admin = params[:is_admin]
+						@user.save
 					end
 
 					feedback t('users.updated')

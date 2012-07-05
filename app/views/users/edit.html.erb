@@ -26,7 +26,7 @@
 				<%= f.label :is_admin, :class => 'control-label' %>
 
 				<div class="controls">
-					<%= check_box_tag :is_admin, true, {:class => 'check_box'} %>
+					<%= check_box_tag :is_admin, true, @user.is_admin, {:class => 'check_box'} %>
 				</div>
 			</div>
 		<% end %>
