@@ -46,4 +46,8 @@
 	<%= link_to t('relationships.new', :default => t("helpers.relationships.new")),
 		"/relationships/new",
 		:class => 'btn btn-primary' %>
+
+	<a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.relationship_content') %>" data-original-title="<%= t('popover.relationship_title') %>">
+		<i class="icon icon-question-sign"></i>
+	</a>
 </div>

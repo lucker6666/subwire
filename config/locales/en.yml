@@ -299,7 +299,8 @@ en:
     instances_content: An instance is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an instance for your company, one for your clique and one for your private project team. Only the users, which are assigned to an instance, are able to see the content of it.
     relationship_title: User
     relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
-
+    links_title: Bookmarks
+    links_content: Each instance contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
 
   activerecord:
     models:
