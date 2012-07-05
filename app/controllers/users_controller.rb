@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!, :check_permissions
+	before_filter :authenticate_user!
+	before_filter :choose_instance!, :check_permissions, :except => [:finish, :finish_save]
 	before_filter :restricted_to_superadmin, :only => [:index]
+	skip_filter :finish_invitation, :only => [:finish, :finish_save]
 
 	# TODO actions: update
 
@@ -106,5 +108,22 @@ class UsersController < ApplicationController
 		end
 
 		redirect_to :back
+	end
+
+	def finish
+		current_user.name = ""
+		render :finish, :layout => "login"
+	end
+
+	def finish_save
+		user = current_user
+
+		if user.update_attributes(params[:user])
+			feedback t('users.invitation_finished')
+			redirect_to "/"
+		else
+			errors_to_feedback user
+			render :finish, :layout => "login"
+		end
 	end
 end

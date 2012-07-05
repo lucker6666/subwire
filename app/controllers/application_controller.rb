@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
 	# set_locale: Determines the language of the user
 	# refresh_config: Reloads the current instance config from database
+	before_filter :finish_invitation
 	before_filter :set_locale, :refresh_config, :globals, :set_timezone
 
 	# We need all helpers, all the time
@@ -84,6 +85,12 @@ class ApplicationController < ActionController::Base
 
 
 		# Filters:
+
+		def finish_invitation
+			if current_user && current_user.invitation_pending
+				redirect_to "/users/finish"
+			end
+		end
 
 		# Reloads the current instance config from database
 		def refresh_config

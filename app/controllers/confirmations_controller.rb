@@ -8,15 +8,10 @@ class ConfirmationsController < Devise::ConfirmationsController
       respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
     else
     	if resource.invitation_pending
-				feedback "test"
-    		redirect_to "/confirmations/finish"
+    		sign_in(resource)
     	else
     		redirect_to "/"
   		end
     end
   end
-
-	def finish
-		feedback "todo"
-	end
 end

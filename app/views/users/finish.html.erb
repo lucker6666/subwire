@@ -1,0 +1,21 @@
+<h1><%= t('users.finish_registration') %></h1>
+
+<%= form_for(current_user, :url => users_finish_path, :method => :post) do |f| %>
+	<fieldset>
+        <div class="clearfix">
+  			<%= f.text_field :name, :class => 'text_field', :placeholder => t('helpers.name')  %>
+        </div>
+
+        <div class="clearfix">
+  			<%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
+        </div>
+
+        <div class="clearfix">
+  			<%= f.password_field :password_confirmation, :class => 'text_field', :placeholder => t('helpers.password_confirmation') %>
+        </div>
+
+	  	<div align="center">
+	  		<%= f.submit t("helpers.sign_up"), :class => "btn btn-success btn-large" %>
+	  	</div>
+    </fieldset>
+<% end %>
