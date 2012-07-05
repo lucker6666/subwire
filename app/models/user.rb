@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
 		:default_url => '/assets/anonymous.png',
 		:styles => {
 			:small => "50x50#",
+			:tiny => "30x30#",
+			:list => "16x16#",
 			:default => "100x100#"
 		}
 
