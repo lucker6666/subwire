@@ -288,6 +288,13 @@ en:
     updated: User successfully updated
     destroyed: User successfully deleted
     new_user: User %{user} joined
+    mail:
+      invitation:
+        subject: '%{user} has invited you to subwire.net!'
+        greet: 'Hello!'
+        content: '%{user} has invited you to %{link}.'
+        activate_link: Click here to sign up!
+        activate_link_text: 'Enter that adress to your browser to sign up:'
 
   tooltip:
     planningTool: Activates a tool to find a joint appointment.
