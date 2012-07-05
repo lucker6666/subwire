@@ -26,7 +26,7 @@ class InstancesController < ApplicationController
 
 	# GET /instances/new
 	def new
-		if Instance.find_all_where_user_is_admin(current_user).length > 4
+		if !has_superadmin_privileges? && Instance.find_all_where_user_is_admin(current_user).length > 4
 			feedback t('instances.hit_limit')
 			redirect_to instances_path
 		else
