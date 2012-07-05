@@ -17,6 +17,7 @@
 # 	avatar_content_type"	:string
 # 	avatar_file_size"			:integer
 # 	avatar_updated_at"		:datetime
+#   is_deleted				:boolean
 #
 # TODO: remove superadmin
 
@@ -80,5 +81,9 @@ class User < ActiveRecord::Base
 
 	def instance_count
 		Relationship.find_all_by_user_id(id).length
+	end
+
+	def self.find_for_authentication(conditions) 
+  		super(conditions.merge(:is_deleted => false))
 	end
 end
