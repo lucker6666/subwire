@@ -149,31 +149,33 @@
 							</li>
 						</ul>
 
-						<ul class="nav pull-right availabilitites">
-							<li class="divider-vertical"></li>
-							<li class="dropdown planner">
-							    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<i class="icon icon-calendar"></i>
-									<%=l Date.today, format: :long %>
+						<% if current_instance.planningTool %>
+							<ul class="nav pull-right availabilitites">
+								<li class="divider-vertical"></li>
+								<li class="dropdown planner">
+								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								    	<i class="icon icon-calendar"></i>
+										<%=l Date.today, format: :long %>
 
-									<%
-										availabilities = Availability.where(
-											"date >= ? and user_id = ?", Date.today, current_user.id
-										)
+										<%
+											availabilities = Availability.where(
+												"date >= ? and user_id = ?", Date.today, current_user.id
+											)
 
-										if availabilities.length < 7
-									%>
-										<span class="badge badge-warning">!</span>
-									<% end %>
+											if availabilities.length < 7
+										%>
+											<span class="badge badge-warning">!</span>
+										<% end %>
 
-							        <b class="caret"></b>
-							    </a>
+								        <b class="caret"></b>
+								    </a>
 
-							    <div class="dropdown-menu">
-							    	<%= render :partial => 'shared/availability' %>
-							    </div>
-							</li>
-						</ul>
+								    <div class="dropdown-menu">
+								    	<%= render :partial => 'shared/availability' %>
+								    </div>
+								</li>
+							</ul>
+						<% end %>
 					</div>
 				</div>
 			</div>
