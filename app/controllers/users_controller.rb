@@ -67,6 +67,11 @@ class UsersController < ApplicationController
 
 			@user.destroy
 
+			# End session
+			if @user == current_user
+				sign_out(current_user)
+			end
+
 			feedback t('users.destroyed')
 		end
 
