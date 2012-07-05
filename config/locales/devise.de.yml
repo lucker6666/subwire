@@ -19,6 +19,8 @@ de:
       signed_out: 'Erfolgreich Abgemeldet.'
     passwords:
       send_instructions: 'Du wirst in Kürze eine E-Mail erhalten, in der dir erklärt wird, wie du dein Passwort zurücksetzt.'
+      send_instructions_button: 'Passwort zurücksetzen'
+      reset: 'Passwort ändern'
       updated: 'Dein Passwort wurde erfolreich geändert. Du bist nun angemeldet.'
     confirmations:
       send_instructions: 'Du wirst in Kürze eine E-Mail erhalten mit deren Hilfe du deinen Account bestätigen kannst.'

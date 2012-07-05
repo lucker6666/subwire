@@ -26,6 +26,8 @@ en:
       signed_out: 'Signed out successfully.'
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      send_instructions_button: 'Reset password'
+      reset: 'Change my Password'
       updated: 'Your password was changed successfully. You are now signed in.'
       updated_not_active: 'Your password was changed successfully.'
       send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
