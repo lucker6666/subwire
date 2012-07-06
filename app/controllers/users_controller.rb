@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	# GET /users
 	def index
-		@users = User.where(:is_deleted => false)
+		@users = User.where(:is_deleted => false, :invitation_pending => false)
 	end
 
 	# GET /users/1
