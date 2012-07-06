@@ -231,7 +231,6 @@ de:
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
-    new_notification: Neuer Kommentar von %{user} zu
     update_success: Deine Änderungen wurden erfolgreich übernommen
     plural: Kommentar(e
     destroyed: Kommentar gelöscht
@@ -252,8 +251,6 @@ de:
     not_created: Artikel konnte nicht erstellt werden.
     updated: Artikel aktualisiert.
     not_updated: Artikel konnte nicht gespeichert werden.
-    new_notification: Neuer Artikel von %{user}
-    edit_notification: Artikel von %{user} bearbeitet
     destroyed: Artikel erfolgreich gelöscht.
     standard_title: Herzlich Willkommen in deiner neuen Instanz
     standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben!
@@ -280,12 +277,17 @@ de:
     updated: Link aktualisiert.
     not_updated: Link konnte nicht gespeichert werden.
 
+  notifications:
+    new_article: Neuer Artikel von %{user}
+    edit_article: Artikel von %{user} bearbeitet
+    new_user: Benutzer %{user} wurde hinzugefügt
+    new_comment: Neuer Kommentar von %{user} zu
+
   relationships:
     new: Benutzer hinzufügen
     created: Benutzer erfolgreich hinzugefügt
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
-    new_user: Benutzer %{user} wurde hinzugefügt
     mail:
       invitation:
         subject: '%{user} hat dich zu subwire.net eingeladen!'
