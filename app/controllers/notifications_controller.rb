@@ -10,7 +10,7 @@ class NotificationsController < ApplicationController
 		)
 
 		respond_to do |format|
-			format.json { render json: @notifications, :methods => :avatar_path }
+			format.json { render json: @notifications, :methods => [:message, :avatar_path] }
 		end
 	end
 
