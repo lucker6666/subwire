@@ -1,6 +1,6 @@
 <p><%= t('relationships.mail.invitation.greet') %></p>
 
 <p><%= t('relationships.mail.invitation.content', :user => @current_user.name, :link =>
-	"<a href='http://subwire.net'>subwire.net</a>") %></p>
+	"<a href='http://subwire.net'>subwire.net</a>".html_safe) %></p>
 
 <p><%= link_to t('relationships.mail.invitation.activate_link'), confirmation_url(@user, :confirmation_token => @user.confirmation_token) %></p>
