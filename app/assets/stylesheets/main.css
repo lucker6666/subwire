@@ -68,6 +68,10 @@
 		position: relative;
 	}
 
+	.pagination {
+		text-align: center;
+	}
+
 	.pagination ul {
 		background-color: #fff;
 	}
