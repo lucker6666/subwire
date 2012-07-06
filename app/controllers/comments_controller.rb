@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
 		if @comment.save
 			Notification.notify_all_users({
 				:notification_type => "new_comment",
-				:message => "<strong>"+t("comments.new_notification", user: @comment.user.name)+":</strong> <br />#{@article.title}",
+				:provokesUser => @comment.user.id,
+				:subject => @article.title,
 				:href => article_path(@article)
 			}, current_instance, current_user)
 

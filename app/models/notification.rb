@@ -19,7 +19,7 @@
 
 class Notification < ActiveRecord::Base
 	### Attributes
-	attr_accessible :notification_type, :message, :href, :created_by
+	attr_accessible :notification_type, :provokesUser, :subject, :href, :created_by
 
 	### Associations
 	belongs_to :user
@@ -28,7 +28,7 @@ class Notification < ActiveRecord::Base
 
 	### Validations
 	# Make sure, notification_type, message, href, is_read are not empty
-	validates :notification_type, :created_by, :message, :href, :presence => true
+	validates :notification_type, :created_by, :href, :presence => true
 
 
 	### Methods
@@ -40,7 +40,8 @@ class Notification < ActiveRecord::Base
 			unless user == current_user or except.include?(user)
 				notification = Notification.new({
 					:notification_type => data[:notification_type],
-					:message => data[:message],
+					:provokesUser => data[:provokesUser],
+					:subject => data[:subject],
 					:href => data[:href],
 					:created_by => current_user
 				})
@@ -55,7 +56,11 @@ class Notification < ActiveRecord::Base
 	end
 
 	def avatar_path
-		user.avatar.url
+		User.find(self.provokesUser).avatar.url
+	end
+
+	def message
+		"<strong>" + I18n.t("notifications." + self.notification_type, user: User.find(self.provokesUser).name) + ":</strong> <br />#{self.subject}"
 	end
 
 	def read!
