@@ -9,7 +9,6 @@
 #		encrypted_password		:string			not null
 #		remember_created_at		:datetime
 #		lang									:string			not null, default => "en"
-# 	superadmin						:boolean		not null, default => "0"
 #		created_at 						:datetime		not null
 #		updated_at 						:datetime		not null
 # 	timezone							:string 		not null, default => "Central Time (US & Canada)"
@@ -19,7 +18,6 @@
 # 	avatar_updated_at"		:datetime
 #   is_deleted				:boolean
 #
-# TODO: remove superadmin
 
 
 class User < ActiveRecord::Base

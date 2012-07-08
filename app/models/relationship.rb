@@ -28,7 +28,9 @@ class Relationship < ActiveRecord::Base
 		result = []
 
 		where(:instance_id => instance.id).each do |rel|
-			result << rel.user
+			unless rel.user.invitation_pending
+				result << rel.user
+			end
 		end
 
 		return result

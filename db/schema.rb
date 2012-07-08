@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705173228) do
+ActiveRecord::Schema.define(:version => 20120706075534) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(:version => 20120705173228) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
-    t.text     "content"
+    t.text     "content",    :limit => 255
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "instances", :force => true do |t|
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20120705173228) do
 
   create_table "notifications", :force => true do |t|
     t.string   "notification_type", :default => "article"
-    t.string   "message"
     t.string   "href"
     t.boolean  "is_read"
     t.integer  "user_id"
@@ -86,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20120705173228) do
     t.datetime "updated_at",                               :null => false
     t.integer  "instance_id",       :default => 1,         :null => false
     t.integer  "created_by"
+    t.integer  "provokesUser"
+    t.string   "subject"
   end
 
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
@@ -118,8 +119,8 @@ ActiveRecord::Schema.define(:version => 20120705173228) do
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean  "invitation_pending",     :default => false
     t.boolean  "is_deleted",             :default => false
+    t.boolean  "invitation_pending",     :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

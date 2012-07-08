@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!, :choose_instance!, :check_permissions
+	before_filter :authenticate_user!
+	before_filter :choose_instance!, :check_permissions, :except => [:finish, :finish_save]
 	before_filter :restricted_to_superadmin, :only => [:index]
+	skip_filter :finish_invitation, :only => [:finish, :finish_save]
 
 	# TODO actions: update
 
 	# GET /users
 	def index
-		@users = User.where(:is_deleted => false)
+		@users = User.where(:is_deleted => false, :invitation_pending => false)
 	end
 
 	# GET /users/1
@@ -106,5 +108,30 @@ class UsersController < ApplicationController
 		end
 
 		redirect_to :back
+	end
+
+	def finish
+		if current_user.invitation_pending
+			@user = User.find(current_user.id)
+			@user.name = ""
+			render :finish, :layout => "login"
+		else
+			redirect_to "/"
+		end
+	end
+
+	def finish_save
+		user = current_user
+
+		if user.update_attributes(params[:user])
+			user.invitation_pending = false
+			user.save
+
+			feedback t('users.invitation_finished')
+			redirect_to "/"
+		else
+			errors_to_feedback user
+			render :finish, :layout => "login"
+		end
 	end
 end
