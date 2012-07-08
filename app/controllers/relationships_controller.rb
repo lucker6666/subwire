@@ -56,30 +56,62 @@ class RelationshipsController < ApplicationController
 			feedback t('relationships.invited')
 			redirect_to relationships_path
 		else
-			@relationship.user = user
-			@relationship.instance = current_instance
+			#Wenn der Benutzer gelöscht ist soll er auch wieder eine "Einladung" bekommen
+			if user.is_deleted
+				user.password = Digest::MD5.hexdigest(Random.rand(10000).to_s)
+				user.timezone = current_user.timezone
+				user.invitation_pending = true
+				user.skip_confirmation!
+				user.confirmation_token = User.confirmation_token
+				user.confirmation_sent_at = Time.now.utc
+				user.is_deleted = false
 
-			if has_admin_privileges?
-				@relationship.admin = params[:relationship][:admin]
-			end
+				unless user.save
+					errors_to_feedback(user)
+					render action: "new"
+					return
+				end
 
-			# TODO: Create User and send email, if doesn't exist
+				rel = Relationship.new
+				rel.user = user
+				rel.instance = current_instance
 
-			@relationship.instance = current_instance
+				if has_admin_privileges?
+					rel.admin = params[:relationship][:admin]
+				end
 
-			if @relationship.save
-				Notification.notify_all_users({
-					:notification_type => "new_user",
-					:provokesUser => user.id,
-					:subject => "",
-					:href => user_path(user)
-				}, current_instance, current_user, :except => [user])
+				rel.save
 
-				feedback t('relationships.created')
-				redirect_to relationships_path(@article)
+				RelationshipMailer.invitation(user, current_user).deliver
+
+				feedback t('relationships.invited')
+				redirect_to relationships_path
 			else
-				feedback t('relationships.not_created')
-				render action: "new"
+				@relationship.user = user
+				@relationship.instance = current_instance
+
+				if has_admin_privileges?
+					@relationship.admin = params[:relationship][:admin]
+				end
+
+				# TODO: Create User and send email, if doesn't exist
+
+				@relationship.instance = current_instance
+
+				if @relationship.save
+					Notification.notify_all_users({
+						:notification_type => "new_user",
+						:provokesUser => user.id,
+						:subject => "",
+						:href => user_path(user)
+					}, current_instance, current_user, :except => [user])
+
+					feedback t('relationships.created')
+					redirect_to relationships_path(@article)
+				else
+					feedback t('relationships.not_created')
+					render action: "new"
+				end
 			end
 		end
 	end
