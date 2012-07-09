@@ -27,6 +27,7 @@ de:
       confirmed: 'Dein Acoount wurde erfolgreich bestätigt. Du bist nun angemeldet.'
     registrations:
       signed_up: 'Der Benutzer wurde erfolreich angelegt. Falls das Bestätigungsmodul eingeschaltet ist, wird nun eine Bestätigungsmail versand.'
+      signed_up_but_unconfirmed: 'Du hast eine E-Mail mit dem Bestätigungslink von uns bekommen. Schau doch einfach mal in deinem Postfach nach!'
       updated: 'You updated your account successfully.'
       destroyed: 'Der Benutzer wurde erfolgreich gelöscht.'
     unlocks:

@@ -8,12 +8,13 @@ class HomeController < ApplicationController
 				redirect_to instances_path
 			end
 		else
+			flash.keep
 			redirect_to "/users/sign_in"
 		end
 	end
 
 	def inactive
-		feedback t("users.inactive")
-		redirect_to "/", notice: flash
+		flash.keep
+		redirect_to "/"
 	end
 end
