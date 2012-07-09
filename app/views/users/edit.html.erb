@@ -79,15 +79,35 @@
 
 		<br /><br /><br /><br />
 
-		<div class="alert alert-error" style="height:35px;">
-			<%= link_to t('users.delete_account'), user_path(@user),
-			:method => :delete, :class => 'btn btn-danger no-lock',
-			:confirm => t("helpers.links.confirm") %>
-
-			<div style="float:right;">
-				<%= t('users.delete_alert').html_safe %>
+		<!--<div class="alert alert-error">
+			<div class="pull-left" style="display:table-cell; vertical-align:middle;">
+				<p>
+				<%= link_to t('users.delete_account'), user_path(@user),
+				:method => :delete, :class => 'btn btn-danger no-lock',
+				:confirm => t("helpers.links.confirm") %>
+			</p>
 			</div>
 
+			<p style="padding-left:145px;">
+				<%= t('users.delete_alert').html_safe %>
+			</p>
+
+		</div>-->
+		<div class="alert alert-error">
+			<table>
+				<tr>
+					<td>
+						<%= link_to t('users.delete_account'), user_path(@user),
+						:method => :delete, :class => 'btn btn-danger no-lock',
+						:confirm => t("helpers.links.confirm") %>
+					</td>
+					<td>
+						<p style="padding-left:35px;">
+							<%= t('users.delete_alert').html_safe %>
+						</p>
+					</td>
+				</tr>
+			</table>
 		</div>
 	<% end %>
 </div>
