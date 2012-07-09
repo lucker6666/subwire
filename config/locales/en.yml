@@ -273,6 +273,7 @@ en:
     destroyed: User deleted
     forgot_password: Forgot your password?
     inactive: You have to confirm your registration!
+    delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each instance.<br /><b>Note:</b> You my be not the only Admin in one Instance.'
 
   links:
     created: Link was successfully created.
