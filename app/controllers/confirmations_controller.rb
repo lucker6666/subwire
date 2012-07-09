@@ -9,6 +9,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     else
     	if resource.invitation_pending
     		sign_in(resource)
+        redirect_to "/users/finish"
     	else
     		redirect_to "/"
   		end
