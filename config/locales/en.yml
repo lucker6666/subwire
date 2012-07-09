@@ -272,6 +272,7 @@ en:
     commentsCount: Comments total
     destroyed: User deleted
     forgot_password: Forgot your password?
+    inactive: This confirmation link is inactive
 
   links:
     created: Link was successfully created.

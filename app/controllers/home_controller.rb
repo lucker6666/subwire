@@ -13,8 +13,7 @@ class HomeController < ApplicationController
 	end
 
 	def inactive
-		#feedback t("users.inactive")
-		feedback "test"
+		feedback t("users.inactive")
 		redirect_to "/", notice: flash
 	end
 end
