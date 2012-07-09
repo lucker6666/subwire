@@ -76,7 +76,9 @@
 		background-color: #fff;
 	}
 
-
+	span.notification-margin {
+		margin-right:10px;
+	}
 
 /**
  * 	Forms

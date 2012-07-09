@@ -17,7 +17,7 @@
 						<% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
 							<div align="right">
 								<% if notificationCount > 0 %>
-					    			<span class="notification-badge badge badge-info">
+					    			<span class="notification-badge notification-margin badge badge-info">
 						    			<%= notificationCount %>
 						    		</span>
 					    		<% end %>
