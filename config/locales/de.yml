@@ -270,7 +270,7 @@ de:
     commentsCount: Kommentare gesamt
     destroyed: Der Benutzer wurde erfolgreich gelöscht
     forgot_password: Passwort vergessen?
-    inactive: Dieser Bestätigunglink ist ungültig
+    inactive: Du musst deine Registrierung zuerst bestätigen!
 
   links:
     created: Link wurde erfolgreich erstellt.
