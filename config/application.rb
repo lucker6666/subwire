@@ -59,5 +59,15 @@ module Subwire
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+    # Activates GoogleAnalytics integration
+    config.ga = false
+
+    # Your GoogleAnalytics Key
+    #config.ga_key = ""
+
+    # The Domain (e.g. "subwire.net")
+    #config.ga_domain = ""
   end
 end

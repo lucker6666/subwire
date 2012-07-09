@@ -32,10 +32,10 @@
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-  					</a>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
 
 					<ul class="nav">
 						<li>
@@ -45,36 +45,36 @@
 						<li class="dropdown iconOnly instanceChooserCaret">
 							<% if instances.length > 0 %>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							    	<b class="caret"></b>
-							    </a>
+									<b class="caret"></b>
+								</a>
 
 								<ul class="instances-dropdown dropdown-menu">
-							    	<% instances.each do |instance| %>
-							    		<% notificationCount = instance.notification_count(current_user) %>
-								    	<li>
-								    		<%=
-								    			link_to instance_path(instance), {
-								    				:class =>
-								    				(instance == current_instance ? "active" : "")
-								    			} do
-								    		%>
-								    			<% if notificationCount > 0 %>
-									    			<span class="notification-badge badge badge-info">
-										    			<%= notificationCount %>
-										    		</span>
-									    		<% end %>
+									<% instances.each do |instance| %>
+										<% notificationCount = instance.notification_count(current_user) %>
+										<li>
+											<%=
+												link_to instance_path(instance), {
+													:class =>
+													(instance == current_instance ? "active" : "")
+												} do
+											%>
+												<% if notificationCount > 0 %>
+													<span class="notification-badge badge badge-info">
+														<%= notificationCount %>
+													</span>
+												<% end %>
 
-									    		&nbsp;
+												&nbsp;
 
-									    		<%= instance.name %>
-								    		<% end %>
-								    	</li>
-								    <% end %>
+												<%= instance.name %>
+											<% end %>
+										</li>
+									<% end %>
 
-								    <li>
-								    	<%= link_to "Back to overview", "/instances/unset" %>
-								    </li>
-							    </ul>
+									<li>
+										<%= link_to "Back to overview", "/instances/unset" %>
+									</li>
+								</ul>
 							<% end %>
 						</li>
 
@@ -87,63 +87,63 @@
 
 							<li>
 								<%= link_to new_article_path do %>
-							    	<i class="icon icon-file"></i>
-							    	<%= t "application.new_article" %>
+									<i class="icon icon-file"></i>
+									<%= t "application.new_article" %>
 								<% end %>
 							</li>
 
 							<% if has_admin_privileges? %>
 								<li class="dropdown">
-								    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								    	<i class="icon icon-fire"></i>
-								    	Admin
-								    	<b class="caret"></b>
-								    </a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="icon icon-fire"></i>
+										Admin
+										<b class="caret"></b>
+									</a>
 
-								    <ul class="admin-dropdown dropdown-menu">
+									<ul class="admin-dropdown dropdown-menu">
 										<li>
 											<%= link_to relationships_path do %>
-									    		<i class="icon icon-user"></i>
+												<i class="icon icon-user"></i>
 												<%= t "application.user_management" %>
 											<% end %>
 										</li>
 
 										<li>
 											<%= link_to links_path do %>
-									    		<i class="icon icon-screenshot"></i>
+												<i class="icon icon-screenshot"></i>
 												<%= t "application.link_management" %>
 											<% end %>
 										</li>
 
 										<% if has_superadmin_privileges? %>
-									    	<li>
-									    		<%= link_to users_path do %>
-									    			<i class="icon icon-user"></i>
-									    			<%= t('application.all_users') %>
-									    		<% end %>
-									    	</li>
+											<li>
+												<%= link_to users_path do %>
+													<i class="icon icon-user"></i>
+													<%= t('application.all_users') %>
+												<% end %>
+											</li>
 
-									    	<li>
-									    		<%= link_to "/instances/all" do %>
-									    			<i class="icon icon-list-alt"></i>
-									    			<%= t('application.all_instances') %>
-									    		<% end %>
-									    	</li>
-								    	<% end %>
-							    	</ul>
+											<li>
+												<%= link_to "/instances/all" do %>
+													<i class="icon icon-list-alt"></i>
+													<%= t('application.all_instances') %>
+												<% end %>
+											</li>
+										<% end %>
+									</ul>
 								</li>
 							<% end %>
 
 							<li>
 								<%= link_to edit_user_path(current_user) do %>
-						    		<i class="icon icon-user"></i>
+									<i class="icon icon-user"></i>
 									<%= t "application.your_profile" %>
 								<% end %>
 							</li>
 
 							<li>
 								<%= link_to destroy_user_session_path, :method => :delete do %>
-							    	<i class="icon icon-remove"></i>
+									<i class="icon icon-remove"></i>
 									<%= t "application.logout" %>
 								<% end %>
 							</li>
@@ -253,5 +253,20 @@
 		</div>
 
 		<%= render :partial => 'shared/flash_messages' %>
+
+		<% if Subwire::Application.config.ga %>
+			<script type="text/javascript">
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', '<%= Subwire::Application.config.ga_key %>']);
+				_gaq.push(['_setDomainName', '<%= Subwire::Application.config.ga_domain %>']);
+				_gaq.push(['_trackPageview']);
+
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+		<% end %>
 	</body>
 </html>
