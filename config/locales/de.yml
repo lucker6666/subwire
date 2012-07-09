@@ -271,6 +271,8 @@ de:
     destroyed: Der Benutzer wurde erfolgreich gelöscht
     forgot_password: Passwort vergessen?
     inactive: Du musst deine Registrierung zuerst bestätigen!
+    delete_account: Account löschen
+    delete_alert: 'Hier kannst du deinen Account löschen. Bedenke das du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
 
   links:
     created: Link wurde erfolgreich erstellt.
