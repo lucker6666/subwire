@@ -39,4 +39,4 @@ de:
         subject: 'Anweisungen zur Passwortwiederherstellung'
       unlock_instructions:
         subject: 'Anweisungen zum entsperren'
-    remember_me: 'Erinner dich an mich'
+    remember_me: 'Erinner dich'
