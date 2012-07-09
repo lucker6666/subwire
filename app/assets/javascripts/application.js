@@ -115,4 +115,6 @@ function updateNotifications() {
 	});
 }
 
-setInterval("updateNotifications();", 60000);
+if (window.pollNotifications) {
+	setInterval("updateNotifications();", 60000);
+}
