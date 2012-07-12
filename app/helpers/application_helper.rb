@@ -63,8 +63,14 @@ module ApplicationHelper
 			height = 100
 		end
 
-		image_tag user.avatar.url(size), :class => 'avatar ' + className,
+		if user.gravatar
+			image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(), :class => 'avatar' + className
+		else
+			image_tag user.avatar.url(size), :class => 'avatar ' + className,
 				:width => width, :height => height
+		end
+
+		
 	end
 
 	def icons

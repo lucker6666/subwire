@@ -54,6 +54,14 @@
 		</div>
 
 		<div class="control-group">
+			<%= f.label :gravatar, :class => 'control-label' %>
+
+			<div class="controls">
+				<%= check_box_tag :gravatar, true, @user.gravatar, {:class => 'check_box'} %>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<%= f.label :avatar, :class => 'control-label' %>
 			<div class="controls">
 				<%= f.file_field :avatar %>

@@ -116,6 +116,7 @@ class RelationshipsController < ApplicationController
 		end
 	end
 
+
 	# PUT /relationships/1
 	def update
 		@relationship = Relationship.find(params[:id])

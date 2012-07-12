@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706075534) do
+ActiveRecord::Schema.define(:version => 20120712174140) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(:version => 20120706075534) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
-    t.text     "content",    :limit => 255
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "instances", :force => true do |t|
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120706075534) do
     t.datetime "reset_password_sent_at"
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
+    t.string   "gravatar"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
