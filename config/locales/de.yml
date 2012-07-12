@@ -275,10 +275,10 @@ de:
     delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
 
   links:
-    created: Link wurde erfolgreich erstellt.
-    not_created: Link konnte nicht erstellt werden.
-    updated: Link aktualisiert.
-    not_updated: Link konnte nicht gespeichert werden.
+    created: Lesezeichen wurde erfolgreich erstellt.
+    not_created: Lesezeichen konnte nicht erstellt werden.
+    updated: Lesezeichen aktualisiert.
+    not_updated: Lesezeichen konnte nicht gespeichert werden.
 
   notifications:
     new_article: Neuer Artikel von %{user}
@@ -294,10 +294,12 @@ de:
     mail:
       invitation:
         subject: '%{user} hat dich zu subwire.net eingeladen!'
-        greet: Hallo!
+        greet: Hallo
         content: '%{user} hat dich zu %{link} eingeladen.'
         activate_link: Klicke hier um dich zu registrieren!
         activate_link_text: 'Rufe folgende Adresse auf um dich zu registrieren:'
+        link_to_confirm_text: 'Mit folgendem Link kannst du deinen Account aktivieren:'
+        link_to_confirm: 'Aktiviere meinen Account!'
 
   tooltip:
     planningTool: Aktiviert ein Tool zum finden eines gemeinsamen Termins.
