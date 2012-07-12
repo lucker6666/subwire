@@ -61,6 +61,8 @@ class UsersController < ApplicationController
 						@user.save
 					end
 
+					sign_in(@user, :bypass => true)
+
 					feedback t('users.updated')
 					redirect_to user_path(@user)
 				else
