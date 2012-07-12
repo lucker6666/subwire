@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 		:recoverable
 
 	### Attributions
-	attr_accessible :name, :email, :password, :password_confirmation,
+	attr_accessible :name, :password, :password_confirmation,
 		:remember_me, :last_seen, :lang, :avatar, :timezone
 
 	### Associations
