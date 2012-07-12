@@ -288,7 +288,8 @@ de:
     new_comment: Neuer Kommentar von %{user} zu
 
   relationships:
-    new: Benutzer hinzufügen
+    new: Benutzer zur Instanz hinzufügen
+    add: Benutzer zur Instanz hinzufügen
     created: Benutzer erfolgreich hinzugefügt
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
