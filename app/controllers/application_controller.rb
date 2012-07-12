@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 				users.each { |u| u.destroy }
 
 				if current_instance
-					@sidebar_users = Relationship.find_all_users_by_instance(current_instance)
+					@sidebar_users = Relationship.find_all_users_by_instance(current_instance).sort_by(&:name)
 					@sidebar_links = Link.where(:instance_id => current_instance.id)
 					@all_notifications = Notification.find_all_relevant(current_instance, current_user)
 					@unread_notification_count = @all_notifications.find_all { |n| n.is_read == false }.length
