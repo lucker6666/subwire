@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(:version => 20120712174140) do
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
+    t.boolean  "is_deleted",             :default => false
     t.string   "gravatar"
   end
 
