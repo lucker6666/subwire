@@ -295,10 +295,12 @@ en:
     mail:
       invitation:
         subject: '%{user} has invited you to subwire.net!'
-        greet: 'Hello!'
+        greet: 'Hello'
         content: '%{user} has invited you to %{link}.'
         activate_link: Click here to sign up!
         activate_link_text: 'Enter that adress to your browser to sign up:'
+        link_to_confirm_text: 'You can confirm your account login through the link below:'
+        link_to_confirm: 'Confirm my Account'
 
   tooltip:
     planningTool: Activates a tool to find a joint appointment.
