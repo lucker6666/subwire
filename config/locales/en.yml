@@ -289,7 +289,8 @@ en:
     new_comment: New Comment from %{user} to
 
   relationships:
-    new: Add
+    new: Add user to instance
+    add: Add user to instance
     created: User successfully added
     updated: User successfully updated
     destroyed: User successfully deleted
