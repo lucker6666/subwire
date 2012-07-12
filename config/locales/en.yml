@@ -292,6 +292,8 @@ en:
     created: User successfully added
     updated: User successfully updated
     destroyed: User successfully deleted
+    invited: User successfully inveted
+    invitation_finished: 'Now, you can sign in!'
     mail:
       invitation:
         subject: '%{user} has invited you to subwire.net!'

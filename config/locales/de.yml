@@ -291,6 +291,8 @@ de:
     created: Benutzer erfolgreich hinzugefügt
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
+    invited: Benutzer erfolgreich eingeladen
+    invitation_finished: Registration abgeschlossen, du kannst dich jetzt einloggen!
     mail:
       invitation:
         subject: '%{user} hat dich zu subwire.net eingeladen!'
