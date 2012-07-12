@@ -27,8 +27,8 @@ class Relationship < ActiveRecord::Base
 	def self.find_all_users_by_instance(instance)
 		result = []
 
-		where(:instance_id => instance.id, :is_deleted => false, :invitation_pending => false).each do |rel|
-			unless rel.user.invitation_pending
+		where(:instance_id => instance.id).each do |rel|
+			unless rel.user.invitation_pending || rel.user.is_deleted
 				result << rel.user
 			end
 		end
