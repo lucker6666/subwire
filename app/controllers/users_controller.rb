@@ -33,11 +33,26 @@ class UsersController < ApplicationController
 	# PUT /users/1
 	def update
 		@user = User.find(params[:id])
+
+		#Delete the email param
+		params[:user].delete :email
+
 		# Make sure the user tries to edit himself or the user is superadmin
 		if current_user == @user || has_superadmin_privileges?
 				if params[:user][:password].empty?
 					params[:user].delete :password
 					params[:user].delete :password_confirmation
+				end
+
+				#Gravatar
+				if(!@user.gravatar && params[:gravatar])
+					@mail = @user.email
+					@mail.strip!
+					@user.gravatar = Digest::MD5.hexdigest(@mail.downcase)
+					@user.save
+				elsif (!params[:gravatar] && @user.gravatar)
+					@user.gravatar = nil
+					@user.save
 				end
 
 				if @user.update_attributes(params[:user])
