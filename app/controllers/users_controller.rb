@@ -48,7 +48,6 @@ class UsersController < ApplicationController
 				if(!@user.gravatar && params[:gravatar])
 					@mail = @user.email
 					@mail.strip!
-					feedback @mail.downcase
 					@user.gravatar = Digest::MD5.hexdigest(@mail.downcase)
 					@user.save
 				elsif (!params[:gravatar] && @user.gravatar)
