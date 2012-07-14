@@ -60,7 +60,7 @@ class Notification < ActiveRecord::Base
 	end
 
 	def message
-		"<strong>" + I18n.t("notifications." + self.notification_type, user: User.find(self.provokesUser).name) + ":</strong> <br />#{self.subject}"
+		"<strong>" + I18n.t("notifications." + self.notification_type, user: User.find(self.provokesUser).name) + "</strong> <br />#{self.subject}"
 	end
 
 	def read!

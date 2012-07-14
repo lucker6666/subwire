@@ -283,10 +283,10 @@ en:
     not_updated: Link couldn't be saved.
 
   notifications:
-    new_article: Article created from %{user}
-    edit_article: Article edited from %{user}
+    new_article: 'Article created from %{user}:'
+    edit_article: 'Article edited from %{user}:'
     new_user: User %{user} joined
-    new_comment: New Comment from %{user} to
+    new_comment: 'New Comment from %{user} to:'
 
   relationships:
     new: Add user to instance
@@ -310,6 +310,7 @@ en:
     planningTool: Activates a tool to find a joint appointment.
     comment_edit: Edit Comment
     comment_delete: Delete Comment
+    gravatar: Your Gravatar is an image that follows you from site to site appearing beside your name when you do things like comment or post on a blog. More Infos http://gravatar.com
 
   popover:
     instances_title: Instances
@@ -318,6 +319,7 @@ en:
     relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
     links_title: Bookmarks
     links_content: Each instance contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
+    
 
   activerecord:
     models:
