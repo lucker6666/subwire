@@ -54,7 +54,9 @@
 		</div>
 
 		<div class="control-group">
-			<%= f.label :gravatar, :class => 'control-label' %>
+			<a rel="tooltip" href="#" title="<%=t("tooltip.gravatar") %>" style="display:block; width:210px;">
+				<%= f.label :gravatar, :class => 'control-label' %>
+			</a>
 
 			<div class="controls">
 				<%= check_box_tag :gravatar, true, @user.gravatar, {:class => 'check_box'} %>

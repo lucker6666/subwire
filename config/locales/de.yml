@@ -282,10 +282,10 @@ de:
     not_updated: Lesezeichen konnte nicht gespeichert werden.
 
   notifications:
-    new_article: Neuer Artikel von %{user}
-    edit_article: Artikel von %{user} bearbeitet
+    new_article: 'Neuer Artikel von %{user}:'
+    edit_article: 'Artikel von %{user} bearbeitet:'
     new_user: Benutzer %{user} wurde hinzugefügt
-    new_comment: Neuer Kommentar von %{user} zu
+    new_comment: 'Neuer Kommentar von %{user} zu:'
 
   relationships:
     new: Benutzer zur Instanz hinzufügen
@@ -309,6 +309,7 @@ de:
     planningTool: Aktiviert ein Tool zum finden eines gemeinsamen Termins.
     comment_edit: Kommentar bearbeiten
     comment_delete: Kommentar löschen
+    gravatar: Dein Gravatar ist ein Avatarbild was dir von Seite zu Seite "folgt", was genau das bedeutet erfährst du auf http://gravatar.com
 
   popover:
     instances_title: Instanzen
