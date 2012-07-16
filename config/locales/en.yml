@@ -236,7 +236,7 @@ en:
   comments:
     new_success: Comment was successfully created.
     update_success: Comment was successfully updated.
-    plural: Comment(s
+    plural: Comment(s)
     destroyed: Comment deleted
 
   instances:
