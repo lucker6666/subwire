@@ -228,6 +228,7 @@ de:
     de: Deutsch
     en: Englisch
     no_permission_for_instance: Du darfst diese Instanz nicht sehen!
+    beta: 'Sorry, die Registrierung ist im Moment deaktviert, da sich subwire.net in der Closed Beta Phase befindet. Probiere es in ein paar Tagen nocheinmal.'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
