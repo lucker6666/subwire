@@ -30,6 +30,7 @@ class RelationshipsController < ApplicationController
 			user.email = params[:relationship][:email]
 			user.password = Digest::MD5.hexdigest(Random.rand(10000).to_s)
 			user.timezone = current_user.timezone
+			user.lang = current_instance.defaultLanguage
 			user.invitation_pending = true
 			user.skip_confirmation!
 			user.confirmation_token = User.confirmation_token
