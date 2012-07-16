@@ -233,7 +233,7 @@ de:
   comments:
     new_success: Dein Kommentar wurde gespeichert
     update_success: Deine Änderungen wurden erfolgreich übernommen
-    plural: Kommentar(e
+    plural: Kommentar(e)
     destroyed: Kommentar gelöscht
 
   instances:
