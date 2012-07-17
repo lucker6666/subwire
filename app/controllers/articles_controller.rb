@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
 				# Notify all users
 				Notification.notify_all_users({
 					:notification_type => "edit_article",
-					:provokesUser => @article.user.id,
+					:provokesUser => current_user.id,
 					:subject => @article.title,
 					:href => article_path(@article)
 				}, current_instance, current_user)

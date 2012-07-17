@@ -246,6 +246,7 @@ de:
     updated: Instanz aktualisiert.
     not_updated: Instanz konnte nicht gespeichert werden.
     destroyed: Die Instanz wurde erfolgreich gelöscht.
+    overview: Instanzübersicht
 
   articles:
     created: Artikel wurde erfolgreich erstellt.

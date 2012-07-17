@@ -249,6 +249,7 @@ en:
     updated: Instance was successfully updated.
     not_updated: Instance couldn't be saved.
     destroyed: Instance deleted!
+    overview: Back to overview
 
   articles:
     created: Article was successfully created.
