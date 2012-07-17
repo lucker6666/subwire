@@ -56,7 +56,13 @@ class Notification < ActiveRecord::Base
 	end
 
 	def avatar_path
-		User.find(self.provokesUser).avatar.url
+		@user = User.find(self.provokesUser)
+		
+		if(@user.gravatar)
+			'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
+		elsif
+			@user.avatar.url
+		end
 	end
 
 	def message
