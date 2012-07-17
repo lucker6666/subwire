@@ -15,7 +15,7 @@
 	    <% @links.each do |link| %>
 	      <tr>
 	        <td><i class="icon icon-<%= link.icon %>"></i></td>
-	        <td><%= link_to link.name, link_path(link) %></td>
+	        <td><%= link_to link.name, link.href %></td>
 	        <td><%= link.href %></td>
 	        <td>
 	          <%= link_to edit_link_path(link), :class => 'btn btn-mini' do %>
