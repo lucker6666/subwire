@@ -73,7 +73,7 @@ class Notification < ActiveRecord::Base
 		return if instance.nil?
 
 
-			notifications = order("is_read").order("created_at").limit(5).where(
+			notifications = order("is_read").order("created_at DESC").limit(5).where(
 			:user_id => user.id,
 			:instance_id => instance.id
 			)
