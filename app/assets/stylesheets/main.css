@@ -80,6 +80,7 @@
 		margin-right:10px;
 	}
 
+
 /**
  * 	Forms
  */
@@ -167,6 +168,10 @@
 
  	thead th.weekend {
  		background-color: whiteSmoke;
+ 	}
+
+ 	ul.availabilitites th {
+ 		white-space: nowrap;
  	}
 
  	td.green,
