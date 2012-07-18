@@ -172,6 +172,7 @@
 
  	ul.availabilitites th {
  		white-space: nowrap;
+ 		vertical-align: middle;
  	}
 
  	td.green,
