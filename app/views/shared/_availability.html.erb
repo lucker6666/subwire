@@ -20,7 +20,12 @@
 	</thead>
 
 	<tbody>
-		<% @sidebar_users.each do |user| %>
+		<%
+			users = @sidebar_users.select { |u| u != current_user }
+			users.unshift(current_user)
+		%>
+
+		<% users.each do |user| %>
 			<tr>
 				<th><%= user.name %></th>
 
