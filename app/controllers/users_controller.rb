@@ -61,7 +61,9 @@ class UsersController < ApplicationController
 						@user.save
 					end
 
-					sign_in(current_user, :bypass => true)
+					if @user.id == current_user.id
+						sign_in(@user, :bypass => true)
+					end
 
 					feedback t('users.updated')
 					redirect_to user_path(@user)
