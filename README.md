@@ -18,6 +18,8 @@ Installation
 * $ cp config/initializers/setup_mail.rb.exmaple config/initializers/setup_mail.rb
 * $ vim config/initializers/setup_mail.rb
 * Change E-Mail settings
+* vim config/initializers/session_store.rb
+* Change domain
 * $ rake db:create; rake db:migrate
 * $ rake subwire:setup
 
