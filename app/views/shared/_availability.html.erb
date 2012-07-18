@@ -43,7 +43,7 @@
 				%>
 	    					<td class="green">
 	    						<% if user == current_user %>
-	    							<a href="#" class="availability_cell" alt="<%= l date %>">
+	    							<a href="#" class="availability_cell" alt="<%= date %>">
 	    								<i class="icon icon-ok"></i>
 	    							</a>
 	    						<% else %>
@@ -53,7 +53,7 @@
 				<%		elsif color == 2 %>
 							<td class="red">
 								<% if user == current_user %>
-	    							<a href="#" class="availability_cell" alt="<%= l date %>">
+	    							<a href="#" class="availability_cell" alt="<%= date %>">
 	    								<i class="icon icon-remove"></i>
 	    							</a>
 	    						<% else %>
@@ -63,7 +63,7 @@
 				<%		else %>
 							<td class="yellow">
 								<% if user == current_user %>
-	    							<a href="#" class="availability_cell" alt="<%= l date %>">
+	    							<a href="#" class="availability_cell" alt="<%= date %>">
 	    								<i class="icon icon-question-sign"></i>
 	    							</a>
 	    						<% else %>
