@@ -80,6 +80,11 @@
 		margin-right:10px;
 	}
 
+	.break {
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+
 
 /**
  * 	Forms
