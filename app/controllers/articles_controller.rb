@@ -31,6 +31,9 @@ class ArticlesController < ApplicationController
 			end
 		end
 
+		# Make sure the users see no deleted notifications after that
+		load_notifications
+
 		@notifications = Notification.find_all_by_user_id(current_user.id)
 	end
 
