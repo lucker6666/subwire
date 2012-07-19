@@ -257,8 +257,8 @@ de:
     updated: Artikel aktualisiert.
     not_updated: Artikel konnte nicht gespeichert werden.
     destroyed: Artikel erfolgreich gelöscht.
-    standard_title: Herzlich Willkommen in deiner neuen Instanz
-    standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben!
+    standard_title: Herzlich Willkommen in Deiner neuen Instanz
+    standard_content: Nun kannst du weitere Benutzer in diese Instanz einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
 
   users:
     add: Benutzer hinzufügen
