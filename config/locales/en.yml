@@ -260,8 +260,8 @@ en:
     updated: Article was successfully updated.
     not_updated: Article couldn't be saved.
     destroyed: Article deleted
-    standard_title: Welcome in your new and fresh Instance
-    standard_content: This is the first Article in your new Instance! <br />You can create new Articles or bring me a cookie or something...
+    standard_title: Welcome in your new Instance!
+    standard_content: Now you may add further users to that instance and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
 
   users:
     add: Add user
