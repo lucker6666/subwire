@@ -40,6 +40,9 @@ Subwire::Application.routes.draw do
 	# Inactive user
 	get "inactive", :to => "home#inactive"
 
+	# Virgin user
+	get "virgin", :to => "home#virgin"
+
 	# Start page
 	get "home/index"
 	root :to => "home#index"

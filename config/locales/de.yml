@@ -147,6 +147,8 @@ de:
     sign_up: Registrieren
     advertising: Werbebanner
     planningTool: Planungs-Werkzeug
+    next: Weiter
+    prev: Zurück
   number:
     currency:
       format:
@@ -229,6 +231,7 @@ de:
     en: Englisch
     no_permission_for_instance: Du darfst diese Instanz nicht sehen!
     beta: 'Sorry, die Registrierung ist im Moment deaktviert, da sich subwire.net in der Closed Beta Phase befindet. Probiere es in ein paar Tagen nocheinmal.'
+    virgin: 'Orientierungslos? Zum ersten Mal hier? Klick mich!'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
@@ -320,6 +323,12 @@ de:
     relationship_content: Hier kannst du einen Benutzer zu dieser Instanz hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort dieser Instanz zugeordnet.
     links_title: Lesezeichen
     links_content: Jede Instanz kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
+
+  hints:
+    hints_title: 'Einsteigertipps'
+    hints_content: 'In den folgenden Seiten wirst du einige Tipps und Erklärungen erhalten, wie subwire.net funktioniert und wie du dich im System orientierst.'
+    popover_title: 'Hilfestellungen'
+    popover_content: 'Im kompletten System verteilt findest du Hilfestellungen in Form dieser blauen Fragezeichen, die dir erklären, wie ein Bereich des Systems funktioniert, wenn du mit der Maus darüber fährst.'
 
   activerecord:
     models:

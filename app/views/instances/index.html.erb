@@ -1,5 +1,12 @@
 <%- model_class = Instance.new.class -%>
 
+<% if Article.where(:user_id => current_user.id).length == 0 && Comment.where(:user_id => current_user.id).length %>
+	<div class="alert alert-info clearfix">
+		<h2 class="pull-left"><i class="icon icon-question-sign"></i>&nbsp;</h2>
+		<a href="/virgin"><%=t "application.virgin" %></a>
+	</div>
+<% end %>
+
 <div class="instanceChooser">
 	<h1>
 		<%= t('instances.your_instances') %>
