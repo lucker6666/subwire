@@ -17,4 +17,8 @@ class HomeController < ApplicationController
 		flash.keep
 		redirect_to "/"
 	end
+
+	def virgin
+		render "virgin", :layout => "empty"
+	end
 end
