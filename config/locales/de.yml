@@ -323,6 +323,8 @@ de:
     relationship_content: Hier kannst du einen Benutzer zu dieser Instanz hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort dieser Instanz zugeordnet.
     links_title: Lesezeichen
     links_content: Jede Instanz kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
+    planningTool_title: Planungstool
+    planningTool_content: Jeder Benutzer dieser Instanz kann hier für jeden Tag angeben ob er Zeit hat oder nicht. Durch klicken auf das entsprechende Icon im Planungstool kann der Wert geändert werden.
 
   hints:
     hints_title: 'Einsteigertipps'

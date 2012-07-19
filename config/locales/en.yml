@@ -324,6 +324,8 @@ en:
     relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
     links_title: Bookmarks
     links_content: Each instance contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
+    planningTool_title: Planning Tool
+    planningTool_content: 'Any user of this instance can be specified for each day if he has time or not. Can by clicking on its icon in the planning tool, the value will be changed.'
 
   hints:
     hints_title: 'Beginner tips'
