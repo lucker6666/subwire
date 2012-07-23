@@ -284,6 +284,8 @@ en:
     inactive: You have to confirm your registration!
     delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each instance.<br /><b>Note:</b> You my be not the only Admin in one Instance.'
     invitation_finished: 'Sign up finished'
+    mail_notification: 'Email notifications'
+    delete_account: 'Delete your account'
 
   links:
     created: Link was successfully created.
