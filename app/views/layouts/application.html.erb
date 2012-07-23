@@ -24,7 +24,7 @@
 
 		<script type="text/javascript">
 			<% if current_instance %>
-				window.subwireTitle = "<%= @current_instance.name %>";
+				window.subwireTitle = "<%= current_instance.name %>";
 				<% else %> 
 					window.subwireTitle = "<%= @subwireTitle %>";
 			<% end %>		
