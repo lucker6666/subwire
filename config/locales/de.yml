@@ -291,6 +291,13 @@ de:
     edit_article: 'Artikel von %{user} bearbeitet:'
     new_user: Benutzer %{user} wurde hinzugefügt
     new_comment: 'Neuer Kommentar von %{user} zu:'
+    mailer:
+      new_article: Artikel
+      new_comment: Kommentar
+      subject: 'Neuer %{notification} von %{user}'
+      hello: 'Hey %{user},'
+      body: '%{user} hat einen neuen %{notification} zu dem Thema "%{topic}" geschrieben.'
+      read_now: 'Jetzt lesen!'
 
   relationships:
     new: Benutzer zur Instanz hinzufügen
@@ -301,6 +308,7 @@ de:
     invited: Benutzer erfolgreich eingeladen
     invitation_finished: Registration abgeschlossen, du kannst dich jetzt einloggen!
     mail:
+      notification: 'E-Mail Benachrichtigung?'
       invitation:
         subject: '%{user} hat dich zu subwire.net eingeladen!'
         greet: Hallo

@@ -292,6 +292,10 @@ en:
     edit_article: 'Article edited from %{user}:'
     new_user: User %{user} joined
     new_comment: 'New Comment from %{user} to:'
+    mailer:
+      new_article: Article
+      new_comment: Comment
+      subject: 'New %{notification} from %{user}'
 
   relationships:
     new: Add user to instance
@@ -302,6 +306,7 @@ en:
     invited: User successfully inveted
     invitation_finished: 'Now, you can sign in!'
     mail:
+      notification: 'Mail Notification?'
       invitation:
         subject: '%{user} has invited you to subwire.net!'
         greet: 'Hello'
