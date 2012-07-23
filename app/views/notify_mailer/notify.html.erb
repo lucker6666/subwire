@@ -1,0 +1,7 @@
+<p><%= t('notifications.mailer.hello', :user => @toUser.name) %></p>
+
+<p><%= t('notifications.mailer.body', :notification =>  t('notifications.mailer.' + @notification.notification_type), :user => @fromUser.name, :topic => @notification.subject) %></p>
+
+<p><%= link_to t('notifications.mailer.read_now'), "http://hub1.subwire.net" %></p>
+
+
