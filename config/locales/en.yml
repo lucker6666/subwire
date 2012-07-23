@@ -235,6 +235,8 @@ en:
     no_permission_for_instance: You're not allowed to see this instance!
     beta: 'Sorry, the sign up function is deactivated right now since subwire.net is closed beta. Come back in a few days, we will open soon!'
     virgin: 'First time here?'
+    all_users: All Users
+    all_instances: All Instances
 
   comments:
     new_success: Comment was successfully created.
