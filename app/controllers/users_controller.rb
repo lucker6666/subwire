@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 		else
 			@user = current_user
 		end
+
+		@relationships = Relationship.where(:user_id =>@user.id)
 	end
 
 	# PUT /users/1
@@ -42,6 +44,12 @@ class UsersController < ApplicationController
 				if params[:user][:password].empty?
 					params[:user].delete :password
 					params[:user].delete :password_confirmation
+				end
+
+				#Relationships
+				Relationship.where(:user_id =>@user.id).each do |relationship|
+					relationship.mail_notification = params['rel'+relationship.id.to_s]
+					relationship.save
 				end
 
 				#Gravatar

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712174140) do
+ActiveRecord::Schema.define(:version => 20120719172005) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -92,9 +92,10 @@ ActiveRecord::Schema.define(:version => 20120712174140) do
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer "user_id",     :default => 1,    :null => false
-    t.integer "instance_id", :default => 1,    :null => false
-    t.boolean "admin",       :default => true, :null => false
+    t.integer "user_id",           :default => 1,    :null => false
+    t.integer "instance_id",       :default => 1,    :null => false
+    t.boolean "admin",             :default => true, :null => false
+    t.boolean "mail_notification", :default => true
   end
 
   add_index "relationships", ["instance_id"], :name => "index_relationships_on_instance_id"
@@ -119,9 +120,10 @@ ActiveRecord::Schema.define(:version => 20120712174140) do
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean  "invitation_pending",     :default => false
     t.boolean  "is_deleted",             :default => false
+    t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
+    t.datetime "last_activity",          :default => '2012-07-19 19:31:48'
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
