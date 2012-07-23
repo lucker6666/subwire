@@ -132,10 +132,10 @@ class ApplicationController < ActionController::Base
 		# Filter which determines the language of the current user
 		def set_locale
 			if current_user
-		  		I18n.locale = current_user.lang || I18n.default_locale
-		  	else
+	  		I18n.locale = current_user.lang || I18n.default_locale
+	  	else
 				I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
-		  	end
+	  	end
 		end
 
 		def set_timezone
