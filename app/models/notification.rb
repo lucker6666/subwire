@@ -65,7 +65,7 @@ class Notification < ActiveRecord::Base
 		
 		if(@user.gravatar)
 			'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
-		elsif
+		else
 			@user.avatar.url
 		end
 	end
