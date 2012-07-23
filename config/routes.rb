@@ -8,11 +8,9 @@ Subwire::Application.routes.draw do
 	}
 
 
-	# Unset current instance
+	# Instances
 	get "instances/unset", :to => "instances#unset"
 	get "instances/all", :to => "instances#all"
-
-	# Instances
 	resources :instances
 
 	# Users
@@ -37,11 +35,13 @@ Subwire::Application.routes.draw do
 	# Availability Tool
 	post "availability", :to => "availabilities#set"
 
-	# Inactive user
+	# Misc
 	get "inactive", :to => "home#inactive"
-
-	# Virgin user
 	get "virgin", :to => "home#virgin"
+
+	scope "/:locale" do
+		get "/integration", :to => "home#integration"
+	end
 
 	# Start page
 	get "home/index"

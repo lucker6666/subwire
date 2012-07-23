@@ -234,6 +234,8 @@ de:
     virgin: 'Orientierungslos? Zum ersten Mal hier? Klick mich!'
     all_users: Alle Benutzer
     all_instances: Alle Instanzen
+    welcome_back: 'Willkommen zurück'
+    go_to_overview: 'Weiter zur Instanzübersicht'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
