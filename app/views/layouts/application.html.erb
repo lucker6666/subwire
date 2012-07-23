@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<title>
-			<%= @subwireTitle %>
-
 			<% if @unread_notification_count > 0 %>
 				(<%= @unread_notification_count %>)
 			<% end %>
+
+			<%= @subwireTitle %>
 		</title>
 
 		<!--[if lt IE 9]>
@@ -23,7 +23,11 @@
 		<%= csrf_meta_tags %>
 
 		<script type="text/javascript">
-			window.subwireTitle = "<%= @subwireTitle %>";
+			<% if current_instance %>
+				window.subwireTitle = "<%= @current_instance.name %>";
+				<% else %> 
+					window.subwireTitle = "<%= @subwireTitle %>";
+			<% end %>		
 		</script>
 
 		<link rel="shortcut icon" href="/assets/favicon.png" />
