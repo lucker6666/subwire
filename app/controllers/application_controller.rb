@@ -44,12 +44,13 @@ class ApplicationController < ActionController::Base
 				if current_instance
 					@sidebar_users = Relationship.find_all_users_by_instance(current_instance).sort_by(&:name)
 					@sidebar_links = Link.where(:instance_id => current_instance.id)
+					@subwireTitle = current_instance.name
 
 					load_notifications
+				else
+					@subwireTitle = Subwire::Application.config.subwire_title
 				end
 			end
-
-			@subwireTitle = Subwire::Application.config.subwire_title
 
 			return true
 		end
