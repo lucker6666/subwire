@@ -53,7 +53,7 @@ class Notification < ActiveRecord::Base
 				notification.save
 
 				#Notify user via email
-				if (user.last_activity < Time.now-120 && Relationship.find_by_instance_and_user(instance, user).mail_notification)
+				if (user.last_activity < Time.now-120 && Relationship.find_by_instance_and_user(instance, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
 					NotifyMailer.notify(User.find(data[:provokesUser]), user, notification ).deliver
 				end
 			end
