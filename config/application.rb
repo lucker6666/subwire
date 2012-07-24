@@ -69,5 +69,10 @@ module Subwire
 
     # The Domain (e.g. "subwire.net")
     #config.ga_domain = ""
+	
+	config.generators do |g|
+		g.view_specs false
+		g.helper_specs false
+	end
   end
 end
