@@ -35,5 +35,9 @@ group :test do
 	gem "launchy"
 end
 
-gem "rspec-rails", :group => [:development, :test]
-gem "factory_girl_rails", :group => [:development, :test]
+group :development, :test do
+	gem "rspec-rails"
+	gem "factory_girl_rails"
+	gem 'rb-fsevent'
+	gem 'guard-rspec'
+end
