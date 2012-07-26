@@ -128,6 +128,8 @@ class InstancesController < ApplicationController
 
 			feedback t('instances.destroyed')
 
+			set_current_instance nil
+
 			redirect_to instances_path
 		else
 			feedback t('application.permission_denied')
