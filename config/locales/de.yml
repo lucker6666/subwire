@@ -339,7 +339,7 @@ de:
     links_title: Lesezeichen
     links_content: Jede Instanz kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
     planningTool_title: Planungstool
-    planningTool_content: Jeder Benutzer dieser Instanz kann hier für jeden Tag angeben ob er Zeit hat oder nicht. Durch klicken auf das entsprechende Icon im Planungstool kann der Wert geändert werden.
+    planningTool_content: 'Jeder Benutzer dieser Instanz kann hier für jeden Tag angeben, ob er Zeit hat oder nicht. Durch Klicken auf das entsprechende Feld kann der Wert geändert werden.'
 
   hints:
     hints_title: 'Einsteigertipps'
