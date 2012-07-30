@@ -236,6 +236,7 @@ de:
     all_instances: Alle Instanzen
     welcome_back: 'Willkommen zurück'
     go_to_overview: 'Weiter zur Instanzübersicht'
+    more_to_read: 'Weiterlesen ...'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert

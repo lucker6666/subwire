@@ -16,3 +16,4 @@ gem 'will_paginate_twitter_bootstrap'
 gem 'paperclip'
 gem 'rails_autolink'
 gem 'rmagick'
+gem "html_truncator"

@@ -19,8 +19,7 @@
 		</tr>
 
 		<tr>
-			<td>
-				<%= auto_link(article.content.html_safe) %>
+			<td><%= article_teaser(article) %>
 
 				<div class="buttons">
 					<% if current_user.is_admin? || article.user == current_user %>
