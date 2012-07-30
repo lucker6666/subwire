@@ -145,15 +145,40 @@ class RelationshipsController < ApplicationController
 		@relationship = Relationship.find(params[:id])
 
 		if current_user == @relationship.user || has_admin_privileges?
-			@relationship.destroy
+			
+			@instance = Instance.find(@relationship.instance)
+			@userInInstance = Relationship.find_all_users_by_instance(@instance)
 
-			feedback t('relationships.destroyed')
+			if @userInInstance.length < 2
+				
+				@notifications = Notification.find_all_by_instance_id(@instance.id)
+				
+				@notifications.each do |n|
+					n.destroy
+				end
 
-			if current_user == @relationship.user
-				redirect_to "/"
+				@instance.destroy
+				@relationship.destroy
+
+				feedback t('relationships.destroyed')				
+
+				set_current_instance nil
+
+				redirect_to instances_path
 			else
-				redirect_to relationships_path
-			end
+				@relationship.destroy
+
+				feedback t('relationships.destroyed')
+
+				if current_user == @relationship.user
+					redirect_to "/"
+				else
+					redirect_to relationships_path
+				end				
+			end			
+
+
+
 		else
 			redirect_to :back
 		end
