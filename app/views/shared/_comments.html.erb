@@ -12,8 +12,8 @@
 			<div class="commentButtons">
 			  <% if current_user.is_admin? || comment.user == current_user %>
 				<%= link_to article_comment_path(article, comment),
-						  :method => :delete,
-						  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) do %>
+						:method => :delete,
+						:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))} do %>
 				  <i class="icon icon-remove"></i>
 				<% end %>
 					  <a href="#" rel="tooltip" data-original-title="<%= t('tooltip.comment_edit') %>" onClick="editComment('<%= comment.id %>')">
