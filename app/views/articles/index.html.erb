@@ -29,7 +29,7 @@
 
 						<%= link_to article_path(article),
 							:method => :delete,
-							:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+							:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
 							:class => 'btn btn-mini btn-danger' do %>
 
 							<i class="icon icon-trash"></i>

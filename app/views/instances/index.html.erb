@@ -35,7 +35,7 @@
 
 								<%= link_to instance_path(instance),
 									:method => :delete,
-									:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+									:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
 									:class => 'btn btn-mini btn-danger' do %>
 
 									<i class="icon icon-trash"></i>
