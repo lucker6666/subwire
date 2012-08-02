@@ -147,6 +147,8 @@ de:
     sign_up: Registrieren
     advertising: Werbebanner
     planningTool: Planungs-Werkzeug
+    next: Weiter
+    prev: Zurück
   number:
     currency:
       format:
@@ -229,6 +231,12 @@ de:
     en: Englisch
     no_permission_for_instance: Du darfst diese Instanz nicht sehen!
     beta: 'Sorry, die Registrierung ist im Moment deaktviert, da sich subwire.net in der Closed Beta Phase befindet. Probiere es in ein paar Tagen nocheinmal.'
+    virgin: 'Orientierungslos? Zum ersten Mal hier? Klick mich!'
+    all_users: Alle Benutzer
+    all_instances: Alle Instanzen
+    welcome_back: 'Willkommen zurück'
+    go_to_overview: 'Weiter zur Instanzübersicht'
+    more_to_read: 'Weiterlesen ...'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
@@ -254,8 +262,8 @@ de:
     updated: Artikel aktualisiert.
     not_updated: Artikel konnte nicht gespeichert werden.
     destroyed: Artikel erfolgreich gelöscht.
-    standard_title: Herzlich Willkommen in deiner neuen Instanz
-    standard_content: Das ist dein erster Artikel in deiner neuen Instanz! <br />Dafür solltest du den Admins einen Keks geben!
+    standard_title: Herzlich Willkommen in Deiner neuen Instanz
+    standard_content: Nun kannst du weitere Benutzer in diese Instanz einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
 
   users:
     add: Benutzer hinzufügen
@@ -276,6 +284,8 @@ de:
     delete_account: Account löschen
     delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
     invitation_finished: 'Registrierung abgeschlossen'
+    mail_notification: 'E-Mail-Benachrichtigungen'
+    delete_account: 'Benutzerkonto löschen'
 
   links:
     created: Lesezeichen wurde erfolgreich erstellt.
@@ -288,6 +298,13 @@ de:
     edit_article: 'Artikel von %{user} bearbeitet:'
     new_user: Benutzer %{user} wurde hinzugefügt
     new_comment: 'Neuer Kommentar von %{user} zu:'
+    mailer:
+      new_article: Artikel
+      new_comment: Kommentar
+      subject: 'Neuer %{notification} von %{user}'
+      hello: 'Hey %{user},'
+      body: '%{user} hat einen neuen %{notification} zu dem Thema "%{topic}" geschrieben.'
+      read_now: 'Jetzt lesen!'
 
   relationships:
     new: Benutzer zur Instanz hinzufügen
@@ -298,6 +315,7 @@ de:
     invited: Benutzer erfolgreich eingeladen
     invitation_finished: Registration abgeschlossen, du kannst dich jetzt einloggen!
     mail:
+      notification: 'E-Mail Benachrichtigung?'
       invitation:
         subject: '%{user} hat dich zu subwire.net eingeladen!'
         greet: Hallo
@@ -320,6 +338,14 @@ de:
     relationship_content: Hier kannst du einen Benutzer zu dieser Instanz hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort dieser Instanz zugeordnet.
     links_title: Lesezeichen
     links_content: Jede Instanz kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
+    planningTool_title: Planungstool
+    planningTool_content: 'Jeder Benutzer dieser Instanz kann hier für jeden Tag angeben, ob er Zeit hat oder nicht. Durch Klicken auf das entsprechende Feld kann der Wert geändert werden.'
+
+  hints:
+    hints_title: 'Einsteigertipps'
+    hints_content: 'In den folgenden Seiten wirst du einige Tipps und Erklärungen erhalten, wie subwire.net funktioniert und wie du dich im System orientierst.'
+    popover_title: 'Hilfestellungen'
+    popover_content: 'Im kompletten System verteilt findest du Hilfestellungen in Form dieser blauen Fragezeichen, die dir erklären, wie ein Bereich des Systems funktioniert, wenn du mit der Maus darüber fährst.'
 
   activerecord:
     models:

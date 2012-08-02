@@ -124,9 +124,16 @@ class InstancesController < ApplicationController
 				n.destroy
 			end
 
+			relationships = Relationship.find_all_by_instance_id(@instance.id)
+			relationships.each do |r|
+				r.destroy
+			end
+
 			@instance.destroy
 
 			feedback t('instances.destroyed')
+
+			set_current_instance nil
 
 			redirect_to instances_path
 		else

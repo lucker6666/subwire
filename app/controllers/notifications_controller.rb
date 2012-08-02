@@ -4,7 +4,11 @@ class NotificationsController < ApplicationController
 
 	# GET /notifications.json
 	def index
-		@notifications = Notification.order("is_read").order("created_at").limit(5).where(
+		#Set Activity
+		current_user.last_activity = Time.now
+		current_user.save
+
+		@notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
 			:user_id => current_user.id,
 			:instance_id => current_instance.id
 		)

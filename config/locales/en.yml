@@ -153,6 +153,8 @@ en:
     sign_up: Sign Up
     advertising: Advertising
     planningTool: Planning tool
+    next: Next
+    prev: Previous
   number:
     currency:
       format:
@@ -232,6 +234,12 @@ en:
     en: English
     no_permission_for_instance: You're not allowed to see this instance!
     beta: 'Sorry, the sign up function is deactivated right now since subwire.net is closed beta. Come back in a few days, we will open soon!'
+    virgin: 'First time here?'
+    all_users: All Users
+    all_instances: All Instances
+    welcome_back: 'Welcome back'
+    go_to_overview: 'Go to the instance overview'
+    more_to_read: 'More to read ...'
 
   comments:
     new_success: Comment was successfully created.
@@ -257,8 +265,8 @@ en:
     updated: Article was successfully updated.
     not_updated: Article couldn't be saved.
     destroyed: Article deleted
-    standard_title: Welcome in your new and fresh Instance
-    standard_content: This is the first Article in your new Instance! <br />You can create new Articles or bring me a cookie or something...
+    standard_title: Welcome in your new Instance!
+    standard_content: Now you may add further users to that instance and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
 
   users:
     add: Add user
@@ -277,6 +285,8 @@ en:
     inactive: You have to confirm your registration!
     delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each instance.<br /><b>Note:</b> You my be not the only Admin in one Instance.'
     invitation_finished: 'Sign up finished'
+    mail_notification: 'Email notifications'
+    delete_account: 'Delete your account'
 
   links:
     created: Link was successfully created.
@@ -289,6 +299,10 @@ en:
     edit_article: 'Article edited from %{user}:'
     new_user: User %{user} joined
     new_comment: 'New Comment from %{user} to:'
+    mailer:
+      new_article: Article
+      new_comment: Comment
+      subject: 'New %{notification} from %{user}'
 
   relationships:
     new: Add user to instance
@@ -299,6 +313,7 @@ en:
     invited: User successfully inveted
     invitation_finished: 'Now, you can sign in!'
     mail:
+      notification: 'Mail Notification?'
       invitation:
         subject: '%{user} has invited you to subwire.net!'
         greet: 'Hello'
@@ -321,6 +336,14 @@ en:
     relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
     links_title: Bookmarks
     links_content: Each instance contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
+    planningTool_title: Planning Tool
+    planningTool_content: 'Any user of this instance can specify for each day wether he has time or not. Value can be changed by clicking on the respective field.'
+
+  hints:
+    hints_title: 'Beginner tips'
+    hints_content: 'Here you will find some tips and hints how to use subwire.net.'
+    popover_title: 'Popovers'
+    popover_content: 'You will find some popovers with hints in the whole system. Simply move your mouse over the blue question signs.'
 
   activerecord:
     models:

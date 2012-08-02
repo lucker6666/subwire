@@ -18,6 +18,7 @@
 # 	avatar_updated_at"		:datetime
 #   is_deleted				:boolean
 #   gravatar                :string
+#   last_activity           :date
 #
 
 

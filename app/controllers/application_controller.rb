@@ -44,14 +44,23 @@ class ApplicationController < ActionController::Base
 				if current_instance
 					@sidebar_users = Relationship.find_all_users_by_instance(current_instance).sort_by(&:name)
 					@sidebar_links = Link.where(:instance_id => current_instance.id)
-					@all_notifications = Notification.find_all_relevant(current_instance, current_user)
-					@unread_notification_count = @all_notifications.find_all { |n| n.is_read == false }.length
+					@subwireTitle = current_instance.name
+
+					load_notifications
+				else
+					@subwireTitle = Subwire::Application.config.subwire_title
 				end
 			end
 
-			@subwireTitle = Subwire::Application.config.subwire_title
-
 			return true
+		end
+
+		# Call that everytime you change notifications
+		def load_notifications
+			if current_user && current_instance
+				@all_notifications = Notification.find_all_relevant(current_instance, current_user)
+				@unread_notification_count = @all_notifications.find_all { |n| n.is_read == false }.length
+			end
 		end
 
 		# Changes layout depending on controller
@@ -123,10 +132,10 @@ class ApplicationController < ActionController::Base
 		# Filter which determines the language of the current user
 		def set_locale
 			if current_user
-		  		I18n.locale = current_user.lang || I18n.default_locale
-		  	else
+	  			I18n.locale = current_user.lang || I18n.default_locale
+	  		else
 				I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
-		  	end
+	  		end
 		end
 
 		def set_timezone
