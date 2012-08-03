@@ -1,6 +1,7 @@
 branches:
   only:
     - 'master'
+	- 'V3-0'
 env:
   - DB=mysql
   - DB=sqlite
@@ -14,4 +15,5 @@ before_script:
   - "bundle exec rake db:create RAILS_ENV=test"
   - "bundle exec rake db:migrate RAILS_ENV=test"
   - "bundle exec rake subwire:setup RAILS_ENV=test"
-script: "bundle exec rake subwire:test"
+  - "bundle exec rake db:test:prepare"
+script: "bundle exec rspec"
