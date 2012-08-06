@@ -224,8 +224,8 @@ en:
     notifications: Notifications
     notifications_unread: There are no unread notifications.
     no_permission_for_instance: Permission denied!
-    user_management: User Management
-    link_management: Link Management
+    user_management: Users
+    link_management: Bookmarks
     new_article: New Article
     your_profile: Your Profile
     edit_your_profile: Settings
