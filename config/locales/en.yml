@@ -295,6 +295,7 @@ en:
     not_created: Link couldn't be created.
     updated: Link was successfully updated.
     not_updated: Link couldn't be saved.
+    new: "Create new bookmark"
 
   notifications:
     new_article: 'Article created from %{user}:'
