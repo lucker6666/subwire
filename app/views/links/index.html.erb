@@ -33,10 +33,9 @@
 	  </tbody>
 	</table>
 
-	<%= link_to t(t '.title', :default => t('helpers.submit.new', :model => model_class.model_name.human,
-	                               :default => "New #{model_class.model_name.human}")),
-	            new_link_path,
-	            :class => 'btn btn-primary' %>
+	<%= link_to t('links.new'),
+        new_link_path,
+        :class => 'btn btn-primary' %>
 
 	<a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.links_content') %>" data-original-title="<%= t('popover.links_title') %>">
 		<i class="icon icon-question-sign"></i>
