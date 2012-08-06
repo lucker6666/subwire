@@ -62,9 +62,6 @@ class User < ActiveRecord::Base
 	validates :name, :format => { :with => /[a-zA-Z0-9\-_. ]+/ },
 		:length => { :minimum => 3, :maximum => 30 }
 
-	# Make sure passworrd is >4 chars
-	validates :password, :length => { :minimum => 5 }
-
 	# Make sure email looks like an email adress
 	validates :email, :format => {
 		:with => /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$/
