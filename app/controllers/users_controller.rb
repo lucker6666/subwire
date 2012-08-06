@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 	# PUT /users/1
 	def update
 		@user = User.find(params[:id])
+		@relationships = Relationship.where(:user_id =>@user.id)
 
 		#Delete the email param
 		params[:user].delete :email
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
 				end
 
 				#Relationships
-				Relationship.where(:user_id =>@user.id).each do |relationship|
+				@relationships.each do |relationship|
 					relationship.mail_notification = params['rel'+relationship.id.to_s]
 					relationship.save
 				end
@@ -76,7 +77,6 @@ class UsersController < ApplicationController
 					feedback t('users.updated')
 					redirect_to user_path(@user)
 				else
-					errors_to_feedback @user
 					render action: "edit"
 				end
 		else
