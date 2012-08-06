@@ -25,10 +25,17 @@
 		<script type="text/javascript">
 			<% if current_instance %>
 				window.subwireTitle = "<%= current_instance.name %>";
-				<% else %> 
+				<% else %>
 					window.subwireTitle = "<%= @subwireTitle %>";
-			<% end %>		
+			<% end %>
 		</script>
+
+		<% unless display_ads %>
+			<style type="text/css">
+				.advertising { display: none; }
+			</style>
+		<% end %>
+
 
 		<link rel="shortcut icon" href="/assets/favicon.png" />
 
@@ -236,7 +243,7 @@
 						</ul>
 					</div>
 
-					<% if display_ads %>
+					<div class="advertising">
 						<div class="well">
 							<div style="width: 200px; margin: 0 auto;">
 								<%= t('ad') %>
@@ -254,7 +261,7 @@
 								</script>
 							</div>
 						</div>
-					<% end %>
+					</div>
 				</div>
 			</div>
 
