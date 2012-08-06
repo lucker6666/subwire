@@ -87,11 +87,13 @@
 					prev.removeClass('disabled');
 					next.removeClass('disabled');
 
+					console.log(currentHint, maxHints);
+
 					if (jumpTo == "next" && currentHint < maxHints) {
 						currentHint++;
 					} else if (jumpTo == "prev" && currentHint > 1) {
 						currentHint--;
-					} else {
+					} else if (currentHint < maxHints && currentHint > 1) {
 						currentHint = jumpTo;
 					}
 

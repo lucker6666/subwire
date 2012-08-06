@@ -233,7 +233,7 @@ en:
     de: German
     en: English
     no_permission_for_instance: You're not allowed to see this instance!
-    virgin: 'First time here?'
+    virgin: 'First time here? Need some help? Click here!'
     all_users: All Users
     all_instances: All Instances
     welcome_back: 'Welcome back'
