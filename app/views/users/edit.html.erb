@@ -97,6 +97,31 @@
 		</div>
 
 		<div class="control-group">
+			<%= label :delete_relationship, " ", :class => 'control-label' %>
+
+			<div class="controls">
+				<div class="alert">
+					<table>
+						<tr>
+							<td>
+								<%= link_to t('relationships.delete'),
+									relationship_path(current_rs),
+									:method => :delete,
+									:class => 'btn btn-warning danger-button no-lock',
+									:confirm => t("helpers.links.confirm") %>
+							</td>
+							<td>
+								<p style="padding-left:35px;">
+									<%= t('relationships.delete_alert').html_safe %>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<%= label :delete_account, " ", :class => 'control-label' %>
 
 			<div class="controls">
@@ -105,7 +130,8 @@
 						<tr>
 							<td>
 								<%= link_to t('users.delete_account'), user_path(@user),
-								:method => :delete, :class => 'btn btn-danger no-lock',
+								:method => :delete,
+								:class => 'btn btn-danger danger-button no-lock',
 								:confirm => t("helpers.links.confirm") %>
 							</td>
 							<td>

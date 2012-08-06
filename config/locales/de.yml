@@ -280,10 +280,9 @@ de:
     destroyed: Der Benutzer wurde erfolgreich gelöscht
     forgot_password: Passwort vergessen?
     inactive: Du musst deine Registrierung zuerst bestätigen!
-    delete_account: Account löschen
-    delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
     invitation_finished: 'Registrierung abgeschlossen'
     mail_notification: 'E-Mail-Benachrichtigungen'
+    delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
     delete_account: 'Benutzerkonto löschen'
     finish_registration: 'Registrierung abschließen'
 
@@ -314,6 +313,8 @@ de:
     destroyed: Benutzer erfolgreich entfernt
     invited: Benutzer erfolgreich eingeladen
     invitation_finished: Registration abgeschlossen, du kannst dich jetzt einloggen!
+    delete_alert: 'Mit diesem Button kannst du dich selbst aus der aktuellen Instanz entfernen.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
+    delete: 'Quit this instance'
     mail:
       notification: 'E-Mail Benachrichtigung?'
       invitation:
