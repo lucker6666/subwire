@@ -12,15 +12,19 @@
 	</a>
 
 	<ul class="notification-dropdown dropdown-menu">
-		<% @all_notifications.each do |notification| %>
-			<li class="<%= notification.is_read ? 'read' : '' %>">
-				<a href="<%= notification_path(notification) %>">
-					<%= avatar(User.find(notification.provokesUser), :tiny) %>
-					<%= notification.message.html_safe %>
-				</a>
-			</li>
+		<% if @all_notifications.length > 0 %>
+			<% @all_notifications.each do |notification| %>
+				<li class="<%= notification.is_read ? 'read' : '' %>">
+					<a href="<%= notification_path(notification) %>">
+						<%= avatar(User.find(notification.provokesUser), :tiny) %>
+						<%= notification.message.html_safe %>
+					</a>
+				</li>
 
-			<li class="divider"></li>
+				<li class="divider"></li>
+			<% end %>
+		<% else %>
+			<li><%=t "application.notifications_unread" %></li>
 		<% end %>
 	</ul>
 </li>
