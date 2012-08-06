@@ -126,6 +126,7 @@ de:
         one: ! 'Konnte %{model} nicht speichern: ein Fehler.'
         other: ! 'Konnte %{model} nicht speichern: %{count} Fehler.'
   helpers:
+  	advertisting: Werbung
     select:
       prompt: Bitte wählen
     submit:
