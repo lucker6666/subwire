@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= @subwireTitle %></title>
+		<title>
+			<%= @subwireTitle %>
+
+			<% if @notificationCount && @notificationCount > 0 %>
+				(<%= @notificationCount %>)
+			<% end %>
+		</title>
 
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript">
@@ -29,7 +35,6 @@
 						<ul class="nav logout">
 							<li>
 								<%= link_to destroy_user_session_path, :method => :delete do %>
-
 							    	<i class="icon icon-remove"></i>
 									<%= t "application.logout" %>
 								<% end %>
@@ -48,8 +53,6 @@
 					<%= yield %>
 				</div>
 			</div>
-
-
 
 			<%= render :partial => 'shared/footer' %>
 		</div>
