@@ -129,6 +129,11 @@ class InstancesController < ApplicationController
 				r.destroy
 			end
 
+			articles = Article.find_all_by_instance_id(@instance.id)
+			articles.each do |a|
+				a.destroy
+			end
+
 			@instance.destroy
 
 			feedback t('instances.destroyed')
