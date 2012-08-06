@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
 			:default => "100x100#"
 		}
 
+	validates_attachment_size :avatar, :less_than => 2.megabytes
+	validates_attachment_content_type :avatar,
+    :content_type => ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"]
+
 	### Validations
 	# Make sure, name, email, lang, timezone are not empty
 	validates :lang, :timezone, :presence => true
@@ -83,7 +87,7 @@ class User < ActiveRecord::Base
 		Relationship.find_all_by_user_id(id).length
 	end
 
-	def self.find_for_authentication(conditions) 
+	def self.find_for_authentication(conditions)
   		super(conditions.merge(:is_deleted => false))
 	end
 end
