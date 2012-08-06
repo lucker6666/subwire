@@ -14,6 +14,11 @@ class InstancesController < ApplicationController
 		# Required to check if user has reached the limit of instances
 		@adminCount = Instance.find_all_where_user_is_admin(current_user).length
 
+		@notificationCount = 0
+		@instances.each do |instance|
+			@notificationCount += instance.notification_count(current_user)
+		end
+
 		render 'index', layout: 'login'
 	end
 
