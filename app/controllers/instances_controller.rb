@@ -97,21 +97,22 @@ class InstancesController < ApplicationController
 			redirect_to :back
 		end
 
-		# Make sure that there is no advertising-value while user is not a admin
+		# Make sure that advertising is not set to false while user is not a superadmin
+		@instance.advertising = params[:instance][:advertising]
 		if !params[:instance][:advertising].nil? && !has_superadmin_privileges?
-			params[:instance][:advertising] = true
+			@instance.advertising = true
 		end
 
 		params[:instance].delete :advertising
 
 		if @instance.update_attributes(params[:instance])
 			feedback t('instances.updated')
-			redirect_to instance_path(@instance)
 		else
 			feedback t('instances.not_updated')
 			errors_to_feedback(@instance)
-			render action: "edit", layout: 'login'
 		end
+
+		render action: "edit", layout: 'login'
 	end
 
 	# DELETE /instances/1
