@@ -286,6 +286,7 @@ en:
     invitation_finished: 'Sign up finished'
     mail_notification: 'Email notifications'
     delete_account: 'Delete your account'
+    finish_registration: 'Finish registration'
 
   links:
     created: Link was successfully created.

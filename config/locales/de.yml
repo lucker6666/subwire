@@ -285,6 +285,7 @@ de:
     invitation_finished: 'Registrierung abgeschlossen'
     mail_notification: 'E-Mail-Benachrichtigungen'
     delete_account: 'Benutzerkonto löschen'
+    finish_registration: 'Registrierung abschließen'
 
   links:
     created: Lesezeichen wurde erfolgreich erstellt.
