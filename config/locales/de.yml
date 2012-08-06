@@ -221,8 +221,8 @@ de:
     notifications: Benachrichtigungen
     notifications_unread: Keine ungelesenen Benachrichtigungen.
     no_permission_for_instance: Zugriff verweigert!
-    user_management: Benutzer Verwaltung
-    link_management: Lesezeichen Verwalten
+    user_management: Benutzer
+    link_management: Lesezeichen
     new_article: Neuer Artikel
     your_profile: Dein Profil
     edit_your_profile: Einstellungen
