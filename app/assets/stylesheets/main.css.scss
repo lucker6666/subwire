@@ -120,6 +120,11 @@
 		word-break: break-all;
 	}
 
+	div.jGrowl div.jGrowl-notification,
+	div.jGrowl div.jGrowl-closer {
+		border-radius: 5px;
+	}
+
 
 /**
  * 	Forms
