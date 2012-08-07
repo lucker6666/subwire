@@ -22,7 +22,7 @@ class NotificationsController < ApplicationController
 	def show
 		if (params[:id])
 			notification = Notification.find(params[:id])
-			target = :back
+			target = articles_path
 
 			if notification && notification.user == current_user &&
 				notification.instance == current_instance
