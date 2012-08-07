@@ -110,7 +110,7 @@ function updateNotifications() {
 		  			notificationsCount + "</span>");
 			}
 
-			$('title').html(window.subwireTitle + ' ('+notificationsCount+')');
+			$('title').html(' ('+notificationsCount+')' + window.subwireTitle);
 		}
 	});
 }
