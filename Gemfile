@@ -29,7 +29,7 @@ gem "html_truncator"
 # Testing
 group :test do
 	gem "email_spec"
-	gem "cucumber-rails"
+	gem "cucumber-rails", :require => false
 	gem "capybara"
 	gem "database_cleaner"
 	gem "launchy"
