@@ -24,7 +24,8 @@ gem 'will_paginate'
 gem 'will_paginate_twitter_bootstrap'
 gem 'rails_autolink'
 gem 'rmagick'
-gem "html_truncator"
+gem 'html_truncator'
+gem 'exception_notification'
 
 # Testing
 group :test do
