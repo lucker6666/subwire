@@ -100,7 +100,10 @@ function updateNotifications() {
 
 		var ul = $('ul.notification-dropdown');
 		var a = ul.siblings("a");
-		ul.html(notifications);
+		if (notifications) {
+			ul.html(notifications);
+		};
+		
 
 		if(notificationsCount > 0) {
 			if (a.children("span").length > 0) {
