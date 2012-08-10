@@ -19,10 +19,8 @@
   			<%= f.password_field :password_confirmation, :class => 'text_field', :placeholder => t('helpers.password_confirmation') %>
         </div>
 
-	  	<div align="center">
-	  		<%= f.submit t("helpers.sign_up"), :class => "btn btn-success btn-large" %>
-	  		<%= link_to t("helpers.sign_in"), new_session_path(resource_name), :class => "btn btn-large" %>
-	  	</div>
+  		<%= f.submit t("helpers.sign_up"), :class => "btn btn-success btn-large" %>
+  		<%= link_to t("helpers.sign_in"), new_session_path(resource_name), :class => "btn btn-inverse btn-large" %>
     </fieldset>
 <% end %>
 

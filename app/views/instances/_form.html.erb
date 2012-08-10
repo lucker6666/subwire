@@ -20,9 +20,7 @@
 	    	<a href="#" rel="tooltip" title="<%= t ('tooltip.planningTool') %>"> <%= t('helpers.planningTool') %></a>
 		</div>
 
-	  	<div align="center">
-	  		<%= f.submit nil, :class => 'btn btn-success btn-large' %>
-			<%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large' %>
-	  	</div>
+  		<%= f.submit nil, :class => 'btn btn-success btn-large' %>
+		<%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large btn-inverse' %>
 	</fieldset>
 <% end %>

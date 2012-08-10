@@ -14,12 +14,18 @@
 
 	<br />
 
-	<table class="table table-striped">
+	<table class="table">
 		<tbody>
 			<% @instances.each do |instance| %>
 				<% notificationCount = instance.notification_count(current_user) %>
 				<tr>
-					<td><%= link_to instance.name, instance_path(instance) %></td>
+					<td>
+						<%= link_to instance_path(instance), :class => 'instance-link' do %>
+							<i class="icon icon-chevron-right"></i>
+							<%= instance.name %>
+						<% end %>
+					</td>
+
 					<td>
 						<% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
 							<div align="right">
