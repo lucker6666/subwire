@@ -168,11 +168,15 @@
  		font-size: 1.1em;
  	}
 
- 	.navbar .nav > li > a.brand {
- 		padding-right: 0;
- 		padding-left: 20px;
+ 	.navbar a.brand {
 		color: #fff;
-		font-size: 2em;
+		font-size: 31px;
+		padding: 4px 0 0 20px;
+		font-family: "Yanone Kaffeesatz";
+
+		span {
+			color: #08C;
+		}
  	}
 
  	.iconOnly i {
