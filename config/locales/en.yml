@@ -230,6 +230,8 @@ en:
     your_profile: Your Profile
     edit_your_profile: Settings
     logout: Logout
+    login: Login
+    no_account: "Don\'t have an account? Click here!"
     bookmarks: Bookmarks
     user: User
     de: German

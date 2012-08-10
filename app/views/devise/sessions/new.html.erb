@@ -1,3 +1,10 @@
+<h1><%=t "application.login" %></h1>
+<h3>
+	<a href="<%= new_registration_path(resource_name) %>">
+		<%= t("application.no_account") %>
+	</a>
+</h3>
+
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 	<fieldset>
         <div class="clearfix">

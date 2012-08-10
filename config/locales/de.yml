@@ -227,6 +227,8 @@ de:
     your_profile: Dein Profil
     edit_your_profile: Einstellungen
     logout: Ausloggen
+    login: Login
+    no_account: "Du hast keinen Account? Klick hier!"
     bookmarks: Lesezeichen
     user: Benutzer
     de: Deutsch

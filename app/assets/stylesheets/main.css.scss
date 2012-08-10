@@ -12,28 +12,28 @@
 		border-radius: $radius;
 	}
 
+	@mixin box_shadow($params) {
+		box-shadow: $params;
+		-webkit-box-shadow: $params;
+		-moz-box-shadow: $params;
+	}
+
+	@mixin gradient($from, $to) {
+		background-color: $from;
+		background-image: -moz-linear-gradient($from, $to);
+		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+		background-image: -webkit-linear-gradient($from, $to);
+		background-image: -o-linear-gradient($from, $to);
+	}
+
 
 /*
  *	General
  */
 
 	body {
-		background-image: linear-gradient(bottom, $back_start 35%, $back_end 68%);
-		background-image: -o-linear-gradient(bottom, $back_start 35%, $back_end 68%);
-		background-image: -moz-linear-gradient(bottom, $back_start 35%, $back_end 68%);
-		background-image: -webkit-linear-gradient(bottom, $back_start 35%, $back_end 68%);
-		background-image: -ms-linear-gradient(bottom, $back_start 35%, $back_end 68%);
-
-		background-image: -webkit-gradient(
-			linear,
-			left bottom,
-			left top,
-			color-stop(0.35, $back_start),
-			color-stop(0.68, $back_end)
-		);
-
+		@include gradient($back_start, $back_end);
 		background-attachment: fixed;
-
 		padding-top: 80px;
 
 		&.login {
@@ -158,6 +158,11 @@
 /**
  *	Nav
  */
+
+ 	.navbar-fixed-top,
+ 	.navbar-fixed-bottom {
+		position: fixed;
+	}
 
  	.nav-collapse {
  		font-size: 1.1em;
@@ -303,7 +308,6 @@
 		background-color: #fff;
 		border-top: 1px solid #ccc;
 		border-right: 1px solid #ccc;
-		@include border_radius(5px);
 		box-shadow: 2px 2px 8px #ccc;
 
 	 	td img.avatar {
@@ -479,6 +483,9 @@
  */
 
  	body.login {
+ 		overflow: hidden;
+ 		background-color: #273B82;
+
  		.navbar .container {
 	 		text-align: center;
 
@@ -490,27 +497,56 @@
 	 	.row {
 	 		margin-left: 0;
 	 	}
+
+	 	.background-image {
+	 		width: 100%;
+	 		position: absolute;
+	 		top: 0;
+	 		left: 0;
+	 	}
  	}
 
 	.login-form {
-		width: 260px;
- 		box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
-		-webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
-		-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
+		width: 420px;
 		background-color: #fff;
-		padding: 20px;
+		padding: 20px 40px;
 		margin: 100px auto;
+		@include box_shadow(0px 6px 10px rgba(0, 0, 0, 0.5));
 		@include border_radius(10px);
+		@include gradient(#fff, #bbb);
+
+		h1,
+		h3 {
+			text-align: center;
+			margin-bottom: 0;
+		}
+
+		h3 {
+			margin: 0.5em 0 1em;
+		}
 
 		form {
 			margin: 0;
 
 			.btn {
 				margin-top: 1.5em;
+
+				&#remember-me {
+					width: 110px;
+				}
+
+				&.btn-success {
+					width: 112px;
+					float: right;
+				}
 			}
 
 			input.text_field {
-				width: 250px;
+				width: 400px;
+				font-size: 22px;
+				padding: 5px 10px;
+				line-height: 1.2em;
+				height: 35px;
 			}
 		}
 
