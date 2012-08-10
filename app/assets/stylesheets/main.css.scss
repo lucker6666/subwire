@@ -518,11 +518,11 @@
 		h1,
 		h3 {
 			text-align: center;
-			margin-bottom: 0;
+			margin-bottom: 1em;
 		}
 
 		h3 {
-			margin: 0.5em 0 1em;
+			margin: -1em 0 1em;
 		}
 
 		form {
@@ -531,13 +531,16 @@
 			.btn {
 				margin-top: 1.5em;
 
-				&#remember-me {
+				&.fixed-width#remember-me {
 					width: 110px;
 				}
 
 				&.btn-success {
-					width: 112px;
 					float: right;
+
+					&.fixed-width {
+						width: 112px;
+					}
 				}
 			}
 
@@ -547,6 +550,7 @@
 				padding: 5px 10px;
 				line-height: 1.2em;
 				height: 35px;
+				text-align: center;
 			}
 		}
 
@@ -556,6 +560,12 @@
 
 		.btn-group.pull-left {
 			margin-right: 0.8em;
+		}
+	}
+
+	form.new_instance {
+		select {
+			width: 422px;
 		}
 	}
 
@@ -587,6 +597,23 @@
 		}
  	}
 
+ 	.instance-link {
+ 		display: block;
+ 		display: inline-block;
+ 		width: 300px;
+		font-size: 16px;
+		font-weight: bold;
+
+ 		.icon {
+ 			color: #000;
+ 			margin-right: 5px;
+ 		}
+
+ 		&:hover .icon {
+ 			color: #005580;
+ 		}
+ 	}
+
 
 /**
  *	Footer
@@ -594,14 +621,21 @@
 
  	footer {
  		clear: both;
- 		text-align: center;
- 		color: #666;
- 		padding: 0.6em 0;
- 		border-top: 1px solid #ccc;
- 		margin-top: 2em;
+		text-align: center;
+		color: #bbb;
+		padding: 0.6em 0;
+		position: fixed;
+		text-align: center;
+		bottom: 10px;
+		width: 100%;
+		left: 0;
 
 	 	a {
-	 		color: #666;
+	 		color: #bbb;
+
+	 		&:hover {
+	 			color: #fff;
+	 		}
 	 	}
 
 	 	ul {
