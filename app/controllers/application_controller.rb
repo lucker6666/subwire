@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 					end
 				end
 
-				users = User.find :all, :conditions => ["created_at < ? ", 30.days.ago]
+				users = User.find :all, :conditions => ["created_at < ? and invitation_pending = 1", 30.days.ago]
 				users.each { |u| u.destroy }
 
 				if current_instance
