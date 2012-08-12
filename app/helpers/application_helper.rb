@@ -72,7 +72,7 @@ module ApplicationHelper
 
 		if user.gravatar
 			image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
-			:class => 'avatar ' + className, :width => width, :height => height
+			:class => 'avatar' + className, :width => width, :height => height
 		else
 			image_tag user.avatar.url(size), :class => 'avatar ' + className,
 				:width => width, :height => height
