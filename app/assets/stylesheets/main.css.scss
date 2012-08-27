@@ -2,7 +2,7 @@
  *	Variables
  */
 
- 	$back_start: #f8f8f8;
+ 	$back_start: #ccc;
  	$back_end: #eee;
  	$error_red: #b94a48;
 
@@ -60,7 +60,7 @@
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
-		box-shadow: 2px 2px 8px #ccc;
+		@include box_shadow(2px 4px 8px rgba(0, 0, 0, 0.2));
 
 	 	.form-actions {
 	 		padding: 0;
@@ -79,7 +79,7 @@
 	}
 
 	h1 {
-		margin-bottom: 29px;
+		margin-bottom: 20px;
 	}
 
 	a:hover {
@@ -169,9 +169,8 @@
  	}
 
  	.navbar a.brand {
-		color: #fff;
 		font-size: 31px;
-		padding: 4px 0 0 20px;
+		padding: 8px 0 0 20px;
 		font-family: "Yanone Kaffeesatz";
 
 		span {
