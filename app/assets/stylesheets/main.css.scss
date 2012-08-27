@@ -2,8 +2,8 @@
  *	Variables
  */
 
- 	$back_start: #ccc;
- 	$back_end: #eee;
+ 	$back_start: #e6e6e6;
+ 	$back_end: #fff;
  	$error_red: #b94a48;
 
 	@mixin border_radius($radius) {
@@ -34,7 +34,7 @@
 	body {
 		@include gradient($back_start, $back_end);
 		background-attachment: fixed;
-		padding-top: 80px;
+		padding-top: 0;
 
 		&.login {
 			background: #ddd none;
@@ -96,12 +96,17 @@
 		width: 250px;
 	}
 
-	.sidebar {
-		margin-top: 5em;
-	}
-
 	div.container {
 		position: relative;
+	}
+
+	div.content {
+		padding: 0;
+	}
+
+	div.maincontent.span10 {
+		margin-top: 45px;
+		margin-left: 300px;
 	}
 
 	.pagination {
@@ -464,20 +469,39 @@
  *	Sidebar
  */
 
-	ul.bookmarks {
-		list-style-type: none;
-		margin: 0;
+ 	div.sidebar {
+		position: fixed;
+	    left: 0;
+	    top: 30px;
+	    bottom: 0;
+	    width: 250px;
+ 		background-color: #e6e6e6;
+ 		border-right: 1px solid #c7c7c7;
+ 		box-shadow: inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1);
 
-		li {
-			word-wrap: break-word;
+ 		.well {
+ 			background-color: transparent;
+ 			border: none;
+ 			box-shadow: none;
+ 			border-radius: none;
+ 		}
+
+		ul.bookmarks {
+			list-style-type: none;
+			margin: 0;
+
+			li {
+				word-wrap: break-word;
+			}
 		}
-	}
 
- 	ul.users .avatar {
- 		float: left;
- 		margin-right: 5px;
-		margin-top: 4px;
+	 	ul.users .avatar {
+	 		float: left;
+	 		margin-right: 5px;
+			margin-top: 4px;
+	 	}
  	}
+
 
 
 
