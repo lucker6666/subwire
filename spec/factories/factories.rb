@@ -8,7 +8,6 @@ FactoryGirl.define do
 	  factory :user1 do
 	    name 'User1'
 	    email 'example@example.com'
-
 	  end
 
 	  # user2: Has instance2 and is no superadmin
