@@ -74,5 +74,8 @@ module Subwire
 		g.view_specs false
 		g.helper_specs false
 	end
+
+	# Partially load application for faster asset precompilition
+	config.assets.initialize_on_precompile = false
   end
 end
