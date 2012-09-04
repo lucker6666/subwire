@@ -148,16 +148,16 @@ class UsersController < ApplicationController
 	end
 
 	def finish_save
-		user = current_user
+		@user = current_user
 
-		if user.update_attributes(params[:user])
-			user.invitation_pending = false
-			user.save
+		if @user.update_attributes(params[:user])
+			@user.invitation_pending = false
+			@user.save
 
 			feedback t('users.invitation_finished')
 			redirect_to "/"
 		else
-			errors_to_feedback user
+			errors_to_feedback @user
 			render :finish, :layout => "login"
 		end
 	end
