@@ -22,16 +22,13 @@
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />
 		<link rel="shortcut icon" href="/assets/favicon.png" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 
 	<body class="login">
-		<img class="background-image" src="/assets/backgrounds/blue_rays.jpg" />
-
-		<div class="navbar navbar-fixed-top">
+		<div class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-inner">
 				<div class="container">
 					<% if current_user %>
@@ -45,7 +42,7 @@
 						</ul>
 					<% end %>
 
-					<a class="brand" href="/"><span>Sub</span>wire</a>
+					<a class="brand" href="/">Subwire</a>
 				</div>
 			</div>
 		</div>
