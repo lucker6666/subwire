@@ -2,8 +2,8 @@
  *	Variables
  */
 
- 	$back_start: #e6e6e6;
- 	$back_end: #fff;
+ 	$back_start: #f8f8f8;
+ 	$back_end: #eee;
  	$error_red: #b94a48;
 
 	@mixin border_radius($radius) {
@@ -12,33 +12,37 @@
 		border-radius: $radius;
 	}
 
-	@mixin box_shadow($params) {
-		box-shadow: $params;
-		-webkit-box-shadow: $params;
-		-moz-box-shadow: $params;
-	}
-
-	@mixin gradient($from, $to) {
-		background-color: $from;
-		background-image: -moz-linear-gradient($from, $to);
-		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
-		background-image: -webkit-linear-gradient($from, $to);
-		background-image: -o-linear-gradient($from, $to);
-	}
-
 
 /*
  *	General
  */
 
 	body {
-		@include gradient($back_start, $back_end);
+		background-image: linear-gradient(bottom, $back_start 35%, $back_end 68%);
+		background-image: -o-linear-gradient(bottom, $back_start 35%, $back_end 68%);
+		background-image: -moz-linear-gradient(bottom, $back_start 35%, $back_end 68%);
+		background-image: -webkit-linear-gradient(bottom, $back_start 35%, $back_end 68%);
+		background-image: -ms-linear-gradient(bottom, $back_start 35%, $back_end 68%);
+
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.35, $back_start),
+			color-stop(0.68, $back_end)
+		);
+
 		background-attachment: fixed;
-		padding-top: 0;
+
+		padding-top: 80px;
 
 		&.login {
 			background: #ddd none;
 		}
+	}
+
+	.btn-large {
+		font-size: 14px;
 	}
 
  	.popover_help {
@@ -60,7 +64,7 @@
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
-		@include box_shadow(2px 4px 8px rgba(0, 0, 0, 0.2));
+		box-shadow: 2px 2px 8px #ccc;
 
 	 	.form-actions {
 	 		padding: 0;
@@ -79,7 +83,9 @@
 	}
 
 	h1 {
-		margin-bottom: 20px;
+		margin-bottom: 29px;
+		font-size: 33px;
+		line-height: 31px;
 	}
 
 	a:hover {
@@ -96,17 +102,12 @@
 		width: 250px;
 	}
 
+	.sidebar {
+		margin-top: 5em;
+	}
+
 	div.container {
 		position: relative;
-	}
-
-	div.content {
-		padding: 0;
-	}
-
-	div.maincontent.span10 {
-		margin-top: 45px;
-		margin-left: 300px;
 	}
 
 	.pagination {
@@ -164,23 +165,15 @@
  *	Nav
  */
 
- 	.navbar-fixed-top,
- 	.navbar-fixed-bottom {
-		position: fixed;
-	}
-
  	.nav-collapse {
  		font-size: 1.1em;
  	}
 
- 	.navbar a.brand {
-		font-size: 31px;
-		padding: 8px 0 0 20px;
-		font-family: "Yanone Kaffeesatz";
-
-		span {
-			color: #08C;
-		}
+ 	.navbar .nav > li > a.brand {
+ 		padding-right: 0;
+ 		padding-left: 20px;
+		color: #fff;
+		font-size: 2em;
  	}
 
  	.iconOnly i {
@@ -306,6 +299,14 @@
  		height: 26px;
  	}
 
+ 	.navbar .nav > li > a {
+		padding: 10px;
+	}
+
+	.navbar .divider-vertical {
+		margin: 0 4px;
+	}
+
 
 
 /**
@@ -316,6 +317,7 @@
 		background-color: #fff;
 		border-top: 1px solid #ccc;
 		border-right: 1px solid #ccc;
+		@include border_radius(5px);
 		box-shadow: 2px 2px 8px #ccc;
 
 	 	td img.avatar {
@@ -469,39 +471,71 @@
  *	Sidebar
  */
 
- 	div.sidebar {
-		position: fixed;
-	    left: 0;
-	    top: 30px;
-	    bottom: 0;
-	    width: 250px;
- 		background-color: #e6e6e6;
- 		border-right: 1px solid #c7c7c7;
- 		box-shadow: inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1);
+	ul.bookmarks {
+		list-style-type: none;
+		margin: 0;
 
- 		.well {
- 			background-color: transparent;
- 			border: none;
- 			box-shadow: none;
- 			border-radius: none;
- 		}
-
-		ul.bookmarks {
-			list-style-type: none;
-			margin: 0;
-
-			li {
-				word-wrap: break-word;
-			}
+		li {
+			word-wrap: break-word;
 		}
+	}
 
-	 	ul.users .avatar {
-	 		float: left;
-	 		margin-right: 5px;
-			margin-top: 4px;
+ 	ul.users .avatar {
+ 		float: left;
+ 		margin-right: 5px;
+		margin-top: 4px;
+ 	}
+
+
+
+/**
+ *	Login form
+ */
+
+ 	body.login {
+ 		.navbar .container {
+	 		text-align: center;
+
+	 		a {
+		 		float: none;
+		 	}
+	 	}
+
+	 	.row {
+	 		margin-left: 0;
 	 	}
  	}
 
+	.login-form {
+		width: 260px;
+ 		box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
+		-webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
+		-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
+		background-color: #fff;
+		padding: 20px;
+		margin: 100px auto;
+		@include border_radius(10px);
+
+		form {
+			margin: 0;
+
+			.btn {
+				margin-top: 1.5em;
+			}
+
+			input.text_field {
+				width: 250px;
+			}
+		}
+
+		#remember-me i.icon-lock {
+			margin-right: 4px;
+		}
+
+		.btn-group.pull-left {
+			margin-right: 0.8em;
+		}
+	}
 
 
 
@@ -531,23 +565,6 @@
 		}
  	}
 
- 	.instance-link {
- 		display: block;
- 		display: inline-block;
- 		width: 300px;
-		font-size: 16px;
-		font-weight: bold;
-
- 		.icon {
- 			color: #000;
- 			margin-right: 5px;
- 		}
-
- 		&:hover .icon {
- 			color: #005580;
- 		}
- 	}
-
 
 /**
  *	Footer
@@ -555,15 +572,14 @@
 
  	footer {
  		clear: both;
-		padding: 0.6em 0;
-		text-align: center;
-		color: #666;
-		border-top: 1px solid #ccc;
-		margin-top: 2em;
-
+ 		text-align: center;
+ 		color: #666;
+ 		padding: 0.6em 0;
+ 		border-top: 1px solid #ccc;
+ 		margin-top: 2em;
 
 	 	a {
-			color: #666;
+	 		color: #666;
 	 	}
 
 	 	ul {
@@ -582,118 +598,6 @@
 	 	}
  	}
 
-
-
-/**
- *	Login form
- */
-
- 	body.login {
- 		overflow: hidden;
- 		background-color: #273B82;
-
- 		.navbar .container {
-	 		text-align: center;
-
-	 		a {
-		 		float: none;
-		 	}
-	 	}
-
-	 	.row {
-	 		margin-left: 0;
-	 	}
-
-	 	.background-image {
-	 		width: 100%;
-	 		position: absolute;
-	 		top: 0;
-	 		left: 0;
-	 	}
-
-	 	footer {
-	 		clear: both;
-			text-align: center;
-			color: #bbb;
-			width: 100%;
-
-		 	a {
-		 		color: #bbb;
-
-		 		&:hover {
-		 			color: #fff;
-		 		}
-		 	}
-
-		 	ul li {
-		 		border-left: 1px solid #999;
-		 	}
-	 	}
- 	}
-
-	.login-form {
-		width: 420px;
-		background-color: #fff;
-		padding: 20px 40px;
-		margin: 100px auto 2em;
-		@include box_shadow(0px 6px 10px rgba(0, 0, 0, 0.5));
-		@include border_radius(10px);
-		@include gradient(#fff, #bbb);
-
-		h1,
-		h3 {
-			text-align: center;
-			margin-bottom: 1em;
-		}
-
-		h3 {
-			margin: -1em 0 1em;
-		}
-
-		form {
-			margin: 0;
-
-			.btn {
-				margin-top: 1.5em;
-
-				&.fixed-width#remember-me {
-					width: 110px;
-				}
-
-				&.btn-success {
-					float: right;
-
-					&.fixed-width {
-						width: 112px;
-					}
-				}
-			}
-
-			input.text_field {
-				width: 400px;
-				font-size: 22px;
-				padding: 5px 10px;
-				line-height: 1.2em;
-				height: 35px;
-				text-align: center;
-			}
-		}
-
-		#remember-me i.icon-lock {
-			margin-right: 4px;
-		}
-
-		.btn-group.pull-left {
-			margin-right: 0.8em;
-		}
-	}
-
-	form.new_instance {
-		select {
-			width: 422px;
-		}
-	}
-
 /*
 * Missing Translation
 */
@@ -702,7 +606,6 @@
 		border-color: #EED3D7;
 		color: #B94A48;
 	}
-
 
 /*
  *	Hints
