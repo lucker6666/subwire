@@ -41,6 +41,10 @@
 		}
 	}
 
+	.btn-large {
+		font-size: 14px;
+	}
+
  	.popover_help {
  		float: right;
  		font-size: 20pt;
@@ -80,6 +84,8 @@
 
 	h1 {
 		margin-bottom: 29px;
+		font-size: 33px;
+		line-height: 31px;
 	}
 
 	a:hover {
@@ -292,6 +298,14 @@
  		width: 26px;
  		height: 26px;
  	}
+
+ 	.navbar .nav > li > a {
+		padding: 10px;
+	}
+
+	.navbar .divider-vertical {
+		margin: 0 4px;
+	}
 
 
 
