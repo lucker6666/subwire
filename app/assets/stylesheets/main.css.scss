@@ -685,7 +685,13 @@
 			text-align: center;
 
 			h3 {
-				margin-bottom: 0.2em;
+				margin-bottom: 0.1em;
+				font-size: 20px;
+				line-height: 30px;
+			}
+
+			.btn-large {
+				padding: 8px 14px;
 			}
 		}
 	}
