@@ -133,6 +133,11 @@
 		border-radius: 5px;
 	}
 
+	/* Workaround for https://github.com/seyhunak/twitter-bootstrap-rails/issues/357 */
+	[class^="icon-"], [class*=" icon-"] {
+		background-image: none !important;
+	}
+
 
 /**
  * 	Forms
