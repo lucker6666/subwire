@@ -24,7 +24,7 @@ Installation
 * $ cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
 * $ vim config/initializers/secret_token.rb
 * Specify a secret token!
-* $ cp config/initializers/setup_mail.rb.exmaple config/initializers/setup_mail.rb
+* $ cp config/initializers/setup_mail.rb.example config/initializers/setup_mail.rb
 * $ vim config/initializers/setup_mail.rb
 * Change E-Mail settings
 * $ rake db:create; rake db:migrate
