@@ -4,7 +4,7 @@
 	<tr>
 		<td>
 			<div class="pull-right">
-				<% if current_user.is_admin? || @article.user == current_user %>
+				<% if has_admin_privileges? || @article.user == current_user %>
 					<%= link_to edit_article_path(@article), :class => 'btn' do %>
 						<i class="icon icon-pencil"></i>
 					<% end %>
