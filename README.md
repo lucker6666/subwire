@@ -1,6 +1,6 @@
 Subwire is the system running on [subwire.net](http://subwire.net).
 
-[![Build Status](https://secure.travis-ci.org/YaanaLabs/subwire.png?branch=master)](http://travis-ci.org/#!/YaanaLabs/subwire)
+[![Build Status](https://secure.travis-ci.org/YaanaLabs/subwire.png?branch=V3-0)](http://travis-ci.org/#!/YaanaLabs/subwire)
 
 
 
