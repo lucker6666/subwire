@@ -24,8 +24,11 @@ class NotificationsController < ApplicationController
 			notification = Notification.find(params[:id])
 			target = articles_path
 
-			if notification && notification.user == current_user &&
-				notification.instance == current_instance
+			if notification && notification.user == current_user
+
+				if notification.instance != current_instance
+					set_current_instance notification.instance
+				end
 
 				target = notification.href
 				notification.read!

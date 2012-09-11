@@ -62,7 +62,8 @@
 			</div>
 		</div>
 
-		<div class="control-group">
+
+		<div class="avatar-upload control-group">
 			<%= f.label :avatar, :class => 'control-label' %>
 			<div class="controls">
 				<%= f.file_field :avatar %>
@@ -74,6 +75,17 @@
 				<br /><br /><br />
 			</div>
 		</div>
+
+		<% if @user.gravatar %>
+			<script type="text/javascript">
+				$('.avatar-upload').hide();
+			</script>
+		<% end %>
+		<script type="text/javascript">
+			$('#gravatar').click(function() {
+			  $('.avatar-upload').toggle('slow');
+			});
+		</script>
 
 		<div class="control-group">
 			<%= label :mail_notification, " ", :class => 'control-label' %>
