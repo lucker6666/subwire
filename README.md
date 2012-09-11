@@ -14,7 +14,7 @@ For more information check [subwire.net](http://subwire.net)!
 
 Quick Installation
 ==================
-* $ git clone https://itws@github.com/YaanaLabs/subwire.git
+* $ git clone https://github.com/YaanaLabs/subwire.git
 * $ bundle install
 * $ cp config/database.mysql.yml config/database.yml
 * change config/database.yml
