@@ -12,21 +12,14 @@ For more information check [subwire.net](http://subwire.net)!
 
 
 
-Installation
-============
-* $ git clone --quiet https://itws@github.com/YaanaLabs/subwire.git
-* $ cd subwire
+Quick Installation
+==================
+* $ git clone https://itws@github.com/YaanaLabs/subwire.git
 * $ bundle install
-* For MySQL: $ cp config/database.mysql.yml config/database.yml
-* For SQLite: $ cp config/database.sqlite.yml config/database.yml
-* $ vim config/database.yml
-* change database connection configuration
-* $ cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
-* $ vim config/initializers/secret_token.rb
-* Specify a secret token!
-* $ cp config/initializers/setup_mail.rb.example config/initializers/setup_mail.rb
-* $ vim config/initializers/setup_mail.rb
-* Change E-Mail settings
+* $ cp config/database.mysql.yml config/database.yml
+* change config/database.yml
+* $ cp config/initializers/config.example.rb config/initializers/config.rb
+* change config/initializers/config.rb
 * $ rake db:create; rake db:migrate
 * $ rake subwire:setup
 

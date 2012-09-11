@@ -26,15 +26,4 @@ Subwire::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  # Set this one to the host of your application
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
-
 end
-
-#ErrorMails
-#Subwire::Application.config.middleware.use ExceptionNotifier,
-#  :email_prefix => "[Error] ",
-#  :sender_address => %{"Subwire" <no-reply@subwire.net>},
-#  :exception_recipients => %w{info@example.com}
