@@ -26,6 +26,7 @@ gem 'rails_autolink'
 gem 'rmagick'
 gem 'html_truncator'
 gem 'exception_notification'
+gem 'tire'
 
 # Testing
 group :test do

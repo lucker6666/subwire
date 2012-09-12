@@ -240,6 +240,7 @@ de:
     welcome_back: 'Willkommen zurück'
     go_to_overview: 'Weiter zur Instanzübersicht'
     more_to_read: 'Weiterlesen ...'
+    search: 'OK'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert
@@ -267,6 +268,8 @@ de:
     destroyed: Artikel erfolgreich gelöscht.
     standard_title: Herzlich Willkommen in Deiner neuen Instanz
     standard_content: Nun kannst du weitere Benutzer in diese Instanz einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
+    search_result: Suchergebnis
+    search_counter: "Für deine Suche nach '%{query}' wurden %{count} Artikel gefunden."
 
   users:
     add: Benutzer hinzufügen

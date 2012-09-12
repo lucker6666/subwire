@@ -17,6 +17,10 @@ class Article < ActiveRecord::Base
 	### Attributes
 	attr_accessible :content, :title
 
+	###Includes
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+
 	### Associations
 	belongs_to :user
 	belongs_to :instance
@@ -25,4 +29,7 @@ class Article < ActiveRecord::Base
 	### Validations
 	# Make sure, title and content are not empty
 	validates :title, :content, :presence => true
+
+
+
 end
