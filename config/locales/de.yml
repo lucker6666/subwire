@@ -300,6 +300,7 @@ de:
     edit_article: 'Artikel von %{user} bearbeitet:'
     new_user: Benutzer %{user} wurde hinzugefügt
     new_comment: 'Neuer Kommentar von %{user} zu:'
+    mark_as_read: 'Alle als gelesen markieren.'
     mailer:
       new_article: Artikel
       new_comment: Kommentar

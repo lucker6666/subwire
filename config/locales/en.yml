@@ -302,6 +302,7 @@ en:
     edit_article: 'Article edited from %{user}:'
     new_user: User %{user} joined
     new_comment: 'New Comment from %{user} to:'
+    mark_as_read: 'Read all as mark.'
     mailer:
       new_article: Article
       new_comment: Comment

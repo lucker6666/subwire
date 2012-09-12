@@ -30,7 +30,7 @@ Subwire::Application.routes.draw do
 	end
 
 	# Notifications
-	resources :notifications, :only => [:index, :show]
+	resources :notifications, :only => [:index, :show, :destroy]
 
 	# Availability Tool
 	post "availability", :to => "availabilities#set"
