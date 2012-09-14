@@ -25,7 +25,7 @@ class LinksController < ApplicationController
 
 	# POST /links
 	def create
-		unless params[:link][:href].starts_with? 'http://'
+		unless params[:link][:href].match /^(http|ftp|https):\/\//
 			params[:link][:href] = 'http://' + params[:link][:href]
 		end
 
@@ -43,7 +43,7 @@ class LinksController < ApplicationController
 
 	# PUT /links/1
 	def update
-		unless params[:link][:href].starts_with? 'http://'
+		unless params[:link][:href].match /^(http|ftp|https):\/\//
 			params[:link][:href] = 'http://' + params[:link][:href]
 		end
 
