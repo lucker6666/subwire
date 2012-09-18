@@ -247,6 +247,7 @@ de:
 
   instances:
     new: Erstelle eine neue Instanz!
+    edit: Einstellungen
     create: Instanz erstellen!
     your_instances: Deine Instanzen
     hit_limit: Du kannst höchstens von 5 Instanzten gleichzeitig Admin sein. Wenn du noch mehr Instanzten benötigst, kontaktiere uns bitte per info@yaana.de.
@@ -335,6 +336,9 @@ de:
     comment_edit: Kommentar bearbeiten
     comment_delete: Kommentar löschen
     gravatar: Dein Gravatar ist ein Avatarbild was dir von Seite zu Seite "folgt", was genau das bedeutet erfährst du auf http://gravatar.com
+    instanceSwitcher: Instanz wechseln
+    instanceSettings: Instanz-Einstellungen
+    notifications: Benachrichtigungen
 
   popover:
     instances_title: Instanzen

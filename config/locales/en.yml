@@ -250,6 +250,7 @@ en:
 
   instances:
     new: Create new instance!
+    edit: Settings
     create: Create Instance!
     your_instances: Your instances
     hit_limit: You can't be an admin of more then 5 instances at the same time. If you need some more instances, please contact us via info@yaana.de.
@@ -334,6 +335,9 @@ en:
     comment_edit: Edit Comment
     comment_delete: Delete Comment
     gravatar: Your Gravatar is an image that follows you from site to site appearing beside your name when you do things like comment or post on a blog. More Infos http://gravatar.com
+    instanceSwitcher: Switch instance
+    instanceSettings: Instance settings
+    notifications: Notifications
 
   popover:
     instances_title: Instances

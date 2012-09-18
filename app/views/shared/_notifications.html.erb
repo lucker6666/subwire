@@ -1,8 +1,8 @@
 <li class="dropdown iconOnly">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+		rel="tooltip" title="<%=t 'tooltip.notifications' %>"
+		data-placement="bottom">
 		<i class="icon icon-exclamation-sign"></i>
-		<b class="caret"></b>
-
 
 		<% if @unread_notification_count > 0 %>
 			<span class="notification-badge badge badge-info">
@@ -23,7 +23,7 @@
 
 				<li class="divider"></li>
 			<% end %>
-			
+
 			<li class="divider"></li>
 			<li>
 				<a id="markAllNotificationsAsRead" href="#">
