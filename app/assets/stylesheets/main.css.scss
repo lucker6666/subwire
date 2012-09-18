@@ -185,17 +185,13 @@
 		font-size: 2em;
  	}
 
- 	.iconOnly i {
+ 	.iconOnly > a > i {
  		font-size: 1.6em;
  	}
 
  	li.iconOnly > a.dropdown-toggle {
  		position: relative;
- 		padding: 10px 0 8px 1.1em;
- 	}
-
- 	li.iconOnly.instanceChooserCaret a.dropdown-toggle {
- 		padding-left: 6px;
+ 		padding: 10px 0.5em 8px 0.5em;
  	}
 
  	a.dropdown-toggle span.badge {
@@ -319,7 +315,7 @@
  		height: 26px;
  	}
 
- 	.navbar .nav > li > a {
+ 	.nav > li > a {
 		padding: 10px;
 	}
 
