@@ -384,6 +384,7 @@ de:
         password_confirmation: Passwort bestätigen
         lang: Sprache
         timezone: Zeitzone
+        show_login_status: Statusanzeige
       notification:
         notification_type: Type
         message: Nachricht

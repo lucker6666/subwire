@@ -385,6 +385,7 @@ en:
         is_admin_of_instance: Admin of this Instance?
         lang: Language
         timezone: Timezone
+        show_login_status: Show online status
       notification:
         notification_type: Type
         message: Message
