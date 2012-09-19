@@ -1,0 +1,41 @@
+<li class="dropdown iconOnly">
+  <% if instances.length > 0 %>
+    <a href="#"
+      class="dropdown-toggle"
+      data-toggle="dropdown"
+      rel="tooltip"
+      title="<%=t 'tooltip.instanceSwitcher' %>"
+      data-placement="bottom">
+
+      <i class="icon-home"></i>
+    </a>
+
+    <ul class="instances-dropdown dropdown-menu">
+      <% instances.each do |instance| %>
+        <% notificationCount = instance.notification_count(current_user) %>
+
+        <li>
+          <%= link_to instance_path(instance), {
+              :class =>
+              (instance == current_instance ? "active" : "")
+            } do
+          %>
+            <% if notificationCount > 0 %>
+              <span class="notification-badge badge badge-info">
+                <%= notificationCount %>
+              </span>
+
+              &nbsp;
+            <% end %>
+
+            <%= instance.name %>
+          <% end %>
+        </li>
+      <% end %>
+
+      <li>
+        <%= link_to t("instances.overview"), "/instances/unset" %>
+      </li>
+    </ul>
+  <% end %>
+</li>
