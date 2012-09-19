@@ -89,6 +89,11 @@
 			    	<%= render :partial => 'shared/navbar/availability' %>
 
 						<ul class="nav pull-right">
+              <%= form_tag articles_path, :class => 'navbar-search', method: :get do %>
+                  <%= text_field_tag :query, params[:query], :class => 'search-query',
+                    :placeholder => t('application.search') %>
+              <% end %>
+
 							<li class="divider-vertical"></li>
 
 							<li class="dropdown">
@@ -127,20 +132,9 @@
 			</div>
 		</div>
 
-
 		<div class="container-fluid content">
 			<div class="row-fluid">
 				<div class="sidebar">
-					<div class="well">
-						<%= form_tag articles_path, :class =>'', method: :get do %>
-						  <div class="input-append input-prepend">
-						  	<span class="add-on"><i class="icon icon-search"></i></span>
-						    <%= text_field_tag :query, params[:query], :class => 'span7' %>
-						    <%= submit_tag t('application.search'), name: nil, :class => 'btn' %>
-						  </div>
-						<% end %>
-					</div>
-
 					<% if @sidebar_links.length > 0 %>
 						<div class="well">
 							<h3>

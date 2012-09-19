@@ -182,15 +182,20 @@
 
  	.navbar {
  		font-size: 14px;
- 	}
 
- 	.navbar a.brand {
-		font-size: 31px;
-		padding: 8px 0 0 20px;
-		font-family: "Yanone Kaffeesatz";
+ 		a.brand {
+			font-size: 31px;
+			padding: 8px 0 0 20px;
+			font-family: "Yanone Kaffeesatz";
 
-		span {
-			color: #08C;
+			span {
+				color: #08C;
+			}
+		}
+
+		.search-query {
+			width: 140px;
+			margin-right: 13px;
 		}
  	}
 

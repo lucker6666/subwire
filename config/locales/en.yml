@@ -243,7 +243,7 @@ en:
     welcome_back: 'Welcome back'
     go_to_overview: 'Go to the instance overview'
     more_to_read: 'More to read ...'
-    search: 'OK'
+    search: 'Search'
 
   comments:
     new_success: Comment was successfully created.
