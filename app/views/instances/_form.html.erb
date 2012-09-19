@@ -1,26 +1,26 @@
 <%= form_for @instance do |f| %>
-	<fieldset>
-	    <div class="clearfix">
-			<%= f.text_field :name, { :class => 'text_field', :placeholder => t('helpers.name'), :autocomplete => :off }  %>
-	    </div>
+    <fieldset>
+        <div class="clearfix">
+            <%= f.text_field :name, { :class => 'text_field', :placeholder => t('helpers.name'), :autocomplete => :off }  %>
+        </div>
 
-	    <div class="clearfix">
-	    	<%= select :instance, :defaultLanguage, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
-		</div>
+        <div class="clearfix">
+            <%= select :instance, :defaultLanguage, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
+        </div>
 
-	    <% if current_user.is_admin? %>
-		    <div class="clearfix">
-		    	<%= f.check_box :advertising, :class => 'check_box' %>
-		    	<%= t('helpers.advertisting') %>
-		    </div>
-	    <% end %>
+        <% if current_user.is_admin? %>
+            <div class="clearfix">
+                <%= f.check_box :advertising, :class => 'check_box' %>
+                <%= t('helpers.advertisting') %>
+            </div>
+        <% end %>
 
-	    <div class="clearfix">
-	    	<%= f.check_box :planningTool, :class => 'check_box' %>
-	    	<a href="#" rel="tooltip" title="<%= t ('tooltip.planningTool') %>"> <%= t('helpers.planningTool') %></a>
-		</div>
+        <div class="clearfix">
+            <%= f.check_box :planningTool, :class => 'check_box' %>
+            <a href="#" rel="tooltip" title="<%= t ('tooltip.planningTool') %>"> <%= t('helpers.planningTool') %></a>
+        </div>
 
-  		<%= f.submit nil, :class => 'btn btn-success btn-large' %>
-		<%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large btn-inverse' %>
-	</fieldset>
+        <%= f.submit nil, :class => 'btn btn-success btn-large' %>
+        <%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large btn-inverse' %>
+    </fieldset>
 <% end %>

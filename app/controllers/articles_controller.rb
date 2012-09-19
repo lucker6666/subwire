@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 	# GET /articles
 	def index
   		if params[:query].present?
-  			@articles = Article.search params[:query],load:true, 
+  			@articles = Article.search params[:query],load:true,
   				:page => params[:page],
   				:per_page => 5,
   				:order => "created_at DESC",

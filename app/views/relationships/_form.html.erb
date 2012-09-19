@@ -1,27 +1,27 @@
 <div class="well">
-	<%= form_for @relationship, :html => { :class => 'form-horizontal' } do |f| %>
-		<% if @relationship.id.nil? %>
-			<div class="control-group">
-				<%= f.label :email, :class => 'control-label' %>
+    <%= form_for @relationship, :html => { :class => 'form-horizontal' } do |f| %>
+        <% if @relationship.id.nil? %>
+            <div class="control-group">
+                <%= f.label :email, :class => 'control-label' %>
 
-				<div class="controls">
-					<%= f.text_field :email, { :value => "", :class => 'text_field', :autocomplete => :off } %>
-				</div>
-			</div>
-		<% end %>
+                <div class="controls">
+                    <%= f.text_field :email, { :value => "", :class => 'text_field', :autocomplete => :off } %>
+                </div>
+            </div>
+        <% end %>
 
-		<div class="control-group">
-			<%= f.label :admin, :class => 'control-label' %>
+        <div class="control-group">
+            <%= f.label :admin, :class => 'control-label' %>
 
-			<div class="controls">
-				<%= f.check_box :admin, :class => 'check_box', :checked => @relationship.admin %>
-			</div>
-		</div>
+            <div class="controls">
+                <%= f.check_box :admin, :class => 'check_box', :checked => @relationship.admin %>
+            </div>
+        </div>
 
-		<div class="form-actions with-padding">
-	    	<%= f.submit t('relationships.new'), :class => 'btn btn-primary' %>
-	    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-				relationships_path, :class => 'btn' %>
-		</div>
-	<% end %>
+        <div class="form-actions with-padding">
+            <%= f.submit t('relationships.new'), :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                relationships_path, :class => 'btn' %>
+        </div>
+    <% end %>
 </div>
