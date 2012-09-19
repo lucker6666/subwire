@@ -107,68 +107,70 @@
 
     <div class="container-fluid content">
       <div class="row-fluid">
-        <div class="sidebar">
-          <% if @sidebar_links.length > 0 %>
+        <div class="span3">
+          <div class="sidebar">
+            <% if @sidebar_links.length > 0 %>
+              <div class="well">
+                <h3>
+                  <i class="icon icon-heart"></i>
+                  <%= t "application.bookmarks" %>
+                </h3>
+
+                <ul class="bookmarks nav nav-list">
+                  <% @sidebar_links.each do |link| %>
+                    <li>
+                      <a href="<%= link.href %>" target="_blank">
+                        <% if !link.icon.empty? %>
+                          <i class="icon icon-<%= link.icon %>"></i>
+                        <% end %>
+
+                        <%= link.name %>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="well">
               <h3>
-                <i class="icon icon-heart"></i>
-                <%= t "application.bookmarks" %>
+                <i class="icon icon-user"></i>
+                <%= t "application.user" %>
               </h3>
 
-              <ul class="bookmarks nav nav-list">
-                <% @sidebar_links.each do |link| %>
+              <ul class="users nav nav-list">
+                <% @sidebar_users.each do |user| %>
                   <li>
-                    <a href="<%= link.href %>" target="_blank">
-                      <% if !link.icon.empty? %>
-                        <i class="icon icon-<%= link.icon %>"></i>
-                      <% end %>
-
-                      <%= link.name %>
-                    </a>
+                    <%= avatar(user, :list) %>
+                    <%= link_to user.name, user_path(user) %>
                   </li>
                 <% end %>
               </ul>
             </div>
-          <% end %>
 
-          <div class="well">
-            <h3>
-              <i class="icon icon-user"></i>
-              <%= t "application.user" %>
-            </h3>
+            <div class="advertising">
+              <div class="well">
+                <div style="width: 200px; margin: 0 auto;">
+                  <%= t('ad') %>
 
-            <ul class="users nav nav-list">
-              <% @sidebar_users.each do |user| %>
-                <li>
-                  <%= avatar(user, :list) %>
-                  <%= link_to user.name, user_path(user) %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-
-          <div class="advertising">
-            <div class="well">
-              <div style="width: 200px; margin: 0 auto;">
-                <%= t('ad') %>
-
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-4129785061498511";
-                /* Subwire Sidebar */
-                google_ad_slot = "4641294977";
-                google_ad_width = 200;
-                google_ad_height = 200;
-                //-->
-                </script>
-                <script type="text/javascript"
-                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
+                  <script type="text/javascript"><!--
+                  google_ad_client = "ca-pub-4129785061498511";
+                  /* Subwire Sidebar */
+                  google_ad_slot = "4641294977";
+                  google_ad_width = 200;
+                  google_ad_height = 200;
+                  //-->
+                  </script>
+                  <script type="text/javascript"
+                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="span10 maincontent">
+        <div class="span9 maincontent">
           <%= yield %>
 
           <%= render :partial => 'shared/footer' %>
