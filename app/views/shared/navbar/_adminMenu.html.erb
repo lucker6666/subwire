@@ -1,0 +1,26 @@
+<% if has_superadmin_privileges? %>
+  <li class="dropdown iconOnly">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+      rel="tooltip" title="Admin"
+      data-placement="bottom">
+
+      <i class="icon icon-fire"></i>
+    </a>
+
+    <ul class="admin-dropdown dropdown-menu">
+      <li>
+        <%= link_to users_path do %>
+          <i class="icon icon-user"></i>
+          <%= t('application.all_users') %>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to "/instances/all" do %>
+          <i class="icon icon-list-alt"></i>
+          <%= t('application.all_instances') %>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+<% end %>
