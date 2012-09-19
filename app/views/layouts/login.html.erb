@@ -9,26 +9,13 @@
 			<%= @subwireTitle %>
 		</title>
 
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript">
-			</script>
-		<![endif]-->
-
-		<script type="text/javascript">
-			window.pollNotifications = false;
-		</script>
-
-		<%= stylesheet_link_tag    "application", :media => "all" %>
-		<%= javascript_include_tag "application" %>
-		<%= csrf_meta_tags %>
-
-		<link rel="shortcut icon" href="/assets/favicon.png" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<%= render :partial => 'shared/head' %>
 	</head>
 
 	<body class="login">
-		<div class="navbar navbar-fixed-top navbar-inverse">
+		<img class="background-image" src="/assets/backgrounds/blue_rays.jpg" />
+
+		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
 					<% if current_user %>
@@ -42,7 +29,7 @@
 						</ul>
 					<% end %>
 
-					<a class="brand" href="/">Subwire</a>
+					<a class="brand" href="/"><span>Sub</span>wire</a>
 				</div>
 			</div>
 		</div>
