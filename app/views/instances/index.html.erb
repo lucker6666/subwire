@@ -1,75 +1,75 @@
 <%- model_class = Instance.new.class -%>
 
 <% if Article.where(:user_id => current_user.id).length == 0 && Comment.where(:user_id => current_user.id).length %>
-	<div class="alert alert-info clearfix">
-		<h2 class="pull-left"><i class="icon icon-question-sign"></i>&nbsp;</h2>
-		<a href="/virgin"><%=t "application.virgin" %></a>
-	</div>
+    <div class="alert alert-info clearfix">
+        <h2 class="pull-left"><i class="icon icon-question-sign"></i>&nbsp;</h2>
+        <a href="/virgin"><%=t "application.virgin" %></a>
+    </div>
 <% end %>
 
 <div class="instanceChooser">
-	<h1>
-		<%= t('instances.your_instances') %>
-	</h1>
+    <h1>
+        <%= t('instances.your_instances') %>
+    </h1>
 
-	<br />
+    <br />
 
-	<table class="table">
-		<tbody>
-			<% @instances.each do |instance| %>
-				<% notificationCount = instance.notification_count(current_user) %>
-				<tr>
-					<td>
-						<%= link_to instance_path(instance), :class => 'instance-link' do %>
-							<i class="icon icon-chevron-right"></i>
-							<%= instance.name %>
-						<% end %>
-					</td>
+    <table class="table">
+        <tbody>
+            <% @instances.each do |instance| %>
+                <% notificationCount = instance.notification_count(current_user) %>
+                <tr>
+                    <td>
+                        <%= link_to instance_path(instance), :class => 'instance-link' do %>
+                            <i class="icon icon-chevron-right"></i>
+                            <%= instance.name %>
+                        <% end %>
+                    </td>
 
-					<td>
-						<% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
-							<div align="right">
-								<% if notificationCount > 0 %>
-					    			<span class="notification-badge notification-margin badge badge-info">
-						    			<%= notificationCount %>
-						    		</span>
-					    		<% end %>
+                    <td>
+                        <% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
+                            <div align="right">
+                                <% if notificationCount > 0 %>
+                                    <span class="notification-badge notification-margin badge badge-info">
+                                        <%= notificationCount %>
+                                    </span>
+                                <% end %>
 
-								<%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
-									<i class="icon icon-pencil"></i>
-								<% end %>
+                                <%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
+                                    <i class="icon icon-pencil"></i>
+                                <% end %>
 
-								<%= link_to instance_path(instance),
-									:method => :delete,
-									:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
-									:class => 'btn btn-mini btn-danger' do %>
+                                <%= link_to instance_path(instance),
+                                    :method => :delete,
+                                    :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
+                                    :class => 'btn btn-mini btn-danger' do %>
 
-									<i class="icon icon-trash"></i>
-								<% end %>
-							</div>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+                                    <i class="icon icon-trash"></i>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 
-	<% if !has_superadmin_privileges? && @adminCount > 4 %>
-		<br />
+    <% if !has_superadmin_privileges? && @adminCount > 4 %>
+        <br />
 
-		<div class="alert alert-error">
-			<i class="icon  icon-exclamation-sign"></i>
-			<%= t('instances.hit_limit') %>
-		</div>
-	<% else %>
-		<div class="buttons">
-			<%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
-				<i class="icon icon-home"></i>
-				<%= t('instances.new') %>
-			<% end %>
-			<a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.instances_content') %>" data-original-title="<%= t('popover.instances_title') %>">
-				<i class="icon icon-question-sign"></i>
-			</a>
-		</div>
-	<% end %>
+        <div class="alert alert-error">
+            <i class="icon  icon-exclamation-sign"></i>
+            <%= t('instances.hit_limit') %>
+        </div>
+    <% else %>
+        <div class="buttons">
+            <%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
+                <i class="icon icon-home"></i>
+                <%= t('instances.new') %>
+            <% end %>
+            <a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.instances_content') %>" data-original-title="<%= t('popover.instances_title') %>">
+                <i class="icon icon-question-sign"></i>
+            </a>
+        </div>
+    <% end %>
 </div>

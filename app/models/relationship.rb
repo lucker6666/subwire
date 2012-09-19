@@ -6,7 +6,7 @@
 # 	user_id							:integer		not null, index
 # 	instance_id					:integer		not null, index
 # 	admin								:boolean		not null, default => true
-#   mail_notification                   :boolean        not null, default => true 
+#   mail_notification                   :boolean        not null, default => true
 #
 # TODO: default false for admin?
 

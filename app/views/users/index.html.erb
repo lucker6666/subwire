@@ -2,42 +2,42 @@
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <div class="well">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th><i class="icon icon-user"></i></th>
-				<th><%= model_class.human_attribute_name(:name) %></th>
-				<th><%= model_class.human_attribute_name(:email) %></th>
-				<th><%= model_class.human_attribute_name(:is_admin) %></th>
-				<th><%= t('users.instances_count') %></th>
-				<th><%=t '.actions', :default => t("helpers.actions") %></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @users.each do |user| %>
-				<tr>
-					<td><%= avatar(user, :list) %></td>
-					<td><%= link_to user.name, user_path(user) %></td>
-					<td><%= user.email %></td>
-					<td><%= boolean_icon(user.is_admin?) %></td>
-					<td><%= user.instance_count %></td>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><i class="icon icon-user"></i></th>
+                <th><%= model_class.human_attribute_name(:name) %></th>
+                <th><%= model_class.human_attribute_name(:email) %></th>
+                <th><%= model_class.human_attribute_name(:is_admin) %></th>
+                <th><%= t('users.instances_count') %></th>
+                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+                <tr>
+                    <td><%= avatar(user, :list) %></td>
+                    <td><%= link_to user.name, user_path(user) %></td>
+                    <td><%= user.email %></td>
+                    <td><%= boolean_icon(user.is_admin?) %></td>
+                    <td><%= user.instance_count %></td>
 
-					<td>
-						<%= link_to edit_user_path(user), :class => 'btn btn-mini' do %>
-							<i class="icon icon-pencil"></i>
-						<% end %>
+                    <td>
+                        <%= link_to edit_user_path(user), :class => 'btn btn-mini' do %>
+                            <i class="icon icon-pencil"></i>
+                        <% end %>
 
-						<% if user != current_user %>
-							<%= link_to user_path(user),
-								:method => :delete,
-							:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
-								:class => 'btn btn-mini btn-danger' do %>
-								<i class="icon icon-trash"></i>
-							<% end %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+                        <% if user != current_user %>
+                            <%= link_to user_path(user),
+                                :method => :delete,
+                            :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
+                                :class => 'btn btn-mini btn-danger' do %>
+                                <i class="icon icon-trash"></i>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
