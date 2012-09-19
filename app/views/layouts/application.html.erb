@@ -279,7 +279,7 @@
 							<% @sidebar_users.each do |user| %>
 								<li>
 									<%= avatar(user, :list) %>
-									<%= link_to user.name, user_path(user) %>
+                                    <%= link_to "#{user.name} (#{user.login_status(current_user.name)})", user_path(user) %>
 								</li>
 							<% end %>
 						</ul>

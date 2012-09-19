@@ -31,5 +31,5 @@ class HomeController < ApplicationController
 			@user = User.new
 			render "login", :layout => "integration"
 		end
-	end
+  end
 end
