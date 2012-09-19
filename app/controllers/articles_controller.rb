@@ -4,21 +4,20 @@ class ArticlesController < ApplicationController
 
 	# GET /articles
 	def index
-  		if params[:query].present?
-  			@articles = Article.search params[:query],load:true,
-  				:page => params[:page],
-  				:per_page => 5,
-  				:order => "created_at DESC",
-  				:conditions => { :instance_id => current_instance.id }
-  		else
+		if params[:query].present?
+			@articles = Article.search params[:query],load:true,
+				:page => params[:page],
+				:per_page => 5,
+				:order => "created_at DESC",
+				:conditions => { :instance_id => current_instance.id }
+		else
 			@articles = Article.paginate(
 				:page => params[:page],
 				:per_page => 5,
 				:order => "created_at DESC",
 				:conditions => { :instance_id => current_instance.id }
-			)  			
-		end	
-
+			)
+		end
 	end
 
 	# GET /articles/1
