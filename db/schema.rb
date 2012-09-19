@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
+    t.boolean  "is_deleted",             :default => false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-09-19 11:22:54'
+    t.datetime "last_activity",          :default => '2012-07-23 19:37:25'
     t.boolean  "show_login_status",      :default => true
   end
 
