@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
 	### Attributions
 	attr_accessible :name, :email, :password, :password_confirmation,
-		:remember_me, :last_seen, :lang, :avatar, :timezone
+		:remember_me, :last_seen, :lang, :avatar, :timezone, :show_login_status
 
 	### Associations
 	has_many :comments
@@ -72,7 +72,6 @@ class User < ActiveRecord::Base
 		:in => %w(en de)
 	}
 
-
 	### Methods
 
 	def is_admin_of_instance?(instance)
@@ -86,6 +85,16 @@ class User < ActiveRecord::Base
 	def instance_count
 		Relationship.find_all_by_user_id(id).length
 	end
+
+  def login_status_by_time(time, name)
+    return '#000' unless self.show_login_status?
+    return "#157f00" if (self.last_activity + 3.minutes) >= time || name == self.name
+    "#cc0022"
+  end
+
+  def login_status(name)
+    login_status_by_time Time.now, name
+  end
 
 	def self.find_for_authentication(conditions)
   		super(conditions.merge(:is_deleted => false))

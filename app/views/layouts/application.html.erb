@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   <head>
     <title>
       <% if @unread_notification_count > 0 %>
@@ -138,14 +139,18 @@
                 <%= t "application.user" %>
               </h3>
 
-              <ul class="users nav nav-list">
-                <% @sidebar_users.each do |user| %>
-                  <li>
-                    <%= avatar(user, :list) %>
-                    <%= link_to user.name, user_path(user) %>
-                  </li>
-                <% end %>
-              </ul>
+            <ul class="users nav nav-list">
+              <% @sidebar_users.each do |user| %>
+                <li>
+                  <%= avatar(user, :list) %>
+                  <%= link_to user_path(user) do %>
+                    <i class="icon icon-asterisk"
+                      style="color: <%= user.login_status(current_user.name) %>"></i>
+                    <%= user.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
             </div>
 
             <div class="advertising">

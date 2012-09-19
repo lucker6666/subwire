@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719172005) do
+ActiveRecord::Schema.define(:version => 20120919132539) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20120719172005) do
     t.boolean  "is_deleted",             :default => false
     t.string   "gravatar"
     t.datetime "last_activity",          :default => '2012-07-23 19:37:25'
+    t.boolean  "show_login_status",      :default => true
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
