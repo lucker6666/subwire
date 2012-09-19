@@ -18,8 +18,10 @@ class Article < ActiveRecord::Base
 	attr_accessible :content, :title
 
 	###Includes
-	include Tire::Model::Search
-	include Tire::Model::Callbacks
+	if Subwire::Application.config.elasticsearch
+		include Tire::Model::Search
+		include Tire::Model::Callbacks
+	end
 
 	### Associations
 	belongs_to :user
