@@ -281,8 +281,8 @@
 									<%= avatar(user, :list) %>
     
                                     <%= link_to user_path(user) do %>
-                                    <%= user.name %>
- 	                                	<i class="icon icon-asterisk" style="color:<%= user.login_status(current_user.name) %>"></i>
+                                    	<i class="icon icon-asterisk" style="color:<%= user.login_status(current_user.name) %>"></i>
+                                    	<%= user.name %>
 									<% end %>
 								</li>
 							<% end %>
