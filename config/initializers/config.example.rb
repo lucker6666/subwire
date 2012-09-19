@@ -6,6 +6,9 @@ module Subwire
 		## Timezone
 		#config.time_zone = 'Berlin'
 
+		##Elasticsearch active?
+    #config.elasticsearch = false
+
 		## Default encoding
 		#config.encoding = "utf-8"
 
