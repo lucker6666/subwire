@@ -534,6 +534,19 @@
 	 	}
  	}
 
+	@media (max-width: 767px) {
+		div.sidebar {
+			width:auto;
+		}
+	}
+
+	@media (max-width: 979px) {
+		div.sidebar {
+			position:static;
+			width: auto;
+		}
+	}
+
 
 
 
