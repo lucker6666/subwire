@@ -87,9 +87,9 @@ class User < ActiveRecord::Base
 	end
 
   def login_status_by_time(time, name)
-    return 'none' unless self.show_login_status?
-    return "online" if (self.last_activity + 3.minutes) >= time || name == self.name
-    "offline"
+    return '#000' unless self.show_login_status?
+    return "#157f00" if (self.last_activity + 3.minutes) >= time || name == self.name
+    "#cc0022"
   end
 
   def login_status(name)
