@@ -108,22 +108,22 @@ describe User do
 
     it "should have online status" do
       @user.last_activity = DateTime.parse('2012-09-19 06:00:00')
-      @user.login_status_by_time(DateTime.parse('2012-09-19 06:03:00'), 'username').should eq('online')
+      @user.login_status_by_time(DateTime.parse('2012-09-19 06:03:00'), 'username').should eq('#157f00')
     end
 
     it "should have offline status" do
       @user.last_activity = DateTime.parse('2012-09-19 06:00:00')
-      @user.login_status_by_time(DateTime.parse('2012-09-19 06:04:00'), 'username').should eq('offline')
+      @user.login_status_by_time(DateTime.parse('2012-09-19 06:04:00'), 'username').should eq('#cc0022')
     end
 
     it "should have online status always when user see himself" do
       @user.last_activity = DateTime.parse('2012-09-19 06:00:00')
-      @user.login_status_by_time(DateTime.parse('2012-09-19 06:04:00'), 'Example User').should eq('online')
+      @user.login_status_by_time(DateTime.parse('2012-09-19 06:04:00'), 'Example User').should eq('#157f00')
     end
 
     it "should have online status none when show login status is on false" do
       @user.show_login_status = false
-      @user.login_status('Example User').should eq('none')
+      @user.login_status('Example User').should eq('#000')
     end
 
   end
