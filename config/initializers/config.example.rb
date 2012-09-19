@@ -1,20 +1,20 @@
 module Subwire
-  class Application < Rails::Application
+	class Application < Rails::Application
 		## Title of the application
 		#config.subwire_title = "subwire"
 
-    ## Timezone
-    #config.time_zone = 'Berlin'
+		## Timezone
+		#config.time_zone = 'Berlin'
 
-    ## Default encoding
-    #config.encoding = "utf-8"
+		## Default encoding
+		#config.encoding = "utf-8"
 
-    ## Activates GoogleAnalytics integration
-    #config.ga = true
-    ## Your GoogleAnalytics Key
-    #config.ga_key = ""
-    ## The Domain (e.g. "subwire.net")
-    #config.ga_domain = ""
+		## Activates GoogleAnalytics integration
+		#config.ga = true
+		## Your GoogleAnalytics Key
+		#config.ga_key = ""
+		## The Domain (e.g. "subwire.net")
+		#config.ga_domain = ""
 
 		## Error mails
 		#config.middleware.use ExceptionNotifier,
@@ -28,13 +28,15 @@ module Subwire
 		## Session store key
 		#config.session_store :cookie_store, key: '_Subwire_session'
 
-	  ## Set this to your applications host
-	  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  end
+		## Set this to your applications host
+		#config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+	end
 end
 
 ## Mail setup
-#Devise.config.mailer_sender = "noreply@subwire.net"
+# Devise.setup do |config|
+# 	config.mailer_sender = "noreply@subwire.net"
+# end
 
 # ActionMailer::Base.smtp_settings = {
 #   :address              => "localhost",
