@@ -117,7 +117,7 @@ class InstancesController < ApplicationController
 			errors_to_feedback(@instance)
 		end
 
-		render action: "edit", layout: 'login'
+		redirect_to instances_path
 	end
 
 	# DELETE /instances/1

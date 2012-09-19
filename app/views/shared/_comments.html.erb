@@ -47,9 +47,10 @@
 	<br />
 
 	<%= form_for([article, article.comments.build]) do |f| %>
-	  <div class="input-append">
-		<%= f.text_field :content, { :class => "span8", :autocomplete => :off } %>
-		<%= f.submit "Save", :class => 'btn' %>
-	  </div>
+		<%= f.text_field :content, { :class => "span9", :autocomplete => :off } %>
+
+		<br />
+
+		<span><i class="icon icon-info-sign"></i> Press enter to submit</span>
 	<% end %>
 </div>
