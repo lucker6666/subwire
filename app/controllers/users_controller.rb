@@ -53,6 +53,8 @@ class UsersController < ApplicationController
 					relationship.save
 				end
 
+        @user.show_login_status = params[:show_login_status]
+
 				#Gravatar
 				if(!@user.gravatar && params[:gravatar])
 					@mail = @user.email
