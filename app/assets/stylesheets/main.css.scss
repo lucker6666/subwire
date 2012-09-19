@@ -2,8 +2,8 @@
  *	Variables
  */
 
- 	$back_start: #e6e6e6;
- 	$back_end: #fff;
+ 	$back_start: #aaa;
+ 	$back_end: #a8a8a8;
  	$error_red: #b94a48;
 
 	@mixin border_radius($radius) {
@@ -344,9 +344,8 @@
 
  	table.article {
 		background-color: #fff;
-		border-top: 1px solid #ccc;
-		border-right: 1px solid #ccc;
-		box-shadow: 2px 2px 8px #ccc;
+		border: 0;
+		box-shadow: 2px 2px 8px #888;
 
 	 	td img.avatar {
 			float: left;
@@ -612,7 +611,7 @@
 
 
 	 	a {
-			color: #666;
+			color: #444;
 	 	}
 
 	 	ul {
