@@ -16,21 +16,21 @@ Subwire::Application.routes.draw do
   # Users
   get "users/finish", :to => "users#finish"
   post "users/finish", :to => "users#finish_save"
-  resources :users, :only => [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   # Relationships
-  resources :relationships, :only => [:index, :create, :new, :edit, :update, :destroy]
+  resources :relationships, only: [:index, :create, :new, :edit, :update, :destroy]
 
   # Links
   resources :links
 
   # Articles and comments
   resources :articles do
-    resources :comments, :only => [:create, :update, :destroy]
+    resources :comments, only: [:create, :update, :destroy]
   end
 
   # Notifications
-  resources :notifications, :only => [:index, :show, :destroy]
+  resources :notifications, only: [:index, :show, :destroy]
 
   # Availability Tool
   post "availability", :to => "availabilities#set"

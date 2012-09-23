@@ -19,11 +19,11 @@ class Instance < ActiveRecord::Base
   has_many :availabilities
   has_many :notifications
   has_many :relationships
-  has_many :users, :through => :relationships
+  has_many :users, through: :relationships
 
   ### Validations
   # Make sure, name is not empty and maximum 30 chars length
-  validates :name, :presence => true, :length => {
+  validates :name, presence: true, :length => {
     :maximum => 30
   }
 
@@ -37,8 +37,8 @@ class Instance < ActiveRecord::Base
   def self.find_all_where_user_is_admin(user)
     find(
       :all,
-      :joins => :relationships,
-      :conditions => {
+      joins: :relationships,
+      conditions: {
         "relationships.user_id" => user.id,
         "relationships.admin" => true
       }
@@ -48,8 +48,8 @@ class Instance < ActiveRecord::Base
   def self.find_all_by_user(user)
     find(
       :all,
-      :joins => :relationships,
-      :conditions => { "relationships.user_id" => user.id }
+      joins: :relationships,
+      conditions: { "relationships.user_id" => user.id }
     )
   end
 
@@ -63,9 +63,9 @@ class Instance < ActiveRecord::Base
 
   def notification_count(user)
     Notification.where(
-      :instance_id => id,
-      :user_id => user.id,
-      :is_read => false
+      instance_id: id,
+      user_id: user.id,
+      is_read: false
     ).length
   end
 end

@@ -1,14 +1,14 @@
 class InstancesController < ApplicationController
   # User have to be logged in
   before_filter :authenticate_user!
-  before_filter :restricted_to_superadmin, :only => [:all]
+  before_filter :restricted_to_superadmin, only: [:all]
 
   # GET /instance
   def index
     @instances = Instance.find(
       :all,
-      :joins => :relationships,
-      :conditions => { "relationships.user_id" => current_user.id }
+      joins: :relationships,
+      conditions: { "relationships.user_id" => current_user.id }
     )
 
     # Required to check if user has reached the limit of instances

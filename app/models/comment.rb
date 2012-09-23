@@ -21,5 +21,5 @@ class Comment < ActiveRecord::Base
 
   ### Validations
   # Make sure, content is not empty
-  validates :content, :presence => true
+  validates :content, presence: true
 end

@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :choose_instance!, :check_permissions, :except => [:finish, :finish_save]
-  before_filter :restricted_to_superadmin, :only => [:index]
-  skip_filter :finish_invitation, :only => [:finish, :finish_save]
+  before_filter :choose_instance!, :check_permissions, except: [:finish, :finish_save]
+  before_filter :restricted_to_superadmin, only: [:index]
+  skip_filter :finish_invitation, only: [:finish, :finish_save]
 
   # TODO actions: update
 
   # GET /users
   def index
-    @users = User.where(:is_deleted => false, :invitation_pending => false)
+    @users = User.where(is_deleted: false, invitation_pending: false)
   end
 
   # GET /users/1
   def show
     @user = User.find(params[:id])
-    @assignedCount = Relationship.where(:user_id => @user.id).length
-    @adminCount = Relationship.where(:user_id => @user.id, :admin => true).length
-    @articlesCount = Article.where(:user_id => @user.id).length
-    @commentsCount = Comment.where(:user_id => @user.id).length
+    @assignedCount = Relationship.where(user_id: @user.id).length
+    @adminCount = Relationship.where(user_id: @user.id, admin: true).length
+    @articlesCount = Article.where(user_id: @user.id).length
+    @commentsCount = Comment.where(user_id: @user.id).length
   end
 
   # GET /users/edit/1
@@ -29,13 +29,13 @@ class UsersController < ApplicationController
       @user = current_user
     end
 
-    @relationships = Relationship.where(:user_id =>@user.id)
+    @relationships = Relationship.where(user_id:@user.id)
   end
 
   # PUT /users/1
   def update
     @user = User.find(params[:id])
-    @relationships = Relationship.where(:user_id =>@user.id)
+    @relationships = Relationship.where(user_id:@user.id)
 
     #Delete the email param
     params[:user].delete :email
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
           end
 
           if @user.id == current_user.id
-            sign_in(@user, :bypass => true)
+            sign_in(@user, bypass: true)
           end
 
           feedback t('users.updated')
@@ -94,13 +94,13 @@ class UsersController < ApplicationController
     if current_user == @user || has_superadmin_privileges?
 
       #Check Instances from the User
-      @ownInstances = Relationship.where(:user_id => @user.id, :admin => true)
+      @ownInstances = Relationship.where(user_id: @user.id, admin: true)
       @ownInstances.each do |o|
         @userInInstance = Relationship.find_all_users_by_instance(o)
 
         if(@userInInstance.length > 1)
           #Another Admin in this Instance?
-          if(@userInInstance.where(:is_admin => true).length < 2)
+          if(@userInInstance.where(is_admin: true).length < 2)
             feedback "You have an Instance with no other Admin!"
             redirect_to :back
           end
@@ -119,7 +119,7 @@ class UsersController < ApplicationController
       end
 
       #Delete all relationships
-      @relationships = Relationship.where(:user_id => @user.id)
+      @relationships = Relationship.where(user_id: @user.id)
       @relationships.each do |r|
         r.destroy
       end
@@ -143,7 +143,7 @@ class UsersController < ApplicationController
     if current_user.invitation_pending
       @user = User.find(current_user.id)
       @user.name = ""
-      render :finish, :layout => "login"
+      render :finish, layout: "login"
     else
       redirect_to "/"
     end
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
       redirect_to "/"
     else
       errors_to_feedback @user
-      render :finish, :layout => "login"
+      render :finish, layout: "login"
     end
   end
 end

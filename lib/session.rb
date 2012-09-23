@@ -13,8 +13,8 @@ module Session
   # Returns the relationship between current_user ans current_instance
   def current_rs
     Relationship.where(
-      :user_id => current_user.id,
-      :instance_id => current_instance.id
+      user_id: current_user.id,
+      instance_id: current_instance.id
     ).first
   end
 

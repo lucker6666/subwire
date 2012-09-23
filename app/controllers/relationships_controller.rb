@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
   before_filter :authenticate_user!, :choose_instance!, :check_permissions
-  before_filter :restricted_to_admin, :except => [:destroy]
+  before_filter :restricted_to_admin, except: [:destroy]
 
   # GET /relationships
   def index
@@ -101,11 +101,11 @@ class RelationshipsController < ApplicationController
 
         if @relationship.save
           Notification.notify_all_users({
-            :notification_type => "new_user",
-            :provokesUser => user.id,
-            :subject => "",
-            :href => user_path(user)
-          }, current_instance, current_user, :except => [user])
+            notification_type: "new_user",
+            provokesUser: user.id,
+            subject: "",
+            href: user_path(user)
+          }, current_instance, current_user, except: [user])
 
           feedback t('relationships.created')
           redirect_to relationships_path(@article)

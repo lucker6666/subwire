@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
     t.integer  "user_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
-    t.integer  "instance_id", :default => 1, :null => false
+    t.integer  "instance_id", default: 1, :null => false
   end
 
   add_index "articles", ["instance_id"], :name => "index_articles_on_instance_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
     t.integer "user_id"
     t.date    "date"
     t.boolean "value"
-    t.integer "instance_id", :default => 1, :null => false
+    t.integer "instance_id", default: 1, :null => false
   end
 
   add_index "availabilities", ["instance_id"], :name => "index_availabilities_on_instance_id"
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
 
   create_table "instances", :force => true do |t|
     t.string   "name",                               :null => false
-    t.string   "defaultLanguage", :default => "en",  :null => false
-    t.boolean  "advertising",     :default => true,  :null => false
-    t.boolean  "planningTool",    :default => false, :null => false
+    t.string   "defaultLanguage", default: "en",  :null => false
+    t.boolean  "advertising",     default: true,  :null => false
+    t.boolean  "planningTool",    default: false, :null => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
   end
@@ -71,19 +71,19 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
     t.string   "icon"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
-    t.integer  "instance_id", :default => 1, :null => false
+    t.integer  "instance_id", default: 1, :null => false
   end
 
   add_index "links", ["instance_id"], :name => "index_links_on_instance_id"
 
   create_table "notifications", :force => true do |t|
-    t.string   "notification_type", :default => "article"
+    t.string   "notification_type", default: "article"
     t.string   "href"
     t.boolean  "is_read"
     t.integer  "user_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.integer  "instance_id",       :default => 1,         :null => false
+    t.integer  "instance_id",       default: 1,         :null => false
     t.integer  "created_by"
     t.integer  "provokesUser"
     t.string   "subject"
@@ -92,25 +92,25 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
   add_index "notifications", ["instance_id"], :name => "index_notifications_on_instance_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer "user_id",           :default => 1,    :null => false
-    t.integer "instance_id",       :default => 1,    :null => false
-    t.boolean "admin",             :default => true, :null => false
-    t.boolean "mail_notification", :default => true
+    t.integer "user_id",           default: 1,    :null => false
+    t.integer "instance_id",       default: 1,    :null => false
+    t.boolean "admin",             default: true, :null => false
+    t.boolean "mail_notification", default: true
   end
 
   add_index "relationships", ["instance_id"], :name => "index_relationships_on_instance_id"
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name",                   :default => "",                           :null => false
-    t.string   "email",                  :default => "",                           :null => false
-    t.boolean  "is_admin",               :default => false,                        :null => false
-    t.string   "encrypted_password",     :default => "",                           :null => false
+    t.string   "name",                   default: "",                           :null => false
+    t.string   "email",                  default: "",                           :null => false
+    t.boolean  "is_admin",               default: false,                        :null => false
+    t.string   "encrypted_password",     default: "",                           :null => false
     t.datetime "remember_created_at"
     t.datetime "created_at",                                                       :null => false
     t.datetime "updated_at",                                                       :null => false
-    t.string   "lang",                   :default => "en",                         :null => false
-    t.string   "timezone",               :default => "Central Time (US & Canada)", :null => false
+    t.string   "lang",                   default: "en",                         :null => false
+    t.string   "timezone",               default: "Central Time (US & Canada)", :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -120,11 +120,11 @@ ActiveRecord::Schema.define(:version => 20120919132539) do
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean  "invitation_pending",     :default => false
-    t.boolean  "is_deleted",             :default => false
+    t.boolean  "invitation_pending",     default: false
+    t.boolean  "is_deleted",             default: false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-07-23 19:37:25'
-    t.boolean  "show_login_status",      :default => true
+    t.datetime "last_activity",          default: '2012-07-23 19:37:25'
+    t.boolean  "show_login_status",      default: true
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

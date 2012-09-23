@@ -22,13 +22,13 @@ class Relationship < ActiveRecord::Base
   ### Methods
 
   def self.is_user_admin_of_instance?(user, instance)
-    where(:instance_id => instance.id, :user_id => user.id, :admin => true).any?
+    where(instance_id: instance.id, user_id: user.id, admin: true).any?
   end
 
   def self.find_all_users_by_instance(instance)
     result = []
 
-    where(:instance_id => instance.id).each do |rel|
+    where(instance_id: instance.id).each do |rel|
       unless rel.user.invitation_pending || rel.user.is_deleted
         result << rel.user
       end
@@ -39,8 +39,8 @@ class Relationship < ActiveRecord::Base
 
   def self.find_by_instance_and_user(instance, user)
     where(
-      :instance_id => instance.id,
-      :user_id => user.id
+      instance_id: instance.id,
+      user_id: user.id
     ).first
   end
 

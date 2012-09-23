@@ -3,7 +3,7 @@ class RelationshipMailer < ActionMailer::Base
     @user = user
     @current_user = current_user
     mail :to => "#{user.email}",
-      :subject => t('relationships.mail.invitation.subject', :user => current_user.name),
+      subject: t('relationships.mail.invitation.subject', :user => current_user.name),
       :from => Devise.mailer_sender
   end
 end

@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource
 
     #Exist deleted user with this mailadress?
-    @user = User.where(:email => resource.email, :is_deleted => true)
+    @user = User.where(:email => resource.email, is_deleted: true)
 
     if(@user.length > 0)
       @user.each do |u|

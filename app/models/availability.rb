@@ -20,5 +20,5 @@ class Availability < ActiveRecord::Base
 
   ### Validations
   # Make sure, date is not empty
-  validates :date, :presence => true
+  validates :date, presence: true
 end
