@@ -1,69 +1,73 @@
+<h1><%=t "application.login" %></h1>
+<h3>
+  <a href="<%= new_registration_path(resource_name) %>">
+    <%= t("application.no_account") %>
+  </a>
+</h3>
+
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-	<fieldset>
+  <fieldset>
         <div class="clearfix">
-  			<%= f.text_field :email, :class => 'text_field', :placeholder => t('helpers.email')  %>
+        <%= f.text_field :email, :class => 'text_field', :placeholder => t('helpers.email')  %>
         </div>
 
         <div class="clearfix">
-  			<%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
+        <%= f.password_field :password, :class => 'text_field', :placeholder => t('helpers.password') %>
         </div>
 
-		<div class="btn-group pull-left">
-        	<button class="btn btn-inverse no-lock" id="remember-me" type="button"
-        		data-toggle="button">
+    <div class="btn-group pull-left">
+          <button class="btn btn-inverse no-lock" id="remember-me" type="button"
+            data-toggle="button">
 
-        		<i class="icon-lock icon-white"></i>
-        		<%= t("devise.remember_me") %>
-        	</button>
+            <i class="icon-lock icon-white"></i>
+            <%= t("devise.remember_me") %>
+          </button>
 
-			<a class="btn btn-inverse dropdown-toggle"
-				data-toggle="dropdown">
-				<i class="icon icon-cog"></i>
-			</a>
+      <a class="btn btn-inverse fixed-width dropdown-toggle" data-toggle="dropdown">
+        <i class="icon icon-cog"></i>
+      </a>
 
-			<ul class="dropdown-menu">
-				<li>
-					<a href="<%= new_user_password_path %>">
-						<i class="icon icon-lock"></i>
-        				<%= t("users.password_lost") %>
-					</a>
-				</li>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="<%= new_user_password_path %>">
+            <i class="icon icon-lock"></i>
+                <%= t("users.password_lost") %>
+          </a>
+        </li>
 
-				<li>
-					<a href="<%= new_registration_path(resource_name) %>">
-						<i class="icon icon-check"></i>
-						<%= t("helpers.sign_up") %>
-					</a>
-				</li>
-			</ul>
-		</div>
+        <li>
+          <a href="<%= new_registration_path(resource_name) %>">
+            <i class="icon icon-check"></i>
+            <%= t("helpers.sign_up") %>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-		<div class="btn-group pull-right">
-			<button class="btn btn-success" name="commit" type="submit">
-				<i class="icon icon-off"></i> <%= t("helpers.sign_in") %>
-			</button>
-		</div>
+      <button class="btn btn-success fixed-width" name="commit" type="submit">
+        <i class="icon icon-off"></i> <%= t("helpers.sign_in") %>
+      </button>
 
-    	<script>
-    		$(function() {
-    			$("button#remember-me").click(function(e) {
-    				var target = $(event.target);
-    				var active = target.hasClass('active');
-    				var i = target.children("i");
+      <script>
+        $(function() {
+          $("button#remember-me").click(function(e) {
+            var target = $(event.target);
+            var active = target.hasClass('active');
+            var i = target.children("i");
 
-    				$('input#remember-me-input').val(active ? 0 : 1);
+            $('input#remember-me-input').val(active ? 0 : 1);
 
-    				if (active) {
-						i.removeClass("icon-ok").addClass("icon-lock");
-    				} else {
-    					i.removeClass("icon-lock").addClass("icon-ok");
-    				}
-    			});
-    		});
-    	</script>
+            if (active) {
+            i.removeClass("icon-ok").addClass("icon-lock");
+            } else {
+              i.removeClass("icon-lock").addClass("icon-ok");
+            }
+          });
+        });
+      </script>
 
-  		<input name="user[remember_me]" type="hidden" value="0" id="remember-me-input" />
+      <input name="user[remember_me]" type="hidden" value="0" id="remember-me-input" />
     </fieldset>
 
-	<%= render "links" %>
+  <%= render "links" %>
 <% end %>

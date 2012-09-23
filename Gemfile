@@ -11,9 +11,9 @@ gem 'rmagick'
 
 # Assets
 group :assets do
-	gem 'coffee-rails', '~> 3.2.1'
-	gem 'uglifier', '>= 1.0.3'
-	gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2.3'
 end
 
 # Frontend
@@ -30,16 +30,16 @@ gem 'tire'
 
 # Testing
 group :test do
-	gem "email_spec"
-	gem "cucumber-rails", :require => false
-	gem "capybara"
-	gem "database_cleaner"
-	gem "launchy"
+  gem "email_spec"
+  gem "cucumber-rails", :require => false
+  gem "capybara"
+  gem "database_cleaner"
+  gem "launchy"
 end
 
 group :development, :test do
-	gem "rspec-rails"
-	gem "factory_girl_rails"
-	gem 'rb-fsevent'
-	gem 'guard-rspec'
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem 'rb-fsevent'
+  gem 'guard-rspec'
 end

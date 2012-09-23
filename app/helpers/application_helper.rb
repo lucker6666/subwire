@@ -1,228 +1,228 @@
 module ApplicationHelper
-	include Session
+  include Session
 
-	# Truncate article
-	def article_teaser(article)
-		content = auto_link(article.content)
-		more_to_read = '(...)<br />' + link_to(t('application.more_to_read'), article_path(article))
-		HTML_Truncator.truncate(content, 120, :ellipsis => more_to_read).strip.html_safe
-	end
+  # Truncate article
+  def article_teaser(article)
+    content = auto_link(article.content)
+    more_to_read = '(...)<br />' + link_to(t('application.more_to_read'), article_path(article))
+    HTML_Truncator.truncate(content, 120, :ellipsis => more_to_read).strip.html_safe
+  end
 
-	# Display boolean values as icon
-	def boolean_icon(expression)
-		content_tag :i, "", :class => (expression ? "icon icon-ok" : "icon icon-remove")
-	end
+  # Display boolean values as icon
+  def boolean_icon(expression)
+    content_tag :i, "", :class => (expression ? "icon icon-ok" : "icon icon-remove")
+  end
 
-	# Returns true if ad banner should be displayed
-	def display_ads
-		if current_user.is_admin?
-			false
-		end
+  # Returns true if ad banner should be displayed
+  def display_ads
+    if current_user.is_admin?
+      false
+    end
 
-		current_instance.advertising
-	end
+    current_instance.advertising
+  end
 
-	# Convert String to jGrowl Notification JS Code
-	def jGrowl_message(msg)
-		"$.jGrowl(\"#{msg}\");"
-	end
+  # Convert String to jGrowl Notification JS Code
+  def jGrowl_message(msg)
+    "$.jGrowl(\"#{msg}\");"
+  end
 
-	# Returns the JS Code of all flash messages including Devise model errors
-	def flash_messages
-  	messages = []
+  # Returns the JS Code of all flash messages including Devise model errors
+  def flash_messages
+    messages = []
 
-  	# Add all Devise model errors to the result array
-		if defined?(@user) && !@user.nil? && !@user.errors.empty?
-			@user.errors.full_messages.map { |msg| messages.push(jGrowl_message(msg)) }
-  	end
+    # Add all Devise model errors to the result array
+    if defined?(@user) && !@user.nil? && !@user.errors.empty?
+      @user.errors.full_messages.map { |msg| messages.push(jGrowl_message(msg)) }
+    end
 
-  	# Add all flash messages to the result array
-		flash.each do |key, message|
-			# In some cases message maybe an array too
-			if message.kind_of? Array
-				message.each { |msg| messages.push(jGrowl_message(msg)) }
-			else
-				messages.push(jGrowl_message(message))
-			end
-		end
+    # Add all flash messages to the result array
+    flash.each do |key, message|
+      # In some cases message maybe an array too
+      if message.kind_of? Array
+        message.each { |msg| messages.push(jGrowl_message(msg)) }
+      else
+        messages.push(jGrowl_message(message))
+      end
+    end
 
-		flash.clear
+    flash.clear
 
-		messages.join.html_safe
-	end
+    messages.join.html_safe
+  end
 
-	def avatar(user, size = :small, className = "")
-		case size
-		when :small
-			width = 50
-			height = 50
+  def avatar(user, size = :small, className = "")
+    case size
+    when :small
+      width = 50
+      height = 50
 
-		when :tiny
-			width = 30
-			height = 30
+    when :tiny
+      width = 30
+      height = 30
 
-		when :list
-			width = 16
-			height = 16
+    when :list
+      width = 16
+      height = 16
 
-		else
-			width = 100
-			height = 100
-		end
+    else
+      width = 100
+      height = 100
+    end
 
-		if user.gravatar
-			image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
-			:class => 'avatar ' + className, :width => width, :height => height
-		else
-			image_tag user.avatar.url(size), :class => 'avatar ' + className,
-				:width => width, :height => height
-		end
+    if user.gravatar
+      image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
+      :class => 'avatar ' + className, :width => width, :height => height
+    else
+      image_tag user.avatar.url(size), :class => 'avatar ' + className,
+        :width => width, :height => height
+    end
 
 
-	end
+  end
 
-	def icons
-		[
-			 'glass',
-			 'music',
-			 'search',
-			 'envelope',
-			 'heart',
-			 'star',
-			 'star-empty',
-			 'user',
-			 'film',
-			 'th-large',
-			 'th',
-			 'th-list',
-			 'ok',
-			 'remove',
-			 'zoom-in',
-			 'zoom-out',
-			 'off',
-			 'signal',
-			 'cog',
-			 'trash',
-			 'home',
-			 'file',
-			 'time',
-			 'road',
-			 'download-alt',
-			 'download',
-			 'upload',
-			 'inbox',
-			 'play-circle',
-			 'repeat',
-			 'refresh',
-			 'list-alt',
-			 'lock',
-			 'flag',
-			 'headphones',
-			 'volume-off',
-			 'volume-down',
-			 'volume-up',
-			 'qrcode',
-			 'barcode',
-			 'tag',
-			 'tags',
-			 'book',
-			 'bookmark',
-			 'print',
-			 'camera',
-			 'font',
-			 'bold',
-			 'italic',
-			 'text-height',
-			 'text-width',
-			 'align-left',
-			 'align-center',
-			 'align-right',
-			 'align-justify',
-			 'list',
-			 'indent-left',
-			 'indent-right',
-			 'facetime-video',
-			 'picture',
-			 'pencil',
-			 'map-marker',
-			 'adjust',
-			 'tint',
-			 'edit',
-			 'share',
-			 'check',
-			 'move',
-			 'step-backward',
-			 'fast-backward',
-			 'backward',
-			 'play',
-			 'pause',
-			 'stop',
-			 'forward',
-			 'fast-forward',
-			 'step-forward',
-			 'eject',
-			 'chevron-left',
-			 'chevron-right',
-			 'plus-sign',
-			 'minus-sign',
-			 'remove-sign',
-			 'ok-sign',
-			 'question-sign',
-			 'info-sign',
-			 'screenshot',
-			 'remove-circle',
-			 'ok-circle',
-			 'ban-circle',
-			 'arrow-left',
-			 'arrow-right',
-			 'arrow-up',
-			 'arrow-down',
-			 'share-alt',
-			 'resize-full',
-			 'resize-small',
-			 'plus',
-			 'minus',
-			 'asterisk',
-			 'exclamation-sign',
-			 'gift',
-			 'leaf',
-			 'fire',
-			 'eye-open',
-			 'eye-close',
-			 'warning-sign',
-			 'plane',
-			 'calendar',
-			 'random',
-			 'comment',
-			 'magnet',
-			 'chevron-up',
-			 'chevron-down',
-			 'retweet',
-			 'shopping-cart',
-			 'folder-close',
-			 'folder-open',
-			 'resize-vertical',
-			 'resize-horizontal',
-			 'hdd',
-			 'bullhorn',
-			 'bell',
-			 'certificate',
-			 'thumbs-up',
-			 'thumbs-down',
-			 'hand-right',
-			 'hand-left',
-			 'hand-up',
-			 'hand-down',
-			 'circle-arrow-right',
-			 'circle-arrow-left',
-			 'circle-arrow-up',
-			 'circle-arrow-down',
-			 'globe',
-			 'wrench',
-			 'tasks',
-			 'filter',
-			 'briefcase',
-			 'fullscreen'
-		]
-	end
+  def icons
+    [
+       'glass',
+       'music',
+       'search',
+       'envelope',
+       'heart',
+       'star',
+       'star-empty',
+       'user',
+       'film',
+       'th-large',
+       'th',
+       'th-list',
+       'ok',
+       'remove',
+       'zoom-in',
+       'zoom-out',
+       'off',
+       'signal',
+       'cog',
+       'trash',
+       'home',
+       'file',
+       'time',
+       'road',
+       'download-alt',
+       'download',
+       'upload',
+       'inbox',
+       'play-circle',
+       'repeat',
+       'refresh',
+       'list-alt',
+       'lock',
+       'flag',
+       'headphones',
+       'volume-off',
+       'volume-down',
+       'volume-up',
+       'qrcode',
+       'barcode',
+       'tag',
+       'tags',
+       'book',
+       'bookmark',
+       'print',
+       'camera',
+       'font',
+       'bold',
+       'italic',
+       'text-height',
+       'text-width',
+       'align-left',
+       'align-center',
+       'align-right',
+       'align-justify',
+       'list',
+       'indent-left',
+       'indent-right',
+       'facetime-video',
+       'picture',
+       'pencil',
+       'map-marker',
+       'adjust',
+       'tint',
+       'edit',
+       'share',
+       'check',
+       'move',
+       'step-backward',
+       'fast-backward',
+       'backward',
+       'play',
+       'pause',
+       'stop',
+       'forward',
+       'fast-forward',
+       'step-forward',
+       'eject',
+       'chevron-left',
+       'chevron-right',
+       'plus-sign',
+       'minus-sign',
+       'remove-sign',
+       'ok-sign',
+       'question-sign',
+       'info-sign',
+       'screenshot',
+       'remove-circle',
+       'ok-circle',
+       'ban-circle',
+       'arrow-left',
+       'arrow-right',
+       'arrow-up',
+       'arrow-down',
+       'share-alt',
+       'resize-full',
+       'resize-small',
+       'plus',
+       'minus',
+       'asterisk',
+       'exclamation-sign',
+       'gift',
+       'leaf',
+       'fire',
+       'eye-open',
+       'eye-close',
+       'warning-sign',
+       'plane',
+       'calendar',
+       'random',
+       'comment',
+       'magnet',
+       'chevron-up',
+       'chevron-down',
+       'retweet',
+       'shopping-cart',
+       'folder-close',
+       'folder-open',
+       'resize-vertical',
+       'resize-horizontal',
+       'hdd',
+       'bullhorn',
+       'bell',
+       'certificate',
+       'thumbs-up',
+       'thumbs-down',
+       'hand-right',
+       'hand-left',
+       'hand-up',
+       'hand-down',
+       'circle-arrow-right',
+       'circle-arrow-left',
+       'circle-arrow-up',
+       'circle-arrow-down',
+       'globe',
+       'wrench',
+       'tasks',
+       'filter',
+       'briefcase',
+       'fullscreen'
+    ]
+  end
 end

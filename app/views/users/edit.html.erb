@@ -6,164 +6,173 @@
 </h1>
 
 <div class="well">
-    <%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
-        <div class="control-group">
-            <%= f.label :name, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.text_field :name, :class => 'text_field', :maxlength => 30 %>
-            </div>
+  <%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field', :maxlength => 30 %>
+      </div>
+    </div>
+
+    <% if has_superadmin_privileges? %>
+      <div class="control-group">
+        <%= f.label :is_admin, :class => 'control-label' %>
+
+        <div class="controls">
+          <%= check_box_tag :is_admin, true, @user.is_admin, {:class => 'check_box'} %>
         </div>
+      </div>
+    <% end %>
 
-        <% if has_superadmin_privileges? %>
-            <div class="control-group">
-                <%= f.label :is_admin, :class => 'control-label' %>
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'text_field' %>
+      </div>
+    </div>
 
-                <div class="controls">
-                    <%= check_box_tag :is_admin, true, @user.is_admin, {:class => 'check_box'} %>
-                </div>
-            </div>
-        <% end %>
+    <div class="control-group">
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+      </div>
+    </div>
 
-        <div class="control-group">
-            <%= f.label :password, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.password_field :password, :class => 'text_field' %>
-            </div>
-        </div>
+    <div class="control-group">
+      <%= f.label :lang, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
+      </div>
+    </div>
 
-        <div class="control-group">
-            <%= f.label :password_confirmation, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.password_field :password_confirmation, :class => 'text_field' %>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <%= f.label :lang, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <%= f.label :timezone, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.select :timezone, ["Berlin", "Paris", "London", "Amsterdam", "Bern", "Madrid", "International Date Line West", "Alaska", "Central America", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji", "Hawaii"] %>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <a rel="tooltip" href="#" title="<%=t("tooltip.gravatar") %>" style="display:block; width:210px;">
-                <%= f.label :gravatar, :class => 'control-label' %>
-            </a>
-
-            <div class="controls">
-                <%= check_box_tag :gravatar, true, @user.gravatar, {:class => 'check_box'} %>
-            </div>
-        </div>
-
-
-        <div class="avatar-upload control-group">
-            <%= f.label :avatar, :class => 'control-label' %>
-            <div class="controls">
-                <%= f.file_field :avatar %>
-
-                <br /><br />
-
-                <%= image_tag @user.avatar.url %>
-
-                <br /><br /><br />
-            </div>
-        </div>
-
-        <% if @user.gravatar %>
-            <script type="text/javascript">
-                $('.avatar-upload').hide();
-            </script>
-        <% end %>
-        <script type="text/javascript">
-            $('#gravatar').click(function() {
-              $('.avatar-upload').toggle('slow');
-            });
-        </script>
+    <div class="control-group">
+      <%= f.label :timezone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :timezone, ["Berlin", "Paris", "London", "Amsterdam", "Bern", "Madrid", "International Date Line West", "Alaska", "Central America", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji", "Hawaii"] %>
+      </div>
+    </div>
 
         <div class="control-group">
-            <%= label :mail_notification, " ", :class => 'control-label' %>
+            <%= f.label :show_login_status, :class => 'control-label' %>
 
             <div class="controls">
-                <div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <td><b><%=t('instances.your_instances') %>:</b></td>
-                            <td><b><%=t('relationships.mail.notification') %></b></td>
-                        </thead>
-                        <% @relationships.each do |relationship| %>
-                            <tr>
-                                <td><%=Instance.find(relationship.instance_id).name %>:</td>
-                                <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {:id => 'rel'+relationship.id.to_s,:name=> 'rel'+relationship.id.to_s, :class => 'check_box'} %></td>
-                            </tr>
-                        <% end %>
-                    </table>
-                </div>
+                <%= check_box_tag :show_login_status, true, @user.show_login_status, {:class => 'check_box'} %>
             </div>
         </div>
 
-        <div class="control-group">
-            <%= label :delete_relationship, " ", :class => 'control-label' %>
 
-            <div class="controls">
-                <div class="alert">
-                    <table>
-                        <tr>
-                            <td>
-                                <%= link_to t('relationships.delete'),
-                                    relationship_path(current_rs),
-                                    :method => :delete,
-                                    :class => 'btn btn-warning danger-button no-lock',
-                                    :confirm => t("helpers.links.confirm") %>
-                            </td>
-                            <td>
-                                <p style="padding-left:35px;">
-                                    <%= t('relationships.delete_alert').html_safe %>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="control-group">
+      <a rel="tooltip" href="#" title="<%=t("tooltip.gravatar") %>" style="display:block; width:210px;">
+        <%= f.label :gravatar, :class => 'control-label' %>
+      </a>
 
-        <div class="control-group">
-            <%= label :delete_account, " ", :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag :gravatar, true, @user.gravatar, {:class => 'check_box'} %>
+      </div>
+    </div>
 
-            <div class="controls">
-                <div class="alert alert-error">
-                    <table>
-                        <tr>
-                            <td>
-                                <%= link_to t('users.delete_account'), user_path(@user),
-                                :method => :delete,
-                                :class => 'btn btn-danger danger-button no-lock',
-                                :confirm => t("helpers.links.confirm") %>
-                            </td>
-                            <td>
-                                <p style="padding-left:35px;">
-                                    <%= t('users.delete_alert').html_safe %>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
 
-        <div class="form-actions with-padding">
-            <%= f.submit nil, :class => 'btn btn-primary' %>
-            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
-
-        </div>
+    <div class="avatar-upload control-group">
+      <%= f.label :avatar, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :avatar %>
 
         <br /><br />
+
+        <%= image_tag @user.avatar.url %>
+
+        <br /><br /><br />
+      </div>
+    </div>
+
+    <% if @user.gravatar %>
+      <script type="text/javascript">
+        $('.avatar-upload').hide();
+      </script>
     <% end %>
+    <script type="text/javascript">
+      $('#gravatar').click(function() {
+        $('.avatar-upload').toggle('slow');
+      });
+    </script>
+
+    <div class="control-group">
+      <%= label :mail_notification, " ", :class => 'control-label' %>
+
+      <div class="controls">
+        <div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <td><b><%=t('instances.your_instances') %>:</b></td>
+              <td><b><%=t('relationships.mail.notification') %></b></td>
+            </thead>
+            <% @relationships.each do |relationship| %>
+              <tr>
+                <td><%=Instance.find(relationship.instance_id).name %>:</td>
+                <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {:id => 'rel'+relationship.id.to_s,:name=> 'rel'+relationship.id.to_s, :class => 'check_box'} %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label :delete_relationship, " ", :class => 'control-label' %>
+
+      <div class="controls">
+        <div class="alert">
+          <table>
+            <tr>
+              <td>
+                <%= link_to t('relationships.delete'),
+                  relationship_path(current_rs),
+                  :method => :delete,
+                  :class => 'btn btn-warning danger-button no-lock',
+                  :confirm => t("helpers.links.confirm") %>
+              </td>
+              <td>
+                <p style="padding-left:35px;">
+                  <%= t('relationships.delete_alert').html_safe %>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label :delete_account, " ", :class => 'control-label' %>
+
+      <div class="controls">
+        <div class="alert alert-error">
+          <table>
+            <tr>
+              <td>
+                <%= link_to t('users.delete_account'), user_path(@user),
+                :method => :delete,
+                :class => 'btn btn-danger danger-button no-lock',
+                :confirm => t("helpers.links.confirm") %>
+              </td>
+              <td>
+                <p style="padding-left:35px;">
+                  <%= t('users.delete_alert').html_safe %>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions with-padding">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        users_path, :class => 'btn' %>
+
+    </div>
+
+    <br /><br />
+  <% end %>
 </div>
