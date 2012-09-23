@@ -2,42 +2,42 @@
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <div class="well">
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th><%= model_class.human_attribute_name(:icon) %></th>
-	      <th><%= model_class.human_attribute_name(:name) %></th>
-	      <th><%= model_class.human_attribute_name(:href) %></th>
-	      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% @links.each do |link| %>
-	      <tr>
-	        <td><i class="icon icon-<%= link.icon %>"></i></td>
-	        <td><%= link_to link.name, link.href %></td>
-	        <td class="break"><%= link.href %></td>
-	        <td>
-	          <%= link_to edit_link_path(link), :class => 'btn btn-mini' do %>
-	            <i class="icon icon-pencil"></i>
-	          <% end %>
-	          <%= link_to link_path(link),
-	                    :method => :delete,
-						:data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
-	                    :class => 'btn btn-mini btn-danger' do %>
-	            <i class="icon icon-trash"></i>
-	          <% end %>
-	        </td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:icon) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:href) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @links.each do |link| %>
+        <tr>
+          <td><i class="icon icon-<%= link.icon %>"></i></td>
+          <td><%= link_to link.name, link.href %></td>
+          <td class="break"><%= link.href %></td>
+          <td>
+            <%= link_to edit_link_path(link), :class => 'btn btn-mini' do %>
+              <i class="icon icon-pencil"></i>
+            <% end %>
+            <%= link_to link_path(link),
+                      :method => :delete,
+            :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm"))},
+                      :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon icon-trash"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-	<%= link_to t('links.new'),
+  <%= link_to t('links.new'),
         new_link_path,
         :class => 'btn btn-primary' %>
 
-	<a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.links_content') %>" data-original-title="<%= t('popover.links_title') %>">
-		<i class="icon icon-question-sign"></i>
-	</a>
+  <a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.links_content') %>" data-original-title="<%= t('popover.links_title') %>">
+    <i class="icon icon-question-sign"></i>
+  </a>
 </div>

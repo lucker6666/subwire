@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			<% if @notificationCount && @notificationCount > 0 %>
-				(<%= @notificationCount %>)
-			<% end %>
+  <head>
+    <title>
+      <% if @notificationCount && @notificationCount > 0 %>
+        (<%= @notificationCount %>)
+      <% end %>
 
-			<%= @subwireTitle %>
-		</title>
+      <%= @subwireTitle %>
+    </title>
 
-		<%= render :partial => 'shared/head' %>
-	</head>
+    <%= render :partial => 'shared/head' %>
+  </head>
 
-	<body class="login">
-		<img class="background-image" src="/assets/backgrounds/blue_rays.jpg" />
+  <body class="login">
+    <img class="background-image" src="/assets/backgrounds/blue_rays.jpg" />
 
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<% if current_user %>
-						<ul class="nav logout">
-							<li>
-								<%= link_to destroy_user_session_path do %>
-							    	<i class="icon icon-remove"></i>
-									<%= t "application.logout" %>
-								<% end %>
-							</li>
-						</ul>
-					<% end %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <% if current_user %>
+            <ul class="nav logout">
+              <li>
+                <%= link_to destroy_user_session_path do %>
+                    <i class="icon icon-remove"></i>
+                  <%= t "application.logout" %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
 
-					<a class="brand" href="/"><span>Sub</span>wire</a>
-				</div>
-			</div>
-		</div>
+          <a class="brand" href="/"><span>Sub</span>wire</a>
+        </div>
+      </div>
+    </div>
 
-		<div class="container">
-			<div class="row">
-				<div class="login-form <%= @containerClass %>">
-					<%= yield %>
-				</div>
-			</div>
+    <div class="container">
+      <div class="row">
+        <div class="login-form <%= @containerClass %>">
+          <%= yield %>
+        </div>
+      </div>
 
-			<%= render :partial => 'shared/footer' %>
-		</div>
+      <%= render :partial => 'shared/footer' %>
+    </div>
 
-		<%= render :partial => 'shared/flash_messages' %>
-		<%= render :partial => 'shared/ga' %>
-	</body>
+    <%= render :partial => 'shared/flash_messages' %>
+    <%= render :partial => 'shared/ga' %>
+  </body>
 </html>
