@@ -40,16 +40,16 @@ class ApplicationController < ActionController::Base
 
         # Delete all Users, which have been invited before 30 days and the invitation is still
         # pendig.
-        users = User.find :all, :conditions => ["created_at < ? and invitation_pending = 1", 30.days.ago]
+        users = User.find :all, conditions: ["created_at < ? and invitation_pending = 1", 30.days.ago]
         users.each { |u| u.destroy }
 
         # Delete all availabilities, which are older then 1 day.
-        availabilities = Availability.find :all, :conditions => ["date < ?", 1.day.ago]
+        availabilities = Availability.find :all, conditions: ["date < ?", 1.day.ago]
         availabilities.each { |a| a.destroy }
 
         if current_instance
           @sidebar_users = Relationship.find_all_users_by_instance(current_instance).sort_by(&:name)
-          @sidebar_links = Link.where(:instance_id => current_instance.id)
+          @sidebar_links = Link.where(instance_id: current_instance.id)
           @subwireTitle = current_instance.name
 
           load_notifications

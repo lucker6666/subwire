@@ -61,9 +61,9 @@
                   date = Date.today
                   7.times do |i|
                     a = Availability.where(
-                      :date => date,
-                      :user_id => user.id,
-                      :instance_id => current_instance.id
+                      date: date,
+                      user_id: user.id,
+                      instance_id: current_instance.id
                     ).first
 
                     if a.nil?

@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
 
   ### Validations
   # Make sure, title and content are not empty
-  validates :title, :content, :presence => true
+  validates :title, :content, presence: true
 
 
 

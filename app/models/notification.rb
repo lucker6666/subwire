@@ -28,7 +28,7 @@ class Notification < ActiveRecord::Base
 
   ### Validations
   # Make sure, notification_type, message, href, is_read are not empty
-  validates :notification_type, :created_by, :href, :presence => true
+  validates :notification_type, :created_by, :href, presence: true
 
 
   ### Methods
@@ -39,10 +39,10 @@ class Notification < ActiveRecord::Base
     Relationship.find_all_users_by_instance(instance).each do |user|
       unless user == current_user or except.include?(user)
         notification = Notification.new({
-          :notification_type => data[:notification_type],
-          :provokesUser => data[:provokesUser],
-          :subject => data[:subject],
-          :href => data[:href],
+          notification_type: data[:notification_type],
+          provokesUser: data[:provokesUser],
+          subject: data[:subject],
+          href: data[:href],
           :created_by => current_user
         })
 
@@ -85,8 +85,8 @@ class Notification < ActiveRecord::Base
 
 
       notifications = order("is_read").order("created_at DESC").limit(5).where(
-      :user_id => user.id,
-      :instance_id => instance.id
+      user_id: user.id,
+      instance_id: instance.id
       )
 
     if notifications.nil?

@@ -6,16 +6,16 @@ class ArticlesController < ApplicationController
   def index
     if params[:query].present?
       @articles = Article.search params[:query],load:true,
-        :page => params[:page],
-        :per_page => 5,
-        :order => "created_at DESC",
-        :conditions => { :instance_id => current_instance.id }
+        page: params[:page],
+        per_page: 5,
+        order: "created_at DESC",
+        conditions: { instance_id: current_instance.id }
     else
       @articles = Article.paginate(
-        :page => params[:page],
-        :per_page => 5,
-        :order => "created_at DESC",
-        :conditions => { :instance_id => current_instance.id }
+        page: params[:page],
+        per_page: 5,
+        order: "created_at DESC",
+        conditions: { instance_id: current_instance.id }
       )
     end
   end
@@ -25,9 +25,9 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     @notifications = Notification.where(
-      :user_id => current_user.id,
-      :instance_id => current_instance.id,
-      :is_read => false
+      user_id: current_user.id,
+      instance_id: current_instance.id,
+      is_read: false
     )
 
     # Delete all notifications regarding that article
@@ -64,10 +64,10 @@ class ArticlesController < ApplicationController
     # Notify all users
     if @article.save
       Notification.notify_all_users({
-        :notification_type => "new_article",
-        :provokesUser => @article.user.id,
-        :subject => @article.title,
-        :href => article_path(@article)
+        notification_type: "new_article",
+        provokesUser: @article.user.id,
+        subject: @article.title,
+        href: article_path(@article)
       }, current_instance, current_user)
 
       feedback t('articles.created')
@@ -87,10 +87,10 @@ class ArticlesController < ApplicationController
       if @article.update_attributes(params[:article])
         # Notify all users
         Notification.notify_all_users({
-          :notification_type => "edit_article",
-          :provokesUser => current_user.id,
-          :subject => @article.title,
-          :href => article_path(@article)
+          notification_type: "edit_article",
+          provokesUser: current_user.id,
+          subject: @article.title,
+          href: article_path(@article)
         }, current_instance, current_user)
 
         feedback t('articles.updated')
@@ -111,8 +111,8 @@ class ArticlesController < ApplicationController
     if current_user == @article.user || has_admin_privileges?
       # Delete all notifications
       @notifications = Notification.where(
-        :href => article_path(@article),
-        :instance_id => current_instance.id
+        href: article_path(@article),
+        instance_id: current_instance.id
       )
 
       @notifications.each do |n|

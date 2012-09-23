@@ -2,14 +2,14 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities/set
   def set
     paramSet = {
-      :date => params[:date],
-      :value => params[:value]
+      date: params[:date],
+      value: params[:value]
     }
 
     availability = Availability.where(
-      :user_id => current_user.id,
-      :instance_id => current_instance.id,
-      :date => params[:date]
+      user_id: current_user.id,
+      instance_id: current_instance.id,
+      date: params[:date]
     ).first
 
     if availability.nil?

@@ -9,7 +9,7 @@ class NotifyMailer < ActionMailer::Base
     I18n.locale = @toUser.lang
 
     mail :to => "#{toUser.email}",
-      :subject => t('notifications.mailer.subject', :notification =>  t('notifications.mailer.' + notification.notification_type), :user => fromUser.name)
+      subject: t('notifications.mailer.subject', :notification =>  t('notifications.mailer.' + notification.notification_type), :user => fromUser.name)
 
 
     I18n.locale = @fromUser.lang
