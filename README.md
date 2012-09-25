@@ -50,3 +50,4 @@ Subwire is licenced under the AGPL. See the LICENCE file for further information
 * Benjamin Kammerl ([@itws](https://github.com/itws))
 * Markus Genz
 * Benjamin August ([@TheBenji](https://github.com/TheBenji))
+* Sebastian Brozda ([@sebastianbrozda](https://github.com/sebastianbrozda))
