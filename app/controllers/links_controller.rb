@@ -1,11 +1,11 @@
 class LinksController < ApplicationController
-  # User have to be logged in, choosed an instance and have to be allowed to see that instance
-  # and have to be at least admin of that instance
-  before_filter :authenticate_user!, :choose_instance!, :check_permissions, :restricted_to_admin
+  # User have to be logged in, choosed an channel and have to be allowed to see that channel
+  # and have to be at least admin of that channel
+  before_filter :authenticate_user!, :choose_channel!, :check_permissions, :restricted_to_admin
 
   # GET /links
   def index
-    @links = Link.find_all_by_instance_id(current_instance.id)
+    @links = Link.find_all_by_channel_id(current_channel.id)
   end
 
   # GET /links/1
@@ -30,7 +30,7 @@ class LinksController < ApplicationController
     end
 
     @link = Link.new(params[:link])
-    @link.instance = current_instance
+    @link.channel = current_channel
 
     if @link.save
       feedback t('links.created')

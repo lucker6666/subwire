@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
-  # User have to be logged in, choosed an instance and have to be allowed to see that instance
-  before_filter :authenticate_user!, :choose_instance!, :check_permissions
+  # User have to be logged in, choosed an channel and have to be allowed to see that channel
+  before_filter :authenticate_user!, :channel!, :check_permissions
 
   # POST /comments
   def create
-    # TODO check if the article is visible for the user to avoid cross-instance-hacks/-spam
+    # TODO check if the article is visible for the user to avoid cross-channel-hacks/-spam
 
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         provokesUser: @comment.user.id,
         subject: @article.title,
         href: article_path(@article)
-      }, current_instance, current_user)
+      }, channel, current_user)
 
       feedback t("comments.new_success")
     else
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   # PUT /comments/1
   # PUT /comments/1.json
   def update
-    # TODO check if the article is visible for the user to avoid cross-instance-hacks/-spam
+    # TODO check if the article is visible for the user to avoid cross-channel-hacks/-spam
     @comment = Comment.find(params[:id])
 
     # Make sure the user is the author of the comment or user is admin

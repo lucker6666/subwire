@@ -1,10 +1,10 @@
 class RelationshipsController < ApplicationController
-  before_filter :authenticate_user!, :choose_instance!, :check_permissions
+  before_filter :authenticate_user!, :choose_channel!, :check_permissions
   before_filter :restricted_to_admin, except: [:destroy]
 
   # GET /relationships
   def index
-    @relationships = Relationship.find_all_by_instance_id(current_instance.id)
+    @relationships = Relationship.find_all_by_channel_id(current_channel.id)
   end
 
   # GET /relationships/new
@@ -30,7 +30,7 @@ class RelationshipsController < ApplicationController
       user.email = params[:relationship][:email]
       user.password = Digest::MD5.hexdigest(Random.rand(10000).to_s)
       user.timezone = current_user.timezone
-      user.lang = current_instance.defaultLanguage
+      user.lang = current_channel.defaultLanguage
       user.invitation_pending = true
       user.skip_confirmation!
       user.confirmation_token = User.confirmation_token
@@ -44,7 +44,7 @@ class RelationshipsController < ApplicationController
 
       rel = Relationship.new
       rel.user = user
-      rel.instance = current_instance
+      rel.channel = current_channel
 
       if has_admin_privileges?
         rel.admin = params[:relationship][:admin]
@@ -75,7 +75,7 @@ class RelationshipsController < ApplicationController
 
         rel = Relationship.new
         rel.user = user
-        rel.instance = current_instance
+        rel.channel = current_channel
 
         if has_admin_privileges?
           rel.admin = params[:relationship][:admin]
@@ -89,7 +89,7 @@ class RelationshipsController < ApplicationController
         redirect_to relationships_path
       else
         @relationship.user = user
-        @relationship.instance = current_instance
+        @relationship.channel = current_channel
 
         if has_admin_privileges?
           @relationship.admin = params[:relationship][:admin]
@@ -97,7 +97,7 @@ class RelationshipsController < ApplicationController
 
         # TODO: Create User and send email, if doesn't exist
 
-        @relationship.instance = current_instance
+        @relationship.channel = current_channel
 
         if @relationship.save
           Notification.notify_all_users({
@@ -105,7 +105,7 @@ class RelationshipsController < ApplicationController
             provokesUser: user.id,
             subject: "",
             href: user_path(user)
-          }, current_instance, current_user, except: [user])
+          }, current_channel, current_user, except: [user])
 
           feedback t('relationships.created')
           redirect_to relationships_path(@article)
@@ -145,26 +145,26 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.find(params[:id])
 
     if current_user == @relationship.user || has_admin_privileges?
-      
-      @instance = Instance.find(@relationship.instance)
-      @userInInstance = Relationship.find_all_users_by_instance(@instance)
 
-      if @userInInstance.length < 2
-        
-        @notifications = Notification.find_all_by_instance_id(@instance.id)
-        
+      @channel = Channel.find(@relationship.channel)
+      @userInChannel = Relationship.find_all_users_by_channel(@channel)
+
+      if @userInChannel.length < 2
+
+        @notifications = Notification.find_all_by_channel_id(@channel.id)
+
         @notifications.each do |n|
           n.destroy
         end
 
-        @instance.destroy
+        @channel.destroy
         @relationship.destroy
 
-        feedback t('relationships.destroyed')        
+        feedback t('relationships.destroyed')
 
-        set_current_instance nil
+        set_current_channel nil
 
-        redirect_to instances_path
+        redirect_to channels_path
       else
         @relationship.destroy
 
@@ -174,8 +174,8 @@ class RelationshipsController < ApplicationController
           redirect_to "/"
         else
           redirect_to relationships_path
-        end        
-      end      
+        end
+      end
 
 
 

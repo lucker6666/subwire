@@ -8,14 +8,14 @@ class AvailabilitiesController < ApplicationController
 
     availability = Availability.where(
       user_id: current_user.id,
-      instance_id: current_instance.id,
+      channel_id: current_channel.id,
       date: params[:date]
     ).first
 
     if availability.nil?
       availability = Availability.new(paramSet)
       availability.user = current_user
-      availability.instance = current_instance
+      availability.channel = current_channel
       availability.save
     else
       availability.update_attributes(paramSet)

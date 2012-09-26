@@ -1,23 +1,23 @@
 <li class="dropdown iconOnly">
-  <% if instances.length > 0 %>
+  <% if channels.length > 0 %>
     <a href="#"
       class="dropdown-toggle"
       data-toggle="dropdown"
       rel="tooltip"
-      title="<%=t 'tooltip.instanceSwitcher' %>"
+      title="<%=t 'tooltip.channelSwitcher' %>"
       data-placement="bottom">
 
       <i class="icon-home"></i>
     </a>
 
-    <ul class="instances-dropdown dropdown-menu">
-      <% instances.each do |instance| %>
-        <% notificationCount = instance.notification_count(current_user) %>
+    <ul class="channels-dropdown dropdown-menu">
+      <% channels.each do |channel| %>
+        <% notificationCount = channel.notification_count(current_user) %>
 
         <li>
-          <%= link_to instance_path(instance), {
+          <%= link_to channel_path(channel), {
               :class =>
-              (instance == current_instance ? "active" : "")
+              (channel == current_channel ? "active" : "")
             } do
           %>
             <% if notificationCount > 0 %>
@@ -28,13 +28,13 @@
               &nbsp;
             <% end %>
 
-            <%= instance.name %>
+            <%= channel.name %>
           <% end %>
         </li>
       <% end %>
 
       <li>
-        <%= link_to t("instances.overview"), "/instances/unset" %>
+        <%= link_to t("channels.overview"), "/channels/unset" %>
       </li>
     </ul>
   <% end %>

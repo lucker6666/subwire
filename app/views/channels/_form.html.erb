@@ -1,11 +1,11 @@
-<%= form_for @instance do |f| %>
+<%= form_for @channel do |f| %>
     <fieldset>
         <div class="clearfix">
             <%= f.text_field :name, { :class => 'text_field', :placeholder => t('helpers.name'), :autocomplete => :off }  %>
         </div>
 
         <div class="clearfix">
-            <%= select :instance, :defaultLanguage, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
+            <%= select :channel, :defaultLanguage, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
         </div>
 
         <% if current_user.is_admin? %>
@@ -21,6 +21,6 @@
         </div>
 
         <%= f.submit nil, :class => 'btn btn-success btn-large' %>
-        <%= link_to t("helpers.links.cancel"), instances_path, :class => 'btn btn-large btn-inverse' %>
+        <%= link_to t("helpers.links.cancel"), channels_path, :class => 'btn btn-large btn-inverse' %>
     </fieldset>
 <% end %>

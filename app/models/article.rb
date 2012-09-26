@@ -6,7 +6,7 @@
 #   title       :string
 #   content     :text
 #   user_id      :integer
-#   instance_id  :integer    not null, index
+#   channel_id  :integer    not null, index
 #   created_at  :datetime    not null
 #   updated_at  :datetime    not null
 #
@@ -25,7 +25,7 @@ class Article < ActiveRecord::Base
 
   ### Associations
   belongs_to :user
-  belongs_to :instance
+  belongs_to :channel
   has_many :comments
 
   ### Validations

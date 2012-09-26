@@ -1,7 +1,7 @@
 namespace :subwire do
-    desc "Add the default instance 'Default'"
-    task :default_instance => :environment do
-        ins = Instance.new(
+    desc "Add the default channel 'Default'"
+    task :default_channel => :environment do
+        ins = Channel.new(
             :name => 'Default',
             :planningTool => true
         )
@@ -24,7 +24,7 @@ namespace :subwire do
         user.save
 
         rel = Relationship.new
-        rel.instance = Instance.first
+        rel.channel = Channel.first
         rel.user = user
         rel.admin = true
         rel.save
@@ -38,13 +38,13 @@ namespace :subwire do
         )
 
         article.user = User.first
-        article.instance = Instance.first
+        article.channel = Channel.first
 
         article.save
     end
 
     desc "Run all setup tasks"
-    task :setup => [:default_instance, :default_user, :default_article]
+    task :setup => [:default_channel, :default_user, :default_article]
 
     desc "Run all test tasks"
     task :test => []

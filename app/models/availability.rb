@@ -2,12 +2,12 @@
 # ==========
 #   table: availabilities
 #
-#   availability_id    :integer    not null, primary key
-#   user_id            :integer    index
-#   instance_id        :integer    not null, index
-#   value              :boolean
+#   availability_id   :integer    not null, primary key
+#   user_id           :integer    index
+#   channel_id        :integer    not null, index
+#   value             :boolean
 #   date              :date
-#    created_at        :datetime
+#   created_at        :datetime
 #   updated_at        :datetime
 
 class Availability < ActiveRecord::Base
@@ -16,7 +16,7 @@ class Availability < ActiveRecord::Base
 
   ### Associations
   belongs_to :user
-  belongs_to :instance
+  belongs_to :channel
 
   ### Validations
   # Make sure, date is not empty

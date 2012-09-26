@@ -4,7 +4,7 @@
 #
 #   notification_id      :integer    not null, primary key
 #   user_id              :integer
-#   instance_id          :integer    not null, index
+#   channel_id          :integer    not null, index
 #   notification_type    :string      default => "article"
 #   message              :string
 #   href                :string
@@ -12,7 +12,7 @@
 #   created_at          :datetime    not null
 #   updated_at          :datetime    not null
 #
-# TODO: index for instance_id
+# TODO: index for channel_id
 # TODO: index for user_id
 # TODO: not null user_id, notification_type
 
@@ -24,7 +24,7 @@ class Notification < ActiveRecord::Base
   ### Associations
   belongs_to :user
   belongs_to :user, :foreign_key => "created_by"
-  belongs_to :instance
+  belongs_to :channel
 
   ### Validations
   # Make sure, notification_type, message, href, is_read are not empty
@@ -33,10 +33,10 @@ class Notification < ActiveRecord::Base
 
   ### Methods
 
-  def self.notify_all_users(data, instance, current_user, options = {})
+  def self.notify_all_users(data, channel, current_user, options = {})
     except = options[:except] || []
 
-    Relationship.find_all_users_by_instance(instance).each do |user|
+    Relationship.find_all_users_by_channel(channel).each do |user|
       unless user == current_user or except.include?(user)
         notification = Notification.new({
           notification_type: data[:notification_type],
@@ -48,12 +48,12 @@ class Notification < ActiveRecord::Base
 
         notification.is_read = false
         notification.user = user
-        notification.instance = instance
+        notification.channel = channel
 
         notification.save
 
         #Notify user via email
-        if (user.last_activity < Time.now-120 && Relationship.find_by_instance_and_user(instance, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
+        if (user.last_activity < Time.now-120 && Relationship.find_by_channel_and_user(channel, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
           NotifyMailer.notify(User.find(data[:provokesUser]), user, notification ).deliver
         end
       end
@@ -62,7 +62,7 @@ class Notification < ActiveRecord::Base
 
   def avatar_path
     @user = User.find(self.provokesUser)
-    
+
     if(@user.gravatar)
       'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
     else
@@ -79,14 +79,14 @@ class Notification < ActiveRecord::Base
     self.save
   end
 
-  # Returns an array of notifications for an user and an instance
-  def self.find_all_relevant(instance, user)
-    return if instance.nil?
+  # Returns an array of notifications for an user and an channel
+  def self.find_all_relevant(channel, user)
+    return if channel.nil?
 
 
       notifications = order("is_read").order("created_at DESC").limit(5).where(
       user_id: user.id,
-      instance_id: instance.id
+      channel_id: channel.id
       )
 
     if notifications.nil?

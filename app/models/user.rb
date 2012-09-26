@@ -2,23 +2,23 @@
 # ==========
 #   table: users
 #
-#   user_id                :integer    not null, primary key
-#   name                  :string      not null
-#   email                  :string      not null
+#   user_id               :integer    not null, primary key
+#   name                  :string     not null
+#   email                 :string     not null
 #   is_admin              :boolean    not null, default => false
-#    encrypted_password    :string      not null
-#    remember_created_at    :datetime
-#    lang                  :string      not null, default => "en"
-#    created_at             :datetime    not null
-#    updated_at             :datetime    not null
+#   encrypted_password    :string     not null
+#   remember_created_at   :datetime
+#   lang                  :string     not null, default => "en"
+#   created_at            :datetime   not null
+#   updated_at            :datetime   not null
 #   timezone              :string     not null, default => "Central Time (US & Canada)"
-#   avatar_file_name"      :string
+#   avatar_file_name"     :string
 #   avatar_content_type"  :string
-#   avatar_file_size"      :integer
+#   avatar_file_size"     :integer
 #   avatar_updated_at"    :datetime
-#   is_deleted        :boolean
-#   gravatar                :string
-#   last_activity           :date
+#   is_deleted            :boolean
+#   gravatar              :string
+#   last_activity         :date
 #
 
 
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :availabilities
   has_many :notifications
   has_many :relationships
-  has_many :instances, through: :relationships
+  has_many :channels, through: :relationships
 
   ### Paperclip Avatar
   has_attached_file :avatar,
@@ -74,15 +74,15 @@ class User < ActiveRecord::Base
 
   ### Methods
 
-  def is_admin_of_instance?(instance)
+  def is_admin_of_channel?(channel)
     if is_admin
       true
     else
-      Relationship.is_user_admin_of_instance?(self, instance)
+      Relationship.is_user_admin_of_channel?(self, channel)
     end
   end
 
-  def instance_count
+  def channel_count
     Relationship.find_all_by_user_id(id).length
   end
 

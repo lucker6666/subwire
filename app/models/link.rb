@@ -2,8 +2,8 @@
 # ==========
 #   table: links
 #
-#   link_id        :integer    not null, primary key
-#   instance_id    :integer    not null, index
+#   link_id       :integer    not null, primary key
+#   channel_id    :integer    not null, index
 #   name          :string
 #   href          :string
 #   icon          :string
@@ -15,7 +15,7 @@ class Link < ActiveRecord::Base
   attr_accessible :href, :name, :icon
 
   ### Associations
-  belongs_to :instance
+  belongs_to :channel
 
   ### Validations
   # Make sure, name, href and icon are not empty

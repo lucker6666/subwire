@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe HomeController do
   before (:each) do
-    @rel = FactoryGirl.create(:user2_with_instance)
+    @rel = FactoryGirl.create(:user2_with_channel)
   end
 
   describe "GET 'index'" do
@@ -19,25 +19,25 @@ describe HomeController do
         sign_in @rel.user
       end
 
-      context "but without chosen instance" do
-        it "should redirect to instance chooser" do
+      context "but without chosen channel" do
+        it "should redirect to channel chooser" do
           get :index
-          response.should redirect_to(instances_url)
+          response.should redirect_to(channels_url)
         end
       end
 
-      context "and with chosen instance" do
+      context "and with chosen channel" do
         before do
-          set_current_instance @rel.instance
+          set_current_channel @rel.channel
           get :index
         end
 
-        it "should redirect to the respective instance" do
+        it "should redirect to the respective channel" do
           response.should redirect_to(articles_url)
         end
 
-        it "sould have no current_instance set" do
-          current_instance.id.should == @rel.instance.id
+        it "sould have no current_channel set" do
+          current_channel.id.should == @rel.channel.id
         end
       end
     end

@@ -220,7 +220,7 @@ de:
     no_admin: Du bist kein Admin!
     notifications: Benachrichtigungen
     notifications_unread: Keine ungelesenen Benachrichtigungen.
-    no_permission_for_instance: Zugriff verweigert!
+    no_permission_for_channel: Zugriff verweigert!
     user_management: Benutzer
     link_management: Lesezeichen
     new_article: Neuer Artikel
@@ -233,12 +233,12 @@ de:
     user: Benutzer
     de: Deutsch
     en: Englisch
-    no_permission_for_instance: Du darfst diese Instanz nicht sehen!
+    no_permission_for_channel: Du darfst diesen Channel nicht sehen!
     virgin: 'Orientierungslos? Zum ersten Mal hier? Klick mich!'
     all_users: Alle Benutzer
-    all_instances: Alle Instanzen
+    all_channels: Alle Channels
     welcome_back: 'Willkommen zurück'
-    go_to_overview: 'Weiter zur Instanzübersicht'
+    go_to_overview: 'Weiter zur Channel-Übersicht'
     more_to_read: 'Weiterlesen ...'
     search: 'Suche'
 
@@ -248,18 +248,18 @@ de:
     plural: Kommentar(e)
     destroyed: Kommentar gelöscht
 
-  instances:
-    new: Erstelle eine neue Instanz!
+  channels:
+    new: Erstelle einen neuen Channel!
     edit: Einstellungen
-    create: Instanz erstellen!
-    your_instances: Deine Instanzen
-    hit_limit: Du kannst höchstens von 5 Instanzten gleichzeitig Admin sein. Wenn du noch mehr Instanzten benötigst, kontaktiere uns bitte per info@yaana.de.
-    created: Instanz wurde erfolgreich erstellt.
-    not_created: Instanz konnte nicht erstellt werden.
-    updated: Instanz aktualisiert.
-    not_updated: Instanz konnte nicht gespeichert werden.
-    destroyed: Die Instanz wurde erfolgreich gelöscht.
-    overview: Instanzübersicht
+    create: Channel erstellen!
+    your_channels: Deine Channels
+    hit_limit: Du kannst höchstens von 5 Channels gleichzeitig Admin sein. Wenn du noch mehr Channels benötigst, kontaktiere uns bitte per info@yaana.de.
+    created: Channel wurde erfolgreich erstellt.
+    not_created: Channel konnte nicht erstellt werden.
+    updated: Channel aktualisiert.
+    not_updated: Channel konnte nicht gespeichert werden.
+    destroyed: Der Channel wurde erfolgreich gelöscht.
+    overview: Channel-Übersicht
 
   articles:
     created: Artikel wurde erfolgreich erstellt.
@@ -267,22 +267,22 @@ de:
     updated: Artikel aktualisiert.
     not_updated: Artikel konnte nicht gespeichert werden.
     destroyed: Artikel erfolgreich gelöscht.
-    standard_title: Herzlich Willkommen in Deiner neuen Instanz
-    standard_content: Nun kannst du weitere Benutzer in diese Instanz einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
+    standard_title: Herzlich Willkommen in Deinem neuen Channel!
+    standard_content: Nun kannst du weitere Benutzer in diesen Channel einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
     search_result: Suchergebnis
     search_counter: "Für deine Suche nach '%{query}' wurden %{count} Artikel gefunden."
 
   users:
     add: Benutzer hinzufügen
-    already_added: Der Benutzer ist dieser Instanz bereits zugeordnet.
+    already_added: Der Benutzer ist diesem Channel bereits zugeordnet.
     added: Benutzer hinzugefügt.
     updated: Benutzer gespeichert.
     not_updated: Benutzer konnte nicht gespeichert werden.
-    removed: Benutzer wurde aus dieser Instanz entfernt.
+    removed: Benutzer wurde aus diesem Channel entfernt.
     password_error: Die Passwörter müssen identisch sein
     password_lost: Passwort vergessen?
-    assignedCount: Zugewiesene Instanzen
-    adminCount: Eigene Instanzen
+    assignedCount: Zugewiesene Channels
+    adminCount: Eigene Channels
     articlesCount: Artikel gesamt
     commentsCount: Kommentare gesamt
     destroyed: Der Benutzer wurde erfolgreich gelöscht
@@ -290,7 +290,7 @@ de:
     inactive: Du musst deine Registrierung zuerst bestätigen!
     invitation_finished: 'Registrierung abgeschlossen'
     mail_notification: 'E-Mail-Benachrichtigungen'
-    delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jeder Instanz verlierst.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
+    delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jedem Channel verlierst.<br /><b>Hinweis:</b> Du darfst in keinem Channel der einzige Administrator sein.'
     delete_account: 'Benutzerkonto löschen'
     finish_registration: 'Registrierung abschließen'
 
@@ -316,15 +316,15 @@ de:
       read_now: 'Jetzt lesen!'
 
   relationships:
-    new: Benutzer zur Instanz hinzufügen
-    add: Benutzer zur Instanz hinzufügen
+    new: Benutzer zum Channel hinzufügen
+    add: Benutzer zum Channel hinzufügen
     created: Benutzer erfolgreich hinzugefügt
     updated: Benutzer erfolgreich aktualisiert
     destroyed: Benutzer erfolgreich entfernt
     invited: Benutzer erfolgreich eingeladen
     invitation_finished: Registration abgeschlossen, du kannst dich jetzt einloggen!
-    delete_alert: 'Mit diesem Button kannst du dich selbst aus der aktuellen Instanz entfernen.<br /><b>Hinweis:</b> Du darfst in keiner Instanz der einzige Administrator sein.'
-    delete: 'Aus Instanz entfernen'
+    delete_alert: 'Mit diesem Button kannst du dich selbst aus dem aktuellen Channel entfernen.<br /><b>Hinweis:</b> Du darfst nicht der einzige Administrator in diesem Channel sein.'
+    delete: 'Aus dem Channel entfernen'
     mail:
       notification: 'E-Mail Benachrichtigung?'
       invitation:
@@ -341,19 +341,19 @@ de:
     comment_edit: Kommentar bearbeiten
     comment_delete: Kommentar löschen
     gravatar: Dein Gravatar ist ein Avatarbild was dir von Seite zu Seite "folgt", was genau das bedeutet erfährst du auf http://gravatar.com
-    instanceSwitcher: Instanz wechseln
-    instanceSettings: Instanz-Einstellungen
+    channelSwitcher: Channel wechseln
+    channelSettings: Channel-Einstellungen
     notifications: Benachrichtigungen
 
   popover:
-    instances_title: Instanzen
-    instances_content: Eine Instanz ist ein abgeschlossener Teil des Systems mit eigenen Artikeln, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst eine Instanz für deine Firma, deinen Verein, deine Clique, etc. haben. Nur die Benutzer, die zu einer Instanz eningeladen wurden, haben auch Zugriff auf diese Instanz.
+    channels_title: Channels
+    channels_content: Eine Channel ist ein abgeschlossener Teil des Systems mit eigenen Artikeln, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst einen Channel für deine Firma, deinen Verein, deine Clique, etc. haben. Nur die Benutzer, die zu einem Channel eningeladen wurden, haben auch Zugriff auf diesen Channel.
     relationship_title: Benutzer
-    relationship_content: Hier kannst du einen Benutzer zu dieser Instanz hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort dieser Instanz zugeordnet.
+    relationship_content: Hier kannst du einen Benutzer zu diesem Channel hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort diesem Channel zugeordnet.
     links_title: Lesezeichen
-    links_content: Jede Instanz kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
+    links_content: Jeder Channel kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
     planningTool_title: Planungstool
-    planningTool_content: 'Jeder Benutzer dieser Instanz kann hier für jeden Tag angeben, ob er Zeit hat oder nicht. Durch Klicken auf das entsprechende Feld kann der Wert geändert werden.'
+    planningTool_content: 'Jeder Benutzer dieses Channels kann hier für jeden Tag angeben, ob er Zeit hat oder nicht. Durch Klicken auf das entsprechende Feld kann der Wert geändert werden.'
 
   hints:
     hints_title: 'Einsteigertipps'
@@ -366,7 +366,7 @@ de:
       article: Artikel
       user: Benutzer
       relationship: Benutzer
-      instance: Instanz
+      channel: Channel
       comment: Kommentar
       link: Lesezeichen
       notification: Benachrichtigung
@@ -391,22 +391,22 @@ de:
         href: Verweisziel
         is_read: Gelesen
         user_id: Benutzer ID
-        instance_id: Instanz ID
+        channel_id: Channel ID
         user: User
-        instance: Instanz
+        channel: Channel
       relationship:
-        instance_id: Instanz ID
+        channel_id: Channel ID
         user_id: Benutzer ID
         admin: Admin?
-      instance:
-        instace_id: Instanz ID
+      channel:
+        channel_id: Channel ID
         name: Name
         defaultLangugage: Standardsprache
         advertising: Werbung?
         planningTool: Planungstool?
     errors:
       models:
-        instance:
+        channel:
           attributes:
             name:
               too_long: Name zu lang. Maximal 20 Buchstaben erlaubt.

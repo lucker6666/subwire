@@ -223,7 +223,7 @@ en:
     no_admin: You're not an admin!
     notifications: Notifications
     notifications_unread: There are no unread notifications.
-    no_permission_for_instance: Permission denied!
+    no_permission_for_channel: Permission denied!
     user_management: Users
     link_management: Bookmarks
     new_article: New Article
@@ -236,12 +236,12 @@ en:
     user: User
     de: German
     en: English
-    no_permission_for_instance: You're not allowed to see this instance!
+    no_permission_for_channel: You're not allowed to see this channel!
     virgin: 'First time here? Need some help? Click here!'
     all_users: All Users
-    all_instances: All Instances
+    all_channels: All Channels
     welcome_back: 'Welcome back'
-    go_to_overview: 'Go to the instance overview'
+    go_to_overview: 'Go to the channel overview'
     more_to_read: 'More to read ...'
     search: 'Search'
 
@@ -251,17 +251,17 @@ en:
     plural: Comment(s)
     destroyed: Comment deleted
 
-  instances:
-    new: Create new instance!
+  channels:
+    new: Create new channel!
     edit: Settings
-    create: Create Instance!
-    your_instances: Your instances
-    hit_limit: You can't be an admin of more then 5 instances at the same time. If you need some more instances, please contact us via info@yaana.de.
-    created: Instance was successfully created.
-    not_created: Instance couldn't be created.
-    updated: Instance was successfully updated.
-    not_updated: Instance couldn't be saved.
-    destroyed: Instance deleted!
+    create: Create Channel!
+    your_channels: Your channels
+    hit_limit: You can't be an admin of more then 5 channels at the same time. If you need some more channels, please contact us via info@yaana.de.
+    created: Channel was successfully created.
+    not_created: Channel couldn't be created.
+    updated: Channel was successfully updated.
+    not_updated: Channel couldn't be saved.
+    destroyed: Channel deleted!
     overview: Back to overview
 
   articles:
@@ -270,21 +270,21 @@ en:
     updated: Article was successfully updated.
     not_updated: Article couldn't be saved.
     destroyed: Article deleted
-    standard_title: Welcome in your new Instance!
-    standard_content: Now you may add further users to that instance and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
+    standard_title: Welcome in your new Channel!
+    standard_content: Now you may add further users to that channel and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
     search_result: Search Result
     search_counter: "Your search ('%{query}') match %{count} Articles"
 
   users:
     add: Add user
-    already_added: That user is already associated with this instance.
+    already_added: That user is already associated with this channel.
     added: User was successfully added.
     updated: User was successfully updated.
     not_updated: User couldn't be saved.
-    removed: User was removed from this instance.
+    removed: User was removed from this channel.
     password_error: The passwords must be identical
-    assignedCount: Assigned instances
-    adminCount: Owns instances
+    assignedCount: Assigned channels
+    adminCount: Owns channels
     articlesCount: Articles total
     commentsCount: Comments total
     destroyed: User deleted
@@ -292,7 +292,7 @@ en:
     inactive: You have to confirm your registration!
     invitation_finished: 'Sign up finished'
     mail_notification: 'Email notifications'
-    delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each instance.<br /><b>Note:</b> You my be not the only Admin in one Instance.'
+    delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each channel.<br /><b>Note:</b> You my be not the only Admin in one Channel.'
     delete_account: 'Delete your account'
     finish_registration: 'Finish registration'
 
@@ -315,15 +315,15 @@ en:
       subject: 'New %{notification} from %{user}'
 
   relationships:
-    new: Add user to instance
-    add: Add user to instance
+    new: Add user to channel
+    add: Add user to channel
     created: User successfully added
     updated: User successfully updated
     destroyed: User successfully deleted
     invited: User successfully inveted
     invitation_finished: 'Now, you can sign in!'
-    delete_alert: 'With that button you will remove yourself from the current instance.<br /><b>Note:</b> You my be not the only Admin in one Instance.'
-    delete: 'Quit this instance'
+    delete_alert: 'With that button you will remove yourself from the current channel.<br /><b>Note:</b> You my be not the only Admin in one Channel.'
+    delete: 'Quit this channel'
     mail:
       notification: 'Mail Notification?'
       invitation:
@@ -340,19 +340,19 @@ en:
     comment_edit: Edit Comment
     comment_delete: Delete Comment
     gravatar: Your Gravatar is an image that follows you from site to site appearing beside your name when you do things like comment or post on a blog. More Infos http://gravatar.com
-    instanceSwitcher: Switch instance
-    instanceSettings: Instance settings
+    channelSwitcher: Switch channel
+    channelSettings: Channel settings
     notifications: Notifications
 
   popover:
-    instances_title: Instances
-    instances_content: An instance is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an instance for your company, one for your clique and one for your private project team. Only the users, which are assigned to an instance, are able to see the content of it.
+    channels_title: Channels
+    channels_content: An channel is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an channel for your company, one for your clique and one for your private project team. Only the users, which are assigned to an channel, are able to see the content of it.
     relationship_title: User
-    relationship_content: You can add a user to your instance. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your instance.
+    relationship_content: You can add a user to your channel. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your channel.
     links_title: Bookmarks
-    links_content: Each instance contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
+    links_content: Each channel contains a list of bookmarks with links to the most important sites, systems and everything else linkable for your team. It never was easier to share important links with your peers.
     planningTool_title: Planning Tool
-    planningTool_content: 'Any user of this instance can specify for each day wether he has time or not. Value can be changed by clicking on the respective field.'
+    planningTool_content: 'Any user of this channel can specify for each day wether he has time or not. Value can be changed by clicking on the respective field.'
 
   hints:
     hints_title: 'Beginner tips'
@@ -365,7 +365,7 @@ en:
       article: Article
       user: User
       relationship: User
-      instance: Instance
+      channel: Channel
       comment: Comment
       link: Bookmark
       notification: Notification
@@ -382,7 +382,7 @@ en:
         password: Password
         password_confirmation: Confirm Password
         password_lost: Lost password?
-        is_admin_of_instance: Admin of this Instance?
+        is_admin_of_channel: Admin of this Channel?
         lang: Language
         timezone: Timezone
         show_login_status: Show online status
@@ -392,22 +392,22 @@ en:
         href: Link target
         is_read: Is read
         user_id: User ID
-        instance_id: Instance ID
+        channel_id: Channel ID
         user: User
-        instance: Instance
+        channel: Channel
       relationship:
-        instance_id: Instance ID
+        channel_id: Channel ID
         user_id: User ID
         admin: Admin?
-      instance:
-        instace_id: Instance ID
+      channel:
+        channel_id: Channel ID
         name: Name
         defaultLangugage: default Language
         advertising: Advertising?
         planningTool: Planning Tool?
     errors:
       models:
-        instance:
+        channel:
           attributes:
             name:
               too_long: Name too long. 20 characters maximum allowed.

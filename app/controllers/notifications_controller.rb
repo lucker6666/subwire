@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  # User have to be logged in and have to be allowed to see that instance
+  # User have to be logged in and have to be allowed to see that channel
   before_filter :authenticate_user!, :check_permissions
 
   # GET /notifications.json
@@ -10,7 +10,7 @@ class NotificationsController < ApplicationController
 
     @notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
       user_id: current_user.id,
-      instance_id: current_instance.id
+      channel_id: current_channel.id
     )
 
     respond_to do |format|
@@ -26,8 +26,8 @@ class NotificationsController < ApplicationController
 
       if notification && notification.user == current_user
 
-        if notification.instance != current_instance
-          set_current_instance notification.instance
+        if notification.channel != current_channel
+          set_current_channel notification.channel
         end
 
         target = notification.href
@@ -44,7 +44,7 @@ class NotificationsController < ApplicationController
     #Mark all as read
     notifications = Notification.where(
         user_id: current_user.id,
-        instance_id: current_instance.id,
+        channel_id: current_channel.id,
         is_read: false
       )
 
@@ -55,7 +55,7 @@ class NotificationsController < ApplicationController
     #Return the last 5 Notifications
     @notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
       user_id: current_user.id,
-      instance_id: current_instance.id
+      channel_id: current_channel.id
     )
 
     respond_to do |format|

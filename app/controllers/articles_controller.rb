@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  # User have to be logged in, choosed an instance and have to be allowed to see that instance
-  before_filter :authenticate_user!, :choose_instance!, :check_permissions
+  # User have to be logged in, choosed an channel and have to be allowed to see that channel
+  before_filter :authenticate_user!, :choose_channel!, :check_permissions
 
   # GET /articles
   def index
@@ -9,13 +9,13 @@ class ArticlesController < ApplicationController
         page: params[:page],
         per_page: 5,
         order: "created_at DESC",
-        conditions: { instance_id: current_instance.id }
+        conditions: { channel_id: current_channel.id }
     else
       @articles = Article.paginate(
         page: params[:page],
         per_page: 5,
         order: "created_at DESC",
-        conditions: { instance_id: current_instance.id }
+        conditions: { channel_id: current_channel.id }
       )
     end
   end
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
 
     @notifications = Notification.where(
       user_id: current_user.id,
-      instance_id: current_instance.id,
+      channel_id: current_channel.id,
       is_read: false
     )
 
@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(params[:article])
     @article.user = current_user
-    @article.instance = current_instance
+    @article.channel = current_channel
 
     # Notify all users
     if @article.save
@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
         provokesUser: @article.user.id,
         subject: @article.title,
         href: article_path(@article)
-      }, current_instance, current_user)
+      }, current_channel, current_user)
 
       feedback t('articles.created')
       redirect_to article_path(@article)
@@ -91,7 +91,7 @@ class ArticlesController < ApplicationController
           provokesUser: current_user.id,
           subject: @article.title,
           href: article_path(@article)
-        }, current_instance, current_user)
+        }, current_channel, current_user)
 
         feedback t('articles.updated')
         redirect_to article_path(@article)
@@ -112,7 +112,7 @@ class ArticlesController < ApplicationController
       # Delete all notifications
       @notifications = Notification.where(
         href: article_path(@article),
-        instance_id: current_instance.id
+        channel_id: current_channel.id
       )
 
       @notifications.each do |n|

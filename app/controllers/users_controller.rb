@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :choose_instance!, :check_permissions, except: [:finish, :finish_save]
+  before_filter :choose_channel!, :check_permissions, except: [:finish, :finish_save]
   before_filter :restricted_to_superadmin, only: [:index]
   skip_filter :finish_invitation, only: [:finish, :finish_save]
 
@@ -93,21 +93,21 @@ class UsersController < ApplicationController
     # Make sure the user tries to delete himself or the user is superadmin
     if current_user == @user || has_superadmin_privileges?
 
-      #Check Instances from the User
-      @ownInstances = Relationship.where(user_id: @user.id, admin: true)
-      @ownInstances.each do |o|
-        @userInInstance = Relationship.find_all_users_by_instance(o)
+      #Check Channels from the User
+      @ownChannels = Relationship.where(user_id: @user.id, admin: true)
+      @ownChannels.each do |o|
+        @userInChannel = Relationship.find_all_users_by_channel(o)
 
-        if(@userInInstance.length > 1)
-          #Another Admin in this Instance?
-          if(@userInInstance.where(is_admin: true).length < 2)
-            feedback "You have an Instance with no other Admin!"
+        if(@userInChannel.length > 1)
+          #Another Admin in this Channel?
+          if(@userInChannel.where(is_admin: true).length < 2)
+            feedback "You have an Channel with no other Admin!"
             redirect_to :back
           end
         else
-          #Delete the Instance
-          @instance = Instance.find(o.instance_id)
-          @instance.destroy
+          #Delete the Channel
+          @channel = Channel.find(o.channel_id)
+          @channel.destroy
         end
       end
 

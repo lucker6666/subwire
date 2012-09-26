@@ -1,12 +1,12 @@
 <% if has_admin_privileges? %>
   <li class="dropdown iconOnly">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-      rel="tooltip" title="<%=t 'tooltip.instanceSettings' %>"
+      rel="tooltip" title="<%=t 'tooltip.channelSettings' %>"
       data-placement="bottom">
       <i class="icon-cog"></i>
     </a>
 
-    <ul class="instances-dropdown dropdown-menu">
+    <ul class="channels-dropdown dropdown-menu">
       <li>
         <%= link_to relationships_path do %>
           <i class="icon icon-user"></i>
@@ -22,9 +22,9 @@
       </li>
 
       <li>
-        <%= link_to edit_instance_path(current_instance) do %>
+        <%= link_to edit_channel_path(current_channel) do %>
           <i class="icon icon-cog"></i>
-          <%= t "instances.edit" %>
+          <%= t "channels.edit" %>
         <% end %>
       </li>
     </ul>

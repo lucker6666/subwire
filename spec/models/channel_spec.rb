@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Instance do
+describe Channel do
 
 end
