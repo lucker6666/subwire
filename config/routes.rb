@@ -8,10 +8,10 @@ Subwire::Application.routes.draw do
   }
 
 
-  # Instances
-  get "instances/unset", :to => "instances#unset"
-  get "instances/all", :to => "instances#all"
-  resources :instances
+  # Channels
+  get "channels/unset", :to => "channels#unset"
+  get "channels/all", :to => "channels#all"
+  resources :channels
 
   # Users
   get "users/finish", :to => "users#finish"

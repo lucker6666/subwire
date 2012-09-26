@@ -103,12 +103,12 @@
         <div>
           <table class="table table-bordered table-striped">
             <thead>
-              <td><b><%=t('instances.your_instances') %>:</b></td>
+              <td><b><%=t('channels.your_channels') %>:</b></td>
               <td><b><%=t('relationships.mail.notification') %></b></td>
             </thead>
             <% @relationships.each do |relationship| %>
               <tr>
-                <td><%=Instance.find(relationship.instance_id).name %>:</td>
+                <td><%=Channel.find(relationship.channel_id).name %>:</td>
                 <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {:id => 'rel'+relationship.id.to_s,:name=> 'rel'+relationship.id.to_s, :class => 'check_box'} %></td>
               </tr>
             <% end %>

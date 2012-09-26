@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
   <head>
     <title>
       <% if @unread_notification_count > 0 %>
@@ -13,8 +12,8 @@
     <%= render :partial => 'shared/head' %>
 
     <script type="text/javascript">
-      <% if current_instance %>
-        window.subwireTitle = "<%= current_instance.name %>";
+      <% if current_channel %>
+        window.subwireTitle = "<%= current_channel.name %>";
       <% else %>
         window.subwireTitle = "<%= @subwireTitle %>";
       <% end %>
@@ -39,15 +38,15 @@
 
           <ul class="nav">
             <li>
-              <%= link_to current_instance.name, articles_path, :class => "brand" %>
+              <%= link_to current_channel.name, articles_path, :class => "brand" %>
             </li>
           </ul>
 
           <div class="nav-collapse">
             <ul class="nav">
-              <%= render :partial => 'shared/navbar/instanceSwitcher' %>
+              <%= render :partial => 'shared/navbar/channelSwitcher' %>
               <%= render :partial => 'shared/navbar/notifications' %>
-              <%= render :partial => 'shared/navbar/instanceSettings' %>
+              <%= render :partial => 'shared/navbar/channelSettings' %>
               <%= render :partial => 'shared/navbar/adminMenu' %>
 
               <li class="divider-vertical"></li>

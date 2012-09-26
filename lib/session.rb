@@ -1,20 +1,20 @@
 # Module to provide current_... methods for several parts of the rails application
 module Session
-  # returns the current_instance from session or nil if no instance was choosen
-  def current_instance
-    session[:instance]
+  # returns the current_channel from session or nil if no channel was choosen
+  def current_channel
+    session[:channel]
   end
 
-  # Sets the current instance of current user
-  def set_current_instance(instance)
-    session[:instance] = instance
+  # Sets the current channel of current user
+  def set_current_channel(channel)
+    session[:channel] = channel
   end
 
-  # Returns the relationship between current_user ans current_instance
+  # Returns the relationship between current_user ans current_channel
   def current_rs
     Relationship.where(
       user_id: current_user.id,
-      instance_id: current_instance.id
+      channel_id: current_channel.id
     ).first
   end
 

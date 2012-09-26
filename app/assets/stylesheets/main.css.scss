@@ -222,7 +222,7 @@
     left: 20px;
   }
 
-  ul.instances-dropdown a.active {
+  ul.channels-dropdown a.active {
     font-weight: bold;
   }
 
@@ -561,10 +561,10 @@
 
 
 /**
- *  Instance stuff
+ *  Channel stuff
  */
 
-   div.instanceChooser {
+   div.channelChooser {
      h1 {
        text-align: center;
        margin-bottom: 0;
@@ -586,7 +586,7 @@
     }
    }
 
-   .instance-link {
+   .channel-link {
      display: block;
      display: inline-block;
      width: 300px;
@@ -743,7 +743,7 @@
     }
   }
 
-  form.new_instance {
+  form.new_channel {
     select {
       width: 422px;
     }

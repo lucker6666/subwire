@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   # set_locale: Determines the language of the user
-  # refresh_config: Reloads the current instance config from database
+  # refresh_config: Reloads the current channel config from database
   before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone
 
   # We need all helpers, all the time
@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   protected
 
     # Set some global variables, which are required in the views of each request.
-    # Additionally, set the session[:instance] field to the instance, which is display currently
-    # Thats required to handle manual URL changes thru the user, which may cause an instance
+    # Additionally, set the session[:channel] field to the channel, which is display currently
+    # Thats required to handle manual URL changes thru the user, which may cause an channel
     # switch. However, thats somewhat tricky und unfancy right now. If someone has a better
     # idea, refactor this, pls.
     def globals
@@ -26,14 +26,14 @@ class ApplicationController < ActionController::Base
       if current_user
         # And if the user is a superadmin thats irrelevant too
         unless current_user.is_admin?
-          if params[:id] && !["instances", "users", "comments"].include?(params[:controller])
+          if params[:id] && !["channels", "users", "comments"].include?(params[:controller])
             resource = params[:controller].capitalize.singularize.constantize
-            instance_backup = session[:instance]
-            session[:instance] = resource.find(params[:id]).instance
+            channel_backup = session[:channel]
+            session[:channel] = resource.find(params[:id]).channel
 
-            # session[:instance] should never be null after that
-            if session[:instance].nil?
-              session[:instance] = instance_backup
+            # session[:channel] should never be null after that
+            if session[:channel].nil?
+              session[:channel] = channel_backup
             end
           end
         end
@@ -47,10 +47,10 @@ class ApplicationController < ActionController::Base
         availabilities = Availability.find :all, conditions: ["date < ?", 1.day.ago]
         availabilities.each { |a| a.destroy }
 
-        if current_instance
-          @sidebar_users = Relationship.find_all_users_by_instance(current_instance).sort_by(&:name)
-          @sidebar_links = Link.where(instance_id: current_instance.id)
-          @subwireTitle = current_instance.name
+        if current_channel
+          @sidebar_users = Relationship.find_all_users_by_channel(current_channel).sort_by(&:name)
+          @sidebar_links = Link.where(channel_id: current_channel.id)
+          @subwireTitle = current_channel.name
 
           load_notifications
         else
@@ -63,8 +63,8 @@ class ApplicationController < ActionController::Base
 
     # Call that everytime you change notifications
     def load_notifications
-      if current_user && current_instance
-        @all_notifications = Notification.find_all_relevant(current_instance, current_user)
+      if current_user && current_channel
+        @all_notifications = Notification.find_all_relevant(current_channel, current_user)
         @unread_notification_count = @all_notifications.find_all { |n| n.is_read == false }.length
       end
     end
@@ -109,15 +109,15 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Reloads the current instance config from database
+    # Reloads the current channel config from database
     def refresh_config
-      if current_instance
-        set_current_instance Instance.find(current_instance.id)
+      if current_channel
+        set_current_channel Channel.find(current_channel.id)
       end
     end
 
     # Filter that returns true if the user has admin privileges. That's if the user is a superadmin
-    #  (is_admin flag of user) or the user is admin for current_instance.
+    #  (is_admin flag of user) or the user is admin for current_channel.
     # Otherwise it redirects back and notify the user.
     def restricted_to_admin
       unless has_admin_privileges?
@@ -155,34 +155,34 @@ class ApplicationController < ActionController::Base
 
     end
 
-    # Filter which forces the user to choose an instance
-    def choose_instance!
-      unless current_instance
-        redirect_to instances_path
+    # Filter which forces the user to choose an channel
+    def choose_channel!
+      unless current_channel
+        redirect_to channels_path
       end
     end
 
-    # Checks wether the current user is allowed to see the requested instance. If not,
-    # the user will be redirected to the instance overview.
+    # Checks wether the current user is allowed to see the requested channel. If not,
+    # the user will be redirected to the channel overview.
     def check_permissions
       # Logged in? If not, redirect to login mask
       if current_user
-        # Is there a instance choosen? If not, redirect to the instance overview
-        if current_instance
+        # Is there a channel choosen? If not, redirect to the channel overview
+        if current_channel
           # If the user is a superadmin everything is ok
           unless current_user.is_admin?
-            # Get the relationship between current_user and current_instance)
+            # Get the relationship between current_user and current_channel)
             rs = current_rs
 
-            # If there is no relationship, the user is not allowed to see that instance.
-            # So redirect to instances overview. Otherwise everything is ok
+            # If there is no relationship, the user is not allowed to see that channel.
+            # So redirect to channels overview. Otherwise everything is ok
             unless rs
-              feedback t 'application.no_permission_for_instance'
-              redirect_to instances_path
+              feedback t 'application.no_permission_for_channel'
+              redirect_to channels_path
             end
           end
         else
-          redirect_to instances_path
+          redirect_to channels_path
         end
       else
         redirect_to "/"

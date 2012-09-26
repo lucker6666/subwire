@@ -1,16 +1,16 @@
 #   Schema
 # ==========
-#   table: instances
+#   table: channels
 #
-#   instance_id        :integer    not null, primary key
+#   channel_id        :integer    not null, primary key
 #   name              :string      not null
 #   defaultLanguage   :string      not null, default => "en"
-#   advertising        :boolean    not null, default => true
+#   advertising       :boolean    not null, default => true
 #   planningTool      :boolean    not null, default => false
 #   created_at        :datetime    not null
 #   updated_at        :datetime    not null
 
-class Instance < ActiveRecord::Base
+class Channel < ActiveRecord::Base
   ### Attributes
   attr_accessible :name, :defaultLanguage, :planningTool
 
@@ -54,16 +54,16 @@ class Instance < ActiveRecord::Base
   end
 
   def article_count
-    Article.find_all_by_instance_id(id).length
+    Article.find_all_by_channel_id(id).length
   end
 
   def user_count
-    Relationship.find_all_by_instance_id(id).length
+    Relationship.find_all_by_channel_id(id).length
   end
 
   def notification_count(user)
     Notification.where(
-      instance_id: id,
+      channel_id: id,
       user_id: user.id,
       is_read: false
     ).length

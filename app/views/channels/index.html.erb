@@ -1,4 +1,4 @@
-<%- model_class = Instance.new.class -%>
+<%- model_class = Channel.new.class -%>
 
 <% if Article.where(user_id: current_user.id).length == 0 && Comment.where(user_id: current_user.id).length %>
     <div class="alert alert-info clearfix">
@@ -7,27 +7,27 @@
     </div>
 <% end %>
 
-<div class="instanceChooser">
+<div class="channelChooser">
     <h1>
-        <%= t('instances.your_instances') %>
+        <%= t('channels.your_channels') %>
     </h1>
 
     <br />
 
     <table class="table">
         <tbody>
-            <% @instances.each do |instance| %>
-                <% notificationCount = instance.notification_count(current_user) %>
+            <% @channels.each do |channel| %>
+                <% notificationCount = channel.notification_count(current_user) %>
                 <tr>
                     <td>
-                        <%= link_to instance_path(instance), :class => 'instance-link' do %>
+                        <%= link_to channel_path(channel), :class => 'channel-link' do %>
                             <i class="icon icon-chevron-right"></i>
-                            <%= instance.name %>
+                            <%= channel.name %>
                         <% end %>
                     </td>
 
                     <td>
-                        <% if has_superadmin_privileges? || Relationship.is_user_admin_of_instance?(current_user, instance) %>
+                        <% if has_superadmin_privileges? || Relationship.is_user_admin_of_channel?(current_user, channel) %>
                             <div align="right">
                                 <% if notificationCount > 0 %>
                                     <span class="notification-badge notification-margin badge badge-info">
@@ -35,11 +35,11 @@
                                     </span>
                                 <% end %>
 
-                                <%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
+                                <%= link_to edit_channel_path(channel), :class => 'btn btn-mini' do %>
                                     <i class="icon icon-pencil"></i>
                                 <% end %>
 
-                                <%= link_to instance_path(instance),
+                                <%= link_to channel_path(channel),
                                     :method => :delete,
                                     :data => {:confirm => t('.confirm', default: t("helpers.links.confirm"))},
                                     :class => 'btn btn-mini btn-danger' do %>
@@ -59,15 +59,15 @@
 
         <div class="alert alert-error">
             <i class="icon  icon-exclamation-sign"></i>
-            <%= t('instances.hit_limit') %>
+            <%= t('channels.hit_limit') %>
         </div>
     <% else %>
         <div class="buttons">
-            <%= link_to(new_instance_path, :class => 'btn btn-success btn-large') do %>
+            <%= link_to(new_channel_path, :class => 'btn btn-success btn-large') do %>
                 <i class="icon icon-home"></i>
-                <%= t('instances.new') %>
+                <%= t('channels.new') %>
             <% end %>
-            <a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.instances_content') %>" data-original-title="<%= t('popover.instances_title') %>">
+            <a class="popover_help" href="#" rel="popover" data-content="<%= t('popover.channels_content') %>" data-original-title="<%= t('popover.channels_title') %>">
                 <i class="icon icon-question-sign"></i>
             </a>
         </div>

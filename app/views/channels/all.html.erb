@@ -1,4 +1,4 @@
-<%- model_class = Instance.new.class -%>
+<%- model_class = Channel.new.class -%>
 <h1><%=t '.title', default: model_class.model_name.human %></h1>
 
 <div class="well">
@@ -15,20 +15,20 @@
             </tr>
         </thead>
         <tbody>
-            <% @instances.each do |instance| %>
+            <% @channels.each do |channel| %>
                 <tr>
-                    <td><%= link_to instance.name, instance_path(instance) %></td>
-                    <td><%= boolean_icon(instance.advertising) %></td>
-                    <td><%= instance.defaultLanguage %></td>
-                    <td><%= boolean_icon(instance.planningTool) %></td>
-                    <td><%= instance.user_count %></td>
-                    <td><%= instance.article_count %></td>
+                    <td><%= link_to channel.name, channel_path(channel) %></td>
+                    <td><%= boolean_icon(channel.advertising) %></td>
+                    <td><%= channel.defaultLanguage %></td>
+                    <td><%= boolean_icon(channel.planningTool) %></td>
+                    <td><%= channel.user_count %></td>
+                    <td><%= channel.article_count %></td>
                     <td>
-                        <%= link_to edit_instance_path(instance), :class => 'btn btn-mini' do %>
+                        <%= link_to edit_channel_path(channel), :class => 'btn btn-mini' do %>
                             <i class="icon icon-pencil"></i>
                         <% end %>
 
-                        <%= link_to instance_path(instance),
+                        <%= link_to channel_path(channel),
                             :method => :delete,
                             :data => {:confirm => t('.confirm', default: t("helpers.links.confirm"))},
                             :class => 'btn btn-mini btn-danger' do %>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <%= link_to t('instances.new', default: t("helpers.instances.new")),
-        "/instances/new",
+    <%= link_to t('channels.new', default: t("helpers.channels.new")),
+        "/channels/new",
         :class => 'btn btn-primary' %>
 </div>

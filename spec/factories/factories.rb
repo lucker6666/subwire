@@ -4,25 +4,25 @@ FactoryGirl.define do
     password_confirmation 'testpw'
     confirmed_at Time.now
 
-    # user1: Has instance1 and is no superadmin
+    # user1: Has channel1 and is no superadmin
     factory :user1 do
       name 'User1'
       email 'example@example.com'
     end
 
-    # user2: Has instance2 and is no superadmin
+    # user2: Has channel2 and is no superadmin
     factory :user2 do
       name 'User2'
       email 'example2@example.com'
     end
 
-    # user3: Has no instances but is assigned to instance2 and is no superadmin
+    # user3: Has no channels but is assigned to channel2 and is no superadmin
     factory :user3 do
       name 'User3'
       email 'example@example.com'
     end
 
-    # admin: Has no instances but is assigned to instance2 and is superadmin
+    # admin: Has no channels but is assigned to channel2 and is superadmin
     factory :admin do
       name 'Admin'
       email 'admin@example.com'
@@ -30,47 +30,47 @@ FactoryGirl.define do
     end
   end
 
-  factory :instance do
-    # Instance1: Owned by user1 no other users assigned
-    factory :instance1 do
-      name "Test Instance"
+  factory :channel do
+    # channel1: Owned by user1 no other users assigned
+    factory :channel1 do
+      name "Test channel"
     end
 
-    # Instance2: Owned by user2. User3 and admin are assigned
-    factory :instance2 do
-      name "Test Instance"
+    # channel2: Owned by user2. User3 and admin are assigned
+    factory :channel2 do
+      name "Test channel"
     end
   end
 
   factory :relationship do
-    # Relationship between user1 and instance1
-    factory :user1_with_instance do
+    # Relationship between user1 and channel1
+    factory :user1_with_channel do
       association :user, factory: :user1
-      association :instance, factory: :instance1
+      association :channel, factory: :channel1
       admin true
     end
 
-    # Relationship between user2 and instance2
-    factory :user2_with_instance do
+    # Relationship between user2 and channel2
+    factory :user2_with_channel do
       association :user, factory: :user2
-      association :instance, factory: :instance2
+      association :channel, factory: :channel2
       admin true
     end
 
-    # Relationship between user3 and instance2
-    factory :user3_with_instance do
-      before(:create) {|x| Factory.create(:user2_with_instance) }
+    # Relationship between user3 and channel2
+    factory :user3_with_channel do
+      before(:create) {|x| Factory.create(:user2_with_channel) }
 
       association :user, factory: :user3
-      association :instance, factory: :instance3
+      association :channel, factory: :channel3
     end
 
-    # Relationship between user3 and instance2
-    factory :admin_with_instance do
-      before(:create) {|x| Factory.create(:user2_with_instance) }
+    # Relationship between user3 and channel2
+    factory :admin_with_channel do
+      before(:create) {|x| Factory.create(:user2_with_channel) }
 
       association :user, factory: :admin
-      association :instance, factory: :instance2
+      association :channel, factory: :channel2
     end
   end
 end
