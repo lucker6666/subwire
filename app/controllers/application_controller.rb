@@ -171,7 +171,7 @@ class ApplicationController < ActionController::Base
         if current_channel
           # If the user is a superadmin everything is ok
           unless current_user.is_admin?
-            # Get the relationship between current_user and current_channel)
+            # Get the relationship between current_user and current_channel
             rs = current_rs
 
             # If there is no relationship, the user is not allowed to see that channel.
