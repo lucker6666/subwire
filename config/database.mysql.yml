@@ -1,5 +1,4 @@
-# MySQL
-#   gem install mysql2
+zz#   gem install mysql2
 
 development:
   adapter: mysql2
