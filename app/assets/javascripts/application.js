@@ -29,6 +29,8 @@ $(function() {
         }
     });
   });
+
+  refreshUserBox();
 });
 
 function switchAvailability(event) {
@@ -139,4 +141,11 @@ function updateNotifications() {
 
 if (window.pollNotifications) {
   setInterval("updateNotifications();", 60000);
+}
+
+function refreshUserBox() {
+    $.get('/ajax/users/load_user_box?r=' + Math.random(), {}, function(c) {
+        $('#user-box').html(c);
+        setTimeout("refreshUserBox()", 30000);
+    });
 }

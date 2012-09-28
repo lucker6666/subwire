@@ -15,6 +15,7 @@ Subwire::Application.routes.draw do
 
   # Users
   get "users/finish", :to => "users#finish"
+  get "ajax/users/load_user_box", :to => "users#ajax_load_user_box"
   post "users/finish", :to => "users#finish_save"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
