@@ -137,19 +137,9 @@
                 <i class="icon icon-user"></i>
                 <%= t "application.user" %>
               </h3>
-
-            <ul class="users nav nav-list">
-              <% @sidebar_users.each do |user| %>
-                <li>
-                  <%= avatar(user, :list) %>
-                  <%= link_to user_path(user) do %>
-                    <i class="icon icon-asterisk"
-                      style="color: <%= user.login_status(current_user.name) %>"></i>
-                    <%= user.name %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
+              <div id="user-box">
+                <%= render :partial => 'layouts/shared/user_box', :locals => {:sidebar_users => @sidebar_users} %>
+              </div>
             </div>
 
             <div class="advertising">

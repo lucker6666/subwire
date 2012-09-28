@@ -163,4 +163,8 @@ class UsersController < ApplicationController
       render :finish, layout: "login"
     end
   end
+
+  def ajax_load_user_box
+    render :partial => 'layouts/shared/user_box', :locals => {:sidebar_users => @sidebar_users}
+  end
 end
