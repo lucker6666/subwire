@@ -99,4 +99,8 @@ class User < ActiveRecord::Base
   def self.find_for_authentication(conditions)
       super(conditions.merge(is_deleted: false))
   end
+
+  def self.find_all_active_by_page(page)
+    where(is_deleted: false, invitation_pending: false).paginate(page: page, per_page: 10)
+  end
 end

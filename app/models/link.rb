@@ -25,4 +25,11 @@ class Link < ActiveRecord::Base
   validates :href, :format => {
     with: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/,
   }
+
+  class << self
+    def find_all_by_channel_id_and_page(channel_id, page)
+      where(:channel_id => channel_id).paginate(:page => page, :per_page => 10)
+    end
+  end
+
 end

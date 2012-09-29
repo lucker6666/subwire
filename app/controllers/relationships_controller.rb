@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships
   def index
-    @relationships = Relationship.find_all_by_channel_id(current_channel.id)
+    @relationships = Relationship.find_all_by_channel_id_and_page(current_channel.id, params[:page])
   end
 
   # GET /relationships/new

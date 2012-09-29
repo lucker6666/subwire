@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.where(is_deleted: false, invitation_pending: false)
+    @users = User.find_all_active_by_page params[:page]
   end
 
   # GET /users/1

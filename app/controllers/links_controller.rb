@@ -5,7 +5,7 @@ class LinksController < ApplicationController
 
   # GET /links
   def index
-    @links = Link.find_all_by_channel_id(current_channel.id)
+    @links = Link.find_all_by_channel_id_and_page(current_channel.id, params[:page])
   end
 
   # GET /links/1
