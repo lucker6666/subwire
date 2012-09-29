@@ -43,6 +43,8 @@
         </tbody>
     </table>
 
+  <%= will_paginate @relationships %>
+
     <%= link_to t('relationships.new', default: t("helpers.relationships.new")),
         "/relationships/new",
         :class => 'btn btn-primary' %>
