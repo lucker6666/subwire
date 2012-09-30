@@ -1,4 +1,4 @@
-# Module to provide current_... methods for several parts of the rails application
+# Module to provide current_ methods for several parts of the rails application
 module Session
   # returns the current_channel from session or nil if no channel was choosen
   def current_channel

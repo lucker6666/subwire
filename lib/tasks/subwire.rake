@@ -1,9 +1,9 @@
 namespace :subwire do
     desc "Add the default channel 'Default'"
-    task :default_channel => :environment do
+    task default_channel: :environment do
         ins = Channel.new(
-            :name => 'Default',
-            :planningTool => true
+            name: 'Default',
+            planningTool: true
         )
 
         ins.advertising = false
@@ -11,11 +11,11 @@ namespace :subwire do
     end
 
     desc "Add the default superadmin 'admin@example.com' with password 'admin'"
-    task :default_user => :environment do
+    task default_user: :environment do
         user = User.new(
-            :name => 'Admin',
-            :email => 'admin@example.com',
-            :password => 'admin'
+            name: 'Admin',
+            email: 'admin@example.com',
+            password: 'admin'
         )
 
         user.is_admin = true
@@ -31,10 +31,10 @@ namespace :subwire do
     end
 
     desc "Add a default article"
-    task :default_article => :environment do
+    task default_article: :environment do
         article = Article.new(
-            :title => "Welcome to your new subwire installation!",
-            :content => "Hi, this is your new and fresh subwire installation. Have fun! :)",
+            title: "Welcome to your new subwire installation!",
+            content: "Hi, this is your new and fresh subwire installation. Have fun! :)",
         )
 
         article.user = User.first
@@ -44,8 +44,8 @@ namespace :subwire do
     end
 
     desc "Run all setup tasks"
-    task :setup => [:default_channel, :default_user, :default_article]
+    task setup: [:default_channel, :default_user, :default_article]
 
     desc "Run all test tasks"
-    task :test => []
+    task test: []
 end

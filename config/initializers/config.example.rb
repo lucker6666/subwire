@@ -32,7 +32,7 @@ module Subwire
     #config.session_store :cookie_store, key: '_Subwire_session'
 
     ## Set this to your applications host
-    #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    #config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end
 

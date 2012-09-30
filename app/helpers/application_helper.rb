@@ -10,7 +10,7 @@ module ApplicationHelper
 
   # Display boolean values as icon
   def boolean_icon(expression)
-    content_tag :i, "", :class => (expression ? "icon icon-ok" : "icon icon-remove")
+    content_tag :i, "", class: (expression ? "icon icon-ok" : "icon icon-remove")
   end
 
   # Returns true if ad banner should be displayed
@@ -72,9 +72,9 @@ module ApplicationHelper
 
     if user.gravatar
       image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
-      :class => 'avatar ' + className, :width => width, :height => height
+      class: 'avatar ' + className, :width => width, :height => height
     else
-      image_tag user.avatar.url(size), :class => 'avatar ' + className,
+      image_tag user.avatar.url(size), class: 'avatar ' + className,
         :width => width, :height => height
     end
 

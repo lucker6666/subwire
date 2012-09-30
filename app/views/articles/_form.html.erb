@@ -1,14 +1,14 @@
-<%= form_for @article, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @article, html: { class: 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.text_field :title, { :class => 'text_field article-title', :placeholder =>  t("helpers.title"), :autocomplete => :off } %>
+    <%= f.text_field :title, { class: 'text_field article-title', placeholder:  t("helpers.title"), autocomplete: :off } %>
   </div>
   <div class="control-group">
     <%= f.cktext_area :content %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit nil, class: 'btn btn-primary' %>
     <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                articles_path, :class => 'btn' %>
+                articles_path, class: 'btn' %>
   </div>
 <% end %>

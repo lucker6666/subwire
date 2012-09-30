@@ -2,21 +2,21 @@ Subwire::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
   # Devise
-  devise_for :users, :controllers => {
-    :registrations => "registrations",
-    :confirmations => "confirmations"
+  devise_for :users, controllers: {
+    registrations: "registrations",
+    confirmations: "confirmations"
   }
 
 
   # Channels
-  get "channels/unset", :to => "channels#unset"
-  get "channels/all", :to => "channels#all"
+  get "channels/unset", to: "channels#unset"
+  get "channels/all", to: "channels#all"
   resources :channels
 
   # Users
-  get "users/finish", :to => "users#finish"
-  get "ajax/users/load_user_box", :to => "users#ajax_load_user_box"
-  post "users/finish", :to => "users#finish_save"
+  get "users/finish", to: "users#finish"
+  get "ajax/users/load_user_box", to: "users#ajax_load_user_box"
+  post "users/finish", to: "users#finish_save"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   # Relationships
@@ -34,17 +34,17 @@ Subwire::Application.routes.draw do
   resources :notifications, only: [:index, :show, :destroy]
 
   # Availability Tool
-  post "availability", :to => "availabilities#set"
+  post "availability", to: "availabilities#set"
 
   # Misc
-  get "inactive", :to => "home#inactive"
-  get "virgin", :to => "home#virgin"
+  get "inactive", to: "home#inactive"
+  get "virgin", to: "home#virgin"
 
   scope "/:locale" do
-    get "/integration", :to => "home#integration"
+    get "/integration", to: "home#integration"
   end
 
   # Start page
   get "home/index"
-  root :to => "home#index"
+  root to: "home#index"
 end
