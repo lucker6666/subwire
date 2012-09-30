@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
 
   ### Paperclip Avatar
   has_attached_file :avatar,
-    :default_style => :default,
-    :default_url => '/assets/anonymous.png',
+    default_style: :default,
+    default_url: '/assets/anonymous.png',
     styles: {
       small: "50x50#",
       tiny: "30x30#",
@@ -50,26 +50,26 @@ class User < ActiveRecord::Base
       default: "100x100#"
     }
 
-  validates_attachment_size :avatar, :less_than => 2.megabytes
+  validates_attachment_size :avatar, less_than: 2.megabytes
   validates_attachment_content_type :avatar,
-    :content_type => ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"]
+    content_type: ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"]
 
   ### Validations
   # Make sure, name, email, lang, timezone are not empty
   validates :lang, :timezone, presence: true
 
   # Make sure name contains no invalid chars and length is between 3 and 30
-  validates :name, :format => { with: /[a-zA-Z0-9\-_. ]+/ },
-    :length => { :minimum => 3, :maximum => 30 }
+  validates :name, format: { with: /[a-zA-Z0-9\-_. ]+/ },
+    length: { minimum: 3, maximum: 30 }
 
   # Make sure email looks like an email adress
-  validates :email, :format => {
+  validates :email, format: {
     with: /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$/
   }
 
   # Make sure lang contains "de" or "en"
-  validates :lang, :inclusion => {
-    :in => %w(en de)
+  validates :lang, inclusion: {
+    in: %w(en de)
   }
 
   ### Methods

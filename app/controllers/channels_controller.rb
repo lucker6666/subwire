@@ -80,8 +80,8 @@ class ChannelsController < ApplicationController
         article = Article.new
         article.user = current_user
         article.channel = @channel
-        article.title = t('articles.standard_title', :locale => @channel.defaultLanguage)
-        article.content = t('articles.standard_content', :locale => @channel.defaultLanguage)
+        article.title = t('articles.standard_title', locale: @channel.defaultLanguage)
+        article.content = t('articles.standard_content', locale: @channel.defaultLanguage)
         article.save
 
         feedback t('channels.created')

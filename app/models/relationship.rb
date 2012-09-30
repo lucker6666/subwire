@@ -45,7 +45,7 @@ class Relationship < ActiveRecord::Base
   end
 
   def self.find_all_by_channel_id_and_page(channel_id, page)
-    where(:channel_id => channel_id).paginate(:page => page, :per_page => 10)
+    where(channel_id: channel_id).paginate(page: page, per_page: 10)
   end
 
   def email

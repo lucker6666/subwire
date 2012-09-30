@@ -5,7 +5,7 @@ module ApplicationHelper
   def article_teaser(article)
     content = auto_link(article.content)
     more_to_read = '(...)<br />' + link_to(t('application.more_to_read'), article_path(article))
-    HTML_Truncator.truncate(content, 120, :ellipsis => more_to_read).strip.html_safe
+    HTML_Truncator.truncate(content, 120, ellipsis: more_to_read).strip.html_safe
   end
 
   # Display boolean values as icon
@@ -72,10 +72,10 @@ module ApplicationHelper
 
     if user.gravatar
       image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
-      class: 'avatar ' + className, :width => width, :height => height
+      class: 'avatar ' + className, width: width, height: height
     else
       image_tag user.avatar.url(size), class: 'avatar ' + className,
-        :width => width, :height => height
+        width: width, height: height
     end
 
 

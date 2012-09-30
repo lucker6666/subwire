@@ -23,12 +23,12 @@ class Channel < ActiveRecord::Base
 
   ### Validations
   # Make sure, name is not empty and maximum 30 chars length
-  validates :name, presence: true, :length => {
-    :maximum => 30
+  validates :name, presence: true, length: {
+    maximum: 30
   }
 
-  validates :defaultLanguage, :inclusion => {
-    :in => %w(en de)
+  validates :defaultLanguage, inclusion: {
+    in: %w(en de)
   }
 
 
