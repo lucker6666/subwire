@@ -9,7 +9,7 @@
       <%= @subwireTitle %>
     </title>
 
-    <%= render :partial => 'shared/head' %>
+    <%= render partial: 'shared/head' %>
 
     <script type="text/javascript">
       <% if current_channel %>
@@ -38,16 +38,16 @@
 
           <ul class="nav">
             <li>
-              <%= link_to current_channel.name, articles_path, :class => "brand" %>
+              <%= link_to current_channel.name, articles_path, class: "brand" %>
             </li>
           </ul>
 
           <div class="nav-collapse">
             <ul class="nav">
-              <%= render :partial => 'shared/navbar/channelSwitcher' %>
-              <%= render :partial => 'shared/navbar/notifications' %>
-              <%= render :partial => 'shared/navbar/channelSettings' %>
-              <%= render :partial => 'shared/navbar/adminMenu' %>
+              <%= render partial: 'shared/navbar/channelSwitcher' %>
+              <%= render partial: 'shared/navbar/notifications' %>
+              <%= render partial: 'shared/navbar/channelSettings' %>
+              <%= render partial: 'shared/navbar/adminMenu' %>
 
               <li class="divider-vertical"></li>
 
@@ -59,12 +59,12 @@
               </li>
             </ul>
 
-            <%= render :partial => 'shared/navbar/availability' %>
+            <%= render partial: 'shared/navbar/availability' %>
 
             <ul class="nav pull-right">
-              <%= form_tag articles_path, :class => 'navbar-search', method: :get do %>
-                  <%= text_field_tag :query, params[:query], :class => 'search-query',
-                    :placeholder => t('application.search') %>
+              <%= form_tag articles_path, class: 'navbar-search', method: :get do %>
+                  <%= text_field_tag :query, params[:query], class: 'search-query',
+                    placeholder: t('application.search') %>
               <% end %>
 
               <li class="divider-vertical"></li>
@@ -138,7 +138,7 @@
                 <%= t "application.user" %>
               </h3>
               <div id="user-box">
-                <%= render :partial => 'layouts/shared/user_box', :locals => {:sidebar_users => @sidebar_users} %>
+                <%= render partial: 'layouts/shared/user_box', locals: {sidebar_users: @sidebar_users} %>
               </div>
             </div>
 
@@ -167,12 +167,12 @@
         <div class="span9 maincontent">
           <%= yield %>
 
-          <%= render :partial => 'shared/footer' %>
+          <%= render partial: 'shared/footer' %>
         </div>
       </div>
     </div>
 
-    <%= render :partial => 'shared/flash_messages' %>
-    <%= render :partial => 'shared/ga' %>
+    <%= render partial: 'shared/flash_messages' %>
+    <%= render partial: 'shared/ga' %>
   </body>
 </html>

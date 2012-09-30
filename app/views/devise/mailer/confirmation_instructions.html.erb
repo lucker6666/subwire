@@ -2,4 +2,4 @@
 
 <p><%= t('relationships.mail.invitation.link_to_confirm_text') %></p>
 
-<p><%= link_to t('relationships.mail.invitation.link_to_confirm'), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to t('relationships.mail.invitation.link_to_confirm'), confirmation_url(@resource, confirmation_token: @resource.confirmation_token) %></p>

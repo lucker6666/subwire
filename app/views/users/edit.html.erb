@@ -1,79 +1,79 @@
 <%- model_class = @user.class -%>
 
 <h1>
-    <%=t '.title', default: t('helpers.submit.update', :model => model_class.model_name.human,
+    <%=t '.title', default: t('helpers.submit.update', model: model_class.model_name.human,
          default: "Edit #{model_class.model_name.human}") %>
 </h1>
 
 <div class="well">
-  <%= form_for @user, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  <%= form_for @user, html: { class: 'form-horizontal', multipart: true } do |f| %>
     <div class="control-group">
-      <%= f.label :name, :class => 'control-label' %>
+      <%= f.label :name, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, :class => 'text_field', :maxlength => 30 %>
+        <%= f.text_field :name, class: 'text_field', :maxlength => 30 %>
       </div>
     </div>
 
     <% if has_superadmin_privileges? %>
       <div class="control-group">
-        <%= f.label :is_admin, :class => 'control-label' %>
+        <%= f.label :is_admin, class: 'control-label' %>
 
         <div class="controls">
-          <%= check_box_tag :is_admin, true, @user.is_admin, {:class => 'check_box'} %>
+          <%= check_box_tag :is_admin, true, @user.is_admin, {class: 'check_box'} %>
         </div>
       </div>
     <% end %>
 
     <div class="control-group">
-      <%= f.label :password, :class => 'control-label' %>
+      <%= f.label :password, class: 'control-label' %>
       <div class="controls">
-        <%= f.password_field :password, :class => 'text_field' %>
+        <%= f.password_field :password, class: 'text_field' %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <%= f.label :password_confirmation, class: 'control-label' %>
       <div class="controls">
-        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+        <%= f.password_field :password_confirmation, class: 'text_field' %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :lang, :class => 'control-label' %>
+      <%= f.label :lang, class: 'control-label' %>
       <div class="controls">
         <%= f.select :lang, [[t("application.de"), "de"], [t("application.en"), "en"]] %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :timezone, :class => 'control-label' %>
+      <%= f.label :timezone, class: 'control-label' %>
       <div class="controls">
         <%= f.select :timezone, ["Berlin", "Paris", "London", "Amsterdam", "Bern", "Madrid", "International Date Line West", "Alaska", "Central America", "Pacific Time (US & Canada)", "Mountain Time (US & Canada)", "Central Time (US & Canada)", "Eastern Time (US & Canada)", "Caracas", "Atlantic Time (Canada)", "Newfoundland", "Buenos Aires", "Mid-Atlantic", "Azores", "Jerusalem", "Baghdad", "Nairobi", "Tehran", "Moscow", "Kabul", "Islamabad", "Mumbai", "Kathmandu", "Ekaterinburg", "Rangoon", "Bangkok", "Tokyo", "Fiji", "Hawaii"] %>
       </div>
     </div>
 
         <div class="control-group">
-            <%= f.label :show_login_status, :class => 'control-label' %>
+            <%= f.label :show_login_status, class: 'control-label' %>
 
             <div class="controls">
-                <%= check_box_tag :show_login_status, true, @user.show_login_status, {:class => 'check_box'} %>
+                <%= check_box_tag :show_login_status, true, @user.show_login_status, {class: 'check_box'} %>
             </div>
         </div>
 
 
     <div class="control-group">
       <a rel="tooltip" href="#" title="<%=t("tooltip.gravatar") %>" style="display:block; width:210px;">
-        <%= f.label :gravatar, :class => 'control-label' %>
+        <%= f.label :gravatar, class: 'control-label' %>
       </a>
 
       <div class="controls">
-        <%= check_box_tag :gravatar, true, @user.gravatar, {:class => 'check_box'} %>
+        <%= check_box_tag :gravatar, true, @user.gravatar, {class: 'check_box'} %>
       </div>
     </div>
 
 
     <div class="avatar-upload control-group">
-      <%= f.label :avatar, :class => 'control-label' %>
+      <%= f.label :avatar, class: 'control-label' %>
       <div class="controls">
         <%= f.file_field :avatar %>
 
@@ -97,7 +97,7 @@
     </script>
 
     <div class="control-group">
-      <%= label :mail_notification, " ", :class => 'control-label' %>
+      <%= label :mail_notification, " ", class: 'control-label' %>
 
       <div class="controls">
         <div>
@@ -109,7 +109,7 @@
             <% @relationships.each do |relationship| %>
               <tr>
                 <td><%=Channel.find(relationship.channel_id).name %>:</td>
-                <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {:id => 'rel'+relationship.id.to_s,:name=> 'rel'+relationship.id.to_s, :class => 'check_box'} %></td>
+                <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {:id => 'rel'+relationship.id.to_s,:name=> 'rel'+relationship.id.to_s, class: 'check_box'} %></td>
               </tr>
             <% end %>
           </table>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="control-group">
-      <%= label :delete_relationship, " ", :class => 'control-label' %>
+      <%= label :delete_relationship, " ", class: 'control-label' %>
 
       <div class="controls">
         <div class="alert">
@@ -127,9 +127,9 @@
               <td>
                 <%= link_to t('relationships.delete'),
                   relationship_path(current_rs),
-                  :method => :delete,
-                  :class => 'btn btn-warning danger-button no-lock',
-                  :confirm => t("helpers.links.confirm") %>
+                  method: :delete,
+                  class: 'btn btn-warning danger-button no-lock',
+                  confirm: t("helpers.links.confirm") %>
               </td>
               <td>
                 <p style="padding-left:35px;">
@@ -143,7 +143,7 @@
     </div>
 
     <div class="control-group">
-      <%= label :delete_account, " ", :class => 'control-label' %>
+      <%= label :delete_account, " ", class: 'control-label' %>
 
       <div class="controls">
         <div class="alert alert-error">
@@ -151,9 +151,9 @@
             <tr>
               <td>
                 <%= link_to t('users.delete_account'), user_path(@user),
-                :method => :delete,
-                :class => 'btn btn-danger danger-button no-lock',
-                :confirm => t("helpers.links.confirm") %>
+                method: :delete,
+                class: 'btn btn-danger danger-button no-lock',
+                confirm: t("helpers.links.confirm") %>
               </td>
               <td>
                 <p style="padding-left:35px;">
@@ -167,9 +167,9 @@
     </div>
 
     <div class="form-actions with-padding">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit nil, class: 'btn btn-primary' %>
       <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-        users_path, :class => 'btn' %>
+        users_path, class: 'btn' %>
 
     </div>
 

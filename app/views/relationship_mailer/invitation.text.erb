@@ -1,7 +1,7 @@
 <%= t('relationships.mail.invitation.greet') %>,
 
-<%= t('relationships.mail.invitation.content', :user => @current_user.name, :link =>
+<%= t('relationships.mail.invitation.content', user: @current_user.name, link:
   "http://subwire.net") %>
 
 <%= t('relationships.mail.invitation.activate_link_text') %>
-<%= confirmation_url(@user, :confirmation_token => @user.confirmation_token) %>
+<%= confirmation_url(@user, confirmation_token: @user.confirmation_token) %>
