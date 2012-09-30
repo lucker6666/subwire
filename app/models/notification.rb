@@ -23,7 +23,7 @@ class Notification < ActiveRecord::Base
 
   ### Associations
   belongs_to :user
-  belongs_to :user, :foreign_key => "created_by"
+  belongs_to :user, foreign_key: "created_by"
   belongs_to :channel
 
   ### Validations
@@ -43,7 +43,7 @@ class Notification < ActiveRecord::Base
           provokesUser: data[:provokesUser],
           subject: data[:subject],
           href: data[:href],
-          :created_by => current_user
+          created_by: current_user
         })
 
         notification.is_read = false

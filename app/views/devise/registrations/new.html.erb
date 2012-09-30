@@ -1,10 +1,10 @@
 <h1><%= t('helpers.sign_up') %></h1>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <fieldset>
         <div class="clearfix">
         <%= f.text_field :name, class: 'text_field', placeholder: t('helpers.name'),
-          :maxlength => 30  %>
+          maxlength: 30  %>
         </div>
 
         <div class="clearfix">

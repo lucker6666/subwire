@@ -60,7 +60,7 @@ describe HomeController do
     context "while not authorized" do
       before do
         # Log in first
-        get :integration, :locale => 'de'
+        get :integration, locale: 'de'
       end
 
       it "should be successful" do
@@ -76,7 +76,7 @@ describe HomeController do
       before do
         # Log in first
         sign_in @rel.user
-        get :integration, :locale => 'de'
+        get :integration, locale: 'de'
       end
 
       it "should be successful" do

@@ -31,7 +31,7 @@ gem 'tire'
 # Testing
 group :test do
   gem "email_spec"
-  gem "cucumber-rails", :require => false
+  gem "cucumber-rails", require: false
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
