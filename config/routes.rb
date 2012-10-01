@@ -23,6 +23,9 @@ Subwire::Application.routes.draw do
   resources :relationships, only: [:index, :create, :new, :edit, :update, :destroy]
 
   # Links
+  get 'links/move_position_up/:id', to: "links#move_position_up", as: "links_move_position_up"
+  get 'links/move_position_dn/:id', to: "links#move_position_dn", as: "links_move_position_dn"
+
   resources :links
 
   # Articles and comments

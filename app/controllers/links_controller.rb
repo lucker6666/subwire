@@ -10,7 +10,7 @@ class LinksController < ApplicationController
 
   # GET /links/1
   def show
-    @link = Link.find(params[:id])
+    @link = current_link
   end
 
   # GET /links/new
@@ -20,7 +20,7 @@ class LinksController < ApplicationController
 
   # GET /links/1/edit
   def edit
-    @link = Link.find(params[:id])
+    @link = current_link
   end
 
   # POST /links
@@ -47,7 +47,7 @@ class LinksController < ApplicationController
       params[:link][:href] = 'http://' + params[:link][:href]
     end
 
-    @link = Link.find(params[:id])
+    @link = current_link
 
     if @link.update_attributes(params[:link])
       feedback t('users.updated')
@@ -59,9 +59,28 @@ class LinksController < ApplicationController
 
   # DELETE /links/1
   def destroy
-    @link = Link.find(params[:id])
+    @link = current_link
     @link.destroy
 
     redirect_to links_path
+  end
+
+  def move_position_up
+    link = current_link
+    link.move_position_up!
+
+    redirect_to links_path
+  end
+
+  def move_position_dn
+    link = current_link
+    link.move_position_dn!
+
+    redirect_to links_path
+  end
+
+  private
+  def current_link
+    Link.find_by_id_and_channel_id(params[:id], current_channel.id)
   end
 end
