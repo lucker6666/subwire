@@ -30,7 +30,11 @@ class Link < ActiveRecord::Base
 
   class << self
     def find_all_by_channel_id_and_page(channel_id, page)
-      where(channel_id: channel_id).order('position').paginate(page: page, per_page: 10)
+      find_all_by_channel_id(channel_id).paginate(page: page, per_page: 10)
+    end
+
+    def find_all_by_channel_id(channel_id)
+      where(channel_id: channel_id).order('position')
     end
   end
 

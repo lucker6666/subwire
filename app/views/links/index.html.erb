@@ -27,8 +27,8 @@
               <i class="icon icon-trash"></i>
             <% end %>
 
-            <%= link_to('dn', links_move_position_dn_path(link.id)) if idx < @links.size - 1%>
-            <%= link_to('up', links_move_position_up_path(link.id)) if idx >= 1 %>
+            <%= link_to('', links_move_position_up_path(link.id), {class: 'icon-chevron-up'}) if is_up_link_showed?(idx) %>
+            <%= link_to('', links_move_position_dn_path(link.id), {class: 'icon-chevron-down'}) if is_dn_link_showed?(idx, @links.size)%>
           </td>
         </tr>
       <% end %>

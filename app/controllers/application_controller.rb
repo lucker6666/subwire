@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
 
         if current_channel
           @sidebar_users = Relationship.find_all_users_by_channel(current_channel).sort_by(&:name)
-          @sidebar_links = Link.where(channel_id: current_channel.id)
+          @sidebar_links = Link.find_all_by_channel_id current_channel.id
           @subwireTitle = current_channel.name
 
           load_notifications
