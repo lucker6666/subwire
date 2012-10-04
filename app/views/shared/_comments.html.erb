@@ -1,8 +1,8 @@
-<div class="commentList">
+<div class="commentList" id="article-comments-<%= article.id %>">
     <h5><%=t 'comments.plural' %>:</h5>
 
     <table class="table table-bordered table-condesed">
-      <% article.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <tr>
           <th class="avatar">
             <%= avatar(comment.user) %>
@@ -42,6 +42,15 @@
           </td>
         </tr>
       <% end %>
+      <% if article.comments.size > comments.size%>
+        <tr>
+          <td style="padding-left:15px">
+            <a href="javascript:void(0)" onclick="loadAllComments(<%= article.id %>)">more</a>
+          </td>
+        </tr>
+      <% end %>
+
+
     </table>
 
     <br />

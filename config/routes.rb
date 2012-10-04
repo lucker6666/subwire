@@ -29,6 +29,7 @@ Subwire::Application.routes.draw do
   resources :links
 
   # Articles and comments
+  get 'ajax/comments/load_all_comments/:article_id', to: "comments#ajax_load_all_comments", as: "ajax_comments_load_all_comments"
   resources :articles do
     resources :comments, only: [:create, :update, :destroy]
   end
