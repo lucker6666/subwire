@@ -19,6 +19,9 @@ class Comment < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
 
+  # Law of demeter delegations
+  delegate :name, :to => :user, :prefix => true
+
   ### Validations
   # Make sure, content is not empty
   validates :content, presence: true
