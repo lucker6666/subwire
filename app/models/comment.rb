@@ -22,4 +22,7 @@ class Comment < ActiveRecord::Base
   ### Validations
   # Make sure, content is not empty
   validates :content, presence: true
+
+  scope :newest, :order => 'id DESC'
+#  scope :by_article_id, :order_bu => 'created_at DESC'
 end

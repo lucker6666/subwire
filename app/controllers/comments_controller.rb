@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   # User have to be logged in, choosed an channel and have to be allowed to see that channel
-  before_filter :authenticate_user!, :channel!, :check_permissions
+  before_filter :authenticate_user!, :check_permissions
 
   # POST /comments
   def create
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         provokesUser: @comment.user.id,
         subject: @article.title,
         href: article_path(@article)
-      }, channel, current_user)
+      }, current_channel, current_user)
 
       feedback t("comments.new_success")
     else
@@ -66,5 +66,10 @@ class CommentsController < ApplicationController
     end
 
     redirect_to :back
+  end
+
+  def ajax_load_all_comments
+    article = Article.find(params[:article_id])
+    render :partial => 'shared/comments', :locals => {:comments => article.newest_comments, :article => article }
   end
 end

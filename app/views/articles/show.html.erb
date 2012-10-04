@@ -60,7 +60,7 @@
   <tr>
     <td>
       <div class="comments">
-        <%= render partial: 'shared/comments', locals: {article: @article} %>
+        <%= render partial: 'shared/comments', locals: {article: @article, comments: @article.newest_comments.take(5)} %>
       </div>
     </td>
   </tr>

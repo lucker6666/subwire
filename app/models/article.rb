@@ -14,6 +14,8 @@
 # TODO: user_id, title -> not_null?
 
 class Article < ActiveRecord::Base
+
+
   ### Attributes
   attr_accessible :content, :title
 
@@ -32,6 +34,9 @@ class Article < ActiveRecord::Base
   # Make sure, title and content are not empty
   validates :title, :content, presence: true
 
+  def newest_comments
+    Comment.newest.find_all_by_article_id self.id
+  end
 
 
 end
