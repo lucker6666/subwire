@@ -21,18 +21,15 @@ class NotificationsController < ApplicationController
   # GET /notifications/1
   def show
     if (params[:id])
-      notification = Notification.find(params[:id])
+      notification = current_user.notifications.find(params[:id])
       target = articles_path
 
-      if notification && notification.user == current_user
-
-        if notification.channel != current_channel
-          set_current_channel notification.channel
-        end
-
-        target = notification.href
-        notification.read!
+      if notification.channel != current_channel
+        set_current_channel notification.channel
       end
+
+      target = notification.href
+      notification.read!
 
       redirect_to target
     end

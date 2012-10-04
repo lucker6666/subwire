@@ -81,56 +81,56 @@ class ArticlesController < ApplicationController
 
   # PUT /articles/1
   def update
-    @article = Article.find(params[:id])
-
-    if current_user == @article.user || has_admin_privileges?
-      if @article.update_attributes(params[:article])
-        # Notify all users
-        Notification.notify_all_users({
-          notification_type: "edit_article",
-          provokesUser: current_user.id,
-          subject: @article.title,
-          href: article_path(@article)
-        }, current_channel, current_user)
-
-        feedback t('articles.updated')
-        redirect_to article_path(@article)
-      else
-        errors_to_feedback @article
-        render action: "edit"
-      end
+    if has_admin_privileges?
+      @article = Article.find(params[:id])
     else
-      redirect_to :back
+      @article = current_user.articles.find(params[:id])
+    end
+
+    if @article.update_attributes(params[:article])
+      # Notify all users
+      Notification.notify_all_users({
+        notification_type: "edit_article",
+        provokesUser: current_user.id,
+        subject: @article.title,
+        href: article_path(@article)
+      }, current_channel, current_user)
+
+      feedback t('articles.updated')
+      redirect_to article_path(@article)
+    else
+      errors_to_feedback @article
+      render action: "edit"
     end
   end
 
   # DELETE /articles/1
   def destroy
-    @article = Article.find(params[:id])
-
-    if current_user == @article.user || has_admin_privileges?
-      # Delete all notifications
-      @notifications = Notification.where(
-        href: article_path(@article),
-        channel_id: current_channel.id
-      )
-
-      @notifications.each do |n|
-        n.destroy
-      end
-
-      # Delete all comments
-      @comments = Comment.find_all_by_article_id(@article.id)
-      @comments.each do |c|
-        c.destroy
-      end
-
-      @article.destroy
-
-      feedback t('articles.destroyed')
-      redirect_to articles_url
+    if has_admin_privileges?
+      @article = Article.find(params[:id])
     else
-      redirect_to :back
+      @article = current_user.articles.find(params[:id])
     end
+
+    # Delete all notifications
+    @notifications = Notification.where(
+      href: article_path(@article),
+      channel_id: current_channel.id
+    )
+
+    @notifications.each do |n|
+      n.destroy
+    end
+
+    # Delete all comments
+    @comments = Comment.find_all_by_article_id(@article.id)
+    @comments.each do |c|
+      c.destroy
+    end
+
+    @article.destroy
+
+    feedback t('articles.destroyed')
+    redirect_to articles_url
   end
 end

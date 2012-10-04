@@ -31,39 +31,42 @@ class CommentsController < ApplicationController
   # PUT /comments/1.json
   def update
     # TODO check if the article is visible for the user to avoid cross-channel-hacks/-spam
-    @comment = Comment.find(params[:id])
 
     # Make sure the user is the author of the comment or user is admin
-    if current_user == @comment.user || has_admin_privileges?
-      respond_to do |format|
-        if @comment.update_attributes(params[:comment])
-          format.html { redirect_to :back, notice: t("comments.update_success") }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
-        end
-      end
+    if has_admin_privileges?
+      @comment = Comment.find(params[:id])
     else
-      redirect_to :back
+      @comment = current_user.comments.find(params[:id])
+    end
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to :back, notice: t("comments.update_success") }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /comments/1
   def destroy
-    @comment = Comment.find(params[:id])
-
     # Make sure the user is the author of the comment or user is admin
-    if current_user == @comment.user || has_admin_privileges?
-      @notifications = Notification.find_all_by_href(article_path(@comment.article))
-      @notifications.each do |n|
-        n.destroy
-      end
-
-      @comment.destroy
-
-      feedback t('comments.destroyed')
+    if has_admin_privileges?
+      @comment = Comment.find(params[:id])
+    else
+      @comment = current_user.comments.find(params[:id])
     end
+
+    @notifications = Notification.find_all_by_href(article_path(@comment.article))
+    @notifications.each do |n|
+      n.destroy
+    end
+
+    @comment.destroy
+
+    feedback t('comments.destroyed')
 
     redirect_to :back
   end
