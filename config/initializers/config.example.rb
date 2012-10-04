@@ -1,19 +1,19 @@
 module Subwire
   class Application < Rails::Application
     ## Title of the application
-    #config.subwire_title = "subwire"
+    config.subwire_title = "subwire"
 
     ## Timezone
-    #config.time_zone = 'Berlin'
+    config.time_zone = 'Berlin'
 
     ##Elasticsearch active?
-    #config.elasticsearch = false
+    config.elasticsearch = false
 
     ## Default encoding
-    #config.encoding = "utf-8"
+    config.encoding = "utf-8"
 
     ## Activates GoogleAnalytics integration
-    #config.ga = true
+    config.ga = false
     ## Your GoogleAnalytics Key
     #config.ga_key = ""
     ## The Domain (e.g. "subwire.net")
@@ -26,13 +26,13 @@ module Subwire
     #  :exception_recipients => %w{info@example.com}
 
     ## Secret token. Change this in production!
-    #config.secret_token = '912ec803b2912ec803b2ce49e4a541068d495ab570ce49e4a541068d495ab570'
+    config.secret_token = '912ec803b2912ec803b2ce49e4a541068d495ab570ce49e4a541068d495ab570'
 
     ## Session store key
-    #config.session_store :cookie_store, key: '_Subwire_session'
+    config.session_store :cookie_store, key: '_subwire_session'
 
     ## Set this to your applications host
-    #config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end
 
