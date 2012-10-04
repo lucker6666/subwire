@@ -1,3 +1,6 @@
+require File.expand_path('../../initializers/config.rb', __FILE__)
+require File.expand_path('../../initializers/application.rb', __FILE__)
+
 Subwire::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
