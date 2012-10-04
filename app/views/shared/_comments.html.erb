@@ -25,7 +25,7 @@
 
                    <div class="comment" id="comment<%= comment.id %>" align="left">
                     <strong>
-                        <%= link_to comment.user.name, user_path(comment.user) %>
+                        <%= link_to comment.user_name, user_path(comment.user) %>
                     </strong>
                     <br />
                     <%= auto_link(comment.content).html_safe %>
