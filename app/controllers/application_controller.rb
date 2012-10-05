@@ -3,8 +3,12 @@ class ApplicationController < ActionController::Base
   # Enable CSRF protection
   protect_from_forgery
 
-  # set_locale: Determines the language of the user
-  # refresh_config: Reloads the current channel config from database
+  # finish_invitation:    Completes an open invitation
+  # set_locale:           Determines the language of the user
+  # refresh_config:       Reloads the current channel config from database
+  # globals:              Set some global variables and actions which have
+  #                       to be done on each request
+  # set_timezone:         Determines the current timezone
   before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone
 
   # We need all helpers, all the time
@@ -40,7 +44,8 @@ class ApplicationController < ActionController::Base
 
         # Delete all Users, which have been invited before 30 days and the invitation is still
         # pendig.
-        users = User.find :all, conditions: ["created_at < ? and invitation_pending = 1", 30.days.ago]
+        users = User.find :all,
+          conditions: ["created_at < ? and invitation_pending = 1", 30.days.ago]
         users.each { |u| u.destroy }
 
         # Delete all availabilities, which are older then 1 day.
@@ -65,17 +70,15 @@ class ApplicationController < ActionController::Base
     def load_notifications
       if current_user && current_channel
         @all_notifications = Notification.find_all_relevant(current_channel, current_user)
-        @unread_notification_count = @all_notifications.find_all { |n| n.is_read == false }.length
+        @unread_notification_count = @all_notifications.find_all { |n|
+          n.is_read == false
+        }.length
       end
     end
 
     # Changes layout depending on controller
     def layout_by_resource
-      if devise_controller?
-        "login"
-      else
-        "application"
-      end
+      return devise_controller? ? 'login' : 'application'
     end
 
     # Sends a message to the user over the feedback system. Will use jGrowl in frontend.
@@ -95,9 +98,7 @@ class ApplicationController < ActionController::Base
 
     # Converts all errors of a model to feedback messages
     def errors_to_feedback(model)
-      model.errors.each do |error, message|
-        feedback message
-      end
+      model.errors.each { |error, message| feedback message }
     end
 
 
@@ -116,8 +117,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Filter that returns true if the user has admin privileges. That's if the user is a superadmin
-    #  (is_admin flag of user) or the user is admin for current_channel.
+    # Filter that returns true if the user has admin privileges.
+    # That's if the user is a superadmin (is_admin flag of user)
+    # or the user is admin for current_channel.
     # Otherwise it redirects back and notify the user.
     def restricted_to_admin
       unless has_admin_privileges?
@@ -126,7 +128,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Filter that returns true if the current user is a superadmin (is_admin flag of user).
+    # Filter that returns true if the current user is
+    # a superadmin (is_admin flag of user).
     # Otherwise it redirects back and notify the user.
     def restricted_to_superadmin
       unless has_superadmin_privileges?
@@ -171,12 +174,9 @@ class ApplicationController < ActionController::Base
         if current_channel
           # If the user is a superadmin everything is ok
           unless current_user.is_admin?
-            # Get the relationship between current_user and current_channel
-            rs = current_rs
-
             # If there is no relationship, the user is not allowed to see that channel.
             # So redirect to channels overview. Otherwise everything is ok
-            unless rs
+            unless current_rs
               feedback t 'application.no_permission_for_channel'
               redirect_to channels_path
             end

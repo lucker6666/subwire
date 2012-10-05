@@ -4,7 +4,10 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships
   def index
-    @relationships = Relationship.find_all_by_channel_id_and_page(current_channel.id, params[:page])
+    @relationships = Relationship.find_all_by_channel_id_and_page(
+      current_channel.id,
+      params[:page]
+    )
   end
 
   # GET /relationships/new
@@ -24,7 +27,6 @@ class RelationshipsController < ApplicationController
     user = User.find_by_email(params[:relationship][:email])
 
     unless user
-      password =
       user = User.new
       user.name = "unkown"
       user.email = params[:relationship][:email]

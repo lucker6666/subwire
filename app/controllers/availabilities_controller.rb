@@ -7,8 +7,7 @@ class AvailabilitiesController < ApplicationController
         value: params[:value]
       }
 
-      availability = Availability.where(
-        user_id: current_user.id,
+      availability = current_user.availabilities.where(
         channel_id: current_channel.id,
         date: params[:date]
       ).first

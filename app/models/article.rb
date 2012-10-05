@@ -37,6 +37,4 @@ class Article < ActiveRecord::Base
   def newest_comments
     Comment.newest.find_all_by_article_id self.id
   end
-
-
 end

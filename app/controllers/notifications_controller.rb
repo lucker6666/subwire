@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications.json
   def index
-    #Set Activity
+    # Set Activity
     current_user.last_activity = Time.now
     current_user.save
 
@@ -37,19 +37,15 @@ class NotificationsController < ApplicationController
 
   # DELETE /notifications/1.json
   def destroy
+    # Mark all as read
+    notifications = current_user.notifications.where(
+      channel_id: current_channel.id,
+      is_read: false
+    )
 
-    #Mark all as read
-    notifications = Notification.where(
-        user_id: current_user.id,
-        channel_id: current_channel.id,
-        is_read: false
-      )
+    notifications.each { |n| n.read! }
 
-    notifications.each do |notification|
-      notification.read!
-    end
-
-    #Return the last 5 Notifications
+    # Return the last 5 Notifications
     @notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
       user_id: current_user.id,
       channel_id: current_channel.id

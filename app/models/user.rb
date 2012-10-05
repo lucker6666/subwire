@@ -96,6 +96,11 @@ class User < ActiveRecord::Base
     login_status_by_time Time.now, name
   end
 
+  def may_create_new_channel?
+    return self.is_admin? ||
+      Channel.find_all_where_user_is_admin(self).length < 5
+  end
+
   def self.find_for_authentication(conditions)
       super(conditions.merge(is_deleted: false))
   end
