@@ -2,11 +2,7 @@ class HomeController < ApplicationController
   # GET /
   def index
     if current_user
-      if current_channel
-        redirect_to articles_path
-      else
-        redirect_to channels_path
-      end
+      redirect_to current_channel ? articles_path : channels_path
     else
       flash.keep
       redirect_to "/users/sign_in"
