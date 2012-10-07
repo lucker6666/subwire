@@ -10,12 +10,9 @@
 #   created_at  :datetime    not null
 #   updated_at  :datetime    not null
 #
-# TODO: index for user_id?
 # TODO: user_id, title -> not_null?
 
 class Article < ActiveRecord::Base
-
-
   ### Attributes
   attr_accessible :content, :title
 
@@ -29,6 +26,9 @@ class Article < ActiveRecord::Base
   belongs_to :user
   belongs_to :channel
   has_many :comments
+
+  # Law of demeter delegations
+  delegate :name, :to => :user, :prefix => true
 
   ### Validations
   # Make sure, title and content are not empty
@@ -47,4 +47,5 @@ class Article < ActiveRecord::Base
               conditions: { channel_id: channel_id })
     end
   end
+
 end

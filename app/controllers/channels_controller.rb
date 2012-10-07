@@ -25,19 +25,17 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   def show
     set_current_channel Channel.find(params[:id])
-
     redirect_to articles_path
   end
 
   # GET /channels/new
   def new
-    if !has_superadmin_privileges? && Channel.find_all_where_user_is_admin(current_user).length > 4
+    if current_user.may_create_new_channel?
+      @channel = Channel.new
+      render 'new', layout: 'login'
+    else
       feedback t('channels.hit_limit')
       redirect_to channels_path
-    else
-      @channel = Channel.new
-
-      render 'new', layout: 'login'
     end
   end
 
@@ -45,7 +43,9 @@ class ChannelsController < ApplicationController
   def edit
     @channel = Channel.find(params[:id])
 
-    unless has_superadmin_privileges? || Relationship.is_user_admin_of_channel?(current_user, @channel)
+    unless has_superadmin_privileges? ||
+      Relationship.is_user_admin_of_channel?(current_user, @channel)
+
       feedback "Access denied!"
       redirect_to :back
     end
@@ -55,10 +55,7 @@ class ChannelsController < ApplicationController
 
   # POST /channels
   def create
-    if !has_superadmin_privileges? && Channel.find_all_where_user_is_admin(current_user).length > 4
-      feedback t('channels.hit_limit')
-      redirect_to :back
-    else
+    if current_user.may_create_new_channel?
       if has_superadmin_privileges?
         advertising = params[:channel][:advertising]
       else
@@ -91,13 +88,18 @@ class ChannelsController < ApplicationController
         errors_to_feedback(@channel)
         render action: "new", layout: 'login'
       end
+    else
+      feedback t('channels.hit_limit')
+      redirect_to :back
     end
   end
 
   # PUT /channels/1
   def update
     @channel = Channel.find(params[:id])
-    unless has_superadmin_privileges? || Relationship.is_user_admin_of_channel?(current_user, @channel)
+    unless has_superadmin_privileges? ||
+      Relationship.is_user_admin_of_channel?(current_user, @channel)
+
       feedback "Access denied!"
       redirect_to :back
     end
@@ -124,28 +126,19 @@ class ChannelsController < ApplicationController
   def destroy
     @channel = Channel.find(params[:id])
 
-    if has_superadmin_privileges? || Relationship.is_user_admin_of_channel?(current_user, @channel)
+    if has_superadmin_privileges? ||
+      Relationship.is_user_admin_of_channel?(current_user, @channel)
+
       @notifications = Notification.find_all_by_channel_id(@channel.id)
-      @notifications.each do |n|
-        n.destroy
-      end
+      @notifications.each { |n| n.destroy }
 
-      relationships = Relationship.find_all_by_channel_id(@channel.id)
-      relationships.each do |r|
-        r.destroy
-      end
-
-      articles = Article.find_all_by_channel_id(@channel.id)
-      articles.each do |a|
-        a.destroy
-      end
+      @channel.relationships.find_all.each { |r| r.destroy }
+      @channel.articles.find_all.each { |a| a.destroy }
 
       @channel.destroy
 
       feedback t('channels.destroyed')
-
       set_current_channel nil
-
       redirect_to channels_path
     else
       feedback t('application.permission_denied')
@@ -156,7 +149,6 @@ class ChannelsController < ApplicationController
   # GET /channels/unset
   def unset
     set_current_channel nil
-
     redirect_to channels_path
   end
 

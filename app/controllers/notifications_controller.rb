@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications.json
   def index
-    #Set Activity
+    # Set Activity
     current_user.last_activity = Time.now
     current_user.save
 
@@ -21,18 +21,15 @@ class NotificationsController < ApplicationController
   # GET /notifications/1
   def show
     if (params[:id])
-      notification = Notification.find(params[:id])
+      notification = current_user.notifications.find(params[:id])
       target = articles_path
 
-      if notification && notification.user == current_user
-
-        if notification.channel != current_channel
-          set_current_channel notification.channel
-        end
-
-        target = notification.href
-        notification.read!
+      if notification.channel != current_channel
+        set_current_channel notification.channel
       end
+
+      target = notification.href
+      notification.read!
 
       redirect_to target
     end
@@ -40,19 +37,15 @@ class NotificationsController < ApplicationController
 
   # DELETE /notifications/1.json
   def destroy
+    # Mark all as read
+    notifications = current_user.notifications.where(
+      channel_id: current_channel.id,
+      is_read: false
+    )
 
-    #Mark all as read
-    notifications = Notification.where(
-        user_id: current_user.id,
-        channel_id: current_channel.id,
-        is_read: false
-      )
+    notifications.each { |n| n.read! }
 
-    notifications.each do |notification|
-      notification.read!
-    end
-
-    #Return the last 5 Notifications
+    # Return the last 5 Notifications
     @notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
       user_id: current_user.id,
       channel_id: current_channel.id

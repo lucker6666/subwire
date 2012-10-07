@@ -17,8 +17,8 @@
                 <% relationship = Relationship.find_by_channel_and_user(current_channel, relationship.user) %>
                 <tr>
                     <td><%= avatar(relationship.user, :list) %></td>
-                    <td><%= link_to relationship.user.name, user_path(relationship.user) %></td>
-                    <td><%= relationship.user.email %></td>
+                    <td><%= link_to relationship.user_name, user_path(relationship.user) %></td>
+                    <td><%= relationship.user_email %></td>
                     <td>
                         <% if relationship.user.is_admin? %>
                             <i class="icon icon-star">

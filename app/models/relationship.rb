@@ -18,6 +18,9 @@ class Relationship < ActiveRecord::Base
   belongs_to :channel
   belongs_to :user
 
+  # Law of demeter delegations
+  delegate :name, :email, :to => :user, :prefix => true
+
 
   ### Methods
 

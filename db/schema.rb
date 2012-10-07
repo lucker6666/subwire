@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001193635) do
+ActiveRecord::Schema.define(:version => 20121004193516) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20121001193635) do
   end
 
   add_index "articles", ["channel_id"], :name => "index_articles_on_channel_id"
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
   create_table "availabilities", :force => true do |t|
     t.integer "user_id"
@@ -65,6 +66,9 @@ ActiveRecord::Schema.define(:version => 20121001193635) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "links", :force => true do |t|
     t.string   "name"
     t.string   "href"
@@ -91,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20121001193635) do
   end
 
   add_index "notifications", ["channel_id"], :name => "index_notifications_on_channel_id"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer "user_id",           :default => 1,    :null => false
@@ -124,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20121001193635) do
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-09-28 08:14:39'
+    t.datetime "last_activity"
     t.boolean  "show_login_status",      :default => true
   end
 

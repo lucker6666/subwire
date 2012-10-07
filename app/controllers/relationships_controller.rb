@@ -4,7 +4,10 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships
   def index
-    @relationships = Relationship.find_all_by_channel_id_and_page(current_channel.id, params[:page])
+    @relationships = Relationship.find_all_by_channel_id_and_page(
+      current_channel.id,
+      params[:page]
+    )
   end
 
   # GET /relationships/new
@@ -24,7 +27,6 @@ class RelationshipsController < ApplicationController
     user = User.find_by_email(params[:relationship][:email])
 
     unless user
-      password =
       user = User.new
       user.name = "unkown"
       user.email = params[:relationship][:email]
@@ -120,67 +122,55 @@ class RelationshipsController < ApplicationController
 
   # PUT /relationships/1
   def update
-    @relationship = Relationship.find(params[:id])
-
     if has_admin_privileges?
+      @relationship = Relationship.find(params[:id])
       @relationship.admin = params[:relationship][:admin]
+    else
+      @relationship = current_user.relationships.find(params[:id])
     end
 
     params[:relationship].delete :admin
 
-    if current_user == @relationship.user || has_admin_privileges?
-      if @relationship.update_attributes(params[:relationship])
-        feedback t('relationships.updated')
-        redirect_to relationships_path
-      else
-        render action: "edit"
-      end
+    if @relationship.update_attributes(params[:relationship])
+      feedback t('relationships.updated')
+      redirect_to relationships_path
     else
-      redirect_to :back
+      render action: "edit"
     end
   end
 
   # DELETE /relationships/1
   def destroy
-    @relationship = Relationship.find(params[:id])
+    if has_admin_privileges?
+      @relationship = Relationship.find(params[:id])
+    else
+      @relationship = current_user.relationships.find(params[:id])
+    end
 
-    if current_user == @relationship.user || has_admin_privileges?
+    @channel = Channel.find(@relationship.channel)
+    @userInChannel = Relationship.find_all_users_by_channel(@channel)
 
-      @channel = Channel.find(@relationship.channel)
-      @userInChannel = Relationship.find_all_users_by_channel(@channel)
+    if @userInChannel.length < 2
 
-      if @userInChannel.length < 2
+      @notifications = Notification.find_all_by_channel_id(@channel.id)
 
-        @notifications = Notification.find_all_by_channel_id(@channel.id)
-
-        @notifications.each do |n|
-          n.destroy
-        end
-
-        @channel.destroy
-        @relationship.destroy
-
-        feedback t('relationships.destroyed')
-
-        set_current_channel nil
-
-        redirect_to channels_path
-      else
-        @relationship.destroy
-
-        feedback t('relationships.destroyed')
-
-        if current_user == @relationship.user
-          redirect_to "/"
-        else
-          redirect_to relationships_path
-        end
+      @notifications.each do |n|
+        n.destroy
       end
 
+      @channel.destroy
+      @relationship.destroy
 
+      feedback t('relationships.destroyed')
 
+      set_current_channel nil
+
+      redirect_to channels_path
     else
-      redirect_to :back
+      @relationship.destroy
+
+      feedback t('relationships.destroyed')
+      redirect_to "/"
     end
   end
 end

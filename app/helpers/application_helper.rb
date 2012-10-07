@@ -4,7 +4,8 @@ module ApplicationHelper
   # Truncate article
   def article_teaser(article)
     content = auto_link(article.content)
-    more_to_read = '(...)<br />' + link_to(t('application.more_to_read'), article_path(article))
+    more_to_read = '(...)<br />' +
+      link_to(t('application.more_to_read'), article_path(article))
     HTML_Truncator.truncate(content, 120, ellipsis: more_to_read).strip.html_safe
   end
 
@@ -77,8 +78,6 @@ module ApplicationHelper
       image_tag user.avatar.url(size), class: 'avatar ' + className,
         width: width, height: height
     end
-
-
   end
 
   def icons
