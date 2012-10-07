@@ -11,12 +11,7 @@ class ArticlesController < ApplicationController
         order: "created_at DESC",
         conditions: { channel_id: current_channel.id }
     else
-      @articles = Article.paginate(
-        page: params[:page],
-        per_page: 5,
-        order: "created_at DESC",
-        conditions: { channel_id: current_channel.id }
-      )
+      @articles = Article.find_all_by_channel_id_and_page current_channel.id, params[:page]
     end
   end
 
