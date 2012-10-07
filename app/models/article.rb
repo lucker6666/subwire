@@ -10,9 +10,12 @@
 #   created_at  :datetime    not null
 #   updated_at  :datetime    not null
 #
+# TODO: index for user_id?
 # TODO: user_id, title -> not_null?
 
 class Article < ActiveRecord::Base
+
+
   ### Attributes
   attr_accessible :content, :title
 
@@ -27,14 +30,21 @@ class Article < ActiveRecord::Base
   belongs_to :channel
   has_many :comments
 
-  # Law of demeter delegations
-  delegate :name, :to => :user, :prefix => true
-
   ### Validations
   # Make sure, title and content are not empty
   validates :title, :content, presence: true
 
   def newest_comments
     Comment.newest.find_all_by_article_id self.id
+  end
+
+  class << self
+    def find_all_by_channel_id_and_page(channel_id, page)
+      paginate(
+              page: page,
+              per_page: 5,
+              order: "created_at DESC",
+              conditions: { channel_id: channel_id })
+    end
   end
 end
