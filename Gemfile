@@ -42,4 +42,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'rb-fsevent'
   gem 'guard-rspec'
+  gem 'rb-inotify'
 end
