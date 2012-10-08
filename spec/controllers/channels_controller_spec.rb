@@ -72,11 +72,11 @@ describe ChannelsController do
         get :new
       end
 
-      context "while not superadmin and already got 5 instances" do
+      context "while not superadmin and already got 5 channels" do
         # TODO
       end
 
-      context "while not superadmin but got less then 5 instances" do
+      context "while not superadmin but got less then 5 channels" do
         it "should be successful" do
           response.should be_success
         end
