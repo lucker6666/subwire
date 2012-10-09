@@ -5,12 +5,25 @@ require 'spec_helper'
 describe ArticlesController do
 
   describe 'POST ajax_mark_as_important' do
+    before (:each) do
+      @rel = FactoryGirl.create(:user1_with_channel)
+      sign_in @rel.user
+      set_current_channel @rel.channel
+    end
+
     it "should be marked as important" do
       article = Article.new
+      article.channel = current_channel
+      article.user = current_user
+      article.title = "Test"
+      article.content = "Test it for happiness!"
       article.is_important = false
-      Article.should_receive(:find).with('1').and_return(article)
-      post :ajax_mark_as_important, {:id => 1, :is_important => true}
 
+      article.save
+
+      post :ajax_mark_as_important, {:id => article.id, :is_important => true}
+
+      response.should be_success
       assigns[:article].is_important?.should be_true
     end
   end
