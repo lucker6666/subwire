@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
-    @notifications = current_user.notification.where(
+    @notifications = current_user.notifications.where(
       channel_id: current_channel.id,
       is_read: false
     )
@@ -122,5 +122,13 @@ class ArticlesController < ApplicationController
 
     feedback t('articles.destroyed')
     redirect_to articles_url
+  end
+
+  def ajax_mark_as_important
+    @article = Article.find(params[:id])
+    @article.is_important = params[:is_important]
+    @article.save
+
+    render :json => {}
   end
 end

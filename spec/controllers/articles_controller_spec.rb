@@ -3,6 +3,19 @@ require 'spec_helper'
 # FIXME doesn't work. need an integration test here!
 
 describe ArticlesController do
+
+  describe 'POST ajax_mark_as_important' do
+    it "should be marked as important" do
+      article = Article.new
+      article.is_important = false
+      Article.should_receive(:find).with('1').and_return(article)
+      post :ajax_mark_as_important, {:id => 1, :is_important => true}
+
+      assigns[:article].is_important?.should be_true
+    end
+  end
+
+
   # describe "GET 'index'" do
   #   context "and user is assigned to the choosen channel" do
 
