@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004193516) do
+ActiveRecord::Schema.define(:version => 20121008124531) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "channel_id", :default => 1, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "channel_id",   :default => 1,     :null => false
+    t.boolean  "is_important", :default => false
   end
 
   add_index "articles", ["channel_id"], :name => "index_articles_on_channel_id"
@@ -129,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20121004193516) do
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
-    t.datetime "last_activity"
+    t.datetime "last_activity",          :default => '2012-09-28 08:14:39'
     t.boolean  "show_login_status",      :default => true
   end
 

@@ -1,3 +1,5 @@
+<script type="text/javascript" src="javascript/articles.js"></script>
+
 <%- model_class = Article.new.class -%>
 <h1><%=t '.title', default: model_class.model_name.human %></h1>
 
@@ -24,7 +26,10 @@
   <table class="table table-bordered table-condensed article">
     <tr>
       <td>
+
         <%= avatar(article.user) %>
+
+        <%= render partial: 'mark_as_important', locals: {:article => article}  %>
 
         <h2>
           <%= link_to article.title, article_path(article) %>
