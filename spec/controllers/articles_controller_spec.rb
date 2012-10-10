@@ -23,7 +23,7 @@ describe ArticlesController do
       post :ajax_mark_as_important, {:id => article.id, :is_important => true}
 
       response.should be_success
-      JSON.parse(response.body)[:r].should be_true
+      JSON.parse(response.body)['r'].should be_true
       assigns[:article].is_important?.should be_true
     end
   end
