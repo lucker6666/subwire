@@ -36,6 +36,7 @@ Subwire::Application.routes.draw do
   end
 
   # Notifications
+  get 'ajax/notifications/load_all_notifications', to: "notifications#ajax_load_all_notifications"
   resources :notifications, only: [:index, :show, :destroy]
 
   # Availability Tool

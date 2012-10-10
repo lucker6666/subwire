@@ -68,4 +68,5 @@ class Channel < ActiveRecord::Base
       is_read: false
     ).length
   end
+
 end

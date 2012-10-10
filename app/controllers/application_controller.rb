@@ -73,6 +73,7 @@ class ApplicationController < ActionController::Base
         @unread_notification_count = @all_notifications.find_all { |n|
           n.is_read == false
         }.length
+        @all_channels_notifications = Notification.all_notifications_count current_user.id
       end
     end
 

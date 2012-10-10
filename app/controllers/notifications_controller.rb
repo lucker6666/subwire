@@ -55,4 +55,9 @@ class NotificationsController < ApplicationController
       format.json { render json: @notifications, methods: [:message, :avatar_path] }
     end
   end
+
+  def ajax_load_all_notifications
+      render partial: 'shared/navbar/channelSwitcher',
+          locals: {:all_channels_notifications => Notification.all_notifications_count(current_user.id)}
+  end
 end
