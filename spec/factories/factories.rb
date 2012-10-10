@@ -73,4 +73,6 @@ FactoryGirl.define do
       association :channel, factory: :channel2
     end
   end
+
+
 end

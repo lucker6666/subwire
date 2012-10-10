@@ -44,7 +44,10 @@
 
           <div class="nav-collapse">
             <ul class="nav">
-              <%= render partial: 'shared/navbar/channelSwitcher' %>
+              <li class="dropdown iconOnly" id="channel-switcher">
+                <%= render partial: 'shared/navbar/channelSwitcher', locals: {all_channels_notifications: @all_channels_notifications }%>
+              </li>
+
               <%= render partial: 'shared/navbar/notifications' %>
               <%= render partial: 'shared/navbar/channelSettings' %>
               <%= render partial: 'shared/navbar/adminMenu' %>

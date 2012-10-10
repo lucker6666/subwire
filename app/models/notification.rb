@@ -95,4 +95,11 @@ class Notification < ActiveRecord::Base
 
     notifications
   end
+
+  def self.all_notifications_count(user_id)
+    Notification.where(
+        user_id: user_id,
+        is_read: false
+    ).size
+  end
 end
