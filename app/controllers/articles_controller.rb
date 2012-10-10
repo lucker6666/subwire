@@ -127,8 +127,6 @@ class ArticlesController < ApplicationController
   def ajax_mark_as_important
     @article = Article.find(params[:id])
     @article.is_important = params[:is_important]
-    @article.save
-
-    render :json => {}
+    render :json => {:r => @article.save }
   end
 end

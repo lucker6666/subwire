@@ -10,15 +10,18 @@ $(document).ready(function() {
             id: id,
             is_important: is_important
         },
-        function() {
+        function(json) {
+            if(!json.r) {
+                alert('Sorry something goes wrong, please try again.')
+            } else {
+                if (!is_important)
+                    $('#mai-link-' + id).text('mark as important');
+                else
+                    $('#mai-link-' + id).text('unmark important');
 
-            if (!is_important)
-                $('#mai-link-' + id).text('mark as important');
-            else
-                $('#mai-link-' + id).text('unmark important');
-
-            $('#mai-link-' + id).attr('data-is-important', is_important);
-        });
+                $('#mai-link-' + id).attr('data-is-important', is_important);
+            }
+        }, "json");
     });
 
 });

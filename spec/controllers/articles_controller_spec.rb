@@ -18,12 +18,12 @@ describe ArticlesController do
       article.title = "Test"
       article.content = "Test it for happiness!"
       article.is_important = false
-
       article.save
 
       post :ajax_mark_as_important, {:id => article.id, :is_important => true}
 
       response.should be_success
+      JSON.parse(response.body)[:r].should be_true
       assigns[:article].is_important?.should be_true
     end
   end
