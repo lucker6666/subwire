@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
           end
         end
 
+        # Set Activity
+        current_user.last_activity = Time.now
+        current_user.save
+
         # Delete all Users, which have been invited before 30 days and the invitation is still
         # pendig.
         users = User.find :all,
