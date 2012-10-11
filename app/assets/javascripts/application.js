@@ -32,6 +32,11 @@ $(function() {
 
     refreshUserBox();
     getAllNotifications();
+
+    // Hide tooltips on click
+    $('[rel=tooltip]').click(function(e) {
+    	$(e.currentTarget).tooltip('hide');
+    });
 });
 
 function switchAvailability(event) {
