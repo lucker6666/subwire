@@ -14,7 +14,7 @@
 
 class Article < ActiveRecord::Base
   ### Attributes
-  attr_accessible :content, :title
+  attr_accessible :content, :title, :is_editable
 
   ###Includes
   if Subwire::Application.config.elasticsearch

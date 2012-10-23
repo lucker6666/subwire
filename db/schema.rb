@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008124531) do
+ActiveRecord::Schema.define(:version => 20121023131718) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121008124531) do
     t.datetime "updated_at",                      :null => false
     t.integer  "channel_id",   :default => 1,     :null => false
     t.boolean  "is_important", :default => false
+    t.boolean  "is_editable",  :default => false
   end
 
   add_index "articles", ["channel_id"], :name => "index_articles_on_channel_id"
@@ -60,11 +61,11 @@ ActiveRecord::Schema.define(:version => 20121008124531) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
-    t.text     "content"
+    t.text     "content",    :limit => 255
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "comments", ["article_id"], :name => "index_comments_on_article_id"

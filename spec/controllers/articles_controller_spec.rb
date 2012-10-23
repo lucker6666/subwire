@@ -3,13 +3,13 @@ require 'spec_helper'
 # FIXME doesn't work. need an integration test here!
 
 describe ArticlesController do
+  before (:each) do
+    @rel = FactoryGirl.create(:user1_with_channel)
+    sign_in @rel.user
+    set_current_channel @rel.channel
+  end
 
   describe 'POST ajax_mark_as_important' do
-    before (:each) do
-      @rel = FactoryGirl.create(:user1_with_channel)
-      sign_in @rel.user
-      set_current_channel @rel.channel
-    end
 
     it "should be marked as important" do
       article = Article.new
@@ -25,6 +25,22 @@ describe ArticlesController do
       response.should be_success
       JSON.parse(response.body)['r'].should be_true
       assigns[:article].is_important?.should be_true
+    end
+  end
+
+  describe "POST create" do
+    it "should create article with editable set on true" do
+      article = Article.new
+      article.id = 1
+      article.is_editable = true
+      article.should_receive(:save).and_return(true)
+      Article.should_receive(:new).and_return(article)
+      Notification.stub(:notify_all_users)
+
+      post :create
+
+      assigns[:article].should_not be_nil
+      assigns[:article].is_editable.should be_true
     end
   end
 

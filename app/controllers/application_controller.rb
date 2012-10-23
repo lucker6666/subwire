@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   # Changes layout depending on controller
   layout :layout_by_resource
 
-
   protected
 
     # Set some global variables, which are required in the views of each request.
