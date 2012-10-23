@@ -76,11 +76,8 @@ class ArticlesController < ApplicationController
 
   # PUT /articles/1
   def update
-    if has_admin_privileges?
-      @article = Article.find(params[:id])
-    else
-      @article = current_user.articles.find(params[:id])
-    end
+    @article = Article.find(params[:id])
+    @article = nil if !has_admin_privileges? && !@article.is_editable?
 
     if @article.update_attributes(params[:article])
       # Notify all users
