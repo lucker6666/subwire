@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(:version => 20121023131718) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
-    t.text     "content",    :limit => 255
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
