@@ -6,10 +6,15 @@
     <%= f.cktext_area :content %>
   </div>
 
-  <div class="control-group">
-    <%= f.check_box :is_editable %>
-  </div>
+  <% if @article.new_record? %>
+    <div class="control-group">
+     <%= f.label :is_editable, class: 'control-label' %>
 
+     <div class="controls">
+         <%= f.check_box :is_editable, {class: 'check_box'} %>
+     </div>
+   </div>
+  <% end %>
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>
     <%= link_to t('.cancel', default: t("helpers.links.cancel")),
