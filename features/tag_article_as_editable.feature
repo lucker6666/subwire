@@ -15,7 +15,7 @@ Feature: tag article as editable
   Scenario: hide editable checkbox
     Given I am logged as "User1"
     When I add new article
-    And I follow to the article page
+    And I go to the article "New article"
     Then I should not see "Is editable"
 
   Scenario: user from other channel can't edit article
@@ -24,7 +24,7 @@ Feature: tag article as editable
     And I logout
     Given I am logged as "User2" with access to channel "C2"
     When I am on the article list
-    Then I follow to the article page
+    Then I go to the article "New article"
     And I go to the article list
 
 

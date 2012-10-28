@@ -1,7 +1,3 @@
-And /I follow to the article page/ do
-  visit '/articles/1/edit'
-end
-
 Then /I add new article/ do
   steps %{
   And I am on the adding article form
@@ -16,7 +12,7 @@ end
 Then /I update article title/ do
   steps %{
   And I am on the article list
-  When I follow to the article page
+  When I go to the article "New article"
   Then I fill in "article_title" with "New title"
   And I press "Update Article"
   }
