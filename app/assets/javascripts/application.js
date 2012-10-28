@@ -37,7 +37,14 @@ $(function() {
     $('[rel=tooltip]').click(function(e) {
     	$(e.currentTarget).tooltip('hide');
     });
+
+    $('textarea[class*=comment]').keypress(function(e) {
+        if( e.keyCode == 13 && !e.shiftKey) {
+            $(this).parent().submit();
+        }
+    })
 });
+
 
 function switchAvailability(event) {
     var a = $(event.currentTarget);

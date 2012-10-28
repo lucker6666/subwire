@@ -56,10 +56,10 @@
     <br />
 
     <%= form_for([article, article.comments.build]) do |f| %>
-        <%= f.text_field :content, { class: "span9", autocomplete: :off } %>
+        <%= f.text_area :content, { class: "span9 expand comment", autocomplete: :off} %>
 
         <br />
 
-        <span><i class="icon icon-info-sign"></i> Press enter to submit</span>
+        <span><i class="icon icon-info-sign"></i> Press enter to submit. To make a line break press shift+enter.</span>
     <% end %>
 </div>
