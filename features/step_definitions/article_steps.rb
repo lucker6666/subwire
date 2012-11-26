@@ -13,6 +13,7 @@ Then /I update article title/ do
   steps %{
   And I am on the article list
   When I go to the article "New article"
+  And I fill in "change_summary" with "short summary"
   Then I fill in "article_title" with "New title"
   And I press "Update Article"
   }

@@ -32,8 +32,10 @@ class Relationship < ActiveRecord::Base
     result = []
 
     where(channel_id: channel.id).each do |rel|
-      unless rel.user.invitation_pending || rel.user.is_deleted
-        result << rel.user
+      if rel.user
+        unless rel.user.invitation_pending || rel.user.is_deleted
+          result << rel.user
+        end
       end
     end
 
