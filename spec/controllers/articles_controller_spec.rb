@@ -2,6 +2,18 @@ require 'spec_helper'
 
 # FIXME doesn't work. need an integration test here!
 
+def create_article
+  article = Article.new
+  article.channel = current_channel
+  article.user = current_user
+  article.title = "Test"
+  article.content = "Test it for happiness!"
+  article.is_important = false
+  article.save
+
+  article
+end
+
 describe ArticlesController do
   before (:each) do
     @rel = FactoryGirl.create(:user1_with_channel)
@@ -12,14 +24,8 @@ describe ArticlesController do
   describe 'POST ajax_mark_as_important' do
 
     it "should be marked as important" do
-      article = Article.new
-      article.channel = current_channel
-      article.user = current_user
-      article.title = "Test"
-      article.content = "Test it for happiness!"
-      article.is_important = false
-      article.save
 
+      article = create_article
       post :ajax_mark_as_important, {:id => article.id, :is_important => true}
 
       response.should be_success
@@ -44,6 +50,22 @@ describe ArticlesController do
     end
   end
 
+  describe "POST add summary change" do
+    it "should create comment containing summary change" do
+      article = create_article
+      post :update, :id => article.id, :article => {:content => 'test'}, :change_summary => 'short summary'
+
+      assigns[:article].comments.should have(1).comment
+    end
+
+    it "should not create due to empty summary change" do
+      article = create_article
+      post :update, :id => article.id, :article => {:content => 'test'}, :change_summary => nil
+
+      assigns[:article].comments.should be_empty
+
+    end
+  end
 
   # describe "GET 'index'" do
   #   context "and user is assigned to the choosen channel" do

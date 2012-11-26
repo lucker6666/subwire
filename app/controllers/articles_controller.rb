@@ -79,7 +79,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article = nil if !has_admin_privileges? && !@article.is_editable?
 
-    if @article.update_attributes(params[:article])
+    if params[:change_summary].blank?
+        feedback "Change summary cannot be empty"
+        render :action => "edit"
+    elsif @article.update_attributes(params[:article])
+      change_summary_comment = Comment.new
+      change_summary_comment.content = params[:change_summary]
+      change_summary_comment.user = current_user
+      @article.comments << change_summary_comment
+      @article.save
       # Notify all users
       Notification.notify_all_users({
         notification_type: "edit_article",
