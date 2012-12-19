@@ -40,7 +40,7 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
-  gem 'rb-fsevent'
+  gem 'libnotify'
   gem 'guard-rspec'
   gem 'rb-inotify'
 end
