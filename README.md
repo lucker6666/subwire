@@ -43,7 +43,7 @@ And if you want to work with us and get part of the ([Yaana Labs](http://yaana.d
 
 
 ## Licence
-Subwire is licenced under the AGPL. See the LICENCE file for further information.
+Subwire is licenced under the AGPL. See the [LICENCE](https://raw.github.com/YaanaLabs/subwire/master/LICENSE) file for further information.
 
 
 ## Contributors
