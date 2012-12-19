@@ -8,12 +8,14 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'devise', '2.1.0'
 gem 'paperclip'
 gem 'rmagick'
+gem 'exception_notification'
 
 # Assets
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'turbo-sprockets-rails3'
 end
 
 # Frontend
@@ -25,7 +27,10 @@ gem 'will_paginate_twitter_bootstrap'
 gem 'rails_autolink'
 gem 'rmagick'
 gem 'html_truncator'
-gem 'exception_notification'
+gem 'less-rails'
+gem 'therubyracer'
+
+# Search engine
 gem 'tire'
 
 # Testing
@@ -43,4 +48,6 @@ group :development, :test do
   gem 'libnotify'
   gem 'guard-rspec'
   gem 'rb-inotify'
+  gem 'better_errors'
+  gem 'awesome_print'
 end
