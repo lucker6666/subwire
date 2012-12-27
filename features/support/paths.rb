@@ -15,6 +15,9 @@ module NavigationHelpers
       when /^the article "(.*)"$/
         article = Article.find_by_title $1
         "/articles/#{article.id}/edit"
+      when /^the new relationship page$/
+        "/relationships/new"
+        #new_relationship_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

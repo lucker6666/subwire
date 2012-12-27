@@ -1,5 +1,9 @@
 <%= t('relationships.mail.invitation.greet') %>,
 
+<% unless @invitation_text.blank? %>
+    <p><%= @invitation_text %></p>
+<% end %>
+
 <%= t('relationships.mail.invitation.content', user: @current_user.name, link:
   "http://subwire.net") %>
 

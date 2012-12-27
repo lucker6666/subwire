@@ -48,13 +48,15 @@ class RelationshipsController < ApplicationController
       rel.user = user
       rel.channel = current_channel
 
+      rel.admin = false
+
       if has_admin_privileges?
         rel.admin = params[:relationship][:admin]
       end
 
       rel.save
 
-      RelationshipMailer.invitation(user, current_user).deliver
+      RelationshipMailer.invitation(user, current_user, params[:invitation_text]).deliver
 
       feedback t('relationships.invited')
       redirect_to relationships_path
