@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
   # globals:              Set some global variables and actions which have
   #                       to be done on each request
   # set_timezone:         Determines the current timezone
-  before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone#, :show_actual_url
+  before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone
 
+  #after_filter :show_actual_body, :show_actual_url #used for debugging
   # We need all helpers, all the time
   helper :all
 
@@ -18,9 +19,13 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   protected
-#    def show_actual_url
-#      p request.url
-#    end
+    def show_actual_url
+      p request.url
+    end
+
+    def show_actual_body
+      p response.body
+    end
 
     # Set some global variables, which are required in the views of each request.
     # Additionally, set the session[:channel] field to the channel, which is display currently

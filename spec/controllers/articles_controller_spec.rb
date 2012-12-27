@@ -16,9 +16,7 @@ end
 
 describe ArticlesController do
   before (:each) do
-    @rel = FactoryGirl.create(:user1_with_channel)
-    sign_in @rel.user
-    set_current_channel @rel.channel
+    @rel = log_in_user
   end
 
   describe 'POST ajax_mark_as_important' do

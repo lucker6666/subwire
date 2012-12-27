@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe NotificationsController do
   before (:each) do
-    @rel = FactoryGirl.create(:user1_with_channel)
-    sign_in @rel.user
-    set_current_channel @rel.channel
+    @rel = log_in_user
   end
 
   it "should test fails" do

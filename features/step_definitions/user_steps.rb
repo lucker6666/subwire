@@ -10,6 +10,7 @@ Given /^I am logged as "([^"]*)"( with access to channel "([^"]*)")?$/ do |name,
                   :password_confirmation => password,
                   :name => name)
   user.confirmed_at = Date.today
+  user.is_admin = true
   user.save.should be_true
 
 
