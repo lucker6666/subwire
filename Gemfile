@@ -28,7 +28,7 @@ gem 'rails_autolink'
 gem 'rmagick'
 gem 'html_truncator'
 gem 'less-rails'
-gem 'therubyracer'
+gem 'therubyracer', '~> 0.10.0'
 
 # Search engine
 gem 'tire'
