@@ -11,14 +11,11 @@ describe User do
     }
   end
 
-  it "should create a new channel given a valid attribute" do
+  it "should create a new given a valid attribute" do
     User.create!(@attr)
   end
 
-  it "should require an email address" do
-    no_email_user = User.new(@attr.merge(email: ""))
-    no_email_user.should_not be_valid
-  end
+  it { should validate_presence_of :email }
 
   it "should accept valid email addresses" do
     addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
