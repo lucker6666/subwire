@@ -19,7 +19,7 @@
 
 class Notification < ActiveRecord::Base
   ### Attributes
-  attr_accessible :notification_type, :provokesUser, :subject, :href, :created_by
+  attr_accessible :notification_type, :message, :is_read, :provokesUser, :subject, :href, :created_by
 
   ### Associations
   belongs_to :user
