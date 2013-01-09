@@ -27,6 +27,10 @@ module Subwire
 
     ## Secret token. Change this in production!
     config.secret_token = '912ec803b2912ec803b2ce49e4a541068d495ab570ce49e4a541068d495ab570'
+     ## Facebook login
+    ENV['FACEBOOK_KEY'] = 'xxxxxxx'
+    ENV['FACEBOOK_SECRET'] = 'xxxxxx'
+
 
     ## Session store key
     config.session_store :cookie_store, key: '_subwire_session'
