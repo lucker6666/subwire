@@ -1,0 +1,58 @@
+%h1
+  = t "application.login"
+%h3
+  = link_to t("application.no_account"), new_registration_path(resource_name)
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  %fieldset
+    %div{:class => "clearfix"}
+      = f.text_field :email, class: 'text_field', placeholder: t('helpers.email')
+
+    %div{:class => "clearfix"}
+      = f.password_field :password, class: 'text_field', placeholder: t('helpers.password')
+
+
+    %div{:class => "btn-group pull-left"}
+      %button#remember-me{:class => "btn btn-inverse no-lock", :type => "button", "data-toggle" => "button"}
+        %i{:class => "icon-lock icon-white"}
+        = t("devise.remember_me")
+
+
+      %a{:class => "btn btn-inverse fixed-width dropdown-toggle", "data-toggle" => "dropdown" }
+        %i{:class => "icon icon-cog" }
+
+
+      %ul{:class => "dropdown-menu" }
+        %li
+          = link_to new_user_password_path do
+            %i{:class => "icon icon-lock"}
+            = t("users.password_lost")
+        %li
+          = link_to new_registration_path(resource_name) do
+            %i{:class => "icon icon-check"}
+            = t("helpers.sign_up")
+
+    :javascript
+      $(function() {
+        $("button#remember-me").click(function(e) {
+          var target = $(event.target);
+          var active = target.hasClass('active');
+          var i = target.children("i");
+
+          $('input#remember-me-input').val(active ? 0 : 1);
+
+          if (active) {
+          i.removeClass("icon-ok").addClass("icon-lock");
+          } else {
+            i.removeClass("icon-lock").addClass("icon-ok");
+          }
+        });
+      });
+
+    %button#sign_in{:class => "btn btn-success fixed-width", :name => "commit", :type => "submit"}
+      %i{:class => "icon icon-off" }
+      = t("helpers.sign_in")
+
+    = hidden_field_tag "user[remember_me]", 0, {:id => 'remember-me-input'}
+
+  = render "links"

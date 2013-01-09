@@ -9,6 +9,7 @@ gem 'devise', '2.1.0'
 gem 'paperclip'
 gem 'rmagick'
 gem 'exception_notification'
+gem 'haml'
 
 # Assets
 group :assets do
