@@ -32,13 +32,21 @@ FactoryGirl.define do
 
   factory :channel do
     # channel1: Owned by user1 no other users assigned
-    factory :channel1 do
+    factory :channel1 do |channel|
       name "Test channel"
+
+      after(:create) do |c|
+        FactoryGirl.create(:article1, channel: c)
+      end
     end
 
     # channel2: Owned by user2. User3 and admin are assigned
-    factory :channel2 do
+    factory :channel2 do |channel|
       name "Test channel"
+
+      after(:create) do |c|
+        FactoryGirl.create(:article1, channel: c)
+      end
     end
   end
 
@@ -74,4 +82,15 @@ FactoryGirl.define do
     end
   end
 
+  factory :article do
+    content "test"
+
+    factory :article1 do
+      title "test1"
+    end
+
+    factory :article2 do
+      title "test2"
+    end
+  end
 end
