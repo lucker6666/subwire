@@ -46,4 +46,13 @@ describe Link do
     l.save
     l.position.should eq(2)
   end
+
+  it "Find all links by channel and page" do
+    channel = FactoryGirl.create(:channel1)
+    link = Link.new href: 'http://example.com', name: 'name', icon: 'icon'
+    link.channel = channel
+    link.save!
+
+    Link.find_all_by_channel_id_and_page(channel.id, 1).first.id.should eq(link.id)
+  end
 end
