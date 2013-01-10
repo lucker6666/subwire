@@ -89,8 +89,12 @@ class User < ActiveRecord::Base
 
   def login_status_by_time(time, name)
     return '#000' unless self.show_login_status?
-    return "#157f00" if (self.last_activity + 3.minutes) >= time || name == self.name
-    "#cc0022"
+
+    if name == self.name || self.last_activity == nil || (self.last_activity + 3.minutes) >= time
+      "#157f00" # green -> online
+    else
+      "#cc0022" # red -> offline
+    end
   end
 
   def login_status(name)
@@ -109,7 +113,7 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     users = User.where(:email => auth.info.email)
-    
+
     unless user
      user = User.create(name:auth.extra.raw_info.name,
                        provider:auth.provider,
@@ -119,7 +123,7 @@ class User < ActiveRecord::Base
                        )
     end
     user
-  end 
+  end
 
   def self.find_all_active_by_page(page)
     where(is_deleted: false, invitation_pending: false).paginate(page: page, per_page: 10)
