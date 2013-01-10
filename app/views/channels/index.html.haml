@@ -1,0 +1,53 @@
+- model_class = Channel.new.class
+
+- if Article.where(user_id: current_user.id).length == 0 && Comment.where(user_id: current_user.id).length
+  %div{ :class => "alert alert-info clearfix"}
+    %h2{:class => "pull-left"}
+      %i{:class => "icon icon-question-sign"}
+      &nbsp;
+    %a{:href => '/virgin' }
+      =t "application.virgin"
+
+%div{:class => "channelChooser"}
+  %h1
+    = t('channels.your_channels')
+
+  %br
+
+  %table{ :class => "table" }
+    %body
+      - @channels.each do |channel|
+        - notificationCount = channel.notification_count(current_user)
+        %tr
+          %td
+            = link_to channel_path(channel), class: 'channel-link' do
+              %i{:class => "icon icon-chevron-right"}
+              = channel.name
+
+          %td
+            - if has_superadmin_privileges? || Relationship.is_user_admin_of_channel?(current_user, channel)
+              %div{:align => "right"}
+              - if notificationCount > 0
+                %span{:class => "notification-badge notification-margin badge badge-info"}
+                  = notificationCount
+
+                = link_to edit_channel_path(channel), class: 'btn btn-mini' do
+                  %i{:class => "icon icon-pencil"}
+
+                = link_to channel_path(channel), method: :delete, data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, class: 'btn btn-mini btn-danger' do
+                  %i{:class => "icon icon-trash"}
+
+
+
+  - if !has_superadmin_privileges? && @adminCount > 4
+    %br
+    %div{:class => "alert alert-error"}
+      %i{:class => "icon  icon-exclamation-sign"}
+      = t('channels.hit_limit')
+  - else
+    %div{:class => "buttons"}
+      = link_to(new_channel_path, class: 'btn btn-success btn-large') do
+        %i{:class => "icon icon-home"}
+        = t('channels.new')
+        %a{:class => "popover_help", :href => "#", :rel => "popover",  "data-content" => "#{t('popover.channels_content')}", "data-original-title" => "#{t('popover.channels_title')}"}
+          %i{:class => "icon icon-question-sign"}
