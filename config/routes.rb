@@ -4,7 +4,8 @@ Subwire::Application.routes.draw do
   # Devise
   devise_for :users, controllers: {
     registrations: "registrations",
-    confirmations: "confirmations"
+    confirmations: "confirmations",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
 

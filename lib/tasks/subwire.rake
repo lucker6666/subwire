@@ -7,7 +7,7 @@ namespace :subwire do
         )
 
         ins.advertising = false
-        ins.save
+        ins.save!
     end
 
     desc "Add the default superadmin 'admin@example.com' with password 'admin'"
@@ -21,13 +21,13 @@ namespace :subwire do
         user.is_admin = true
         user.confirmed_at = Time.now
         user.invitation_pending = false
-        user.save
+        user.save!
 
         rel = Relationship.new
         rel.channel = Channel.first
         rel.user = user
         rel.admin = true
-        rel.save
+        rel.save!
     end
 
     desc "Add a default article"
@@ -40,7 +40,7 @@ namespace :subwire do
         article.user = User.first
         article.channel = Channel.first
 
-        article.save
+        article.save!
     end
 
     desc "Run all setup tasks"

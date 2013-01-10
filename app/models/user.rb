@@ -19,17 +19,18 @@
 #   is_deleted            :boolean
 #   gravatar              :string
 #   last_activity         :date
-#
+#   provider              :string
+#   uid                   :string
 
 
 class User < ActiveRecord::Base
   ### Devise
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :confirmable,
-    :recoverable
+    :recoverable, :omniauthable
 
   ### Attributions
   attr_accessible :name, :email, :password, :password_confirmation,
-    :remember_me, :last_seen, :lang, :avatar, :timezone, :show_login_status
+    :remember_me, :last_seen, :lang, :avatar, :timezone, :show_login_status, :provider, :uid
 
   ### Associations
   has_many :comments
@@ -88,8 +89,12 @@ class User < ActiveRecord::Base
 
   def login_status_by_time(time, name)
     return '#000' unless self.show_login_status?
-    return "#157f00" if (self.last_activity + 3.minutes) >= time || name == self.name
-    "#cc0022"
+
+    if name == self.name || self.last_activity == nil || (self.last_activity + 3.minutes) >= time
+      "#157f00" # green -> online
+    else
+      "#cc0022" # red -> offline
+    end
   end
 
   def login_status(name)
@@ -103,6 +108,21 @@ class User < ActiveRecord::Base
 
   def self.find_for_authentication(conditions)
       super(conditions.merge(is_deleted: false))
+  end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    users = User.where(:email => auth.info.email)
+
+    unless user
+     user = User.create(name:auth.extra.raw_info.name,
+                       provider:auth.provider,
+                       uid:auth.uid,
+                       email:auth.info.email,
+                       password:Devise.friendly_token[0,20],
+                       )
+    end
+    user
   end
 
   def self.find_all_active_by_page(page)
