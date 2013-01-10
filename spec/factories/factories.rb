@@ -31,7 +31,7 @@ FactoryGirl.define do
   end
 
   factory :channel do
-    # channel1: Owned by user1 no other users assigned
+    # channel1: Owned by user1 no other users assigned. And an article
     factory :channel1 do |channel|
       name "Test channel"
 
@@ -40,7 +40,7 @@ FactoryGirl.define do
       end
     end
 
-    # channel2: Owned by user2. User3 and admin are assigned
+    # channel2: Owned by user2. User3 and admin are assigned. And an article
     factory :channel2 do |channel|
       name "Test channel"
 
@@ -82,6 +82,7 @@ FactoryGirl.define do
     end
   end
 
+  # Articles
   factory :article do
     content "test"
 
