@@ -25,4 +25,22 @@ describe Channel do
     it { should respond_to(:notification_count) }
     it { should respond_to(:user_count) }
   end
+
+  it "should find all channels by user" do
+    rel = FactoryGirl.create('user1_with_channel');
+    Channel.find_all_by_user(rel.user).first.id.should eq(rel.channel.id)
+  end
+
+  it "should count all his articles" do
+    rel = FactoryGirl.create('user1_with_channel');
+
+    articles = Article.find_all_by_channel_id(rel.channel.id).length
+    rel.channel.article_count.should eq(articles)
+  end
+
+  it "should count all his users" do
+    rel = FactoryGirl.create('user1_with_channel');
+
+    rel.channel.user_count.should eq(1)
+  end
 end
