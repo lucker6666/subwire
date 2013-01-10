@@ -9,4 +9,4 @@
 /public/ckeditor_assets/
 /public/system/users/
 /config/initializers/config.rb
-coverage
+/coverage
