@@ -50,6 +50,7 @@ end
 
 group :development, :test do
   gem "rspec-rails"
+  gem "simplecov"
   gem "factory_girl_rails"
   gem 'libnotify'
   gem 'guard-rspec'
