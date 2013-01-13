@@ -7,6 +7,8 @@ SimpleCov.start do
   add_group "Controllers", "app/controllers"
   add_group "Helpers", "app/helpers"
   add_group "Lib", "lib"
+
+  add_filter "/spec/"
 end
 
 require File.expand_path("../../config/environment", __FILE__)
