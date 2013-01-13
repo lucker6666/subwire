@@ -14,4 +14,11 @@ describe Relationship do
   describe "Respond to" do
     it { should respond_to(:email) }
   end
+
+  it "should return a relationship by user and channel" do
+    rel = FactoryGirl.create(:user1_with_channel)
+    rel2 = Relationship.find_by_channel_and_user(rel.channel, rel.user)
+
+    rel2.should eq(rel)
+  end
 end
