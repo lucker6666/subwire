@@ -1,6 +1,6 @@
 %h1
   = t "application.login"
-%h3
+%h4{class: "register"}
   = link_to t("application.no_account"), new_registration_path(resource_name)
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

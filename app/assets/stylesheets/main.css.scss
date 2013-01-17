@@ -623,7 +623,6 @@
     padding: 0.6em 0;
     text-align: center;
     color: #666;
-    border-top: 1px solid #ccc;
     margin-top: 2em;
 
 
@@ -681,6 +680,8 @@
       text-align: center;
       color: #bbb;
       width: 100%;
+      font-size: 15px;
+      text-shadow: 0 0 3px #000;
 
       a {
         color: #bbb;
@@ -694,32 +695,41 @@
         border-left: 1px solid #999;
       }
     }
+
+    h4.register {
+      text-align: center;
+    }
   }
 
   .login-form {
     width: 420px;
-    background-color: #fff;
-    padding: 20px 40px;
-    margin: 100px auto 2em;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px 40px;
+    margin: 150px auto 2em;
     @include box_shadow(0px 6px 10px rgba(0, 0, 0, 0.5));
     @include border_radius(10px);
-    @include gradient(#fff, #bbb);
 
     h1,
-    h3 {
+    h4 {
       text-align: center;
-      margin-bottom: 1em;
+      margin-top: 0;
+      margin-bottom: 0.5em;
+      color: #fff;
     }
 
-    h3 {
-      margin: -1em 0 1em;
+    h4 {
+      margin-bottom: 0.7em;
+
+      a {
+        color: #BBB;
+      }
     }
 
     form {
       margin: 0;
 
       .btn {
-        margin-top: 1.5em;
+        margin-top: 0.7em;
 
         &.fixed-width#remember-me {
           width: 110px;
@@ -729,7 +739,7 @@
           float: right;
 
           &.fixed-width {
-            width: 112px;
+            width: 174px;
           }
         }
       }
@@ -741,6 +751,8 @@
         line-height: 1.2em;
         height: 35px;
         text-align: center;
+        background-color: rgba(255, 255, 255, 0.85);
+        margin-top: 0.4em;
       }
     }
 
