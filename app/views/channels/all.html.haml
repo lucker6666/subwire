@@ -2,49 +2,35 @@
 %h1
   = t '.title', default: model_class.model_name.human
 
-%div{:class => "well"}
-  %table{:class => "table table-striped"}
+.well
+  %table.table.table-striped
     %thead
       %tr
-        %th
-          = model_class.human_attribute_name(:name)
-        %th
-          = model_class.human_attribute_name(:advertising)
-        %th
-          = model_class.human_attribute_name(:defaultLanguage)
-        %th
-          = model_class.human_attribute_name(:planningTool)
-        %th
-          = model_class.human_attribute_name(:users)
-        %th
-          = model_class.human_attribute_name(:articles)
-        %th
-          =t '.actions', default: t("helpers.actions")
-
+        %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:advertising)
+        %th= model_class.human_attribute_name(:defaultLanguage)
+        %th= model_class.human_attribute_name(:planningTool)
+        %th= model_class.human_attribute_name(:users)
+        %th= model_class.human_attribute_name(:articles)
+        %th=t '.actions', default: t("helpers.actions")
 
     %tbody
       - @channels.each do |channel|
         %tr
-          %td
-            = link_to channel.name, channel_path(channel)
-          %td
-            = boolean_icon(channel.advertising)
-          %td
-            = channel.defaultLanguage
-          %td
-            = boolean_icon(channel.planningTool)
-          %td
-            = channel.user_count
-          %td
-            = channel.article_count
+          %td= link_to channel.name, channel_path(channel)
+          %td= boolean_icon(channel.advertising)
+          %td= channel.defaultLanguage
+          %td= boolean_icon(channel.planningTool)
+          %td= channel.user_count
+          %td= channel.article_count
           %td
             = link_to edit_channel_path(channel), class: 'btn btn-mini' do
-              %i{:class => "icon icon-pencil"}
+              %i.icon.icon-pencil
 
             = link_to channel_path(channel), method: :delete,
                   data: {confirm: t('.confirm', default: t("helpers.links.confirm"))},
                   class: 'btn btn-mini btn-danger' do
-              %i{:class => "icon icon-trash"}
+              %i.icon.icon-trash
 
   = link_to t('channels.new', default: t("helpers.channels.new")),
       "/channels/new",
