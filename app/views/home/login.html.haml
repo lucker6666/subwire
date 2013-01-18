@@ -1,43 +1,43 @@
-%form{accept-charset: "UTF-8", action: user_session_path, method: "post", target: _parent, class: "login-form-integrated"}
-  %div{style: "margin: 0; padding: 0; display: inline;"}
-    %input{name: "utf8", type: "hidden", value: "true"}/
+%form.login-form-integrated{"accept-charset" => "UTF-8", action: user_session_path, method: "post", target: "_parent"}
 
-  %div{class: "pull-left span2"}
-    %input{class: "text_field span2", id: "user_email", name: "user[email]", placeholder: t "helpers.email", size: "25", type: "text", value: ""}/
+  %input{name: "utf8", type: "hidden", value: "true"}/
 
-  %div{class: "pull-right span2"}
-    %input{class: "text_field span2", id: "user_password", name: "user[password]", placeholder: t "helpers.password", size: "25", type: "password"}/
+  .pull-left.span2
+    %input#user_email.text_field.span2{name: "user[email]", placeholder: t("helpers.email"), size: "25", type: "text", value: ""}/
 
-  %div{class: "pull-left span2"}
-    %button{class: "btn btn-success span2", name: "commit", type: "submit"}
-      %i{class: "icon icon-off"}/
-      - t "helpers.sign_in"
+  .pull-right.span2
+    %input#user_password.text_field.span2{name: "user[password]", placeholder: t("helpers.password"), size: "25", type: "password"}/
 
-  %div{class: "pull-right span2"}
-    %input{name: "user[remember_me]", type: "hidden", value: "0", id: "remember-me-input"}
+  .pull-left.span2
+    %button.btn.btn-success.span2{name: "commit", type: "submit"}
+      %i.icon.icon-off
+      = t "helpers.sign_in"
 
-  %a{class: "btn btn-inverse", id: "remember-me", href: "#", data-toggle: "button"}
-    %i{class: "icon-lock icon-white"}
-    - t "devise.remember_me"
+  .pull-right.span2
+    %input#remember-me-input{name: "user[remember_me]", type: "hidden", value: "0"}
 
-  %script
+  %a#remember-me.btn.btn-inverse{href: "#", "data-toggle" => "button"}
+    %i.icon-lock.icon-white
+    = t "devise.remember_me"
+
+  :javascript
     $(function() {
-        $("a#remember-me").click(function(event, a) {
-            var target = $(event.currentTarget);
-            var active = target.hasClass('active');
-            var i = target.children("i");
+      $("a#remember-me").click(function(event, a) {
+        var target = $(event.currentTarget);
+        var active = target.hasClass('active');
+        var i = target.children("i");
 
-            $('input#remember-me-input').val(active ? 0 : 1);
+        $('input#remember-me-input').val(active ? 0 : 1);
 
-            if (active) {
-                i.removeClass("icon-ok").addClass("icon-lock");
-                target.removeClass('active');
-            } else {
-                i.removeClass("icon-lock").addClass("icon-ok");
-                target.addClass('active');
-            }
+        if (active) {
+            i.removeClass("icon-ok").addClass("icon-lock");
+            target.removeClass('active');
+        } else {
+            i.removeClass("icon-lock").addClass("icon-ok");
+            target.addClass('active');
+        }
 
-            event.preventDefault();
-            return false;
-        });
+        event.preventDefault();
+        return false;
+      });
     });
