@@ -244,6 +244,7 @@ en:
     go_to_overview: 'Go to the channel overview'
     more_to_read: 'More to read ...'
     search: 'Search'
+    background_by: 'Background image by'
 
   comments:
     new_success: Comment was successfully created.

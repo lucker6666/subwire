@@ -13,7 +13,9 @@
   </head>
 
   <body class="login">
-    <img class="background-image" src="/assets/backgrounds/gras.jpg" />
+    <%= background = login_background %>
+
+    <img class="background-image" src="/assets/backgrounds/<%= background[:file] %>" />
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -41,7 +43,7 @@
         </div>
       </div>
 
-      <%= render partial: 'shared/footer' %>
+      <%= render partial: 'shared/footer', :locals => {:background => background} %>
     </div>
 
     <%= render partial: 'shared/flash_messages' %>
