@@ -241,6 +241,7 @@ de:
     go_to_overview: 'Weiter zur Channel-Übersicht'
     more_to_read: 'Weiterlesen ...'
     search: 'Suche'
+    background_by: 'Hintergrundbild von'
 
   comments:
     new_success: Dein Kommentar wurde gespeichert

@@ -80,6 +80,11 @@ module ApplicationHelper
     end
   end
 
+  def login_background
+    backgrounds = Subwire::Application.config.backgrounds
+    return backgrounds[Random.new.rand(0..(backgrounds.length - 1))]
+  end
+
   def icons
     [
        'glass',
