@@ -1,0 +1,62 @@
+
+<script type="text/javascript" src="/javascript/articles.js"></script>
+
+%h1 &nbsp;
+
+%table{:class => "table table-bordered table-condensed article"}
+  %tr
+    %td
+      .pull-right
+        - if has_admin_privileges? || @article.user == current_user
+          = link_to edit_article_path(@article), class: 'btn' do
+            %i{:class=>"icon icon-pencil"}
+
+
+          = link_to article_path(@article),
+            method: 'delete',
+            class: 'btn btn-danger',
+            data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do
+
+            %i{:class=>"icon icon-trash"}
+
+      = avatar(@article.user)
+      = render partial: 'mark_as_important', locals: {:article => @article}
+
+      %h2
+        = link_to @article.title, article_path(@article)
+
+      %nobr
+        = link_to @article.user_name, user_path(@article.user)
+        at
+        =l @article.created_at, format: :short
+
+
+  %tr
+    %td
+      = auto_link(@article.content.html_safe)
+
+      %br
+      %br
+      %br
+
+      .advertising
+        .ad
+          = t('ad')
+
+          :javascript
+            <!--
+            google_ad_client = "ca-pub-4129785061498511";
+            /* Subwire Artikel */
+            google_ad_slot = "0223575696";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
+
+
+  %tr
+    %td
+      .comments
+        = render partial: 'shared/comments', locals: {article: @article, comments: @article.newest_comments.take(5)}
+	

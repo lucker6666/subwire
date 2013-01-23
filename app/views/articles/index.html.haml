@@ -1,0 +1,67 @@
+<script type="text/javascript" src="/javascript/articles.js"></script>
+
+- model_class = Article.new.class
+%h1
+  = t '.title', default: model_class.model_name.human
+
+- if params[:query].present?
+
+  %table{:class=>"table table-bordered table-condensed article"}
+    %tr>
+      %td>
+        %h2>
+          = "#{t('articles.search_result')}:"
+
+    %tr>
+      %td>
+        = t('articles.search_counter', query: params[:query], count: @articles.length)
+
+
+- @articles.each do |article|
+  %table{:class=>"table table-bordered table-condensed article"}
+    %tr
+      %td
+
+        = avatar(article.user)
+
+        = render partial: 'mark_as_important', locals: {:article => article}
+
+        %h2
+          = link_to article.title, article_path(article)
+
+
+        %nobr
+          = link_to article.user_name, user_path(article.user)
+          at
+          = l article.created_at, format: :short
+
+    %tr
+      %td
+        = article_teaser(article)
+
+        .buttons
+          - if has_admin_privileges? || article.user == current_user
+            = link_to edit_article_path(article), class: 'btn btn-mini' do
+              %i{:class=>"icon icon-pencil"}
+
+
+            = link_to article_path(article),
+              method: :delete,
+              data: {confirm: t('.confirm', default: t("helpers.links.confirm"))},
+              class: 'btn btn-mini btn-danger' do
+
+              %i{:class=>"icon icon-trash"}
+
+    %tr
+      %td
+        .comments
+          %a{:href=>"#", :onclick=>"return commentToggle(this);"}
+            %span{:class=>"icon-chevron-right"}
+              &nbsp
+            = article.comments.length
+            =t 'comments.plural'
+
+          .commentContainer
+            = render partial: 'shared/comments', locals: {comments: article.newest_comments.take(5), article: article}
+
+= will_paginate @articles
