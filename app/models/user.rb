@@ -110,6 +110,15 @@ class User < ActiveRecord::Base
       super(conditions.merge(is_deleted: false))
   end
 
+  def self.find_for_googleapps_oauth(access_token, signed_in_resource=nil)
+    data = access_token['info']
+    if user = User.where(:email => data['email']).first
+      return user
+    else
+      User.create!(:name => data['name'], :email => data['email'], :password => Devise.friendly_token[0,20], :provider => access_token['provider'],:uid => access_token['uid'])
+    end
+  end
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     users = User.where(:email => auth.info.email)
