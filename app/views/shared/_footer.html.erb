@@ -2,7 +2,7 @@
   Powered by subwire 3.1.0 (Northstar) |
   A product of <a href="http://yaana.de" target="_blank">YaanaLabs</a>
 
-  <% if background %>
+  <% if defined? background %>
       | <%=t 'application.background_by' %>
       <a href="<%= background[:link] %>" target="_blank"><%= background[:artist] %></a>
   <% end %>
