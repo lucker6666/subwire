@@ -54,6 +54,14 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
+#OmniAuth.config.test_mode = true
+#OmniAuth.config.mock_auth[:facebook] = {
+#                        :uid => '12345',
+#                        :provider => 'facebook',
+#                        :user_info => {'name' => 'Cookie', 'email' => 'fb@example.com'},
+#                        :credentials => {'token' => 'token'}
+#                        }
+
 def log_in_user(user = "user1_with_channel")
   rel = FactoryGirl.create(user.to_sym)
   sign_in rel.user
