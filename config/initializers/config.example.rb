@@ -37,6 +37,15 @@ module Subwire
 
     ## Set this to your applications host
     config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+    ## Background images for login page
+    config.backgrounds = [
+      {
+        file: '1.jpg',
+        artist: 'phortx',
+        link: 'http://www.flickr.com/photos/onemice/6868663783/in/photostream'
+      }
+    ]
   end
 end
 
