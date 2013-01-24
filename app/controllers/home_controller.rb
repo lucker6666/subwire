@@ -2,7 +2,11 @@ class HomeController < ApplicationController
   # GET /
   def index
     if current_user
-      redirect_to current_channel ? articles_path : channels_path
+      unless current_channel
+        set_current_channel Relationship.find_all_by_user_id(current_user.id).first.channel
+      end
+
+      redirect_to articles_path
     else
       flash.keep
       redirect_to "/users/sign_in"
