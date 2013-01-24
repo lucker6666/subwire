@@ -12,7 +12,7 @@ Subwire::Application.routes.draw do
   # Channels
   get "channels/unset", to: "channels#unset"
   get "channels/all", to: "channels#all"
-  resources :channels
+  resources :channels, only: [:show, :create, :new, :edit, :update, :destroy]
 
   # Users
   get "users/finish", to: "users#finish"

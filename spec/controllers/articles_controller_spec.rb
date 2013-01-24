@@ -123,23 +123,5 @@ describe ArticlesController do
   #         assigns[:subwireTitle].should be current_channel.name
   #       end
   #     end
-
-  #     context "and no superadmin" do
-  #       it "should redirect back to the channel chooser" do
-  #         @rel1 = FactoryGirl.create(:user1_with_channel)
-
-  #         # Then choose a channel to which the current user is not assigned to
-  #         controller(ApplicationController)
-  #         get 'channels/' + @rel1.channel.id + '/show'
-  #         controller(ArticlesController)
-  #         # set_current_channel @rel1.channel
-
-  #         # Then request the startpage
-  #         get :index
-  #         response.should redirect_to(channels_url)
-  #         current_channel.should be_nil
-  #       end
-  #     end
-  #   end
   # end
 end
