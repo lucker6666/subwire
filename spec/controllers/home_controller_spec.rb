@@ -20,9 +20,9 @@ describe HomeController do
       end
 
       context "but without chosen channel" do
-        it "should redirect to channel chooser" do
+        it "should redirect to first channel" do
           get :index
-          response.should redirect_to(channels_url)
+          response.should redirect_to(articles_url)
         end
       end
 

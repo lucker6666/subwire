@@ -3,25 +3,6 @@ class ChannelsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :restricted_to_superadmin, only: [:all]
 
-  # GET /channel
-  def index
-    @channels = Channel.find(
-      :all,
-      joins: :relationships,
-      conditions: { "relationships.user_id" => current_user.id }
-    )
-
-    # Required to check if user has reached the limit of channels
-    @adminCount = Channel.find_all_where_user_is_admin(current_user).length
-
-    @notificationCount = 0
-    @channels.each do |channel|
-      @notificationCount += channel.notification_count(current_user)
-    end
-
-    render 'index', layout: 'login'
-  end
-
   # GET /channels/1
   def show
     set_current_channel Channel.find(params[:id])

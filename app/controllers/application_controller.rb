@@ -194,7 +194,7 @@ class ApplicationController < ActionController::Base
             end
           end
         else
-          redirect_to channels_path
+          set_current_channel Relationship.find_all_by_user_id(current_user.id).first.channel
         end
       else
         redirect_to "/"
