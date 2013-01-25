@@ -231,7 +231,7 @@ en:
     edit_your_profile: Settings
     logout: Logout
     login: Login
-    no_account: "Don\'t have an account? Click here!"
+    no_account: "No account yet?"
     bookmarks: Bookmarks
     user: User
     de: German
