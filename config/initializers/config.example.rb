@@ -6,7 +6,7 @@ module Subwire
     ## Timezone
     config.time_zone = 'Berlin'
 
-    ##Elasticsearch active?
+    ## Elasticsearch active?
     config.elasticsearch = false
 
     ## Default encoding
@@ -14,6 +14,7 @@ module Subwire
 
     ## Activates GoogleAnalytics integration
     config.ga = false
+
     ## Your GoogleAnalytics Key
     #config.ga_key = ""
     ## The Domain (e.g. "subwire.net")
@@ -27,10 +28,10 @@ module Subwire
 
     ## Secret token. Change this in production!
     config.secret_token = '912ec803b2912ec803b2ce49e4a541068d495ab570ce49e4a541068d495ab570'
-     ## Facebook login
+
+    ## Facebook login
     ENV['FACEBOOK_KEY'] = 'xxxxxxx'
     ENV['FACEBOOK_SECRET'] = 'xxxxxx'
-
 
     ## Session store key
     config.session_store :cookie_store, key: '_subwire_session'
