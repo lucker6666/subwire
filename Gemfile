@@ -33,7 +33,7 @@ gem 'rails_autolink'
 gem 'rmagick'
 gem 'html_truncator'
 gem 'less-rails'
-gem 'therubyracer', '~> 0.10.0'
+gem 'therubyracer', '~> 0.11.3'
 
 # Search engine
 gem 'tire'
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'libnotify'
+  gem 'rb-inotify'
   gem 'guard-rspec'
   gem 'rb-inotify'
   gem 'better_errors'
