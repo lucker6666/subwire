@@ -45,6 +45,26 @@ module Subwire
         file: '1.jpg',
         artist: 'phortx',
         link: 'http://www.flickr.com/photos/onemice/6868663783/in/photostream'
+      },
+      {
+        file: '2.jpg',
+        artist: 'paolofefe',
+        link: 'http://www.flickr.com/photos/paolofefe/3649759801/sizes/l/in/photostream/'
+      },
+      {
+        file: '3.jpg',
+        artist: 'Sergey Gabdurakhmanov',
+        link: 'http://www.flickr.com/photos/gabdurakhmanov/3636079474/sizes/l/in/photostream/'
+      },
+      {
+        file: '4.jpg',
+        artist: 'gnuckx',
+        link: 'http://www.flickr.com/photos/gnuckx/4836339101/sizes/l/in/photostream/'
+      },
+      {
+        file: '5.jpg',
+        artist: 'ilovegreenland',
+        link: 'http://www.flickr.com/photos/ilovegreenland/8261005084/sizes/l/in/photostream/'
       }
     ]
   end
