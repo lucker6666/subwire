@@ -18,10 +18,12 @@ module Session
     ).first
   end
 
+  # Checks if user has admin privileges for the current channel
   def has_admin_privileges?
     has_superadmin_privileges? || current_rs.admin?
   end
 
+  # Checks if user has super admin privileges
   def has_superadmin_privileges?
     current_user.is_admin?
   end
