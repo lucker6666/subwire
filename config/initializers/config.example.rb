@@ -6,7 +6,7 @@ module Subwire
     ## Timezone
     config.time_zone = 'Berlin'
 
-    ## Elasticsearch active?
+    ## Enable ElasticSearch?
     config.elasticsearch = false
 
     ## Default encoding
@@ -17,11 +17,12 @@ module Subwire
 
     ## Your GoogleAnalytics Key
     #config.ga_key = ""
+
     ## The Domain (e.g. "subwire.net")
     #config.ga_domain = ""
 
     ## Error mails
-    #config.middleware.use ExceptionNotifier,
+    # config.middleware.use ExceptionNotifier,
     #  :email_prefix => "[Error] ",
     #  :sender_address => %{"Subwire" <no-reply@subwire.net>},
     #  :exception_recipients => %w{info@example.com}
@@ -29,7 +30,7 @@ module Subwire
     ## Secret token. Change this in production!
     config.secret_token = '912ec803b2912ec803b2ce49e4a541068d495ab570ce49e4a541068d495ab570'
 
-    ## Facebook login
+    ## Facebook App Key and Secreit for oauth login
     ENV['FACEBOOK_KEY'] = 'xxxxxxx'
     ENV['FACEBOOK_SECRET'] = 'xxxxxx'
 
