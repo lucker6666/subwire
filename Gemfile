@@ -6,14 +6,17 @@ gem 'sqlite3'
 gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'devise', '2.2.2'
+gem 'paperclip'
+gem 'rmagick'
+gem 'exception_notification'
+
+
+# Omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-openid'
 gem 'omniauth-google-apps'
-gem 'paperclip'
-gem 'rmagick'
-gem 'exception_notification'
-gem 'haml'
+
 
 # Assets
 group :assets do
@@ -21,7 +24,12 @@ group :assets do
   gem 'uglifier', '~> 1.3.0'
   gem 'sass-rails',   '~> 3.2.6'
   gem 'turbo-sprockets-rails3'
+  gem 'haml'
+  gem 'html_truncator'
+  gem 'less-rails'
+  gem 'therubyracer', '~> 0.11.3'
 end
+
 
 # Frontend
 gem 'twitter-bootstrap-rails'
@@ -31,14 +39,13 @@ gem 'will_paginate'
 gem 'will_paginate_twitter_bootstrap'
 gem 'rails_autolink'
 gem 'rmagick'
-gem 'html_truncator'
-gem 'less-rails'
-gem 'therubyracer', '~> 0.11.3'
+
 
 # Search engine
 gem 'tire'
 
-# Testing
+
+# Testing & Development
 group :test do
   gem 'email_spec'
   gem 'cucumber-rails', require: false
