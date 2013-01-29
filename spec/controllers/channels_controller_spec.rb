@@ -77,25 +77,5 @@ describe ChannelsController do
         end
       end
     end
-
-    # TODO: POST /channels
-    # TODO: PUT /channels/1
-    # TODO: DELETE /channels/1
-
-    context "get 'unset'" do
-      before do
-        get :unset
-      end
-
-      it "should unset the current channel" do
-        current_channel.should be nil
-      end
-
-      it "should redirect to channel overview" do
-        response.should redirect_to(channels_path)
-      end
-    end
-
-    # TODO: GET /channels/all
   end
 end

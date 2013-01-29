@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
       render 'new', layout: 'login'
     else
       feedback t('channels.hit_limit')
-      redirect_to channels_path
+      redirect_to articles_path
     end
   end
 
@@ -100,7 +100,7 @@ class ChannelsController < ApplicationController
       errors_to_feedback(@channel)
     end
 
-    redirect_to channels_path
+    redirect_to articles_path
   end
 
   # DELETE /channels/1
@@ -120,17 +120,17 @@ class ChannelsController < ApplicationController
 
       feedback t('channels.destroyed')
       set_current_channel nil
-      redirect_to channels_path
+      redirect_to articles_path
     else
       feedback t('application.permission_denied')
-      redirect_to channels_path
+      redirect_to articles_path
     end
   end
 
   # GET /channels/unset
   def unset
     set_current_channel nil
-    redirect_to channels_path
+    redirect_to articles_path
   end
 
   # GET /channels/all

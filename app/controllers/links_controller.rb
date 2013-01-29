@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   # User have to be logged in, choosed an channel and have to be allowed to see that channel
   # and have to be at least admin of that channel
-  before_filter :authenticate_user!, :choose_channel!, :check_permissions, :restricted_to_admin
+  before_filter :authenticate_user!, :choose_channel, :check_permissions, :restricted_to_admin
 
   # GET /links
   def index
