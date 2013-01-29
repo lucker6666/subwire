@@ -21,7 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
         sign_in(u)
       end
 
-      redirect_to "/channels"
+      redirect_to "/"
     else
       super
     end

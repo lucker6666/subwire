@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_filter :authenticate_user!, :choose_channel!, :check_permissions
+  before_filter :authenticate_user!, :choose_channel, :check_permissions
   before_filter :restricted_to_admin, except: [:destroy]
 
   # GET /relationships
@@ -167,7 +167,7 @@ class RelationshipsController < ApplicationController
 
       set_current_channel nil
 
-      redirect_to channels_path
+      redirect_to "/"
     else
       @relationship.destroy
 
