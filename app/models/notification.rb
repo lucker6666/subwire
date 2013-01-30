@@ -33,30 +33,35 @@ class Notification < ActiveRecord::Base
 
   ### Methods
 
-  def self.notify_all_users(data, channel, current_user, options = {})
+  def self.notify_all_users(data, channel, from, options = {})
     except = options[:except] || []
 
     Relationship.find_all_users_by_channel(channel).each do |user|
-      unless user == current_user or except.include?(user)
-        notification = Notification.new({
-          notification_type: data[:notification_type],
-          provokesUser: data[:provokesUser],
-          subject: data[:subject],
-          href: data[:href],
-          created_by: current_user
-        })
-
-        notification.is_read = false
-        notification.user = user
-        notification.channel = channel
-
-        notification.save
-
-        #Notify user via email
-        if (user.last_activity < Time.now-120 && Relationship.find_by_channel_and_user(channel, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
-          NotifyMailer.notify(User.find(data[:provokesUser]), user, notification ).deliver
-        end
+      unless user == from or except.include?(user)
+        self.notify_user(from, user, data[:notification_type], data[:provokesUser], data[:subject],
+          data[:href], channel)
       end
+    end
+  end
+
+  def self.notify_user(from, user, notification_type, provokesUser, subject, href, channel)
+    notification = Notification.new({
+      notification_type: notification_type,
+      provokesUser: provokesUser,
+      subject: subject,
+      href: href,
+      created_by: from
+    })
+
+    notification.is_read = false
+    notification.user = user
+    notification.channel = channel
+
+    notification.save
+
+    # Notify user via email
+    if (user.last_activity < Time.now-120 && Relationship.find_by_channel_and_user(channel, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
+      NotifyMailer.notify(User.find(data[:provokesUser]), user, notification ).deliver
     end
   end
 
