@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe ChannelsController do
   before (:each) do
-    @rel = FactoryGirl.create(:user2_with_channel)
+    @channel = FactoryGirl.create(:channel)
+    @rel = @channel.relationships.first
   end
 
   context "while authorized" do
@@ -13,11 +14,11 @@ describe ChannelsController do
 
     context "get 'show'" do
       before do
-        get :show, id: @rel.channel.id
+        get :show, id: @channel.id
       end
 
       it "should set the current channel" do
-        current_channel.should == @rel.channel
+        current_channel.should == @channel
       end
 
       it "should redirect to aritcle overview" do
@@ -61,7 +62,7 @@ describe ChannelsController do
 
       context "while has no superadmin privileges but assigend to that channel" do
         before do
-          get :edit, id: @rel.channel.id
+          get :edit, id: @channel.id
         end
 
         it "should be successful" do
@@ -69,7 +70,7 @@ describe ChannelsController do
         end
 
         it "should assign the @channel variable which should be the channel with ID 1" do
-          assigns[:channel].id.should == @rel.channel.id
+          assigns[:channel].id.should == @channel.id
         end
 
         it "should render the 'edit' view in the login layout" do

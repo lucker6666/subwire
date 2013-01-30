@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe AvailabilitiesController do
   before (:each) do
-    @rel = FactoryGirl.create(:user1_with_channel)
+    @channel = FactoryGirl.create(:channel)
+    @rel = @channel.relationships.first
   end
 
   describe "GET 'set'" do

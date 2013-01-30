@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  subject { FactoryGirl.create(:user1) }
+  subject { FactoryGirl.create(:user) }
 
   describe "Associations" do
     it do
@@ -57,7 +57,8 @@ describe User do
 
   describe "password validations" do
     it "should require a matching password confirmation" do
-      user = FactoryGirl.create(:user1)
+      user = FactoryGirl.create(:user)
+
       user.password_confirmation = 'invalid'
       user.should_not be_valid
     end
@@ -65,7 +66,7 @@ describe User do
 
   describe "login status" do
     before(:each) do
-      @user = FactoryGirl.create(:user1)
+      @user = FactoryGirl.create(:user)
       @user.show_login_status = true
     end
 

@@ -48,7 +48,7 @@ describe Link do
   end
 
   it "Find all links by channel and page" do
-    channel = FactoryGirl.create(:channel1)
+    channel = FactoryGirl.create(:channel)
     link = Link.new href: 'http://example.com', name: 'name', icon: 'icon'
     link.channel = channel
     link.save!

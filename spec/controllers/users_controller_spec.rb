@@ -2,9 +2,12 @@ require 'spec_helper'
 
 describe UsersController do
   before (:each) do
-    @rel = FactoryGirl.create(:user2_with_channel)
+    @channel = FactoryGirl.create(:channel)
+    @rel = @channel.relationships.first
+
+    # Log in first
     sign_in @rel.user
-    set_current_channel @rel.channel
+    set_current_channel @channel
   end
 
   describe "GET 'show'" do

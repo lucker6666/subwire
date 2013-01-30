@@ -47,10 +47,3 @@ end
 #                        :user_info => {'name' => 'Cookie', 'email' => 'fb@example.com'},
 #                        :credentials => {'token' => 'token'}
 #                        }
-
-def log_in_user(user = "user1_with_channel")
-  rel = FactoryGirl.create(user.to_sym)
-  sign_in rel.user
-  set_current_channel rel.channel
-  rel
-end
