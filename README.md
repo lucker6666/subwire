@@ -38,6 +38,8 @@ To activate GA you have to set the config.subwire.ga config params at the end of
 ## Contributing
 Feel free to fork this repo, make changes and setup a pull request. Or mail us. Or open a ticket. Or do whatever you want to do if you feel it will help us to make subwire even better.
 
+We're currently working on version 3.1 (Northstar) in the master branch. You find open tickets in our ([redmine installation](http://redmine.yaana.de/projects/subwire/issues?query_id=14)).
+
 And if you want to work with us and get part of the ([Yaana Labs](http://yaana.de)), write us!
 
 
