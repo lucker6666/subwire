@@ -1,7 +1,17 @@
 # Controller base class
 class ApplicationController < ActionController::Base
-  # Enable CSRF protection
+  ## Enable CSRF protection
   protect_from_forgery
+
+  ## We need all helpers, all the time
+  helper :all
+
+  ## Change layout depending on controller
+  # FIXME just the login page has another layout, move that to the repective controller
+  layout :layout_by_resource
+
+
+  ### Filters
 
   # finish_invitation:    Completes an open invitation
   # set_locale:           Determines the language of the user
@@ -11,13 +21,8 @@ class ApplicationController < ActionController::Base
   # set_timezone:         Determines the current timezone
   before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone
 
-  # We need all helpers, all the time
-  helper :all
 
-  # Changes layout depending on controller
-  # FIXME just the login page has another layout, move that to the repective controller
-  layout :layout_by_resource
-
+  ### Methods
 
   protected
     # For debugging purposes
@@ -125,8 +130,6 @@ class ApplicationController < ActionController::Base
       model.errors.each { |error, message| feedback message }
     end
 
-
-    # Filters:
 
     # Finishes a unfinished invitation
     def finish_invitation
