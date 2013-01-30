@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
       # Notify all users in that about the new article
       Notification.notify_all_users({
         notification_type: "new_article",
-        provokesUser: @article.user.id,
+        provokesUser: @article.user,
         subject: @article.title,
         href: article_path(@article)
       }, current_channel, current_user)
@@ -106,7 +106,7 @@ class ArticlesController < ApplicationController
       # Notify all users
       Notification.notify_all_users({
         notification_type: "edit_article",
-        provokesUser: current_user.id,
+        provokesUser: current_user,
         subject: @article.title,
         href: article_path(@article)
       }, current_channel, current_user)

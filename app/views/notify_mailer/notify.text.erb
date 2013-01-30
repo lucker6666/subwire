@@ -1,5 +1,5 @@
 <%= t('notifications.mailer.hello', user: @toUser.name) %>
 
-<%= t('notifications.mailer.body', notification:  t('notifications.mailer.' + @notification.notification_type), user: @fromUser.name, topic: @notification.subject) %>
+<%= t('notifications.mailer.body', notification:  t('notifications.mailer.' + @notification.notification_type.to_s), user: @fromUser.name, topic: @notification.subject) %>
 
 <%= notification_path(@notification, path_only: false) %>

@@ -36,8 +36,11 @@ class Notification < ActiveRecord::Base
   def self.notify_all_users(data, channel, from, options = {})
     except = options[:except] || []
 
+    puts "from: " + from.email
     Relationship.find_all_users_by_channel(channel).each do |user|
-      unless user == from or except.include?(user)
+      puts user.email
+      unless user == from || except.include?(user)
+        puts "do it!"
         self.notify_user(from, user, data[:notification_type], data[:provokesUser], data[:subject],
           data[:href], channel)
       end
@@ -47,10 +50,10 @@ class Notification < ActiveRecord::Base
   def self.notify_user(from, user, notification_type, provokesUser, subject, href, channel)
     notification = Notification.new({
       notification_type: notification_type,
-      provokesUser: provokesUser,
+      provokesUser: provokesUser.id,
       subject: subject,
       href: href,
-      created_by: from
+      created_by: from.id
     })
 
     notification.is_read = false
@@ -59,9 +62,9 @@ class Notification < ActiveRecord::Base
 
     notification.save
 
-    # Notify user via email
-    if (user.last_activity < Time.now-120 && Relationship.find_by_channel_and_user(channel, user).mail_notification && (data[:notification_type] == 'new_article' or data[:notification_type] == 'new_comment'))
-      NotifyMailer.notify(User.find(data[:provokesUser]), user, notification ).deliver
+    # Notify user via email if neccessary
+    if (user.last_activity < Time.now-120 && Relationship.find_by_channel_and_user(channel, user).mail_notification && (notification_type.to_s == 'new_article' || notification_type.to_s == 'new_comment'))
+      NotifyMailer.notify(User.find(provokesUser), user, notification).deliver
     end
   end
 
