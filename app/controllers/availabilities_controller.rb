@@ -1,4 +1,6 @@
 class AvailabilitiesController < ApplicationController
+  ### Methods
+
   # POST /availabilities/set
   def set
     # Make sure everything is nice

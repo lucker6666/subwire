@@ -1,6 +1,12 @@
 class RelationshipsController < ApplicationController
+  ### Filters
+
   before_filter :authenticate_user!, :choose_channel, :check_permissions
   before_filter :restricted_to_admin, except: [:destroy]
+
+
+
+  ### Methods
 
   # GET /relationships
   def index

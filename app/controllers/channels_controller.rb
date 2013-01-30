@@ -1,7 +1,12 @@
 class ChannelsController < ApplicationController
+  ### Filters
   # User have to be logged in
   before_filter :authenticate_user!
   before_filter :restricted_to_superadmin, only: [:all]
+
+
+
+  ### Methods
 
   # GET /channels/1
   def show

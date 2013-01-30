@@ -1,6 +1,12 @@
 class CommentsController < ApplicationController
+  ### Filters
+
   # User have to be logged in, choosed an channel and have to be allowed to see that channel
   before_filter :authenticate_user!, :check_permissions
+
+
+
+  ### Methods
 
   # POST /comments
   def create

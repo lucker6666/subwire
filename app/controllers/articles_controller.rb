@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
+  ### Filters
   before_filter :authenticate_user!, :choose_channel, :check_permissions
 
+
+  ### Methods
 
   # GET /articles
   def index

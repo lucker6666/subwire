@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  ### Methods
+
   # GET /
   def index
     if current_user

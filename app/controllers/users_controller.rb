@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
+  ### Filters
+
   before_filter :authenticate_user!
   before_filter :choose_channel, :check_permissions, except: [:finish, :finish_save]
   before_filter :restricted_to_superadmin, only: [:index]
   skip_filter :finish_invitation, only: [:finish, :finish_save]
+
+
+
+  ### Methods
 
   # TODO actions: update
 
