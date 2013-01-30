@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe HomeController do
   before (:each) do
-    @rel = FactoryGirl.create(:user2_with_channel)
+    @channel = FactoryGirl.create(:channel)
+    @rel = @channel.relationships.first
   end
 
   describe "GET 'index'" do
@@ -28,7 +29,7 @@ describe HomeController do
 
       context "and with chosen channel" do
         before do
-          set_current_channel @rel.channel
+          set_current_channel @channel
           get :index
         end
 
@@ -37,7 +38,7 @@ describe HomeController do
         end
 
         it "sould have no current_channel set" do
-          current_channel.id.should == @rel.channel.id
+          current_channel.id.should == @channel.id
         end
       end
     end

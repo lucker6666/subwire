@@ -16,9 +16,11 @@ describe Relationship do
   end
 
   it "should return a relationship by user and channel" do
-    rel = FactoryGirl.create(:user1_with_channel)
-    rel2 = Relationship.find_by_channel_and_user(rel.channel, rel.user)
+    channel = FactoryGirl.create(:channel)
+    rel1 = channel.relationships.first
 
-    rel2.should eq(rel)
+    rel2 = Relationship.find_by_channel_and_user(rel1.channel, rel1.user)
+
+    rel2.should eq(rel1)
   end
 end

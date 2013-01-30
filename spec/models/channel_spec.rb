@@ -27,20 +27,24 @@ describe Channel do
   end
 
   it "should find all channels by user" do
-    rel = FactoryGirl.create('user1_with_channel');
-    Channel.find_all_by_user(rel.user).first.id.should eq(rel.channel.id)
+    channel = FactoryGirl.create(:channel)
+    rel = channel.relationships.first
+
+    Channel.find_all_by_user(rel.user).first.id.should eq(channel.id)
   end
 
   it "should count all his articles" do
-    rel = FactoryGirl.create('user1_with_channel');
+    channel = FactoryGirl.create(:channel)
+    rel = channel.relationships.first
 
-    articles = Article.find_all_by_channel_id(rel.channel.id).length
+    articles = Article.find_all_by_channel_id(channel.id).length
     rel.channel.article_count.should eq(articles)
   end
 
   it "should count all his users" do
-    rel = FactoryGirl.create('user1_with_channel');
+    channel = FactoryGirl.create(:channel)
+    rel = channel.relationships.first
 
-    rel.channel.user_count.should eq(1)
+    channel.user_count.should eq(4)
   end
 end

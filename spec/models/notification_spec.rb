@@ -21,4 +21,35 @@ describe Notification do
     it { should respond_to(:message) }
     it { should respond_to(:read!) }
   end
+
+  describe :notify_all_users do
+    before do
+      ActionMailer::Base.deliveries.clear
+
+      @channel = FactoryGirl.create('channel');
+      @rels = @channel.relationships
+
+      @mails = []
+      @rels.each do |rel|
+        @mails << rel.user.email
+      end
+
+      data = {
+        notification_type: :new_article,
+        provokesUser: @rels[1].user,
+        subject: "Test",
+        href: "/"
+      }
+
+      Notification.notify_all_users(data, @channel, @rels[0].user)
+    end
+
+    it "should send some mails" do
+      ActionMailer::Base.deliveries.length.should eq(@rels.length - 1)
+
+      ActionMailer::Base.deliveries.each do |mail|
+        @mails.should include(mail.to.first)
+      end
+    end
+  end
 end
