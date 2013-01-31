@@ -70,6 +70,14 @@
     border-radius: 5px;
     @include box_shadow($box_shadow);
 
+    .well {
+    	background-color: transparent;
+    	border: 0;
+    	border-bottom: 1px solid #ccc;
+    	border-radius: 0;
+    	box-shadow: none;
+    }
+
     .form-actions {
       padding: 0;
       border-top: 0;
@@ -87,9 +95,10 @@
   }
 
   h1 {
-    margin-bottom: 29px;
-    font-size: 33px;
-    line-height: 31px;
+    margin: 0 0 29px 0;
+    font-size: 28px;
+    line-height: 25px;
+    color: $link_hover;
   }
 
   a {
