@@ -1,42 +1,28 @@
-<% if channels.length > 0 %>
-  <a href="#"
-    class="dropdown-toggle"
-    data-toggle="dropdown"
-    rel="tooltip"
-    title="<%=t 'tooltip.channelSwitcher' %>"
-    data-placement="bottom">
+  <div class="well">
+    <h3>
+      <i class="icon icon-home"></i>
+      Channels
+    </h3>
 
-    <i class="icon-home"></i>
-     <% if all_channels_notifications > 0 %>
-         <span class="notification-badge badge badge-info">
-          <%= all_channels_notifications %>
-         </span>
-    <% end %>
-  </a>
+    <ul class="channels nav nav-list">
+      <% channels.each do |channel| %>
+        <% notificationCount = channel.notification_count(current_user) %>
 
-  <ul class="channels-dropdown dropdown-menu">
-    <% channels.each do |channel| %>
-      <% notificationCount = channel.notification_count(current_user) %>
+        <li>
+          <%= link_to channel_path(channel), {
+            class: (channel == current_channel ? "active" : "")} do
+          %>
+            <% if notificationCount > 0 %>
+              <span class="notification-badge badge badge-info">
+                <%= notificationCount %>
+              </span>
 
-      <li>
-        <%= link_to channel_path(channel), {
-            class: (channel == current_channel ? "active" : "") } do
-        %>
-          <% if notificationCount > 0 %>
-            <span class="notification-badge badge badge-info">
-              <%= notificationCount %>
-            </span>
+              &nbsp;
+            <% end %>
 
-            &nbsp;
+            <%= channel.name %>
           <% end %>
-
-          <%= channel.name %>
-        <% end %>
-      </li>
-    <% end %>
-
-    <li>
-      <%= link_to t("channels.overview"), "/channels/unset" %>
-    </li>
-  </ul>
-<% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
