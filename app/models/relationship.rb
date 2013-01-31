@@ -58,6 +58,6 @@ class Relationship < ActiveRecord::Base
       return user.email
     end
 
-    return ""
+    return "" # TODO Is that neccessary?
   end
 end
