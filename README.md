@@ -14,17 +14,14 @@ For more information check [subwire.net](http://subwire.net)!
 
 ## Quick Installation
 	$ git clone https://github.com/YaanaLabs/subwire.git && cd subwire
-
-	$ bundle install
-
+	$ bundle
 	$ cp config/database.mysql.yml config/database.yml
 Change config/database.yml
 
 	$ cp config/initializers/config.example.rb config/initializers/config.rb
 Change config/initializers/config.rb
 
-	$ rake db:create && rake db:migrate
-	$ rake subwire:setup
+	$ rake db:create && rake db:migrate subwire:setup
 
 Finished! Now you can login with 'admin@example.com' and the password 'admin'.
 
@@ -49,7 +46,7 @@ Subwire is licenced under the AGPL. See the [LICENCE](https://raw.github.com/Yaa
 
 
 ## Contributors
-* Benjamin Kammerl ([@itws](https://github.com/itws))
-* Markus Genz ([@ich-net-du](https://github.com/ich-net-du))
-* Benjamin August ([@TheBenji](https://github.com/TheBenji))
-* Sebastian Brozda ([@sebastianbrozda](https://github.com/sebastianbrozda))
+* Benjamin Kammerl ([phortx](https://github.com/phortx))
+* Markus Genz ([ich-net-du](https://github.com/ich-net-du))
+* Benjamin August ([TheBenji](https://github.com/TheBenji))
+* Sebastian Brozda ([sebastianbrozda](https://github.com/sebastianbrozda))
