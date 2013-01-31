@@ -2,7 +2,7 @@
 
 - model_class = Article.new.class
 %h1
-  = t '.title', default: model_class.model_name.human
+  = t '.title', default: model_class.model_name.human.pluralize
 
 - if params[:query].present?
 
