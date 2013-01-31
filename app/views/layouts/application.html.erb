@@ -44,10 +44,6 @@
 
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="dropdown iconOnly" id="channel-switcher">
-                <%= render partial: 'shared/navbar/channelSwitcher', locals: {all_channels_notifications: @all_channels_notifications }%>
-              </li>
-
               <%= render partial: 'shared/navbar/notifications' %>
               <%= render partial: 'shared/navbar/channelSettings' %>
               <%= render partial: 'shared/navbar/adminMenu' %>
@@ -110,65 +106,65 @@
 
     <div class="container-fluid content">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="sidebar">
-            <% if @sidebar_links.length > 0 %>
-              <div class="well">
-                <h3>
-                  <i class="icon icon-heart"></i>
-                  <%= t "application.bookmarks" %>
-                </h3>
+        <div class="sidebar">
+          <%= render partial: 'shared/navbar/channelSwitcher' %>
 
-                <ul class="bookmarks nav nav-list">
-                  <% @sidebar_links.each do |link| %>
-                    <li>
-                      <a href="<%= link.href %>" target="_blank">
-                        <% if !link.icon.empty? %>
-                          <i class="icon icon-<%= link.icon %>"></i>
-                        <% end %>
-
-                        <%= link.name %>
-                      </a>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
+          <% if @sidebar_links.length > 0 %>
             <div class="well">
               <h3>
-                <i class="icon icon-user"></i>
-                <%= t "application.user" %>
+                <i class="icon icon-heart"></i>
+                <%= t "application.bookmarks" %>
               </h3>
-              <div id="user-box">
-                <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
-              </div>
+
+              <ul class="bookmarks nav nav-list">
+                <% @sidebar_links.each do |link| %>
+                  <li>
+                    <a href="<%= link.href %>" target="_blank">
+                      <% if !link.icon.empty? %>
+                        <i class="icon icon-<%= link.icon %>"></i>
+                      <% end %>
+
+                      <%= link.name %>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
             </div>
+          <% end %>
 
-            <div class="advertising">
-              <div class="well">
-                <div style="width: 200px; margin: 0 auto;">
-                  <%= t('ad') %>
+          <div class="well">
+            <h3>
+              <i class="icon icon-user"></i>
+              <%= t "application.user" %>
+            </h3>
+            <div id="user-box">
+              <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
+            </div>
+          </div>
 
-                  <script type="text/javascript"><!--
-                  google_ad_client = "ca-pub-4129785061498511";
-                  /* Subwire Sidebar */
-                  google_ad_slot = "4641294977";
-                  google_ad_width = 200;
-                  google_ad_height = 200;
-                  //-->
-                  </script>
-                  <script type="text/javascript"
-                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                  </script>
-                </div>
-              </div>
+          <div class="well advertising">
+            <div style="width: 200px; margin: 0 auto;">
+              <%= t('ad') %>
+
+              <script type="text/javascript"><!--
+              google_ad_client = "ca-pub-4129785061498511";
+              /* Subwire Sidebar */
+              google_ad_slot = "4641294977";
+              google_ad_width = 200;
+              google_ad_height = 200;
+              //-->
+              </script>
+              <script type="text/javascript"
+              src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+              </script>
             </div>
           </div>
         </div>
 
-        <div class="span9 maincontent">
-          <%= yield %>
+        <div class="maincontent">
+          <div class="well">
+            <%= yield %>
+          </div>
 
           <%= render partial: 'shared/footer' %>
         </div>
