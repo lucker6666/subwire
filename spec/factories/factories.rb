@@ -5,6 +5,7 @@ FactoryGirl.define do
     password 'testpw'
     password_confirmation 'testpw'
     confirmed_at Time.now
+    last_activity Time.now
     name 'User'
   	sequence(:email) { |n| "user#{n}@example.com" }
 
