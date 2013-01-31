@@ -41,11 +41,11 @@ class Article < ActiveRecord::Base
   class << self
     def find_all_by_channel_id_and_page(channel_id, page)
       paginate(
-              page: page,
-              per_page: 5,
-              order: "created_at DESC",
-              conditions: { channel_id: channel_id })
+        page: page,
+        per_page: 5,
+        order: "created_at DESC",
+        conditions: { channel_id: channel_id }
+      )
     end
   end
-
 end
