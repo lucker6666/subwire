@@ -70,7 +70,7 @@ class Notification < ActiveRecord::Base
   end
 
   def avatar_path
-    @user = User.find(self.provokesUser)
+    @user = User.find(self.created_by)
 
     if(@user.gravatar)
       'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
@@ -92,15 +92,10 @@ class Notification < ActiveRecord::Base
   def self.find_all_relevant(channel, user)
     return if channel.nil?
 
-
-      notifications = order("is_read").order("created_at DESC").limit(5).where(
+    notifications = order("is_read").order("created_at DESC").limit(5).where(
       user_id: user.id,
       channel_id: channel.id
-      )
-
-    if notifications.nil?
-      notifications = []
-    end
+    )
 
     notifications
   end
