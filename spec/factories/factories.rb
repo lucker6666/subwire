@@ -22,12 +22,8 @@ FactoryGirl.define do
   factory :channel do
     name "Test channel"
 
-    ignore do
-      relationships_count 3
-    end
-
-    after(:create) do |channel, evaluator|
-      FactoryGirl.create_list(:relationship, evaluator.relationships_count, channel: channel)
+    after(:create) do |channel|
+      FactoryGirl.create_list(:relationship, 3, channel: channel)
       FactoryGirl.create(:admin_relationship, channel: channel)
       FactoryGirl.create(:article, channel: channel)
     end
@@ -52,5 +48,17 @@ FactoryGirl.define do
   factory :article do
     content "test"
     title "test"
+
+    after(:create) do |article|
+      FactoryGirl.create_list(:comment, 2, article: article, user: article.user)
+    end
+  end
+
+
+
+  ### Comment factories
+
+  factory :comment do
+    content "test"
   end
 end

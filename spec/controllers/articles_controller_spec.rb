@@ -40,17 +40,20 @@ describe ArticlesController do
   end
 
   describe "POST add summary change" do
+    before do
+      Comment.destroy_all
+    end
+
     it "should create comment containing summary change" do
       post :update, :id => @article.id, :article => {:content => 'test'}, :change_summary => 'short summary'
 
-      assigns[:article].comments.should have(1).comment
+      Comment.find_all_by_article_id(@article.id).should have(1).comment
     end
 
     it "should not create due to empty summary change" do
       post :update, :id => @article.id, :article => {:content => 'test'}, :change_summary => nil
 
-      assigns[:article].comments.should be_empty
-
+      Comment.find_all_by_article_id(@article.id).should be_empty
     end
   end
 

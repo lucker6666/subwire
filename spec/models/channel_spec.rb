@@ -26,25 +26,50 @@ describe Channel do
     it { should respond_to(:user_count) }
   end
 
-  it "should find all channels by user" do
-    channel = FactoryGirl.create(:channel)
-    rel = channel.relationships.first
+  describe :find_all_by_user do
+    it "should find all channels by user" do
+      channel = FactoryGirl.create(:channel)
+      rel = channel.relationships.first
 
-    Channel.find_all_by_user(rel.user).first.id.should eq(channel.id)
+      Channel.find_all_by_user(rel.user).first.id.should eq(channel.id)
+    end
   end
 
-  it "should count all his articles" do
-    channel = FactoryGirl.create(:channel)
-    rel = channel.relationships.first
+  describe :article_count do
+    it "should count all his articles" do
+      channel = FactoryGirl.create(:channel)
+      rel = channel.relationships.first
 
-    articles = Article.find_all_by_channel_id(channel.id).length
-    rel.channel.article_count.should eq(articles)
+      articles = Article.find_all_by_channel_id(channel.id).length
+      rel.channel.article_count.should eq(articles)
+    end
   end
 
-  it "should count all his users" do
-    channel = FactoryGirl.create(:channel)
-    rel = channel.relationships.first
+  describe :user_count do
+    it "should count all his users" do
+      channel = FactoryGirl.create(:channel)
+      rel = channel.relationships.first
 
-    channel.user_count.should eq(4)
+      channel.user_count.should eq(4)
+    end
+  end
+
+  describe :notification_count do
+    it "should count notifications for a user" do
+      @channel = FactoryGirl.create(:channel)
+      @rels = @channel.relationships
+
+      data = {
+        notification_type: :new_article,
+        provokesUser: @rels[1].user,
+        subject: "Test",
+        href: "/"
+      }
+
+      Notification.notify_all_users(data, @channel, @rels[0].user)
+      Notification.notify_all_users(data, @channel, @rels[0].user)
+
+      @channel.notification_count(@rels[2].user).should eq(2)
+    end
   end
 end
