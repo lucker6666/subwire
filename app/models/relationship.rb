@@ -53,6 +53,10 @@ class Relationship < ActiveRecord::Base
     where(channel_id: channel_id).paginate(page: page, per_page: 10)
   end
 
+  def self.exists?(channel, user)
+    Relationship.find_by_channel_and_user(channel, user).any?
+  end
+
   def email
     unless user.nil?
       return user.email
