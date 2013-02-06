@@ -1,6 +1,7 @@
 Subwire::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
+
   # Devise
   devise_for :users, controllers: {
     registrations: "registrations",
@@ -9,39 +10,35 @@ Subwire::Application.routes.draw do
   }
 
 
+  # Relationships
+  resources :relationships
+
   # Channels
-  get "channels/unset", to: "channels#unset"
-  get "channels/all", to: "channels#all"
-  resources :channels, only: [:show, :create, :new, :edit, :update, :destroy]
+  resources :channels do
+    # Links
+    get 'links/move_position_up/:id', to: "links#move_position_up", as: "links_move_position_up"
+    get 'links/move_position_dn/:id', to: "links#move_position_dn", as: "links_move_position_dn"
+
+    resources :links
+
+    # Articles and comments
+    resources :articles do
+      resources :comments, only: [:index, :create, :update, :destroy]
+      post 'mark_as_important', to: "articles#ajax_mark_as_important", as: "article_mark_as_important"
+    end
+
+    # Notifications
+    resources :notifications, only: [:index, :show, :destroy]
+
+    # Availability Tool
+    post "availability", to: "availabilities#set"
+  end
 
   # Users
   get "users/finish", to: "users#finish"
-  get "ajax/users/load_user_box", to: "users#ajax_load_user_box"
   post "users/finish", to: "users#finish_save"
+  get "users/user_box", to: "users#user_box"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
-
-  # Relationships
-  resources :relationships, only: [:index, :create, :new, :edit, :update, :destroy]
-
-  # Links
-  get 'links/move_position_up/:id', to: "links#move_position_up", as: "links_move_position_up"
-  get 'links/move_position_dn/:id', to: "links#move_position_dn", as: "links_move_position_dn"
-
-  resources :links
-
-  # Articles and comments
-  get 'ajax/comments/load_all_comments/:article_id', to: "comments#ajax_load_all_comments", as: "ajax_comments_load_all_comments"
-  post 'ajax/article/mark_as_important', to: "articles#ajax_mark_as_important", as: "ajax_article_mark_as_important"
-  resources :articles do
-    resources :comments, only: [:create, :update, :destroy]
-  end
-
-  # Notifications
-  get 'ajax/notifications/load_all_notifications', to: "notifications#ajax_load_all_notifications"
-  resources :notifications, only: [:index, :show, :destroy]
-
-  # Availability Tool
-  post "availability", to: "availabilities#set"
 
   # Misc
   get "inactive", to: "home#inactive"
