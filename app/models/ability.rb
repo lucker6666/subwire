@@ -20,6 +20,7 @@ class Ability
         can :manage, Notification
         can :manage, Relationship
         can :manage, User
+        can :index,  User
       else
         # Default user
 
