@@ -9,6 +9,7 @@ gem 'paperclip'
 gem 'rmagick'
 gem 'exception_notification'
 gem 'haml'
+gem 'has_permalink'
 
 # Authorization and Authentication
 gem 'devise', '2.2.2'

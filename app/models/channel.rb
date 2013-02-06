@@ -4,6 +4,7 @@
 #
 #   channel_id        :integer    not null, primary key
 #   name              :string      not null
+#   permalink         :string    not null, unique
 #   defaultLanguage   :string      not null, default => "en"
 #   advertising       :boolean    not null, default => true
 #   planningTool      :boolean    not null, default => false
@@ -20,6 +21,9 @@ class Channel < ActiveRecord::Base
   has_many :notifications
   has_many :relationships
   has_many :users, through: :relationships
+
+  ### Permalink
+  has_permalink :name, :min_length => 3
 
   ### Validations
   # Make sure, name is not empty and maximum 30 chars length

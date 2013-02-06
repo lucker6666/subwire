@@ -117,6 +117,7 @@ GEM
       guard (>= 1.1)
       rspec (~> 2.11)
     haml (3.1.7)
+    has_permalink (0.1.4)
     hashie (1.2.0)
     hashr (0.0.22)
     hike (1.2.1)
@@ -339,6 +340,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   haml
+  has_permalink
   html_truncator
   jquery-rails
   launchy

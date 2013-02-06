@@ -166,6 +166,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def load_channels
+      @channels = Channel.find(
+        :all,
+        :joins => :relationships,
+        :conditions => { "relationships.user_id" => current_user.id }
+      )
+    end
+
 
 
   private

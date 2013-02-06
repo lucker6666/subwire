@@ -38,7 +38,7 @@
 
           <ul class="nav">
             <li>
-              <%= link_to current_channel.name, articles_path, class: "brand" %>
+              <%= link_to @channel.name, channel_path(@channel), class: "brand" %>
             </li>
           </ul>
 
@@ -51,7 +51,7 @@
               <li class="divider-vertical"></li>
 
               <li>
-                <%= link_to new_article_path do %>
+                <%= link_to new_channel_article_path(@channel) do %>
                   <i class="icon icon-file"></i>
                   <%= t "application.new_article" %>
                 <% end %>
@@ -61,7 +61,7 @@
             <%= render partial: 'shared/navbar/availability' %>
 
             <ul class="nav pull-right">
-              <%= form_tag articles_path, class: 'navbar-search', method: :get do %>
+              <%= form_tag channel_path(@channel), class: 'navbar-search', method: :get do %>
                   <%= text_field_tag :query, params[:query], class: 'search-query',
                     placeholder: t('application.search') %>
               <% end %>

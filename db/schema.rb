@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220204525) do
+ActiveRecord::Schema.define(:version => 20130206204548) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -44,7 +44,10 @@ ActiveRecord::Schema.define(:version => 20121220204525) do
     t.boolean  "planningTool",    :default => false, :null => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "permalink"
   end
+
+  add_index "channels", ["permalink"], :name => "index_channels_on_permalink"
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -61,11 +64,11 @@ ActiveRecord::Schema.define(:version => 20121220204525) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
-    t.text     "content",    :limit => 255
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
