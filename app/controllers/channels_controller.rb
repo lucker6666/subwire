@@ -1,9 +1,10 @@
 class ChannelsController < ApplicationController
-  before_filter :load_project, only: [:show]
+  before_filter :load_channel, only: [:show]
   before_filter :load_channels, only: [:index]
 
   def index
     @channel = Channel.first # TODO
+    authorize! :read, Channel
 
     # TODO move that to a helper or model
       # Required to check if user has reached the limit of instances
@@ -11,12 +12,12 @@ class ChannelsController < ApplicationController
   end
 
   def show
-
   end
 
   private
 
-    def load_project
+    def load_channel
       @channel = Channel.find_by_permalink(params[:id])
+      authorize! :read, @channel
     end
 end
