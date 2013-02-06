@@ -5,15 +5,18 @@ gem 'rails', '~>3.2.11'
 gem 'sqlite3'
 gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'paperclip'
+gem 'rmagick'
+gem 'exception_notification'
+gem 'haml'
+
+# Authorization and Authentication
 gem 'devise', '2.2.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-openid'
 gem 'omniauth-google-apps'
-gem 'paperclip'
-gem 'rmagick'
-gem 'exception_notification'
-gem 'haml'
+gem 'cancan'
 
 # Assets
 group :assets do
