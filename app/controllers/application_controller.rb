@@ -43,25 +43,23 @@ class ApplicationController < ActionController::Base
     def globals
       # If user it not logged in, this is irrelevant
       if current_user
-        # And if the user is a superadmin thats irrelevant too
-        unless current_user.is_admin?
-          # Check if a id is given - channels, users and comments controller are irrelevant for that
-          if params[:id] && !["channels", "users", "comments"].include?(params[:controller])
-            # Which resource is requested? ("Link", "Notification", ...)
-            resource = params[:controller].capitalize.singularize.constantize
+        # And if the user is a superadmin thats irrelevant too ... and it's irrelevant for
+        # some controllers
+        if !current_user.is_admin? && params[:id] && !["channels", "users", "comments"].include?(params[:controller])
+          # Which resource is requested? ("Link", "Notification", ...)
+          resource = params[:controller].capitalize.singularize.constantize
 
-            # Save the current channel for the case, that there is no other channel to display.
-            channel_backup = session[:channel]
+          # Save the current channel for the case, that there is no other channel to display.
+          channel_backup = session[:channel]
 
-            # Find the instance of the requests resource by the id provided via GET param. And get
-            # the channel which is associated with that instance.
-            session[:channel] = resource.find(params[:id]).channel
+          # Find the instance of the requested resource by the id provided via GET param. And get
+          # the channel which is associated with that instance.
+          session[:channel] = resource.find(params[:id]).channel
 
-            # Now it may be, that there is no channel to display, so the saved channel will be set
-            # as the current channel. After that, session[:channel] shouldn't be nil
-            if session[:channel].nil?
-              session[:channel] = channel_backup
-            end
+          # Now it may be, that there is no channel to display, so the saved channel will be set
+          # as the current channel. After that, session[:channel] shouldn't be nil
+          if session[:channel].nil?
+            session[:channel] = channel_backup
           end
         end
 
@@ -147,29 +145,6 @@ class ApplicationController < ActionController::Base
     end
 
 
-    # Filter that returns true if the user has admin privileges.
-    # That's if the user is a superadmin (is_admin flag of user)
-    # or the user is admin for current_channel.
-    # Otherwise it redirects back and notify the user.
-    def restricted_to_admin
-      unless has_admin_privileges?
-        feedback t :application.no_admin
-        redirect_to :back
-      end
-    end
-
-
-    # Filter that returns true if the current user is
-    # a superadmin (is_admin flag of user).
-    # Otherwise it redirects back and notify the user.
-    def restricted_to_superadmin
-      unless has_superadmin_privileges?
-        feedback t :application.no_superadmin
-        redirect_to :back
-      end
-    end
-
-
     # Filter which determines the language of the current user
     def set_locale
       if current_user
@@ -192,40 +167,19 @@ class ApplicationController < ActionController::Base
     end
 
 
-    # Filter which ensures, that a channel is chosen
-    def choose_channel
-      unless current_channel
-        set_current_channel Relationship.find_all_by_user_id(current_user.id).first.channel
-      end
-    end
-
-
-    # Checks wether the current user is allowed to see the requested channel. If not,
-    # the user will be redirected to the channel overview.
-    def check_permissions
-      # Logged in? If not, redirect to login mask
-      if current_user
-        choose_channel # Just to be sure, that a channel is chosen
-
-        # If the user is a superadmin everything is ok
-        unless current_user.is_admin?
-          # If there is no relationship, the user is not allowed to see that channel.
-          # So redirect to channels overview. Otherwise everything is ok
-          unless current_rs
-            feedback t 'application.no_permission_for_channel'
-            redirect_to articles_path
-          end
-        end
-      else
-        redirect_to "/"
-      end
-    end
-
-
 
   private
 
     def current_ability
       @current_ability ||= Ability.new(current_user, current_channel)
+    end
+
+    def handle_cancan_error(exception)
+      if request.xhr?
+        head :forbidden
+      else
+        flash[:error] = exception.message
+        redirect_to root_url
+      end
     end
 end
