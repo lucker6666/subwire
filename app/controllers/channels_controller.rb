@@ -3,7 +3,6 @@ class ChannelsController < ApplicationController
   before_filter :load_channels, only: [:index]
 
   def index
-    @channel = Channel.first # TODO
     authorize! :read, Channel
 
     # TODO move that to a helper or model
