@@ -21,6 +21,7 @@ class Ability
         can :manage, Relationship
         can :manage, User
         can :index,  User
+        can :disable_ads, channel
       else
         # Default user
 
