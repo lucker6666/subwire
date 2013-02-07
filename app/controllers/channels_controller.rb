@@ -4,10 +4,6 @@ class ChannelsController < ApplicationController
 
   def index
     authorize! :read, Channel
-
-    # TODO move that to a helper or model
-      # Required to check if user has reached the limit of instances
-      @adminCount = Channel.find_all_where_user_is_admin(current_user).length
   end
 
   def show

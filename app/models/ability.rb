@@ -45,7 +45,9 @@ class Ability
 
           # Channel
 
-          can [:create], Channel # TODO 5 channel rule
+          can [:create], Channel do |channel|
+            Channel.find_all_where_user_is_admin(user).length < 5
+          end
 
           can [:read], Channel do |channel|
             Relationship.exists?(article.channel, user)
