@@ -12,10 +12,10 @@
     <%= render partial: 'shared/head' %>
 
     <script type="text/javascript">
-      <% if current_channel %>
-        window.subwireTitle = "<%= current_channel.name %>";
-      <% else %>
+      <% if @channel.nil? %>
         window.subwireTitle = "<%= @subwireTitle %>";
+      <% else %>
+        window.subwireTitle = "<%= current_channel.name %>";
       <% end %>
     </script>
 
@@ -38,32 +38,31 @@
 
           <ul class="nav">
             <li>
-              <%= link_to @channel.name, channel_path(@channel), class: "brand" %>
+              <% if @channel.nil? %>
+                <%= link_to "subwire", channels_path, class: "brand" %>
+              <% else %>
+                <%= link_to @channel.name, channel_path(@channel), class: "brand" %>
+              <% end %>
             </li>
           </ul>
 
           <div class="nav-collapse">
             <ul class="nav">
+              <li class="divider-vertical"></li>
+
               <%= render partial: 'shared/navbar/notifications' %>
               <%= render partial: 'shared/navbar/channelSettings' %>
               <%= render partial: 'shared/navbar/adminMenu' %>
-
-              <li class="divider-vertical"></li>
-
-              <li>
-                <%= link_to new_channel_article_path(@channel) do %>
-                  <i class="icon icon-file"></i>
-                  <%= t "application.new_article" %>
-                <% end %>
-              </li>
             </ul>
 
             <%= render partial: 'shared/navbar/availability' %>
 
             <ul class="nav pull-right">
-              <%= form_tag channel_path(@channel), class: 'navbar-search', method: :get do %>
-                  <%= text_field_tag :query, params[:query], class: 'search-query',
-                    placeholder: t('application.search') %>
+              <% unless @channel.nil? %>
+                <%= form_tag channel_path(@channel), class: 'navbar-search', method: :get do %>
+                    <%= text_field_tag :query, params[:query], class: 'search-query',
+                      placeholder: t('application.search') %>
+                <% end %>
               <% end %>
 
               <li class="divider-vertical"></li>
@@ -109,62 +108,62 @@
         <div class="sidebar">
           <%= render partial: 'shared/navbar/channelSwitcher' %>
 
-          <% if @sidebar_links.length > 0 %>
+          <% unless @channel.nil? %>
+            <% if @sidebar_links.length > 0 %>
+              <div class="well">
+                <h3>
+                  <i class="icon icon-heart"></i>
+                  <%= t "application.bookmarks" %>
+                </h3>
+
+                <ul class="bookmarks nav nav-list">
+                  <% @sidebar_links.each do |link| %>
+                    <li>
+                      <% if !link.icon.empty? %>
+                        <i class="icon icon-<%= link.icon %> pull-left"></i>
+                      <% end %>
+
+                      <a href="<%= link.href %>" target="_blank">
+                        <%= link.name %>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="well">
               <h3>
-                <i class="icon icon-heart"></i>
-                <%= t "application.bookmarks" %>
+                <i class="icon icon-user"></i>
+                <%= t "application.user" %>
               </h3>
+              <div id="user-box">
+                <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
+              </div>
+            </div>
 
-              <ul class="bookmarks nav nav-list">
-                <% @sidebar_links.each do |link| %>
-                  <li>
-                    <% if !link.icon.empty? %>
-                      <i class="icon icon-<%= link.icon %> pull-left"></i>
-                    <% end %>
+            <div class="well advertising">
+              <div style="width: 200px; margin: 0 auto;">
+                <%= t('ad') %>
 
-                    <a href="<%= link.href %>" target="_blank">
-                      <%= link.name %>
-                    </a>
-                  </li>
-                <% end %>
-              </ul>
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-4129785061498511";
+                /* Subwire Sidebar */
+                google_ad_slot = "4641294977";
+                google_ad_width = 200;
+                google_ad_height = 200;
+                //-->
+                </script>
+                <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+              </div>
             </div>
           <% end %>
-
-          <div class="well">
-            <h3>
-              <i class="icon icon-user"></i>
-              <%= t "application.user" %>
-            </h3>
-            <div id="user-box">
-              <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
-            </div>
-          </div>
-
-          <div class="well advertising">
-            <div style="width: 200px; margin: 0 auto;">
-              <%= t('ad') %>
-
-              <script type="text/javascript"><!--
-              google_ad_client = "ca-pub-4129785061498511";
-              /* Subwire Sidebar */
-              google_ad_slot = "4641294977";
-              google_ad_width = 200;
-              google_ad_height = 200;
-              //-->
-              </script>
-              <script type="text/javascript"
-              src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-              </script>
-            </div>
-          </div>
         </div>
 
         <div class="maincontent">
-          <div class="well">
-            <%= yield %>
-          </div>
+          <%= yield %>
 
           <%= render partial: 'shared/footer' %>
         </div>

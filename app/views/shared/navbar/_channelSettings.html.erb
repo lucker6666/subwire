@@ -1,4 +1,4 @@
-<% if has_admin_privileges? %>
+<% if has_admin_privileges? && !@channel.nil? %>
   <li class="dropdown iconOnly">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
       rel="tooltip" title="<%=t 'tooltip.channelSettings' %>"
