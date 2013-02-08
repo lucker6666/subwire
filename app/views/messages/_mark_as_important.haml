@@ -1,3 +1,2 @@
-%div
-  %a{ :href => "javascript:void(0)", :"id" => "mai-link-#{message.id}", :"data-id" => "#{message.id}", :"data-is-important" => "#{message.is_important?}"}
-    = get_is_important_text message.is_important?
+%a{ :href => "javascript:void(0)", :"id" => "mai-link-#{message.id}", :"data-id" => "#{message.id}", :"data-is-important" => "#{message.is_important?}"}
+  = get_is_important_text message.is_important?

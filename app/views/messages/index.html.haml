@@ -19,15 +19,22 @@
     .message
       .head
         = avatar(message.user)
-        = render partial: 'mark_as_important', locals: {:message => message}
 
         %h2
           = link_to message.title, channel_message_path(@current_channel, message)
 
-          %nobr
-            = link_to message.user_name, user_path(message.user)
-            at
-            = l message.created_at, format: :short
+        %nobr
+          = link_to message.user_name, user_path(message.user)
+          at
+          = l message.created_at, format: :short
+
+        %nobr.links
+          = render partial: 'mark_as_important', locals: {:message => message}
+
+          %a{:href=>"#", :onclick=>"return commentToggle(this);"}
+            = message.comments.length
+            =t 'comments.plural'
+
 
       .body
         = message_teaser(message)
@@ -46,12 +53,6 @@
               %i{:class=>"icon icon-trash"}
 
       .comments
-        %a{:href=>"#", :onclick=>"return commentToggle(this);"}
-          %span{:class=>"icon-chevron-right"}
-            &nbsp
-          = message.comments.length
-          =t 'comments.plural'
-
         .commentContainer
           = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
 

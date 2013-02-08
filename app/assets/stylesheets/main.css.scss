@@ -353,55 +353,55 @@
  *  Messages
  */
 
-  table.message {
-    background-color: #fff;
-    border: 0;
-    box-shadow: 2px 2px 8px #888;
+  .message {
+    border-bottom: 1px solid #ccc;
+    margin: 0 -15px 15px;
+    padding: 0 15px 15px;
 
-    td img.avatar {
-      float: left;
-      margin-right: 10px;
-      margin-top: 4px;
-    }
-
-    td,
-    tr:hover td {
-      background-color: #fff;
-      padding: 10px;
-    }
-
-    table th.avatar {
-      width: 50px;
-    }
-
-    nobr {
-      display: block;
-      font-size: 0.8em;
-      color: #999;
-      margin: -5px 0 0;
-
-      &:after {
-        content: ".";
-        clear: both;
-        display: block;
-        height: 0;
-        visibility: hidden;
+    .head {
+      img.avatar {
+        float: left;
+        margin-right: 10px;
+        margin-top: 4px;
+        border-radius: 5px;
       }
-    }
 
-    h2 {
-      font-size: 1.5em;
-      line-height: 23px;
+      h2 {
+        font-size: 1em;
+        line-height: 1.3em;
+        padding-top: 1px;
+        margin: 0;
 
-      a {
-        color: #000;
+        a {
+          color: #333;
 
-        &:hover {
-          background-color: transparent;
-          text-decoration: none;
+          &:hover {
+            background-color: transparent;
+            text-decoration: none;
+          }
+        }
+      }
+
+      nobr {
+        display: block;
+        font-size: 0.8em;
+        color: #999;
+
+        &.links a {
+          display: inline-block;
+          margin-right: 1em;
+        }
+
+        + nobr:after {
+          content: ".";
+          clear: both;
+          display: block;
+          height: 0;
+          visibility: hidden;
         }
       }
     }
+
 
     .buttons {
       visibility: hidden;
@@ -526,7 +526,7 @@
 
     .well {
       background-color: transparent;
-	  margin-bottom: 0;
+	    margin-bottom: 0;
       border-radius: 0;
       border: none;
       box-shadow: none;
