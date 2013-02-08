@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :messages
   has_many :availabilities
-  has_many :notifications
   has_many :relationships
   has_many :channels, through: :relationships
 

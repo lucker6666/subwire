@@ -94,7 +94,6 @@ class ChannelsController < ApplicationController
   def destroy
     authorize! :destroy, @channel
 
-    @channel.notifications.destroy_all
     @channel.relationships.destroy_all
     @channel.messages.destroy_all
     @channel.destroy

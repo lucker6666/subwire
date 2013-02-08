@@ -218,8 +218,6 @@ de:
 
   application:
     no_admin: Du bist kein Admin!
-    notifications: Benachrichtigungen
-    notifications_unread: Keine ungelesenen Benachrichtigungen.
     no_permission_for_channel: Zugriff verweigert!
     user_management: Benutzer
     link_management: Lesezeichen
@@ -302,20 +300,6 @@ de:
     not_updated: Lesezeichen konnte nicht gespeichert werden.
     new: "Neues Lesezeichen erstellen"
 
-  notifications:
-    new_message: 'Neue Message von %{user}:'
-    edit_message: 'Message von %{user} bearbeitet:'
-    new_user: Benutzer %{user} wurde hinzugefügt
-    new_comment: 'Neuer Kommentar von %{user} zu:'
-    mark_as_read: 'Alle als gelesen markieren.'
-    mailer:
-      new_message: Message
-      new_comment: Kommentar
-      subject: 'Neuer %{notification} von %{user}'
-      hello: 'Hey %{user},'
-      body: '%{user} hat einen neuen %{notification} zu dem Thema "%{topic}" geschrieben.'
-      read_now: 'Jetzt lesen!'
-
   relationships:
     new: Benutzer zum Channel hinzufügen
     add: Benutzer zum Channel hinzufügen
@@ -344,7 +328,6 @@ de:
     gravatar: Dein Gravatar ist ein Avatarbild was dir von Seite zu Seite "folgt", was genau das bedeutet erfährst du auf http://gravatar.com
     channelSwitcher: Channel wechseln
     channelSettings: Channel-Einstellungen
-    notifications: Benachrichtigungen
 
   popover:
     channels_title: Channels
@@ -370,7 +353,6 @@ de:
       channel: Channel
       comment: Kommentar
       link: Lesezeichen
-      notification: Benachrichtigung
     attributes:
       link:
         name: Bezeichnung
@@ -386,15 +368,6 @@ de:
         lang: Sprache
         timezone: Zeitzone
         show_login_status: Statusanzeige
-      notification:
-        notification_type: Type
-        message: Nachricht
-        href: Verweisziel
-        is_read: Gelesen
-        user_id: Benutzer ID
-        channel_id: Channel ID
-        user: User
-        channel: Channel
       relationship:
         channel_id: Channel ID
         user_id: Benutzer ID
