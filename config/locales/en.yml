@@ -221,8 +221,6 @@ en:
 
   application:
     no_admin: You're not an admin!
-    notifications: Notifications
-    notifications_unread: There are no unread notifications.
     no_permission_for_channel: Permission denied!
     user_management: Users
     link_management: Bookmarks
@@ -304,17 +302,6 @@ en:
     not_updated: Link couldn't be saved.
     new: "Create new bookmark"
 
-  notifications:
-    new_message: 'Message created from %{user}:'
-    edit_message: 'Message edited from %{user}:'
-    new_user: User %{user} joined
-    new_comment: 'New Comment from %{user} to:'
-    mark_as_read: 'Mark all as read.'
-    mailer:
-      new_message: Message
-      new_comment: Comment
-      subject: 'New %{notification} from %{user}'
-
   relationships:
     new: Add user to channel
     add: Add user to channel
@@ -343,7 +330,6 @@ en:
     gravatar: Your Gravatar is an image that follows you from site to site appearing beside your name when you do things like comment or post on a blog. More Infos http://gravatar.com
     channelSwitcher: Switch channel
     channelSettings: Channel settings
-    notifications: Notifications
 
   popover:
     channels_title: Channels
@@ -369,7 +355,6 @@ en:
       channel: Channel
       comment: Comment
       link: Bookmark
-      notification: Notification
     attributes:
       link:
         name: Name
@@ -387,15 +372,6 @@ en:
         lang: Language
         timezone: Timezone
         show_login_status: Show online status
-      notification:
-        notification_type: Type
-        message: Message
-        href: Link target
-        is_read: Is read
-        user_id: User ID
-        channel_id: Channel ID
-        user: User
-        channel: Channel
       relationship:
         channel_id: Channel ID
         user_id: User ID

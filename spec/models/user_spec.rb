@@ -8,7 +8,6 @@ describe User do
       should have_many(:comments)
       should have_many(:messages)
       should have_many(:availabilities)
-      should have_many(:notifications)
       should have_many(:relationships)
       should have_many(:channels).through(:relationships)
     end

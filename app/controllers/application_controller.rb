@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
                 :set_locale,
                 :set_timezone,
                 :update_last_activity,
-                :cleanup,
-                :load_notifications
+                :cleanup
 
 
   ### Methods
@@ -63,16 +62,6 @@ class ApplicationController < ActionController::Base
 
       # Delete all availabilities, which are older then 1 day.
       availabilities = Availability.destroy_all(["date < ?", 1.day.ago])
-    end
-
-
-    # Call that everytime you change notifications
-    def load_notifications
-      if current_user
-        @all_notifications = Notification.find_all_relevant(current_channel, current_user)
-        @unread_notification_count = @all_notifications.where(:is_read => false).count
-        @all_channels_notifications = Notification.all_notifications_count(current_user.id)
-      end
     end
 
 

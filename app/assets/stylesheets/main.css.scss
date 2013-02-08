@@ -143,11 +143,6 @@
     }
   }
 
-
-  span.notification-margin {
-    margin-right:10px;
-  }
-
   .break {
     word-wrap: break-word;
     word-break: break-all;
@@ -256,17 +251,6 @@
     padding: 0.5em;
   }
 
-  .notification-dropdown a {
-    clear: both;
-    color: #333333;
-    display: block;
-    font-weight: normal;
-    line-height: 20px;
-    margin-right: 20px;
-    padding: 3px 20px;
-    white-space: nowrap;
-  }
-
   thead th.weekend {
     background-color: whiteSmoke;
   }
@@ -331,17 +315,6 @@
     position: absolute;
     right: 0;
     left: auto;
-  }
-
-  .notification-dropdown {
-    img {
-      float: left;
-      margin: 3px 8px 0 -9px;
-    }
-
-    li.read {
-      opacity: 0.5;
-    }
   }
 
   .availabilitites div.dropdown-menu {
