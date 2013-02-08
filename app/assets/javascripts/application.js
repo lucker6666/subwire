@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jgrowl.js
+//= require jquery.autogrow.min.js
 //= require ckeditor/init
 //= require_tree .
 
@@ -68,18 +69,9 @@ function switchAvailability(event) {
 }
 
 function commentToggle(a) {
-    a = $(a);
-    span = a.children('span');
+    var commentContainer = $(a).parents('.message').find('.commentContainer');
 
-    if (span.hasClass('icon-chevron-right')) {
-        a.siblings('.commentContainer').slideDown();
-        span.removeClass('icon-chevron-right');
-        span.addClass('icon-chevron-down');
-    } else {
-        a.siblings('.commentContainer').slideUp();
-        span.removeClass('icon-chevron-down');
-        span.addClass('icon-chevron-right');
-    }
+    commentContainer.toggle();
 
     return false;
 }
