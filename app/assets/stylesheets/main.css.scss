@@ -186,7 +186,7 @@
     border-top: 1px solid #aaa;
   }
 
-  input.article-title {
+  input.message-title {
     width: 99%;
   }
 
@@ -370,10 +370,10 @@
 
 
 /*
- *  Articles
+ *  Messages
  */
 
-  table.article {
+  table.message {
     background-color: #fff;
     border: 0;
     box-shadow: 2px 2px 8px #888;
@@ -462,7 +462,7 @@
   }
 
 
-  table.article {
+  table.message {
     .comments table {
       td,
       .comments table tr:hover td {

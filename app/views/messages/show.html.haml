@@ -1,39 +1,39 @@
 
-<script type="text/javascript" src="/javascript/articles.js"></script>
+<script type="text/javascript" src="/javascript/messages.js"></script>
 
 %h1 &nbsp;
 
-%table{:class => "table table-bordered table-condensed article"}
+%table{:class => "table table-bordered table-condensed message"}
   %tr
     %td
       .pull-right
-        - if has_admin_privileges? || @article.user == current_user
-          = link_to edit_article_path(@article), class: 'btn' do
+        - if has_admin_privileges? || @message.user == current_user
+          = link_to edit_message_path(@message), class: 'btn' do
             %i{:class=>"icon icon-pencil"}
 
 
-          = link_to article_path(@article),
+          = link_to message_path(@message),
             method: 'delete',
             class: 'btn btn-danger',
             data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do
 
             %i{:class=>"icon icon-trash"}
 
-      = avatar(@article.user)
-      = render partial: 'mark_as_important', locals: {:article => @article}
+      = avatar(@message.user)
+      = render partial: 'mark_as_important', locals: {:message => @message}
 
       %h2
-        = link_to @article.title, article_path(@article)
+        = link_to @message.title, message_path(@message)
 
       %nobr
-        = link_to @article.user_name, user_path(@article.user)
+        = link_to @message.user_name, user_path(@message.user)
         at
-        =l @article.created_at, format: :short
+        =l @message.created_at, format: :short
 
 
   %tr
     %td
-      = auto_link(@article.content.html_safe)
+      = auto_link(@message.content.html_safe)
 
       %br
       %br
@@ -46,7 +46,7 @@
           :javascript
             <!--
             google_ad_client = "ca-pub-4129785061498511";
-            /* Subwire Artikel */
+            /* Subwire Message */
             google_ad_slot = "0223575696";
             google_ad_width = 728;
             google_ad_height = 90;
@@ -58,5 +58,4 @@
   %tr
     %td
       .comments
-        = render partial: 'shared/comments', locals: {article: @article, comments: @article.newest_comments.take(5)}
-	
+        = render partial: 'shared/comments', locals: {message: @message, comments: @message.newest_comments.take(5)}

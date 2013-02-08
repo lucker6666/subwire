@@ -8,13 +8,13 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-      when /^the adding article form$/
-        '/articles/new'
-      when /^the article list$/
-        '/articles/'
-      when /^the article "(.*)"$/
-        article = Article.find_by_title $1
-        "/articles/#{article.id}/edit"
+      when /^the adding message form$/
+        '/messages/new'
+      when /^the message list$/
+        '/messages/'
+      when /^the message "(.*)"$/
+        message = message.find_by_title $1
+        "/messages/#{message.id}/edit"
       when /^the new relationship page$/
         "/relationships/new"
         #new_relationship_path

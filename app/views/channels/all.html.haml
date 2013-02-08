@@ -11,7 +11,7 @@
         %th= model_class.human_attribute_name(:defaultLanguage)
         %th= model_class.human_attribute_name(:planningTool)
         %th= model_class.human_attribute_name(:users)
-        %th= model_class.human_attribute_name(:articles)
+        %th= model_class.human_attribute_name(:messages)
         %th=t '.actions', default: t("helpers.actions")
 
     %tbody
@@ -22,7 +22,7 @@
           %td= channel.defaultLanguage
           %td= boolean_icon(channel.planningTool)
           %td= channel.user_count
-          %td= channel.article_count
+          %td= channel.message_count
           %td
             = link_to edit_channel_path(channel), class: 'btn btn-mini' do
               %i.icon.icon-pencil

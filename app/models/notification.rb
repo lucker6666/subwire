@@ -5,7 +5,7 @@
 #   notification_id      :integer    not null, primary key
 #   user_id              :integer
 #   channel_id          :integer    not null, index
-#   notification_type    :string      default => "article"
+#   notification_type    :string      default => "message"
 #   message              :string
 #   href                :string
 #   is_read              :boolean
@@ -62,7 +62,7 @@ class Notification < ActiveRecord::Base
     # Notify user via email if neccessary
     active = (user.last_activity != nil && user.last_activity >= Time.now - 120)
     notifications_enabled = Relationship.find_by_channel_and_user(channel, user).mail_notification
-    relevant_type = [:new_article, :new_comment].include?(notification_type.to_sym)
+    relevant_type = [:new_message, :new_comment].include?(notification_type.to_sym)
 
     if (active && notifications_enabled && relevant_type)
       NotifyMailer.notify(User.find(provokesUser), user, notification).deliver

@@ -35,7 +35,7 @@ describe Notification do
       end
 
       data = {
-        notification_type: :new_article,
+        notification_type: :new_message,
         provokesUser: @rels[1].user,
         subject: "Test Foo!",
         href: "/"

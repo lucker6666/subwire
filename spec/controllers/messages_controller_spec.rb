@@ -2,11 +2,11 @@ require 'spec_helper'
 
 # FIXME doesn't work. need an integration test here!
 
-describe ArticlesController do
+describe MessagesController do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
     @rel = @channel.relationships.first
-    @article = @channel.articles.first
+    @message = @channel.messages.first
 
     # Log in first
     sign_in @rel.user
@@ -15,27 +15,27 @@ describe ArticlesController do
   describe 'POST ajax_mark_as_important' do
     it "should be marked as important" do
 
-      post :ajax_mark_as_important, {:id => @article.id, :is_important => true}
+      post :ajax_mark_as_important, {:id => @message.id, :is_important => true}
 
       response.should be_success
       JSON.parse(response.body)['r'].should be_true
-      assigns[:article].is_important?.should be_true
+      assigns[:message].is_important?.should be_true
     end
   end
 
   describe "POST create" do
-    it "should create article with editable set on true" do
-      article = Article.new
-      article.id = 1
-      article.is_editable = true
-      article.should_receive(:save).and_return(true)
-      Article.should_receive(:new).and_return(article)
+    it "should create message with editable set on true" do
+      message = Message.new
+      message.id = 1
+      message.is_editable = true
+      message.should_receive(:save).and_return(true)
+      Message.should_receive(:new).and_return(message)
       Notification.stub(:notify_all_users)
 
       post :create
 
-      assigns[:article].should_not be_nil
-      assigns[:article].is_editable.should be_true
+      assigns[:message].should_not be_nil
+      assigns[:message].is_editable.should be_true
     end
   end
 
@@ -45,15 +45,15 @@ describe ArticlesController do
     end
 
     it "should create comment containing summary change" do
-      post :update, :id => @article.id, :article => {:content => 'test'}, :change_summary => 'short summary'
+      post :update, :id => @message.id, :message => {:content => 'test'}, :change_summary => 'short summary'
 
-      Comment.find_all_by_article_id(@article.id).should have(1).comment
+      Comment.find_all_by_message_id(@message.id).should have(1).comment
     end
 
     it "should not create due to empty summary change" do
-      post :update, :id => @article.id, :article => {:content => 'test'}, :change_summary => nil
+      post :update, :id => @message.id, :message => {:content => 'test'}, :change_summary => nil
 
-      Comment.find_all_by_article_id(@article.id).should be_empty
+      Comment.find_all_by_message_id(@message.id).should be_empty
     end
   end
 
@@ -69,17 +69,17 @@ describe ArticlesController do
   #         sign_in @rel.user
   #       end
 
-  #       it "should render articles index of that channel" do
-  #         response.should render_template('articles/index')
+  #       it "should render messages index of that channel" do
+  #         response.should render_template('messages/index')
   #       end
 
-  #       it "should assign @articles variable" do
-  #         assigns[:articles].should_not be_nil
+  #       it "should assign @messages variable" do
+  #         assigns[:messages].should_not be_nil
   #       end
 
-  #       it "should assign only articles of that channel to @articles" do
-  #         assigns[:articles].each do |article|
-  #           article.channel_id.should eq current_channel.id
+  #       it "should assign only messages of that channel to @messages" do
+  #         assigns[:messages].each do |message|
+  #           message.channel_id.should eq current_channel.id
   #         end
   #       end
 

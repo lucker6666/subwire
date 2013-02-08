@@ -30,21 +30,21 @@ namespace :subwire do
         rel.save!
     end
 
-    desc "Add a default article"
-    task default_article: :environment do
-        article = Article.new(
+    desc "Add a default message"
+    task default_message: :environment do
+        message = Message.new(
             title: "Welcome to your new subwire installation!",
             content: "Hi, this is your new and fresh subwire installation. Have fun! :)",
         )
 
-        article.user = User.first
-        article.channel = Channel.first
+        message.user = User.first
+        message.channel = Channel.first
 
-        article.save!
+        message.save!
     end
 
     desc "Run all setup tasks"
-    task setup: [:default_channel, :default_user, :default_article]
+    task setup: [:default_channel, :default_user, :default_message]
 
     desc "Run all test tasks"
     task test: []

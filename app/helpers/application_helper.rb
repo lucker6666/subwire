@@ -1,11 +1,11 @@
 module ApplicationHelper
   include Session
 
-  # Truncate article
-  def article_teaser(article)
-    content = auto_link(article.content)
+  # Truncate message
+  def message_teaser(message)
+    content = auto_link(message.content)
     more_to_read = '(...)<br />' +
-      link_to(t('application.more_to_read'), article_path(article))
+      link_to(t('application.more_to_read'), message_path(message))
     HTML_Truncator.truncate(content, 120, ellipsis: more_to_read).strip.html_safe
   end
 

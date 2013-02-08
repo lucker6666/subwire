@@ -16,7 +16,7 @@ class Channel < ActiveRecord::Base
   attr_accessible :name, :defaultLanguage, :planningTool
 
   ### Associations
-  has_many :articles
+  has_many :messages
   has_many :availabilities
   has_many :notifications
   has_many :relationships
@@ -57,8 +57,8 @@ class Channel < ActiveRecord::Base
     )
   end
 
-  def article_count
-    Article.find_all_by_channel_id(id).length
+  def message_count
+    Message.find_all_by_channel_id(id).length
   end
 
   def user_count

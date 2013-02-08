@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   ### Associations
   has_many :comments
-  has_many :articles
+  has_many :messages
   has_many :availabilities
   has_many :notifications
   has_many :relationships

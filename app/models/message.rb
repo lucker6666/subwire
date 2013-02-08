@@ -1,8 +1,8 @@
 #   Schema
 # ==========
-#   table: articles
+#   table: messages
 #
-#   article_id  :integer    not null, primary key
+#   message_id  :integer    not null, primary key
 #   title       :string
 #   content     :text
 #   user_id      :integer
@@ -10,12 +10,9 @@
 #   created_at  :datetime    not null
 #   updated_at  :datetime    not null
 #
-# TODO: index for user_id?
 # TODO: user_id, title -> not_null?
 
-class Article < ActiveRecord::Base
-
-
+class Message < ActiveRecord::Base
   ### Attributes
   attr_accessible :content, :title, :is_editable
 
@@ -30,12 +27,15 @@ class Article < ActiveRecord::Base
   belongs_to :channel
   has_many :comments
 
+  # Law of demeter delegations
+  delegate :name, :to => :user, :prefix => true
+
   ### Validations
   # Make sure, title and content are not empty
   validates :title, :content, presence: true
 
   def newest_comments
-    Comment.newest.find_all_by_article_id self.id
+    Comment.newest.find_all_by_message_id self.id
   end
 
   class << self

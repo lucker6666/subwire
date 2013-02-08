@@ -223,7 +223,7 @@ de:
     no_permission_for_channel: Zugriff verweigert!
     user_management: Benutzer
     link_management: Lesezeichen
-    new_article: Neuer Artikel
+    new_message: Neue Message
     your_profile: Dein Profil
     edit_your_profile: Einstellungen
     logout: Ausloggen
@@ -262,16 +262,16 @@ de:
     destroyed: Der Channel wurde erfolgreich gelöscht.
     overview: Channel-Übersicht
 
-  articles:
-    created: Artikel wurde erfolgreich erstellt.
-    not_created: Artikel konnte nicht erstellt werden.
-    updated: Artikel aktualisiert.
-    not_updated: Artikel konnte nicht gespeichert werden.
-    destroyed: Artikel erfolgreich gelöscht.
+  messages:
+    created: Message wurde erfolgreich erstellt.
+    not_created: Message konnte nicht erstellt werden.
+    updated: Message aktualisiert.
+    not_updated: Message konnte nicht gespeichert werden.
+    destroyed: Message erfolgreich gelöscht.
     standard_title: Herzlich Willkommen in Deinem neuen Channel!
     standard_content: Nun kannst du weitere Benutzer in diesen Channel einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
     search_result: Suchergebnis
-    search_counter: "Für deine Suche nach '%{query}' wurden %{count} Artikel gefunden."
+    search_counter: "Für deine Suche nach '%{query}' wurden %{count} Messages gefunden."
 
   users:
     add: Benutzer hinzufügen
@@ -284,7 +284,7 @@ de:
     password_lost: Passwort vergessen?
     assignedCount: Zugewiesene Channels
     adminCount: Eigene Channels
-    articlesCount: Artikel gesamt
+    messagesCount: Messages gesamt
     commentsCount: Kommentare gesamt
     destroyed: Der Benutzer wurde erfolgreich gelöscht
     forgot_password: Passwort vergessen?
@@ -303,13 +303,13 @@ de:
     new: "Neues Lesezeichen erstellen"
 
   notifications:
-    new_article: 'Neuer Artikel von %{user}:'
-    edit_article: 'Artikel von %{user} bearbeitet:'
+    new_message: 'Neue Message von %{user}:'
+    edit_message: 'Message von %{user} bearbeitet:'
     new_user: Benutzer %{user} wurde hinzugefügt
     new_comment: 'Neuer Kommentar von %{user} zu:'
     mark_as_read: 'Alle als gelesen markieren.'
     mailer:
-      new_article: Artikel
+      new_message: Message
       new_comment: Kommentar
       subject: 'Neuer %{notification} von %{user}'
       hello: 'Hey %{user},'
@@ -348,7 +348,7 @@ de:
 
   popover:
     channels_title: Channels
-    channels_content: Eine Channel ist ein abgeschlossener Teil des Systems mit eigenen Artikeln, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst einen Channel für deine Firma, deinen Verein, deine Clique, etc. haben. Nur die Benutzer, die zu einem Channel eningeladen wurden, haben auch Zugriff auf diesen Channel.
+    channels_content: Eine Channel ist ein abgeschlossener Teil des Systems mit eigenen Messages, Kommentaren, Benutzern, Lesezeichen, usw. Du kannst einen Channel für deine Firma, deinen Verein, deine Clique, etc. haben. Nur die Benutzer, die zu einem Channel eningeladen wurden, haben auch Zugriff auf diesen Channel.
     relationship_title: Benutzer
     relationship_content: Hier kannst du einen Benutzer zu diesem Channel hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort diesem Channel zugeordnet.
     links_title: Lesezeichen
@@ -364,7 +364,7 @@ de:
 
   activerecord:
     models:
-      article: Artikel
+      message: Message
       user: Benutzer
       relationship: Benutzer
       channel: Channel
