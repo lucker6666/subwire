@@ -13,10 +13,10 @@
 
 .well
   %h1
-    = "#{t('messages')}:"
+    Messages
 
   - @messages.each do |message|
-    .well.message
+    .message
       .head
         = avatar(message.user)
         = render partial: 'mark_as_important', locals: {:message => message}
