@@ -10,8 +10,8 @@
 
           <td>
             <div class="commentButtons">
-              <% if current_user.is_admin? || comment.user == current_user %>
-                <%= link_to message_comment_path(message, comment),
+              <% if can?(:admin, :all) || comment.user == current_user %>
+                <%= link_to channel_message_comment_path(@current_channel, message, comment),
                         method: :delete,
                         data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do %>
                   <i class="icon icon-remove"></i>
@@ -55,7 +55,7 @@
 
     <br />
 
-    <%= form_for([@channel, message, message.comments.build]) do |f| %>
+    <%= form_for([@current_channel, message, message.comments.build]) do |f| %>
         <%= f.text_area :content, { class: "span9 expand comment", autocomplete: :off} %>
 
         <br />

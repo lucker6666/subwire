@@ -1,5 +1,4 @@
 class ChannelsController < ApplicationController
-  before_filter :load_channel, only: [:show, :edit, :update, :destroy]
   before_filter :load_channels, only: [:index]
 
   # GET /channels
@@ -10,20 +9,20 @@ class ChannelsController < ApplicationController
 
   # GET /channels/:id
   def show
-    authorize! :read, @channel
-    redirect_to channel_messages_path(@channel)
+    authorize! :read, @current_channel
+    redirect_to channel_messages_path(@current_channel)
   end
 
 
   # GET /channels/new
   def new
-    @channel = Channel.new
+    @current_channel = Channel.new
   end
 
 
   # GET /channels/:id/edit
   def edit
-    authorize! :update, @channel
+    authorize! :update, @current_channel
   end
 
 
@@ -36,31 +35,31 @@ class ChannelsController < ApplicationController
     params[:channel].delete :advertising
 
     # Create channel, set advertising setting and save
-    @channel = Channel.new(params[:channel])
-    @channel.advertising = advertising
+    @current_channel = Channel.new(params[:channel])
+    @current_channel.advertising = advertising
 
-    if @channel.save
+    if @current_channel.save
       # The relationship between current user and the new channel
       rel = Relationship.new
       rel.user = current_user
-      rel.channel = @channel
+      rel.channel = @current_channel
       rel.admin = true
       rel.save
 
       # Default message
       message = Message.new
       message.user = current_user
-      message.channel = @channel
-      message.title = t('messages.standard_title', locale: @channel.defaultLanguage)
-      message.content = t('messages.standard_content', locale: @channel.defaultLanguage)
+      message.channel = @current_channel
+      message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
+      message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
       message.save
 
       feedback t('channels.created')
-      redirect_to channel_path(@channel)
+      redirect_to channel_path(@current_channel)
     else
       # Couldn't save channel
       feedback t('channels.not_created')
-      errors_to_feedback(@channel)
+      errors_to_feedback(@current_channel)
       render action: :new
     end
   end
@@ -68,35 +67,35 @@ class ChannelsController < ApplicationController
 
   # PUT /channels/1
   def update
-    authorize! :update, @channel
+    authorize! :update, @current_channel
 
     # Make sure that advertising is not set to false while user is not a superadmin
-    @channel.advertising = params[:channel][:advertising]
-    if !params[:channel][:advertising].nil? && !can?(:disable_ads, @channel)
-      @channel.advertising = true
+    @current_channel.advertising = params[:channel][:advertising]
+    if !params[:channel][:advertising].nil? && !can?(:disable_ads, @current_channel)
+      @current_channel.advertising = true
     end
 
     params[:channel].delete :advertising
 
     # Update channel
-    if @channel.update_attributes(params[:channel])
+    if @current_channel.update_attributes(params[:channel])
       feedback t('channels.updated')
     else
       feedback t('channels.not_updated')
-      errors_to_feedback(@channel)
+      errors_to_feedback(@current_channel)
     end
 
-    redirect_to channel_path(@channel)
+    redirect_to channel_path(@current_channel)
   end
 
 
   # DELETE /channels/1
   def destroy
-    authorize! :destroy, @channel
+    authorize! :destroy, @current_channel
 
-    @channel.relationships.destroy_all
-    @channel.messages.destroy_all
-    @channel.destroy
+    @current_channel.relationships.destroy_all
+    @current_channel.messages.destroy_all
+    @current_channel.destroy
 
     feedback t('channels.destroyed')
     redirect_to channels_path

@@ -8,7 +8,7 @@
       <% channels.each do |channel| %>
         <li>
           <%= link_to channel_path(channel), {
-            class: (channel == current_channel ? "active" : "")} do
+            class: (channel == @current_channel ? "active" : "")} do
           %>
             <%= channel.name %>
           <% end %>

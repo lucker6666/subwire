@@ -18,7 +18,7 @@ module ApplicationHelper
       false
     end
 
-    current_channel.advertising
+    @current_channel && @current_channel.advertising
   end
 
   # Convert String to jGrowl Notification JS Code
