@@ -1,11 +1,9 @@
 module ApplicationHelper
-  include Session
-
   # Truncate message
   def message_teaser(message)
     content = auto_link(message.content)
     more_to_read = '(...)<br />' +
-      link_to(t('application.more_to_read'), message_path(message))
+      link_to(t('application.more_to_read'), channel_message_path(message.channel, message))
     HTML_Truncator.truncate(content, 120, ellipsis: more_to_read).strip.html_safe
   end
 

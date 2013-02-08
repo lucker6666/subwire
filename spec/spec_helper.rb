@@ -28,7 +28,6 @@ RSpec.configure do |config|
   # Include helpers
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
-  config.include(Subwire::RSpecHelper)
 
   # Fixture path
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
