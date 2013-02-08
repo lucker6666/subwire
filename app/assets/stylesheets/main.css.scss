@@ -62,13 +62,20 @@
   .well {
     background-color: #fff;
     min-height: 20px;
-    padding: 19px;
+    padding: 15px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     @include box_shadow($box_shadow);
+
+    h1 {
+      border-bottom: 1px solid #ccc;
+      margin: 0 -15px 15px;
+      padding: 0 15px 15px;
+      font-size: 1.5em;
+    }
 
     .well {
     	background-color: transparent;
@@ -129,10 +136,6 @@
 
   div.maincontent {
     margin-left: 270px;
-
-    h1 {
-
-    }
   }
 
   .pagination {
