@@ -27,7 +27,7 @@
         = render partial: 'mark_as_important', locals: {:message => message}
 
         %h2
-          = link_to message.title, message_path(message)
+          = link_to message.title, channel_message_path(@channel, message)
 
 
         %nobr
@@ -41,11 +41,11 @@
 
         .buttons
           - if has_admin_privileges? || message.user == current_user
-            = link_to edit_message_path(message), class: 'btn btn-mini' do
+            = link_to edit_channel_message_path(@channel, message), class: 'btn btn-mini' do
               %i{:class=>"icon icon-pencil"}
 
 
-            = link_to message_path(message),
+            = link_to channel_message_path(@channel, message),
               method: :delete,
               data: {confirm: t('.confirm', default: t("helpers.links.confirm"))},
               class: 'btn btn-mini btn-danger' do

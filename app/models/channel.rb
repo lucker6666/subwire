@@ -38,6 +38,14 @@ class Channel < ActiveRecord::Base
 
   ### Methods
 
+  def self.find_by_id_or_permalink(param)
+    if param.to_s =~ /^\d+$/
+      find_by_id(param)
+    else
+      find_by_permalink(param)
+    end
+  end
+
   def self.find_all_where_user_is_admin(user)
     find(
       :all,

@@ -55,7 +55,7 @@
 
     <br />
 
-    <%= form_for([message, message.comments.build]) do |f| %>
+    <%= form_for([@channel, message, message.comments.build]) do |f| %>
         <%= f.text_area :content, { class: "span9 expand comment", autocomplete: :off} %>
 
         <br />
