@@ -135,6 +135,17 @@ class ApplicationController < ActionController::Base
       )
     end
 
+    def load_channel
+      if channel_id = params[:channel_id] || params[:id]
+        unless @channel = Channel.find_by_id_or_permalink(project_id)
+          feedback t('not_found.project', :id => project_id)
+          redirect_to channels_path
+        end
+
+        authorize! :read, @channel
+      end
+    end
+
 
 
   private

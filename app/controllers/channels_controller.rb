@@ -101,13 +101,4 @@ class ChannelsController < ApplicationController
     feedback t('channels.destroyed')
     redirect_to channels_path
   end
-
-
-  private
-
-    # Filter to load the requested channel
-    def load_channel
-      @channel = Channel.find_by_permalink(params[:id])
-      authorize! :read, @channel
-    end
 end
