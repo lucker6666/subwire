@@ -5,7 +5,7 @@ $(document).ready(function() {
         var is_important = $(this).attr('data-is-important') != 'true';
         var id = $(this).attr('data-id');
 
-        $.post('/ajax/article/mark_as_important',
+        $.post('/ajax/message/mark_as_important',
         {
             id: id,
             is_important: is_important

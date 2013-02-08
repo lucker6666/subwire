@@ -168,7 +168,7 @@ function loadAllComments(a_id) {
     $.get('/ajax/comments/load_all_comments/' + a_id,
     {},
     function(html) {
-        $('#article-comments-' + a_id).html(html);
+        $('#message-comments-' + a_id).html(html);
     });
 }
 

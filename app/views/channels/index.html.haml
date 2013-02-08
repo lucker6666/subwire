@@ -1,6 +1,6 @@
 - model_class = Channel.new.class
 
-- if Article.where(user_id: current_user.id).length == 0 && Comment.where(user_id: current_user.id).length
+- if Message.where(user_id: current_user.id).length == 0 && Comment.where(user_id: current_user.id).length
   %div{ :class => "alert alert-info clearfix"}
     %h2{:class => "pull-left"}
       %i{:class => "icon icon-question-sign"}

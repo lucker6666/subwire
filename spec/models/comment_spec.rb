@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Comment do
   describe "Associations" do
-    it { should belong_to(:article) }
+    it { should belong_to(:message) }
     it { should belong_to(:user) }
   end
 
@@ -16,11 +16,11 @@ describe Comment do
 
   describe :newest_comments do
     before do
-      @article = FactoryGirl.create(:channel).articles.first
+      @message = FactoryGirl.create(:channel).messages.first
     end
 
-    it "sould return all comments of that article" do
-      @article.newest_comments.should eq(Comment.newest.find_all_by_article_id(@article.id))
+    it "sould return all comments of that message" do
+      @message.newest_comments.should eq(Comment.newest.find_all_by_message_id(@message.id))
     end
   end
 end

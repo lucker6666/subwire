@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Channel do
   describe "Associations" do
-    it { should have_many(:articles) }
+    it { should have_many(:messages) }
     it { should have_many(:availabilities) }
     it { should have_many(:notifications) }
     it { should have_many(:relationships) }
@@ -21,7 +21,7 @@ describe Channel do
   end
 
   describe "Respond to" do
-    it { should respond_to(:article_count) }
+    it { should respond_to(:message_count) }
     it { should respond_to(:notification_count) }
     it { should respond_to(:user_count) }
   end
@@ -35,13 +35,13 @@ describe Channel do
     end
   end
 
-  describe :article_count do
-    it "should count all his articles" do
+  describe :message_count do
+    it "should count all his messages" do
       channel = FactoryGirl.create(:channel)
       rel = channel.relationships.first
 
-      articles = Article.find_all_by_channel_id(channel.id).length
-      rel.channel.article_count.should eq(articles)
+      messages = Message.find_all_by_channel_id(channel.id).length
+      rel.channel.message_count.should eq(messages)
     end
   end
 
@@ -60,7 +60,7 @@ describe Channel do
       @rels = @channel.relationships
 
       data = {
-        notification_type: :new_article,
+        notification_type: :new_message,
         provokesUser: @rels[1].user,
         subject: "Test",
         href: "/"

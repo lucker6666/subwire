@@ -46,13 +46,13 @@ class ChannelsController < ApplicationController
       rel.admin = true
       rel.save
 
-      # Default article
-      article = Article.new
-      article.user = current_user
-      article.channel = @channel
-      article.title = t('articles.standard_title', locale: @channel.defaultLanguage)
-      article.content = t('articles.standard_content', locale: @channel.defaultLanguage)
-      article.save
+      # Default message
+      message = Message.new
+      message.user = current_user
+      message.channel = @channel
+      message.title = t('messages.standard_title', locale: @channel.defaultLanguage)
+      message.content = t('messages.standard_content', locale: @channel.defaultLanguage)
+      message.save
 
       feedback t('channels.created')
       redirect_to channel_path(@channel)
@@ -95,7 +95,7 @@ class ChannelsController < ApplicationController
 
     @channel.notifications.destroy_all
     @channel.relationships.destroy_all
-    @channel.articles.destroy_all
+    @channel.messages.destroy_all
     @channel.destroy
 
     feedback t('channels.destroyed')

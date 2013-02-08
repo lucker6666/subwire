@@ -1,8 +1,8 @@
 #   Schema
 # ==========
-#   table: articles
+#   table: messages
 #
-#   article_id  :integer    not null, primary key
+#   message_id  :integer    not null, primary key
 #   title       :string
 #   content     :text
 #   user_id      :integer
@@ -12,7 +12,7 @@
 #
 # TODO: user_id, title -> not_null?
 
-class Article < ActiveRecord::Base
+class Message < ActiveRecord::Base
   ### Attributes
   attr_accessible :content, :title, :is_editable
 
@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
   validates :title, :content, presence: true
 
   def newest_comments
-    Comment.newest.find_all_by_article_id self.id
+    Comment.newest.find_all_by_message_id self.id
   end
 
   class << self

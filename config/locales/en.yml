@@ -226,7 +226,7 @@ en:
     no_permission_for_channel: Permission denied!
     user_management: Users
     link_management: Bookmarks
-    new_article: New Article
+    new_message: New Message
     your_profile: Your Profile
     edit_your_profile: Settings
     logout: Logout
@@ -265,16 +265,16 @@ en:
     destroyed: Channel deleted!
     overview: Back to overview
 
-  articles:
-    created: Article was successfully created.
-    not_created: Article couldn't be created.
-    updated: Article was successfully updated.
-    not_updated: Article couldn't be saved.
-    destroyed: Article deleted
+  messages:
+    created: Message was successfully created.
+    not_created: Message couldn't be created.
+    updated: Message was successfully updated.
+    not_updated: Message couldn't be saved.
+    destroyed: Message deleted
     standard_title: Welcome in your new Channel!
     standard_content: Now you may add further users to that channel and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
     search_result: Search Result
-    search_counter: "Your search ('%{query}') match %{count} Articles"
+    search_counter: "Your search ('%{query}') match %{count} Messages"
 
   users:
     add: Add user
@@ -286,7 +286,7 @@ en:
     password_error: The passwords must be identical
     assignedCount: Assigned channels
     adminCount: Owns channels
-    articlesCount: Articles total
+    messagesCount: Messages total
     commentsCount: Comments total
     destroyed: User deleted
     forgot_password: Forgot your password?
@@ -305,13 +305,13 @@ en:
     new: "Create new bookmark"
 
   notifications:
-    new_article: 'Article created from %{user}:'
-    edit_article: 'Article edited from %{user}:'
+    new_message: 'Message created from %{user}:'
+    edit_message: 'Message edited from %{user}:'
     new_user: User %{user} joined
     new_comment: 'New Comment from %{user} to:'
     mark_as_read: 'Mark all as read.'
     mailer:
-      new_article: Article
+      new_message: Message
       new_comment: Comment
       subject: 'New %{notification} from %{user}'
 
@@ -347,7 +347,7 @@ en:
 
   popover:
     channels_title: Channels
-    channels_content: An channel is a completely enclosed part of the system containing its own articles, comments, assigned users, bookmarks, etc. You may have an channel for your company, one for your clique and one for your private project team. Only the users, which are assigned to an channel, are able to see the content of it.
+    channels_content: An channel is a completely enclosed part of the system containing its own messages, comments, assigned users, bookmarks, etc. You may have an channel for your company, one for your clique and one for your private project team. Only the users, which are assigned to an channel, are able to see the content of it.
     relationship_title: User
     relationship_content: You can add a user to your channel. If the user is not registrated on subwire.net he gets an e-mail and will be assigned immediately after the registration of your channel.
     links_title: Bookmarks
@@ -363,7 +363,7 @@ en:
 
   activerecord:
     models:
-      article: Article
+      message: Message
       user: User
       relationship: User
       channel: Channel

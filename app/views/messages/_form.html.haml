@@ -1,0 +1,20 @@
+= form_for @message, html: { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.text_field :title, { class: 'text_field message-title', placeholder:  t("helpers.title"), autocomplete: :off }
+
+  .control-group
+    = f.cktext_area :content
+
+  - if @message.new_record?
+    .control-group
+      = f.label :is_editable, class: 'control-label'
+
+      .controls
+        = f.check_box :is_editable, {class: 'check_box'}
+  - else
+    .control-group
+      = text_field_tag :change_summary, '', { class: 'text_field message-title', placeholder: "Change summary", autocomplete: :off }
+
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), messages_path, class: 'btn'

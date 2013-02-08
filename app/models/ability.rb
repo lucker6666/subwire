@@ -12,7 +12,7 @@ class Ability
 
       if user.is_admin?
         # Superadmin
-        can :manage, Article
+        can :manage, Message
         can :manage, Availability
         can :manage, Channel
         can :manage, Comment
@@ -21,18 +21,18 @@ class Ability
         can :manage, Relationship
         can :manage, User
         can :index,  User
-        can :disable_ads, channel
+        can :disable_ads, Channel
       else
         # Default user
 
         unless channel.nil?
-          # Article
+          # Message
 
-          can [:manage], Article do |article|
-            Relationship.exists?(article.channel, user)
+          can [:manage], Message do |message|
+            Relationship.exists?(message.channel, user)
           end
 
-          can [:update, :destroy, :create], Article, :user_id => user.id
+          can [:update, :destroy, :create], Message, :user_id => user.id
 
 
           # Availability
@@ -51,14 +51,14 @@ class Ability
           end
 
           can [:read], Channel do |channel|
-            Relationship.exists?(article.channel, user)
+            Relationship.exists?(message.channel, user)
           end
 
 
           # Comment
 
           can [:manage], Comment do |comment|
-            Relationship.exists?(comment.article.channel, user)
+            Relationship.exists?(comment.message.channel, user)
           end
 
           can [:update, :destroy, :create], Comment, :user_id => user.id
@@ -90,15 +90,16 @@ class Ability
           if @rs.admin
             # Admin of current channel
 
-            can [:manage], [Article, Link, Relationship], :channel_id => @rs.channel.id
+            can [:manage], [Message, Link, Relationship], :channel_id => @rs.channel.id
             can [:update, :destroy], Channel, channel_id => @rs.channel.id
 
             can [:manage], Comment do |channel|
-              channel.article.channel == @rs.channel
+              channel.message.channel == @rs.channel
             end
           end
         else
-          # Without current channel ... should never be the case
+          # Without current channel
+          # TODO
         end
       end
     end

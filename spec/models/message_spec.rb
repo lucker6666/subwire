@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Article do
+describe Message do
   describe "Associations" do
     it { should belong_to(:channel) }
     it { should belong_to(:user) }

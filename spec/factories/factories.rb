@@ -25,7 +25,7 @@ FactoryGirl.define do
     after(:create) do |channel|
       FactoryGirl.create_list(:relationship, 3, channel: channel)
       FactoryGirl.create(:admin_relationship, channel: channel)
-      FactoryGirl.create(:article, channel: channel)
+      FactoryGirl.create(:message, channel: channel)
     end
   end
 
@@ -43,14 +43,14 @@ FactoryGirl.define do
 
 
 
-  ### Article factories
+  ### Message factories
 
-  factory :article do
+  factory :message do
     content "test"
     title "test"
 
-    after(:create) do |article|
-      FactoryGirl.create_list(:comment, 2, article: article, user: article.user)
+    after(:create) do |message|
+      FactoryGirl.create_list(:comment, 2, message: message, user: message.user)
     end
   end
 

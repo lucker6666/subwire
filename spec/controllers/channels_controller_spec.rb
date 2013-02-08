@@ -22,7 +22,7 @@ describe ChannelsController do
       end
 
       it "should redirect to aritcle overview" do
-        response.should redirect_to(articles_path)
+        response.should redirect_to(messages_path)
       end
     end
 

@@ -1,0 +1,67 @@
+<script type="text/javascript" src="/javascript/messages.js"></script>
+
+- model_class = Message.new.class
+%h1
+  = t '.title', default: model_class.model_name.human.pluralize
+
+- if params[:query].present?
+
+  %table{:class=>"table table-bordered table-condensed message"}
+    %tr>
+      %td>
+        %h2>
+          = "#{t('messages.search_result')}:"
+
+    %tr>
+      %td>
+        = t('messages.search_counter', query: params[:query], count: @messages.length)
+
+
+- @messages.each do |message|
+  %table{:class=>"table table-bordered table-condensed message"}
+    %tr
+      %td
+
+        = avatar(message.user)
+
+        = render partial: 'mark_as_important', locals: {:message => message}
+
+        %h2
+          = link_to message.title, message_path(message)
+
+
+        %nobr
+          = link_to message.user_name, user_path(message.user)
+          at
+          = l message.created_at, format: :short
+
+    %tr
+      %td
+        = message_teaser(message)
+
+        .buttons
+          - if has_admin_privileges? || message.user == current_user
+            = link_to edit_message_path(message), class: 'btn btn-mini' do
+              %i{:class=>"icon icon-pencil"}
+
+
+            = link_to message_path(message),
+              method: :delete,
+              data: {confirm: t('.confirm', default: t("helpers.links.confirm"))},
+              class: 'btn btn-mini btn-danger' do
+
+              %i{:class=>"icon icon-trash"}
+
+    %tr
+      %td
+        .comments
+          %a{:href=>"#", :onclick=>"return commentToggle(this);"}
+            %span{:class=>"icon-chevron-right"}
+              &nbsp
+            = message.comments.length
+            =t 'comments.plural'
+
+          .commentContainer
+            = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
+
+= will_paginate @messages

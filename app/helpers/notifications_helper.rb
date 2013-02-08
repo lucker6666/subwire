@@ -4,7 +4,7 @@ module NotificationsHelper
     icon = "file"
 
     case notification.notification_type.to_sym
-      when :edit_article
+      when :edit_message
         icon = "pencil"
       when :new_comment
         icon = "comment"
