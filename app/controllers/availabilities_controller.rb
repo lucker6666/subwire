@@ -4,7 +4,7 @@ class AvailabilitiesController < ApplicationController
 
   # POST /availabilities/set
   def set
-    if can?(:create, :update), Availability
+    if can?([:create, :update], Availability)
       paramSet = {
         date: params[:date],
         value: params[:value]
