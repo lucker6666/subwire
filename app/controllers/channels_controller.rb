@@ -11,6 +11,7 @@ class ChannelsController < ApplicationController
   # GET /channels/:id
   def show
     authorize! :read, @channel
+    redirect_to channel_messages_path(@channel)
   end
 
 

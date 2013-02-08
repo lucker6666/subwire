@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   # globals:              Set some global variables and actions which have
   #                       to be done on each request
   # set_timezone:         Determines the current timezone
-  before_filter :finish_invitation,
+  before_filter :log_in!,
+                :finish_invitation,
                 :set_locale,
-                :globals,
                 :set_timezone,
                 :update_last_activity,
                 :cleanup,
@@ -47,6 +47,12 @@ class ApplicationController < ActionController::Base
         # Set last ctivity
         current_user.last_activity = Time.now
         current_user.save
+      end
+    end
+
+    def log_in!
+      unless devise_controller?
+        #redirect_to "/"
       end
     end
 
@@ -137,12 +143,16 @@ class ApplicationController < ActionController::Base
 
     def load_channel
       if channel_id = params[:channel_id] || params[:id]
-        unless @channel = Channel.find_by_id_or_permalink(project_id)
-          feedback t('not_found.project', :id => project_id)
+        unless @channel = Channel.find_by_id_or_permalink(channel_id)
+          feedback t('not_found.project', :id => channel_id)
           redirect_to channels_path
         end
 
         authorize! :read, @channel
+
+        @sidebar_users = Relationship.find_all_users_by_channel(@channel).sort_by(&:name)
+        @sidebar_links = Link.find_all_by_channel_id(@channel.id)
+        @subwireTitle = @channel.name
       end
     end
 
