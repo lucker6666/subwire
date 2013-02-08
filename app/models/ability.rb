@@ -21,6 +21,7 @@ class Ability
         can :manage, User
         can :index,  User
         can :disable_ads, Channel
+        can :admin, :all
       else
         # Default user
 
@@ -50,7 +51,7 @@ class Ability
           end
 
           can [:read], Channel do |channel|
-            Relationship.exists?(message.channel, user)
+            Relationship.exists?(channel, user)
           end
 
 

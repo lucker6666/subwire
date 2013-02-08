@@ -1,4 +1,4 @@
-<% if has_superadmin_privileges? %>
+<% if can?(:admin, :all) %>
   <li class="dropdown iconOnly">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
       rel="tooltip" title="Admin"
@@ -16,7 +16,7 @@
       </li>
 
       <li>
-        <%= link_to "/channels/all" do %>
+        <%= link_to channels_path do %>
           <i class="icon icon-list-alt"></i>
           <%= t('application.all_channels') %>
         <% end %>

@@ -54,7 +54,7 @@ class Relationship < ActiveRecord::Base
   end
 
   def self.exists?(channel, user)
-    Relationship.find_by_channel_and_user(channel, user).any?
+    !Relationship.find_by_channel_and_user(channel, user).nil?
   end
 
   def email

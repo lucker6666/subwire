@@ -1,4 +1,4 @@
-<% if has_admin_privileges? && !@channel.nil? %>
+<% if can?(:edit, @current_channel) && !@current_channel.nil? %>
   <li class="dropdown iconOnly">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
       rel="tooltip" title="<%=t 'tooltip.channelSettings' %>"
@@ -15,14 +15,14 @@
       </li>
 
       <li>
-        <%= link_to channel_links_path(@channel) do %>
+        <%= link_to channel_links_path(@current_channel) do %>
           <i class="icon icon-screenshot"></i>
           <%= t "application.link_management" %>
         <% end %>
       </li>
 
       <li>
-        <%= link_to edit_channel_path(current_channel) do %>
+        <%= link_to edit_channel_path(@current_channel) do %>
           <i class="icon icon-cog"></i>
           <%= t "channels.edit" %>
         <% end %>

@@ -23,8 +23,9 @@ class ApplicationController < ActionController::Base
                 :finish_invitation,
                 :set_locale,
                 :set_timezone,
-                :update_last_activity,
-                :cleanup
+                :cleanup,
+                :load_channel,
+                :update_last_activity
 
 
   ### Methods
@@ -132,16 +133,16 @@ class ApplicationController < ActionController::Base
 
     def load_channel
       if channel_id = params[:channel_id] || params[:id]
-        unless @channel = Channel.find_by_id_or_permalink(channel_id)
+        unless @current_channel = Channel.find_by_id_or_permalink(channel_id)
           feedback t('not_found.project', :id => channel_id)
           redirect_to channels_path
         end
 
-        authorize! :read, @channel
+        authorize! :read, @current_channel
 
-        @sidebar_users = Relationship.find_all_users_by_channel(@channel).sort_by(&:name)
-        @sidebar_links = Link.find_all_by_channel_id(@channel.id)
-        @subwireTitle = @channel.name
+        @sidebar_users = Relationship.find_all_users_by_channel(@current_channel).sort_by(&:name)
+        @sidebar_links = Link.find_all_by_channel_id(@current_channel.id)
+        @subwireTitle = @current_channel.name
       end
     end
 
@@ -150,7 +151,7 @@ class ApplicationController < ActionController::Base
   private
 
     def current_ability
-      @current_ability ||= Ability.new(current_user, current_channel)
+      @current_ability ||= Ability.new(current_user, @current_channel)
     end
 
     def handle_cancan_error(exception)
