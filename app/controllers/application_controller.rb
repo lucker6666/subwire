@@ -19,7 +19,13 @@ class ApplicationController < ActionController::Base
   # globals:              Set some global variables and actions which have
   #                       to be done on each request
   # set_timezone:         Determines the current timezone
-  before_filter :finish_invitation, :set_locale, :refresh_config, :globals, :set_timezone
+  before_filter :finish_invitation,
+                :set_locale,
+                :globals,
+                :set_timezone,
+                :update_last_activity,
+                :cleanup,
+                :load_notifications
 
 
   ### Methods
@@ -35,65 +41,28 @@ class ApplicationController < ActionController::Base
     end
 
 
-    # Set some global variables, which are required in the views of each request.
-    # Additionally, set the session[:channel] field to the channel, which is display currently
-    # Thats required to handle manual URL changes thru the user, which may cause an channel
-    # switch. However, thats somewhat tricky und unfancy right now. If someone has a better
-    # idea, refactor this, pls.
-    def globals
+    def update_last_activity
       # If user it not logged in, this is irrelevant
       if current_user
-        # And if the user is a superadmin thats irrelevant too ... and it's irrelevant for
-        # some controllers
-        if !current_user.is_admin? && params[:id] && !["channels", "users", "comments"].include?(params[:controller])
-          # Which resource is requested? ("Link", "Notification", ...)
-          resource = params[:controller].capitalize.singularize.constantize
-
-          # Save the current channel for the case, that there is no other channel to display.
-          channel_backup = session[:channel]
-
-          # Find the instance of the requested resource by the id provided via GET param. And get
-          # the channel which is associated with that instance.
-          session[:channel] = resource.find(params[:id]).channel
-
-          # Now it may be, that there is no channel to display, so the saved channel will be set
-          # as the current channel. After that, session[:channel] shouldn't be nil
-          if session[:channel].nil?
-            session[:channel] = channel_backup
-          end
-        end
-
         # Set last ctivity
         current_user.last_activity = Time.now
         current_user.save
-
-        # Delete all Users, which have been invited before 30 days and the invitation is still
-        # pendig.
-        users = User.destroy_all(["created_at < ? and invitation_pending = 1", 30.days.ago])
-
-        # Delete all availabilities, which are older then 1 day.
-        availabilities = Availability.destroy_all(["date < ?", 1.day.ago])
-
-        # Some global variables
-        if current_channel
-          @sidebar_users = Relationship.find_all_users_by_channel(current_channel).sort_by(&:name)
-          @sidebar_links = Link.find_all_by_channel_id(current_channel.id)
-          @subwireTitle = current_channel.name
-
-          load_notifications
-        else
-          @subwireTitle = Subwire::Application.config.subwire_title
-        end
       end
+    end
 
-      # Return true to make sure, that the filter chain proceeds after that one
-      true
+
+    def cleanup
+      # Delete all Users, which have been invited before 30 days and the invitation is still pendig.
+      users = User.destroy_all(["created_at < ? and invitation_pending = 1", 30.days.ago])
+
+      # Delete all availabilities, which are older then 1 day.
+      availabilities = Availability.destroy_all(["date < ?", 1.day.ago])
     end
 
 
     # Call that everytime you change notifications
     def load_notifications
-      if current_user && current_channel
+      if current_user
         @all_notifications = Notification.find_all_relevant(current_channel, current_user)
         @unread_notification_count = @all_notifications.where(:is_read => false).count
         @all_channels_notifications = Notification.all_notifications_count(current_user.id)
@@ -133,14 +102,6 @@ class ApplicationController < ActionController::Base
     def finish_invitation
       if current_user && current_user.invitation_pending
         redirect_to "/users/finish"
-      end
-    end
-
-
-    # Reloads the current channel config from database
-    def refresh_config
-      if current_channel
-        set_current_channel Channel.find(current_channel.id)
       end
     end
 
