@@ -18,6 +18,7 @@ class Channel < ActiveRecord::Base
   ### Associations
   has_many :messages
   has_many :availabilities
+  has_many :notifications
   has_many :relationships
   has_many :users, through: :relationships
 
@@ -71,4 +72,13 @@ class Channel < ActiveRecord::Base
   def user_count
     Relationship.find_all_by_channel_id(id).length
   end
+
+  def notification_count(user)
+    Notification.where(
+      channel_id: id,
+      user_id: user.id,
+      is_read: false
+    ).length
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208194931) do
+ActiveRecord::Schema.define(:version => 20130208085946) do
 
   create_table "availabilities", :force => true do |t|
     t.integer "user_id"
@@ -85,6 +85,22 @@ ActiveRecord::Schema.define(:version => 20130208194931) do
 
   add_index "messages", ["channel_id"], :name => "index_messages_on_channel_id"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
+
+  create_table "notifications", :force => true do |t|
+    t.string   "notification_type", :default => "message"
+    t.string   "href"
+    t.boolean  "is_read"
+    t.integer  "user_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "channel_id",        :default => 1,         :null => false
+    t.integer  "created_by"
+    t.integer  "provokesUser"
+    t.string   "subject"
+  end
+
+  add_index "notifications", ["channel_id"], :name => "index_notifications_on_channel_id"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer "user_id",           :default => 1,    :null => false

@@ -1,0 +1,40 @@
+<li class="dropdown iconOnly">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+    rel="tooltip" title="<%=t 'tooltip.notifications' %>"
+    data-placement="bottom">
+    <i class="icon icon-comment"></i>
+
+    <% if @unread_notification_count > 0 %>
+      <span class="notification-badge badge badge-info">
+        <%= @unread_notification_count %>
+      </span>
+    <% end %>
+  </a>
+
+  <ul class="notification-dropdown dropdown-menu">
+    <% if @all_notifications.length > 0 %>
+      <% @all_notifications.each do |notification| %>
+        <li class="<%= notification.is_read ? 'read' : '' %>">
+          <a href="<%= notification_path(notification) %>">
+            <%= avatar(User.find(notification.provokesUser), :tiny) %>
+            <%= notification.message.html_safe %>
+          </a>
+        </li>
+
+        <li class="divider"></li>
+      <% end %>
+
+      <li class="divider"></li>
+
+      <li>
+        <a id="markAllNotificationsAsRead" href="#">
+          <i class="icon icon-eye-open"></i>
+          <b><%= t'notifications.mark_as_read'%></b>
+        </a>
+      </li>
+
+    <% else %>
+      <li><%=t "application.notifications_unread" %></li>
+    <% end %>
+  </ul>
+</li>

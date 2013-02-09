@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>
+      <% if @unread_notification_count > 0 %>
+        (<%= @unread_notification_count %>) &nbsp;
+      <% end %>
+
       <%= @subwireTitle %>
     </title>
 
@@ -46,6 +50,7 @@
             <ul class="nav">
               <li class="divider-vertical"></li>
 
+              <%= render partial: 'shared/navbar/notifications' %>
               <%= render partial: 'shared/navbar/channelSettings' %>
               <%= render partial: 'shared/navbar/adminMenu' %>
             </ul>

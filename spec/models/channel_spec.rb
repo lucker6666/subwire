@@ -4,6 +4,7 @@ describe Channel do
   describe "Associations" do
     it { should have_many(:messages) }
     it { should have_many(:availabilities) }
+    it { should have_many(:notifications) }
     it { should have_many(:relationships) }
     it { should have_many(:users).through(:relationships) }
   end
@@ -21,6 +22,7 @@ describe Channel do
 
   describe "Respond to" do
     it { should respond_to(:message_count) }
+    it { should respond_to(:notification_count) }
     it { should respond_to(:user_count) }
   end
 
@@ -49,6 +51,25 @@ describe Channel do
       rel = channel.relationships.first
 
       channel.user_count.should eq(4)
+    end
+  end
+
+  describe :notification_count do
+    it "should count notifications for a user" do
+      @channel = FactoryGirl.create(:channel)
+      @rels = @channel.relationships
+
+      data = {
+        notification_type: :new_message,
+        provokesUser: @rels[1].user,
+        subject: "Test",
+        href: "/"
+      }
+
+      Notification.notify_all_users(data, @channel, @rels[0].user)
+      Notification.notify_all_users(data, @channel, @rels[0].user)
+
+      @channel.notification_count(@rels[2].user).should eq(2)
     end
   end
 end

@@ -17,6 +17,7 @@ class Ability
         can :manage, Channel
         can :manage, Comment
         can :manage, Link
+        can :manage, Notification
         can :manage, Relationship
         can :manage, User
         can :index,  User
@@ -69,6 +70,12 @@ class Ability
           can [:read], Link do |link|
             Relationship.exists?(link.channel, user)
           end
+
+
+          # Notification
+
+          can [:create]
+          can [:read, :update, :destroy], Notification, :user_id => user.id
 
 
           # Relationship
