@@ -52,8 +52,8 @@ class ApplicationController < ActionController::Base
     end
 
     def log_in!
-      unless devise_controller?
-        #redirect_to "/"
+      unless params[:controller] == 'home' || devise_controller? || current_user
+        redirect_to "/"
       end
     end
 
@@ -70,9 +70,19 @@ class ApplicationController < ActionController::Base
     # Call that everytime you change notifications
     def load_notifications
       if current_user
-        @all_notifications = Notification.find_all_relevant(@current_channel, current_user)
-        @unread_notification_count = @all_notifications.where(:is_read => false).count
-        @all_channels_notifications = Notification.all_notifications_count(current_user.id)
+        if @current_channel
+          @all_notifications = Notification.find_all_relevant(@current_channel, current_user)
+          @all_channels_notifications = Notification.all_notifications_count(current_user.id)
+        else
+          @all_notifications = Notification.find_all_by_user_id(current_user.id)
+          @all_channels_notifications = @all_notifications.count
+        end
+
+        if @all_notifications.length > 0
+          @unread_notification_count = @all_notifications.where(:is_read => false).count
+        else
+          @unread_notification_count = []
+        end
       end
     end
 
