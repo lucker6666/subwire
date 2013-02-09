@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
         if @all_notifications.length > 0
           @unread_notification_count = @all_notifications.where(:is_read => false).count
         else
-          @unread_notification_count = []
+          @unread_notification_count = 0
         end
       end
     end
@@ -153,7 +153,9 @@ class ApplicationController < ActionController::Base
     end
 
     def load_channel
-      if channel_id = params[:channel_id] || params[:id]
+      if params[:channel_id] || (params[:id] && params[:controller] == 'channels')
+        channel_id = params[:channel_id] || params[:id]
+
         unless @current_channel = Channel.find_by_id_or_permalink(channel_id)
           feedback t('not_found.project', :id => channel_id)
           redirect_to channels_path
