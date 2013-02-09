@@ -407,6 +407,24 @@
     border-bottom: 1px solid #ccc;
     margin: 0 -15px 15px;
     padding: 0 15px 15px;
+    position: relative;
+
+    .buttons {
+      visibility: hidden;
+      position: absolute;
+      left: 15px;
+      top: 60px;
+    }
+
+    .body {
+      margin-left: 60px;
+
+      nobr {
+        display: block;
+        font-size: 0.8em;
+        color: #999;
+      }
+    }
 
     .head {
       img.avatar {
@@ -431,32 +449,6 @@
           }
         }
       }
-
-      nobr {
-        display: block;
-        font-size: 0.8em;
-        color: #999;
-
-        &.links a {
-          display: inline-block;
-          margin-right: 1em;
-        }
-
-        + nobr:after {
-          content: ".";
-          clear: both;
-          display: block;
-          height: 0;
-          visibility: hidden;
-        }
-      }
-    }
-
-
-    .buttons {
-      visibility: hidden;
-      float: right;
-      margin-bottom: 1em;
     }
 
     &:hover .buttons {

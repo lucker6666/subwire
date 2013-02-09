@@ -1,18 +1,17 @@
-<script type="text/javascript" src="/javascript/messages.js"></script>
+%script{type: "text/javascript", src: "/javascript/messages.js"}
 
 - model_class = Message.new.class
 
 / Search results
 - if params[:query].present?
+  %table{class: "table table-bordered table-condensed message"}
+    %tr
+      %td
+        %h2
+          = t('messages.search_result')
 
-  %table{:class=>"table table-bordered table-condensed message"}
-    %tr>
-      %td>
-        %h2>
-          = "#{t('messages.search_result')}:"
-
-    %tr>
-      %td>
+    %tr
+      %td
         = t('messages.search_counter', query: params[:query], count: @messages.length)
 
 
@@ -28,33 +27,35 @@
         %h2
           = link_to message.title, channel_message_path(@current_channel, message)
 
+      .buttons
+        - if can?(:edit, @current_channel) || message.user == current_user
+          = link_to edit_channel_message_path(@current_channel, message) do
+            %i{:class=>"icon icon-pencil"}
+
+          &nbsp;
+
+          = link_to channel_message_path(@current_channel, message),
+            method: :delete,
+            data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do
+            %i{:class=>"icon icon-trash"}
+
+      .body
+        = message_teaser(message)
+
         %nobr
           = link_to message.user_name, user_path(message.user)
           at
           = l message.created_at, format: :short
 
-        %nobr.links
+          &nbsp;
+
           = render partial: 'mark_as_important', locals: {:message => message}
+
+          &nbsp;
 
           %a{:href=>"#", :onclick=>"return commentToggle(this);"}
             = message.comments.length
             =t 'comments.plural'
-
-      .body
-        = message_teaser(message)
-
-        .buttons
-          - if can?(:edit, @current_channel) || message.user == current_user
-            = link_to edit_channel_message_path(@current_channel, message), class: 'btn btn-mini' do
-              %i{:class=>"icon icon-pencil"}
-
-
-            = link_to channel_message_path(@current_channel, message),
-              method: :delete,
-              data: {confirm: t('.confirm', default: t("helpers.links.confirm"))},
-              class: 'btn btn-mini btn-danger' do
-
-              %i{:class=>"icon icon-trash"}
 
     .comments
       .commentContainer

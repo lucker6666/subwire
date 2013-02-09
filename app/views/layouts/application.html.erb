@@ -27,14 +27,16 @@
   </head>
 
   <body>
-    <div id="new-message-html">
-      <%= form_for [@current_channel, @current_channel.messages.build] do |f| %>
-        <%= f.text_area :content, rows: 4 %>
+    <% if @current_channel %>
+      <div id="new-message-html">
+        <%= form_for [@current_channel, @current_channel.messages.build] do |f| %>
+          <%= f.text_area :content, rows: 4 %>
 
-        <%= f.submit nil, class: 'btn btn-primary' %>
-        <%= link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn' %>
-      <% end %>
-    </div>
+          <%= f.submit nil, class: 'btn btn-primary' %>
+          <%= link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn' %>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -65,13 +67,15 @@
 
               <li class="divider-vertical"></li>
 
-              <li id="new-message">
-                <a href="#" onclick="return false;">
-                  <i class="icon icon-plus-sign"></i>
+              <% if @current_channel %>
+                <li id="new-message">
+                  <a href="#" onclick="return false;">
+                    <i class="icon icon-plus-sign"></i>
 
-                  <%= t ('application.new_message') %>
-                </a>
-              </li>
+                    <%= t ('application.new_message') %>
+                  </a>
+                </li>
+              <% end %>
             </ul>
 
             <%= render partial: 'shared/navbar/availability' %>
