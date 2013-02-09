@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
                 :set_timezone,
                 :cleanup,
                 :load_channel,
-                :update_last_activity
+                :update_last_activity,
                 :load_notifications
 
 
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     # Call that everytime you change notifications
     def load_notifications
       if current_user
-        @all_notifications = Notification.find_all_relevant(current_channel, current_user)
+        @all_notifications = Notification.find_all_relevant(@current_channel, current_user)
         @unread_notification_count = @all_notifications.where(:is_read => false).count
         @all_channels_notifications = Notification.all_notifications_count(current_user.id)
       end
