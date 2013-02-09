@@ -1,14 +1,20 @@
 <script type="text/javascript" src="/javascript/messages.js"></script>
 
 - model_class = Message.new.class
+%h1
+  = t '.title', default: model_class.model_name.human.pluralize
 
 - if params[:query].present?
-  %h1
-    = "#{t('messages.search_result')}:"
 
-  .well.message
-    = t('messages.search_counter', query: params[:query], count: @messages.length)
+  %table{:class=>"table table-bordered table-condensed message"}
+    %tr>
+      %td>
+        %h2>
+          = "#{t('messages.search_result')}:"
 
+    %tr>
+      %td>
+        = t('messages.search_counter', query: params[:query], count: @messages.length)
 
 
 .well
@@ -36,7 +42,13 @@
             =t 'comments.plural'
 
 
-      .body
+        %nobr
+          = link_to message.user_name, user_path(message.user)
+          at
+          = l message.created_at, format: :short
+
+    %tr
+      %td
         = message_teaser(message)
 
         .buttons

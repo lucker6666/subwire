@@ -30,6 +30,7 @@ describe MessagesController do
       message.is_editable = true
       message.should_receive(:save).and_return(true)
       Message.should_receive(:new).and_return(message)
+      Notification.stub(:notify_all_users)
 
       post :create
 
@@ -80,6 +81,14 @@ describe MessagesController do
   #         assigns[:messages].each do |message|
   #           message.channel_id.should eq current_channel.id
   #         end
+  #       end
+
+  #       it "should assign @all_notifications variable" do
+  #         assigns[:all_notifications].should_not be_nil
+  #       end
+
+  #       it "should assign @unread_notification_count" do
+  #         assigns[:unread_notification_count].should_not be_nil
   #       end
 
   #       it "should assign @sidebar_users" do
