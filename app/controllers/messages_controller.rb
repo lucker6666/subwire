@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
         notification_type: :new_message,
         provokesUser: @message.user,
         subject: @message.title,
-        href: message_path(@message)
+        href: channel_message_path(@current_channel, @message)
       }, @current_channel, current_user)
 
       # Feedback for the user

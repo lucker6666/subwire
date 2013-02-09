@@ -1,6 +1,6 @@
 - model_class = @message.class
-%h1
-  =t '.title', default: t('helpers.submit.create', model: model_class.model_name.human, default: "New #{model_class.model_name.human}")
 
 .well
+  %h1
+    =t '.title', default: t('helpers.submit.create', model: model_class.model_name.human, default: "New #{model_class.model_name.human}")
   = render partial: 'form'
