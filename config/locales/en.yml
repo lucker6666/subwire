@@ -227,6 +227,7 @@ en:
     user_management: Users
     link_management: Bookmarks
     new_message: New Message
+    message_details: Details ...
     your_profile: Your Profile
     edit_your_profile: Settings
     logout: Logout
