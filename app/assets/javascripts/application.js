@@ -43,7 +43,15 @@ $(function() {
         if( e.keyCode == 13 && !e.shiftKey) {
             $(this).parent().submit();
         }
-    })
+    });
+
+    // New Message link
+    $('#new-message').popover({
+		placement: 'bottom',
+		title: 'New message',
+		html: true,
+		content: $('#new-message-html').html()
+	});
 });
 
 

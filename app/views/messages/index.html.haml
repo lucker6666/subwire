@@ -1,9 +1,8 @@
 <script type="text/javascript" src="/javascript/messages.js"></script>
 
 - model_class = Message.new.class
-%h1
-  = t '.title', default: model_class.model_name.human.pluralize
 
+/ Search results
 - if params[:query].present?
 
   %table{:class=>"table table-bordered table-condensed message"}
@@ -41,14 +40,7 @@
             = message.comments.length
             =t 'comments.plural'
 
-
-        %nobr
-          = link_to message.user_name, user_path(message.user)
-          at
-          = l message.created_at, format: :short
-
-    %tr
-      %td
+      .body
         = message_teaser(message)
 
         .buttons
@@ -64,8 +56,8 @@
 
               %i{:class=>"icon icon-trash"}
 
-      .comments
-        .commentContainer
-          = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
+    .comments
+      .commentContainer
+        = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
 
 = will_paginate @messages

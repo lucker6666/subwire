@@ -170,6 +170,29 @@
   }
 
 
+/*
+ *  Quick message link
+ */
+
+  li#new-message {
+    + div.popover {
+      width: 400px;
+
+      form {
+        margin: 0;
+      }
+
+      textarea {
+        width: 360px;
+      }
+    }
+  }
+
+  #new-message-html {
+    display: none;
+  }
+
+
 
 /*
  *   Forms
