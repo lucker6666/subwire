@@ -1,10 +1,13 @@
 module ApplicationHelper
   # Truncate message
   def message_teaser(message)
-    content = auto_link(message.content)
-    more_to_read = '(...)<br />' +
-      link_to(t('application.more_to_read'), channel_message_path(message.channel, message))
-    HTML_Truncator.truncate(content, 120, ellipsis: more_to_read).strip.html_safe
+    content = preprocess_message(message)
+    target = channel_message_path(message.channel, message)
+    HTML_Truncator.truncate(content, 60, ellipsis: ' ' + link_to('[...]', target)).strip.html_safe
+  end
+
+  def preprocess_message(message)
+    content = auto_link(message.content).strip.html_safe
   end
 
   # Display boolean values as icon
