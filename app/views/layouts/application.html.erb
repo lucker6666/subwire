@@ -12,10 +12,10 @@
     <%= render partial: 'shared/head' %>
 
     <script type="text/javascript">
-      <% if @channel.nil? %>
+      <% if @current_channel.nil? %>
         window.subwireTitle = "<%= @subwireTitle %>";
       <% else %>
-        window.subwireTitle = "<%= current_channel.name %>";
+        window.subwireTitle = "<%= @current_channel.name %>";
       <% end %>
     </script>
 
@@ -49,10 +49,10 @@
 
           <ul class="nav">
             <li>
-              <% if @channel.nil? %>
+              <% if @current_channel.nil? %>
                 <%= link_to "subwire", channels_path, class: "brand" %>
               <% else %>
-                <%= link_to @channel.name, channel_path(@channel), class: "brand" %>
+                <%= link_to @current_channel.name, channel_path(@current_channel), class: "brand" %>
               <% end %>
             </li>
           </ul>
@@ -81,8 +81,8 @@
             <%= render partial: 'shared/navbar/availability' %>
 
             <ul class="nav pull-right">
-              <% unless @channel.nil? %>
-                <%= form_tag channel_path(@channel), class: 'navbar-search', method: :get do %>
+              <% unless @current_channel.nil? %>
+                <%= form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do %>
                     <%= text_field_tag :query, params[:query], class: 'search-query',
                       placeholder: t('application.search') %>
                 <% end %>
@@ -131,7 +131,7 @@
         <div class="sidebar">
           <%= render partial: 'shared/navbar/channelSwitcher' %>
 
-          <% unless @channel.nil? %>
+          <% unless @current_channel.nil? %>
             <% if @sidebar_links.length > 0 %>
               <div class="well">
                 <h3>
