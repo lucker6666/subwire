@@ -24,7 +24,7 @@ Subwire::Application.routes.draw do
     # Messages and comments
     resources :messages do
       resources :comments, only: [:index, :create, :update, :destroy]
-      post 'mark_as_important', to: "messages#ajax_mark_as_important", as: "message_mark_as_important"
+      post 'mark_as_important', to: "messages#mark_as_important", as: "message_mark_as_important"
     end
 
     # Notifications
