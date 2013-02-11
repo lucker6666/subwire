@@ -1,3 +1,7 @@
 <div class="well">
-  Choose a channel!
+  <% if channels.length == 0 %>
+    Please create a new channel first.
+  <% else %>
+    Please choose a channel from the left side or create a new one!
+  <% end %>
 </div>
