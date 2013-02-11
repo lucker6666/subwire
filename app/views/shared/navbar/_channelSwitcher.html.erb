@@ -6,12 +6,11 @@
 
     <ul class="channels nav nav-list">
       <% channels.each do |channel| %>
+        <% active = channel == @current_channel %>
         <% notificationCount = channel.notification_count(current_user) %>
 
         <li>
-          <%= link_to channel_path(channel), {
-            class: (channel == @current_channel ? "active" : "")} do
-          %>
+          <%= link_to channel_path(channel), {class: (active ? "active" : "")} do %>
             <% if notificationCount > 0 %>
               <span class="notification-badge badge badge-info">
                 <%= notificationCount %>
@@ -21,6 +20,10 @@
             <% end %>
 
             <%= channel.name %>
+
+            <% if active %>
+              <i class="icon icon-chevron-right pull-right"> </i>
+            <% end %>
           <% end %>
         </li>
       <% end %>
