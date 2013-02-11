@@ -20,45 +20,6 @@
     Messages
 
   - @messages.each do |message|
-    .message
-      .head
-        = avatar(message.user)
-
-        %h2
-          = link_to message.title, channel_message_path(@current_channel, message)
-
-      .buttons
-        - if can?(:edit, @current_channel) || message.user == current_user
-          = link_to edit_channel_message_path(@current_channel, message) do
-            %i{:class=>"icon icon-pencil"}
-
-          &nbsp;
-
-          = link_to channel_message_path(@current_channel, message),
-            method: :delete,
-            data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do
-            %i{:class=>"icon icon-trash"}
-
-      .body
-        = message_teaser(message)
-
-        %nobr
-          = link_to message.user_name, user_path(message.user)
-          at
-          = l message.created_at, format: :short
-
-          &nbsp;
-
-          = render partial: 'mark_as_important', locals: {:message => message}
-
-          &nbsp;
-
-          %a{:href=>"#", :onclick=>"return commentToggle(this);"}
-            = message.comments.length
-            =t 'comments.plural'
-
-    .comments
-      .commentContainer
-        = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
+    = render partial: 'shared/message', locals: {message: message, full: false}
 
 = will_paginate @messages

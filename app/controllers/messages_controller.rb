@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_filter :load_channel
-  before_filter :load_message, only: [:destroy, :mark_as_important]
+  before_filter :load_message, only: [:show, :destroy, :mark_as_important]
+
 
   # GET /channel/:id/messages
   def index
@@ -16,6 +17,21 @@ class MessagesController < ApplicationController
       @messages = Message.find_all_by_channel_id_and_page(@current_channel.id, params[:page])
     end
   end
+
+
+  # GET /channel/:id/messages/:id
+  def show
+    # Delete all notifications regarding that article
+    @notifications = current_user.notifications.where(
+      channel_id: @current_channel.id,
+      is_read: false,
+      href: channel_message_path(@current_channel, @message)
+    ).each { |n| n.read! }
+
+    # Update the notifications of the user
+    load_notifications
+  end
+
 
   # POST /channel/:id/messages
   def create
@@ -59,11 +75,13 @@ class MessagesController < ApplicationController
     redirect_to channel_url(channel)
   end
 
+
   # POST /channels/:id/messages/:id/mark_as_important
   def mark_as_important
     @message.is_important = params[:is_important]
     render :json => {:r => @message.save}
   end
+
 
 
   private
