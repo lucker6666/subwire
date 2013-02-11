@@ -43,4 +43,11 @@ class MessagesController < ApplicationController
       render action: :new
     end
   end
+
+  # POST /channels/:id/messages/:id/mark_as_important
+  def mark_as_important
+    @message = Message.find(params[:message_id])
+    @message.is_important = params[:is_important]
+    render :json => {:r => @message.save}
+  end
 end

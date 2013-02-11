@@ -408,11 +408,12 @@
     margin: 0 -15px 15px;
     padding: 0 15px 15px;
     position: relative;
+    min-height: 70px;
 
     .buttons {
       visibility: hidden;
       position: absolute;
-      left: 15px;
+      left: 22px;
       top: 60px;
     }
 

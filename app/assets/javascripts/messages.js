@@ -1,13 +1,9 @@
 $(document).ready(function() {
-
     $('[id^=mai-link]').click(function() {
-
         var is_important = $(this).attr('data-is-important') != 'true';
         var id = $(this).attr('data-id');
 
-        $.post('/ajax/message/mark_as_important',
-        {
-            id: id,
+        $.post('messages/' + id + '/mark_as_important', {
             is_important: is_important
         },
         function(json) {
@@ -25,5 +21,4 @@ $(document).ready(function() {
     });
 
     $('.autogrow').autogrow();
-
 });
