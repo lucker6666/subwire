@@ -12,7 +12,7 @@ gem 'haml'
 gem 'has_permalink'
 
 # Authorization and Authentication
-gem 'devise', '2.2.2'
+gem 'devise', '~> 2.2.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-openid'
