@@ -30,6 +30,8 @@ class MessagesController < ApplicationController
 
     # Update the notifications of the user
     load_notifications
+
+    @in_message = true
   end
 
 

@@ -20,7 +20,7 @@ $(function() {
         }, "json");
     });
 
-	$('.comment-list').hide();
+	$('.comment-list:not(.comment-list-visible)').hide();
     $('.autogrow').autoGrow();
 });
 
