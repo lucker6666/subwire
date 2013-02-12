@@ -45,8 +45,10 @@
     </div>
   <% end %>
 
-  <% if message.comments.size > comments.size %>
-    <a href="javascript:void(0)" onclick="loadAllComments(<%= message.id %>)">more</a>
+  <% if message.comments.size - 4 > 0 %>
+    <a href="javascript:void(0)" onclick="loadAllComments(<%= message.id %>)" class="comments-more">
+      <%= message.comments.size - 4 %> <%= t 'comments.more' %>
+    </a>
   <% end %>
 
   <div class="comment">

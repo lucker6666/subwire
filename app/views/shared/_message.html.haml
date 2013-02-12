@@ -34,4 +34,4 @@
         = message.comments.length
         =t 'comments.plural'
 
-    = render partial: 'shared/comments', locals: {comments: message.newest_comments.reverse.take(5), message: message}
+    = render partial: 'shared/comments', locals: {comments: message.newest_comments.reverse.take(4), message: message}
