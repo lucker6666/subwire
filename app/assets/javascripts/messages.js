@@ -40,11 +40,12 @@ function editComment(comment) {
     return false;
 }
 
-function loadAllComments(a_id) {
-    $.get('/ajax/comments/load_all_comments/' + a_id,
+function loadAllComments(channelId, messageId) {
+    $.get('/channels/' + channelId + '/messages/' + messageId + '/comments/load_all/',
 	    {},
 	    function(html) {
-	        $('#message-comments-' + a_id).html(html);
+	    	var e = $('#message-comments-' + messageId);
+	        e.html(html);
 	    }
 	);
 }
