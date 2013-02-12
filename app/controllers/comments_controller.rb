@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :load_channel
   before_filter :load_message
-  before_filter :load_comment, only: [:destroy]
+  before_filter :load_comment, only: [:destroy, :edit, :update]
 
 
   # POST /channels/:id/messages/:id/comments/
@@ -26,6 +26,22 @@ class CommentsController < ApplicationController
     end
 
     redirect_to channel_message_path(@current_channel, @message)
+  end
+
+
+  # PUT /channels/:id/messages/:id/comments/:id
+  def update
+    authorize! :update, @comment
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to :back, notice: t("comments.update_success") }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 

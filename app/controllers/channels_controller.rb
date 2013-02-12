@@ -9,13 +9,13 @@ class ChannelsController < ApplicationController
 
   # GET /channels/:id
   def show
-    authorize! :read, @current_channel
     redirect_to channel_messages_path(@current_channel)
   end
 
 
   # GET /channels/new
   def new
+    authorize! :create, Channel
     @current_channel = Channel.new
   end
 
