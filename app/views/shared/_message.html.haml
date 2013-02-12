@@ -1,9 +1,5 @@
 .message
-  .head
-    = avatar(message.user)
-
-    %h2
-      = link_to message.title, channel_message_path(@current_channel, message)
+  = avatar(message.user, :small, 'pull-left')
 
   .buttons
     - if can?(:edit, @current_channel) || message.user == current_user
@@ -18,6 +14,9 @@
         %i{:class=>"icon icon-trash"}
 
   .body
+    %h2
+      = link_to message.title, channel_message_path(@current_channel, message)
+
     = full ? preprocess_message(message) : message_teaser(message)
 
     %nobr
@@ -35,6 +34,4 @@
         = message.comments.length
         =t 'comments.plural'
 
-.comments
-  .commentContainer
-    = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(5), message: message}
+    = render partial: 'shared/comments', locals: {comments: message.newest_comments.reverse.take(5), message: message}

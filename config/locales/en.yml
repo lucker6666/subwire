@@ -132,6 +132,8 @@ en:
         one: 1 error prohibited this %{model} from being saved
         other: ! '%{count} errors prohibited this %{model} from being saved'
   helpers:
+    delete: Delete
+    edit: Edit
     advertisting: Advertising
     select:
       prompt: Please select
@@ -252,6 +254,9 @@ en:
     update_success: Comment was successfully updated.
     plural: Comment(s)
     destroyed: Comment deleted
+    delete: Delete comment
+    edit: Edit comment
+    save: Submit comment
 
   channels:
     new: Create new channel!

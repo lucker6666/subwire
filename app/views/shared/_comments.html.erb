@@ -1,65 +1,65 @@
-<div class="commentList" id="message-comments-<%= message.id %>">
-    <h5><%=t 'comments.plural' %>:</h5>
+<div class="comment-list" id="message-comments-<%= message.id %>">
+  <% comments.each do |comment| %>
+    <div class="comment">
+      <%= avatar(comment.user, :tiny, 'pull-left') %>
 
-    <table class="table table-bordered table-condesed">
-      <% comments.each do |comment| %>
-        <tr>
-          <th class="avatar">
-            <%= avatar(comment.user) %>
-            </th>
-
-          <td>
-            <div class="commentButtons">
-              <% if can?(:admin, :all) || comment.user == current_user %>
-                <%= link_to channel_message_comment_path(@current_channel, message, comment),
-                        method: :delete,
-                        data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do %>
-                  <i class="icon icon-remove"></i>
-                <% end %>
-                      <a href="#" rel="tooltip" data-original-title="<%= t('tooltip.comment_edit') %>" onClick="editComment('<%= comment.id %>')">
-                            <i class="icon icon-edit"></i>
-                        </a>
-
-                      <% end %>
-                    </div>
-
-                   <div class="comment" id="comment<%= comment.id %>" align="left">
-                    <strong>
-                        <%= link_to comment.user_name, user_path(comment.user) %>
-                    </strong>
-                    <br />
-                    <%= auto_link(comment.content).html_safe %>
-                  </div>
-
-                  <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
-                    <%= form_for([message, comment]) do |f| %>
-                    <div class="input-append">
-                      <%= f.text_field :content, { class: "span6", autocomplete: :off } %>
-                      <%= f.submit "Save", class: 'btn' %>
-                    </div>
-                  <% end %>
-                </div>
-          </td>
-        </tr>
-      <% end %>
-      <% if message.comments.size > comments.size%>
-        <tr>
-          <td style="padding-left:15px">
-            <a href="javascript:void(0)" onclick="loadAllComments(<%= message.id %>)">more</a>
-          </td>
-        </tr>
-      <% end %>
-
-
-    </table>
-
-    <br />
-
-    <%= form_for([@current_channel, message, message.comments.build]) do |f| %>
-        <%= f.text_area :content, { rows: 0, class: "autogrow comment", autocomplete: :off} %>
+      <div class="body">
+        <strong>
+            <%= link_to comment.user_name, user_path(comment.user) %>
+        </strong>
 
         <br />
 
-        <span><i class="icon icon-info-sign"></i> Press enter to submit. To make a line break press shift+enter.</span>
-    <% end %>
+        <%= auto_link(comment.content).html_safe %>
+
+        <div class="comment-edit" id="comment<%= comment.id %>edit" style="display:none;">
+          <%= form_for([@current_channel, message, comment]) do |f| %>
+            <div class="input-append">
+              <%= f.text_field :content, { class: "span6", autocomplete: :off } %>
+              <%= f.submit "Save", class: 'btn' %>
+            </div>
+          <% end %>
+        </div>
+
+        <nobr>
+          At
+          <%= l comment.created_at, format: :short %>
+
+          &nbsp;
+
+          <% if can?(:delete, comment) %>
+            <%= link_to channel_message_comment_path(@current_channel, message, comment),
+                    method: :delete,
+                    data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do %>
+              <%= t 'comments.delete' %>
+            <% end %>
+
+            &nbsp;
+
+            <a href="#" rel="tooltip" data-original-title="<%= t('tooltip.comment_edit') %>" onClick="editComment('<%= comment.id %>')">
+              <%= t 'comments.edit' %>
+            </a>
+          <% end %>
+        </nobr>
+      </div>
+    </div>
+  <% end %>
+
+  <% if message.comments.size > comments.size %>
+    <a href="javascript:void(0)" onclick="loadAllComments(<%= message.id %>)">more</a>
+  <% end %>
+
+  <div class="comment">
+    <%= avatar(current_user, :tiny, 'pull-left') %>
+
+    <div class="body">
+      <%= form_for([@current_channel, message, message.comments.build]) do |f| %>
+        <%= f.text_area :content, { rows: 2, class: "autogrow comment", autocomplete: :off} %>
+
+        <br />
+
+        <input type="submit" class="btn btn-mini btn-success" value="<%= t 'comments.save' %>" />
+      <% end %>
+    </div>
+  </div>
 </div>

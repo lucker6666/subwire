@@ -27,12 +27,12 @@ Subwire::Application.routes.draw do
       post 'mark_as_important', to: "messages#mark_as_important", as: "message_mark_as_important"
     end
 
-    # Notifications
-    resources :notifications, only: [:index, :show, :destroy]
-
     # Availability Tool
     post "availability", to: "availabilities#set"
   end
+
+  # Notifications
+  resources :notifications, only: [:index, :show, :destroy]
 
   # Users
   get "users/finish", to: "users#finish"

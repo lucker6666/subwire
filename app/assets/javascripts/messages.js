@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     $('[id^=mai-link]').click(function() {
         var is_important = $(this).attr('data-is-important') != 'true';
         var id = $(this).attr('data-id');
@@ -20,5 +20,31 @@ $(document).ready(function() {
         }, "json");
     });
 
-    $('.autogrow').autogrow();
+	$('.comment-list').hide();
+    $('.autogrow').autoGrow();
 });
+
+
+function commentToggle(a) {
+    $(a).parents('.message').find('.comment-list').slideToggle();
+
+    return false;
+}
+
+
+function editComment(comment) {
+    $('.comment-edit').hide("slow");
+    $('.comment').show("slow");
+    $('#comment' + comment).hide("slow");
+    $('#comment' + comment + 'edit').show("slow");
+    return false;
+}
+
+function loadAllComments(a_id) {
+    $.get('/ajax/comments/load_all_comments/' + a_id,
+	    {},
+	    function(html) {
+	        $('#message-comments-' + a_id).html(html);
+	    }
+	);
+}
