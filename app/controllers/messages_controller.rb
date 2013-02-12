@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :load_channel
-  before_filter :load_message, only: [:show, :destroy, :mark_as_important]
+  before_filter :load_message, only: [:show, :edit, :update, :destroy, :mark_as_important]
 
 
   # GET /channel/:id/messages
@@ -58,6 +58,39 @@ class MessagesController < ApplicationController
       feedback t('messages.not_created')
       errors_to_feedback @message
       render action: :new
+    end
+  end
+
+
+  # PUT /channel/:id/messages/:id
+  def update
+    # No change summary? Try again!
+    if params[:change_summary].blank?
+      feedback "Change summary cannot be empty"
+      render :action => "edit"
+    elsif @article.update_attributes(params[:article])
+      # Generate comment from the summary
+      change_summary_comment = Comment.new
+      change_summary_comment.content = params[:change_summary]
+      change_summary_comment.user = current_user
+      @article.comments << change_summary_comment
+      @article.save
+
+      # Notify all users
+      Notification.notify_all_users({
+        notification_type: "edit_article",
+        provokesUser: current_user,
+        subject: @article.title,
+        href: article_path(@article)
+      }, current_channel, current_user)
+
+      # Feedback and good bye
+      feedback t('articles.updated')
+      redirect_to article_path(@article)
+    else
+      # Couldn't save
+      errors_to_feedback @article
+      render action: "edit"
     end
   end
 

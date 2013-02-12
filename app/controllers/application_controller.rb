@@ -74,12 +74,12 @@ class ApplicationController < ActionController::Base
           @all_notifications = Notification.find_all_relevant(@current_channel, current_user)
           @all_channels_notifications = Notification.all_notifications_count(current_user.id)
         else
-          @all_notifications = Notification.find_all_by_user_id(current_user.id)
+          @all_notifications = Notification.where(user_id: current_user.id)
           @all_channels_notifications = @all_notifications.count
         end
 
-        if @all_notifications.length > 0
-          @unread_notification_count = @all_notifications.where(:is_read => false).count
+        if @all_notifications.count > 0
+          @unread_notification_count = @all_notifications.where(is_read: false).count
         else
           @unread_notification_count = 0
         end

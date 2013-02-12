@@ -1,9 +1,11 @@
 class AddPermalinkToChannel < ActiveRecord::Migration
-  def self.up
+  def change
     add_column :channels, :permalink, :string
     add_index :channels, :permalink
-  end
-  def self.down
-    remove_column :channels, :permalink
+
+    Channel.find(:all).each do |c|
+      c.generate_permalink!
+      c.save!
+    end
   end
 end

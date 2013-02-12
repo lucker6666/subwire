@@ -126,6 +126,8 @@ de:
         one: ! 'Konnte %{model} nicht speichern: ein Fehler.'
         other: ! 'Konnte %{model} nicht speichern: %{count} Fehler.'
   helpers:
+    delete: Löschen
+    edit: Bearbeiten
     advertisting: Werbung
     select:
       prompt: Bitte wählen
@@ -249,6 +251,9 @@ de:
     update_success: Deine Änderungen wurden erfolgreich übernommen
     plural: Kommentar(e)
     destroyed: Kommentar gelöscht
+    delete: Löschen
+    edit: Bearbeiten
+    save: Kommentar speichern
 
   channels:
     new: Erstelle einen neuen Channel!

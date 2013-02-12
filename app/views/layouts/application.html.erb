@@ -134,10 +134,10 @@
           <% unless @current_channel.nil? %>
             <% if @sidebar_links.length > 0 %>
               <div class="well">
-                <h3>
+                <h1>
                   <i class="icon icon-heart"></i>
                   <%= t "application.bookmarks" %>
-                </h3>
+                </h1>
 
                 <ul class="bookmarks nav nav-list">
                   <% @sidebar_links.each do |link| %>
@@ -156,10 +156,11 @@
             <% end %>
 
             <div class="well">
-              <h3>
+              <h1>
                 <i class="icon icon-user"></i>
                 <%= t "application.user" %>
-              </h3>
+              </h1>
+
               <div id="user-box">
                 <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
               </div>
