@@ -37,6 +37,8 @@ class MessagesController < ApplicationController
 
   # POST /channel/:id/messages
   def create
+    authorize! :create, Message
+
     @message = Message.new(params[:message])
     @message.user = current_user
     @message.channel = @current_channel
@@ -64,8 +66,16 @@ class MessagesController < ApplicationController
   end
 
 
+  # GET /channel/:id/messages/:id/edit
+  def update
+    authorize! :edit, @message
+  end
+
+
   # PUT /channel/:id/messages/:id
   def update
+    authorize! :edit, @message
+
     # No change summary? Try again!
     if params[:change_summary].blank?
       feedback "Change summary cannot be empty"
@@ -99,6 +109,8 @@ class MessagesController < ApplicationController
 
   # GET /channel/:id/messages
   def destroy
+    authorize! :destroy, @message
+
     channel = @message.channel
     path = channel_message_path(channel, @message)
 
@@ -113,6 +125,8 @@ class MessagesController < ApplicationController
 
   # POST /channels/:id/messages/:id/mark_as_important
   def mark_as_important
+    authorize! :edit, @message
+
     @message.is_important = params[:is_important]
     render :json => {:r => @message.save}
   end
