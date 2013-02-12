@@ -58,7 +58,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'libnotify'
   gem 'guard-rspec'
-  gem 'rb-inotify'
+  gem 'rb-inotify', '~> 0.8.8'
   gem 'better_errors'
   gem 'awesome_print'
   gem 'guard-livereload'
