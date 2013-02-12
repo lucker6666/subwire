@@ -257,6 +257,7 @@ en:
     delete: Delete comment
     edit: Edit comment
     save: Submit comment
+    more: more comments
 
   channels:
     new: Create new channel!

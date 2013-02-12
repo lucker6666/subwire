@@ -484,10 +484,6 @@
         margin-left: 45px;
       }
 
-      &:hover .commentButtons {
-        display: block;
-      }
-
       textarea {
         width: 100%;
         border: 1px solid #ccc;
@@ -497,6 +493,13 @@
         line-height: 16px;
         @include box_shadow(none);
       }
+    }
+
+    a.comments-more {
+      display: block;
+      background-color: $light_grey;
+      margin: 0.8em 0;
+      padding: 2px 0 2px 45px;
     }
   }
 
