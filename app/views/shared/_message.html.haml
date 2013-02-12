@@ -28,10 +28,11 @@
 
       = render partial: 'mark_as_important', locals: {:message => message}
 
-      &nbsp;
+      - unless @in_message
+        &nbsp;
 
-      %a{:href=>"#", :onclick=>"return commentToggle(this);"}
-        = message.comments.length
-        =t 'comments.plural'
+        %a{:href=>"#", :onclick=>"return commentToggle(this);"}
+          = message.comments.length
+          =t 'comments.plural'
 
-    = render partial: 'shared/comments', locals: {comments: message.newest_comments.reverse.take(4), message: message}
+    = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(4).reverse, message: message}

@@ -1,4 +1,12 @@
-<div class="comment-list" id="message-comments-<%= message.id %>">
+<div class="comment-list <%= @in_message ? 'comment-list-visible' : '' %>" id="message-comments-<%= message.id %>">
+  <% if message.comments.size > comments.size %>
+    <a href="javascript:void(0)" class="comments-more"
+      onclick="loadAllComments('<%= message.channel.id %>', <%= message.id %>)">
+
+      <%= message.comments.size - 4 %> <%= t 'comments.more' %>
+    </a>
+  <% end %>
+
   <% comments.each do |comment| %>
     <div class="comment">
       <%= avatar(comment.user, :tiny, 'pull-left') %>
@@ -43,14 +51,6 @@
         </nobr>
       </div>
     </div>
-  <% end %>
-
-  <% if message.comments.size > comments.size %>
-    <a href="javascript:void(0)" class="comments-more"
-      onclick="loadAllComments('<%= message.channel.id %>', <%= message.id %>)">
-
-      <%= message.comments.size - 4 %> <%= t 'comments.more' %>
-    </a>
   <% end %>
 
   <div class="comment">
