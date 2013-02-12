@@ -66,15 +66,21 @@ class MessagesController < ApplicationController
   end
 
 
+  # GET /channel/:id/messages/new
+  def new
+    authorize! :create, Message
+  end
+
+
   # GET /channel/:id/messages/:id/edit
-  def update
-    authorize! :edit, @message
+  def edit
+    authorize! :update, @message
   end
 
 
   # PUT /channel/:id/messages/:id
   def update
-    authorize! :edit, @message
+    authorize! :update, @message
 
     # No change summary? Try again!
     if params[:change_summary].blank?
@@ -125,7 +131,7 @@ class MessagesController < ApplicationController
 
   # POST /channels/:id/messages/:id/mark_as_important
   def mark_as_important
-    authorize! :edit, @message
+    authorize! :update, @message
 
     @message.is_important = params[:is_important]
     render :json => {:r => @message.save}
