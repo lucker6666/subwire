@@ -6,7 +6,7 @@ Subwire is the system running on [subwire.net](http://subwire.net).
 
 
 ## What is subwire?
-Subwire.net supports you to organize a group of people, share things fast and easy, and to stay in touch. If you've got an association or a company, subwire.net provides you a perfect communication and collaboration platform.
+Subwire.net supports you to organize a group of people, share things fast and easy, write documents together, discuss hot topics and plan meetings. If you've got an association or a company, subwire.net provides you a perfect communication and collaboration platform.
 
 For more information check [subwire.net](http://subwire.net)!
 
@@ -33,11 +33,11 @@ To activate GA you have to set the config.subwire.ga config params at the end of
 
 
 ## Contributing
-Feel free to fork this repo, make changes and setup a pull request. Or mail us. Or open a ticket. Or do whatever you want to do if you feel it will help us to make subwire even better.
+Feel free to fork this repo, make changes and setup a pull request. Or mail us. Or open a ticket. Or do whatever you want to do if you feel it will help us to make subwire even better ;)
 
-We're currently working on version 3.1 (Northstar) in the master branch. You find open tickets in our ([redmine installation](http://redmine.yaana.de/projects/subwire/issues?query_id=14)).
+We're currently working on version 3.1 (Northstar) in the master branch. You find open tickets in our [redmine installation](http://redmine.yaana.de/projects/subwire/issues?query_id=14).
 
-And if you want to work with us and get part of the ([Yaana Labs](http://yaana.de)), write us!
+And if you want to work with us and get part of the [Yaana Labs](http://yaana.de), just write us!
 
 
 
