@@ -23,6 +23,7 @@ class ChannelsController < ApplicationController
   # GET /channels/:id/edit
   def edit
     authorize! :update, @current_channel
+    set_section :settings
   end
 
 

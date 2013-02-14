@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_filter :load_channel
   before_filter :load_link, only: [:show, :edit, :update, :destory]
-
+  before_filter :section
 
 
   # GET /channels/:id/links
@@ -97,5 +97,9 @@ class LinksController < ApplicationController
     def load_message
       @link = Link.find(params[:id])
       authorize! :read, @link
+    end
+
+    def section
+      set_section :settings
     end
 end

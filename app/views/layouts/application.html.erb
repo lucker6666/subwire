@@ -18,12 +18,6 @@
         window.subwireTitle = "<%= @current_channel.name %>";
       <% end %>
     </script>
-
-    <% unless display_ads %>
-      <style type="text/css">
-        .advertising { display: none; }
-      </style>
-    <% end %>
   </head>
 
   <body>
@@ -163,24 +157,6 @@
 
               <div id="user-box">
                 <%= render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users} %>
-              </div>
-            </div>
-
-            <div class="well advertising">
-              <div style="width: 200px; margin: 0 auto;">
-                <%= t('ad') %>
-
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-4129785061498511";
-                /* Subwire Sidebar */
-                google_ad_slot = "4641294977";
-                google_ad_width = 200;
-                google_ad_height = 200;
-                //-->
-                </script>
-                <script type="text/javascript"
-                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
               </div>
             </div>
           <% end %>
