@@ -15,7 +15,7 @@
         <tbody>
             <% @relationships.each do |rel| %>
                 <% next unless rel.user %>
-                <% relationship = Relationship.find_by_channel_and_user(current_channel, rel.user) %>
+                <% relationship = Relationship.find_by_channel_and_user(@current_channel, rel.user) %>
                 <tr>
                     <td><%= avatar(relationship.user, :list) %></td>
                     <td><%= link_to relationship.user_name, user_path(relationship.user) %></td>

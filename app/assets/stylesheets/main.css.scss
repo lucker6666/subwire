@@ -2,14 +2,16 @@
  *  Variables
  */
 
-  $back_start: #DCE5EB;
-  $back_end: #fff;
+  $back_start: #fff;
+  $back_end: #f0f0f0;
   $link: #08c;
   $link_hover: #005580;
   $error_red: #b94a48;
+  $orange: #d26911;
   $box_shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
   $light_grey: #eee;
   $dark_grey: #222;
+  $muted_grey: #666;
 
   @mixin border_radius($radius) {
     -webkit-border-radius: $radius;
@@ -191,6 +193,10 @@
     }
   }
 
+  .muted {
+    color: $muted_grey;
+  }
+
 
 /*
  *  Quick message link
@@ -254,12 +260,14 @@
   }
 
   .navbar {
+    @include box_shadow(0 0 6px $orange);
     font-size: 14px;
 
     .nav > li > a.brand {
       font-size: 28px;
       padding: 8px 0 0 20px;
       font-family: "Yanone Kaffeesatz";
+      color: $orange;
 
       span {
         color: #08C;
@@ -544,15 +552,39 @@
               background-color: $link;
               color: #fff;
             }
+          }
+
+          &.active {
+            a {
+              color: $orange;
+              background-color: transparent;
+            }
+
+            i.icon {
+              color: $orange;
+              margin-top: 5px;
+            }
+          }
+
+          &.sub-navi {
+            .icon {
+              margin-left: 15px;
+            }
 
             &.active {
-              color: $dark_grey;
-              background-color: $light_grey;
+              a {
+                color: $dark_grey;
+                background-color: #e4e4e4;
+              }
 
-              i.icon {
-                margin-top: 5px;
+              .icon {
+                color: #000;
               }
             }
+          }
+
+          &:hover .icon {
+            color: #fff;
           }
         }
       }

@@ -1,11 +1,12 @@
 module ApplicationHelper
-  # Truncate message
+  # Truncate message for message overview
   def message_teaser(message)
     content = preprocess_message(message)
     target = channel_message_path(message.channel, message)
     HTML_Truncator.truncate(content, 60, ellipsis: ' ' + link_to('[...]', target)).strip.html_safe
   end
 
+  # Preproccessing for messages
   def preprocess_message(message)
     content = auto_link(message.content).strip.html_safe
   end
@@ -13,15 +14,6 @@ module ApplicationHelper
   # Display boolean values as icon
   def boolean_icon(expression)
     content_tag :i, "", class: (expression ? "icon icon-ok" : "icon icon-remove")
-  end
-
-  # Returns true if ad banner should be displayed
-  def display_ads
-    if current_user.is_admin?
-      false
-    end
-
-    @current_channel && @current_channel.advertising
   end
 
   # Convert String to jGrowl Notification JS Code
@@ -53,6 +45,7 @@ module ApplicationHelper
     messages.join.html_safe
   end
 
+  # Generates img-Tag vor avatar
   def avatar(user, size = :small, className = "")
     case size
     when :small
@@ -82,11 +75,13 @@ module ApplicationHelper
     end
   end
 
+  # Random background image for login page
   def login_background
     backgrounds = Subwire::Application.config.backgrounds
     return backgrounds[Random.new.rand(0..(backgrounds.length - 1))]
   end
 
+  # Existing icons
   def icons
     [
        'glass',

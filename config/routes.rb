@@ -10,9 +10,6 @@ Subwire::Application.routes.draw do
   }
 
 
-  # Relationships
-  resources :relationships
-
   # Channels
   resources :channels do
     # Links
@@ -30,6 +27,9 @@ Subwire::Application.routes.draw do
 
     # Availability Tool
     post "availability", to: "availabilities#set"
+
+    # Relationships
+    resources :relationships
   end
 
   # Notifications

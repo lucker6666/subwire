@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_filter :load_channel
   before_filter :load_message, only: [:show, :edit, :update, :destroy, :mark_as_important]
+  before_filter :section
 
 
   # GET /channel/:id/messages
@@ -144,5 +145,9 @@ class MessagesController < ApplicationController
     def load_message
       @message = Message.find(params[:id])
       authorize! :read, @message
+    end
+
+    def section
+      set_section :discussions
     end
 end

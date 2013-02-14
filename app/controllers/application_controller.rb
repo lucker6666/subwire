@@ -169,6 +169,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def set_section(section)
+      @active_section = section
+    end
+
 
 
   private

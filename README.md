@@ -12,6 +12,18 @@ For more information check [subwire.net](http://subwire.net)!
 
 
 
+## Features
+* Multi-User system with invitations
+* Login with Twitter, Google or Github
+* Manage multiple channels
+* Discussions
+* Wikis
+* Bookmarks
+* Notifications (with optinal E-Mail notifications)
+* Much more!
+
+
+
 ## Quick Installation
 	$ git clone https://github.com/YaanaLabs/subwire.git && cd subwire
 	$ bundle
