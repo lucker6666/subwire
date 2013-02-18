@@ -33,7 +33,7 @@ Change config/database.yml
 	$ cp config/initializers/config.example.rb config/initializers/config.rb
 Change config/initializers/config.rb
 
-	$ rake db:create && rake db:migrate subwire:setup
+	$ rake db:setup subwire:setup
 
 Finished! Now you can login with 'admin@example.com' and the password 'admin'.
 
