@@ -34,15 +34,12 @@ RSpec.configure do |config|
 
   # Run each example within a transaction
   config.use_transactional_fixtures = true
-
-  # Run specs in random order to surface order dependencies
-  config.order = "random"
 end
 
 #OmniAuth.config.test_mode = true
 #OmniAuth.config.mock_auth[:facebook] = {
-#                        :uid => '12345',
-#                        :provider => 'facebook',
-#                        :user_info => {'name' => 'Cookie', 'email' => 'fb@example.com'},
-#                        :credentials => {'token' => 'token'}
-#                        }
+#  uid: '12345',
+#  provider: 'facebook',
+#  user_info: {name: 'Cookie', email: 'fb@example.com'},
+#  credentials: {token: 'token'}
+#}
