@@ -4,7 +4,7 @@ class AvailabilitiesController < ApplicationController
 
   # POST /channels/:id/availabilities/set
   def set
-    authorize! [:create, :update], , Availability
+    authorize! [:create, :update], Availability
 
     paramSet = {
       date: params[:date],
