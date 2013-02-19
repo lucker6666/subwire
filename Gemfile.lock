@@ -183,6 +183,8 @@ GEM
       cocaine (~> 0.4.0)
       mime-types
     polyglot (0.3.3)
+    pre-commit (0.7.0)
+      execjs
     pry (0.9.11.4)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -331,6 +333,7 @@ DEPENDENCIES
   omniauth-google-apps
   omniauth-openid
   paperclip
+  pre-commit
   rack-livereload
   rails (~> 3.2.11)
   rails_autolink
