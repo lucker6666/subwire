@@ -64,4 +64,5 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem 'binding_of_caller'
+  gem 'pre-commit'
 end
