@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def show
     @assignedCount = Relationship.where(user_id: @user.id).length
     @adminCount = Relationship.where(user_id: @user.id, admin: true).length
-    @articlesCount = Article.where(user_id: @user.id).length
+    @messagesCount = Message.where(user_id: @user.id).length
     @commentsCount = Comment.where(user_id: @user.id).length
   end
 
