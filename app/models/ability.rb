@@ -10,6 +10,8 @@ class Ability
     else
       # Logged in
 
+      can [:manage], User, id: user.id
+
       if user.is_admin?
         # Superadmin
         can :manage, Message
