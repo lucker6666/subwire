@@ -87,28 +87,28 @@ class MessagesController < ApplicationController
     if params[:change_summary].blank?
       feedback "Change summary cannot be empty"
       render :action => "edit"
-    elsif @article.update_attributes(params[:article])
+    elsif @message.update_attributes(params[:message])
       # Generate comment from the summary
       change_summary_comment = Comment.new
       change_summary_comment.content = params[:change_summary]
       change_summary_comment.user = current_user
-      @article.comments << change_summary_comment
-      @article.save
+      @message.comments << change_summary_comment
+      @message.save
 
       # Notify all users
       Notification.notify_all_users({
-        notification_type: "edit_article",
+        notification_type: "edit_message",
         provokesUser: current_user,
-        subject: @article.title,
-        href: article_path(@article)
-      }, current_channel, current_user)
+        subject: @message.title,
+        href: channel_message_path(@current_channel, @message)
+      }, @current_channel, current_user)
 
       # Feedback and good bye
-      feedback t('articles.updated')
-      redirect_to article_path(@article)
+      feedback t('messages.updated')
+      redirect_to channel_message_path(@current_channel, @message)
     else
       # Couldn't save
-      errors_to_feedback @article
+      errors_to_feedback @message
       render action: "edit"
     end
   end
