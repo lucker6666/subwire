@@ -20,26 +20,9 @@ describe HomeController do
         sign_in @rel.user
       end
 
-      context "but without chosen channel" do
-        it "should redirect to first channel" do
-          get :index
-          response.should redirect_to(messages_url)
-        end
-      end
-
-      context "and with chosen channel" do
-        before do
-          set_current_channel @channel
-          get :index
-        end
-
-        it "should redirect to the respective channel" do
-          response.should redirect_to(messages_url)
-        end
-
-        it "sould have no current_channel set" do
-          current_channel.id.should == @channel.id
-        end
+      it "should redirect channel overview" do
+        get :index
+        response.should redirect_to(channels_url)
       end
     end
   end
