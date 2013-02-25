@@ -7,7 +7,6 @@ describe UsersController do
 
     # Log in first
     sign_in @rel.user
-    set_current_channel @channel
   end
 
   describe "GET 'show'" do
