@@ -22,7 +22,7 @@ Subwire::Application.routes.draw do
     resources :messages do
       resources :comments, only: [:index, :create, :update, :destroy]
       get 'comments/load_all', to: "comments#load_all", as: "comments_load_all"
-      post 'mark_as_important', to: "messages#mark_as_important", as: "message_mark_as_important"
+      post 'mark_as_important', to: "messages#mark_as_important"
     end
 
     # Availability Tool
