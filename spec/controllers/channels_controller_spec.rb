@@ -17,12 +17,8 @@ describe ChannelsController do
         get :show, id: @channel.id
       end
 
-      it "should set the current channel" do
-        current_channel.should == @channel
-      end
-
       it "should redirect to aritcle overview" do
-        response.should redirect_to(messages_path)
+        response.should redirect_to(channel_messages_path(@channel))
       end
     end
 
@@ -38,11 +34,6 @@ describe ChannelsController do
       context "while not superadmin but got less then 5 channels" do
         it "should be successful" do
           response.should be_success
-        end
-
-        it "should assign a @channel variable" do
-          #assigns[:channel].should == Channel.new
-          # TODO doesn't work !?
         end
 
         it "should render the 'new' view in the login layout" do
@@ -69,8 +60,8 @@ describe ChannelsController do
           response.should be_success
         end
 
-        it "should assign the @channel variable which should be the channel with ID 1" do
-          assigns[:channel].id.should == @channel.id
+        it "should assign the @current_channel variable which should be the channel with ID 1" do
+          assigns[:current_channel].id.should == @channel.id
         end
 
         it "should render the 'edit' view in the login layout" do
