@@ -28,6 +28,35 @@ class Ability
       else
         # Default user
 
+
+        # Channel
+
+        can [:create], Channel do |channel|
+          Channel.find_all_where_user_is_admin(user).length < 5
+        end
+
+        can [:read], Channel do |channel|
+          Relationship.exists?(channel, user)
+        end
+
+
+        # Notification
+
+        can [:create], Notification
+        can [:read, :update, :destroy], Notification, user_id: user.id
+
+
+        # Relationship
+
+        can [:read, :update, :destroy], Relationship, user_id: user.id
+
+
+        # User
+
+        can [:read, :update, :destroy], User, user_id: user.id
+
+
+
         unless channel.nil?
           # Find respective relationship
           @rs = Relationship.find_by_channel_and_user(channel, user)
@@ -50,17 +79,6 @@ class Ability
           can [:update, :destroy, :create], Availability, user_id: user.id
 
 
-          # Channel
-
-          can [:create], Channel do |channel|
-            Channel.find_all_where_user_is_admin(user).length < 5
-          end
-
-          can [:read], Channel do |channel|
-            Relationship.exists?(channel, user)
-          end
-
-
           # Comment
 
           can [:manage], Comment do |comment|
@@ -76,23 +94,6 @@ class Ability
             Relationship.exists?(link.channel, user)
           end
 
-
-          # Notification
-
-          can [:create]
-          can [:read, :update, :destroy], Notification, user_id: user.id
-
-
-          # Relationship
-
-          can [:read, :update, :destroy], Relationship, user_id: user.id
-
-
-          # User
-
-          can [:read, :update, :destroy], User, user_id: user.id
-
-
           if @rs.admin
             # Admin of current channel
 
@@ -105,7 +106,6 @@ class Ability
           end
         else
           # Without current channel
-          # TODO
         end
       end
     end
