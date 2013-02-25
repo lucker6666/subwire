@@ -95,7 +95,7 @@ class Ability
             # Admin of current channel
 
             can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
-            can [:update, :destroy], Channel, channel_id: @rs.channel.id
+            can [:update, :destroy], Channel, id: @rs.channel.id
 
             can [:manage], Comment do |channel|
               channel.message.channel == @rs.channel
