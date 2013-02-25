@@ -6,7 +6,7 @@ class Ability
       # Not logged in
 
       user = User.new
-      can [:create], User, :is_admin => false
+      can [:create], User, is_admin: false
     else
       # Logged in
 
@@ -27,13 +27,16 @@ class Ability
         # Default user
 
         unless channel.nil?
+          # Find respective relationship
+          @rs = Relationship.find_by_channel_and_user(channel, user)
+
           # Message
 
           can [:manage], Message do |message|
             Relationship.exists?(message.channel, user)
           end
 
-          can [:update, :destroy, :create], Message, :user_id => user.id
+          can [:update, :destroy, :create], Message, user_id: user.id
 
 
           # Availability
@@ -42,7 +45,7 @@ class Ability
             Relationship.exists?(availability.channel, user)
           end
 
-          can [:update, :destroy, :create], Availability, :user_id => user.id
+          can [:update, :destroy, :create], Availability, user_id: user.id
 
 
           # Channel
@@ -62,7 +65,7 @@ class Ability
             Relationship.exists?(comment.message.channel, user)
           end
 
-          can [:update, :destroy, :create], Comment, :user_id => user.id
+          can [:update, :destroy, :create], Comment, user_id: user.id
 
 
           # Link
@@ -75,24 +78,24 @@ class Ability
           # Notification
 
           can [:create]
-          can [:read, :update, :destroy], Notification, :user_id => user.id
+          can [:read, :update, :destroy], Notification, user_id: user.id
 
 
           # Relationship
 
-          can [:read, :update, :destroy], Relationship, :user_id => user.id
+          can [:read, :update, :destroy], Relationship, user_id: user.id
 
 
           # User
 
-          can [:read, :update, :destroy], User, :user_id => user.id
+          can [:read, :update, :destroy], User, user_id: user.id
 
 
           if @rs.admin
             # Admin of current channel
 
-            can [:manage], [Message, Link, Relationship], :channel_id => @rs.channel.id
-            can [:update, :destroy], Channel, channel_id => @rs.channel.id
+            can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
+            can [:update, :destroy], Channel, channel_id: @rs.channel.id
 
             can [:manage], Comment do |channel|
               channel.message.channel == @rs.channel
