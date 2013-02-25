@@ -39,7 +39,7 @@ class RelationshipsController < ApplicationController
       invite_user(user)
 
       feedback t('relationships.invited')
-      redirect_to relationships_path
+      redirect_to channel_relationships_path(@current_channel)
     elsif user.is_deleted
       # If user is deleted, send an invitation anyway
       user.is_deleted = false
