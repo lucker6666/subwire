@@ -24,10 +24,10 @@ class HomeController < ApplicationController
     I18n.locale = params[:locale]
 
     if current_user
-      render "logged_in", layout: :integration
+      render "logged_in", layout: 'integration'
     else
       @user = User.new
-      render "login", layout: :integration
+      render "login", layout: 'integration'
     end
   end
 end
