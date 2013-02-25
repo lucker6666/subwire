@@ -53,7 +53,7 @@ class Ability
 
         # User
 
-        can [:read, :update, :destroy], User, user_id: user.id
+        can [:read, :update, :destroy], User, id: user.id
 
 
 
