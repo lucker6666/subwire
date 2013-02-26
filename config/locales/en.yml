@@ -230,6 +230,7 @@ en:
     link_management: Bookmarks
     new_message: New Message
     message_details: Details ...
+    message_placeholder: What's new?
     your_profile: Your Profile
     edit_your_profile: Settings
     logout: Logout
