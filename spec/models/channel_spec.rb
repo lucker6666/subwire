@@ -72,4 +72,24 @@ describe Channel do
       @channel.notification_count(@rels[2].user).should eq(2)
     end
   end
+
+  describe :find_by_id_or_permalink do
+    it "should find the correct channel" do
+      @channel = FactoryGirl.create(:channel)
+
+      Channel.find_by_id_or_permalink(@channel.id).should eq(@channel)
+      Channel.find_by_id_or_permalink(@channel.permalink).should eq(@channel)
+    end
+  end
+
+  describe :find_all_where_user_is_admin do
+    it "should find all channels where that user is admin" do
+      channel1 = FactoryGirl.create(:channel)
+      channel2 = FactoryGirl.create(:channel)
+
+      user = channel1.relationships.where(admin: true).first.user
+
+      Channel.find_all_where_user_is_admin(user).should eq([channel1])
+    end
+  end
 end
