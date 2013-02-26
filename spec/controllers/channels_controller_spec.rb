@@ -52,20 +52,28 @@ describe ChannelsController do
       end
 
       context "while has no superadmin privileges but assigend to that channel" do
-        before do
-          get :edit, id: @channel.id
+        context "and is admin of channel" do
+          before do
+            @rel.admin = true
+            @rel.save
+            get :edit, id: @channel.id
+          end
+
+          it "should be successful" do
+            response.should be_success
+          end
+
+          it "should assign the @current_channel variable which should be the channel with ID 1" do
+            assigns[:current_channel].id.should == @channel.id
+          end
+
+          it "should render the 'edit' view in the login layout" do
+            response.should render_template(['layouts/login', 'channels/edit'])
+          end
         end
 
-        it "should be successful" do
-          response.should be_success
-        end
-
-        it "should assign the @current_channel variable which should be the channel with ID 1" do
-          assigns[:current_channel].id.should == @channel.id
-        end
-
-        it "should render the 'edit' view in the login layout" do
-          response.should render_template(['layouts/login', 'channels/edit'])
+        context "and is not admin of channel" do
+          # TODO
         end
       end
     end
