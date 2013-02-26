@@ -28,11 +28,11 @@ class Message < ActiveRecord::Base
   has_many :comments
 
   # Law of demeter delegations
-  delegate :name, :to => :user, :prefix => true
+  delegate :name, to: :user, prefix: true
 
   ### Validations
   # Make sure, title and content are not empty
-  validates :title, :content, presence: true
+  validates :content, presence: true
 
   def newest_comments
     Comment.newest.find_all_by_message_id self.id
