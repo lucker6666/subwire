@@ -26,8 +26,10 @@
         <%= form_for [@current_channel, @current_channel.messages.build] do |f| %>
           <%= f.text_area :content, rows: 4 %>
 
-          <%= f.submit nil, class: 'btn btn-primary' %>
-          <%= link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn' %>
+          <div class="buttons">
+            <%= f.submit nil, class: 'btn btn-success' %>
+            <%= link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn' %>
+          </div>
         <% end %>
       </div>
     <% end %>
