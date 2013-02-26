@@ -217,6 +217,7 @@
   li#new-message {
     + div.popover {
       width: 400px;
+      @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
 
       form {
         margin: 0;
