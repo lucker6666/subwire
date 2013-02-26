@@ -49,6 +49,18 @@
     }
   }
 
+  .btn {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.35);
+
+    &:hover {
+      border-bottom-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      border-bottom-width: 1px;
+    }
+  }
+
   .btn-large {
     font-size: 14px;
   }
