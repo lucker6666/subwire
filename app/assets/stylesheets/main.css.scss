@@ -82,11 +82,11 @@
     }
 
     .well {
-    	background-color: transparent;
-    	border: 0;
-    	border-bottom: 1px solid #ccc;
-    	border-radius: 0;
-    	box-shadow: none;
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .form-actions {
@@ -113,9 +113,9 @@
   }
 
   a {
-  	color: $link;
+    color: $link;
 
-  	&:hover {
+    &:hover {
       text-decoration: none;
     }
   }
@@ -135,7 +135,7 @@
   }
 
   div.content {
-  	padding-top: 60px;
+    padding-top: 60px;
   }
 
   div.maincontent {
@@ -443,6 +443,7 @@
 
       nobr {
         display: block;
+        visibility: hidden;
         font-size: 0.8em;
         color: #999;
       }
@@ -464,8 +465,14 @@
       }
     }
 
-    &:hover .buttons {
-      visibility: visible;
+    &:hover {
+      nobr {
+        visibility: visible;
+      }
+
+      .buttons {
+        visibility: visible;
+      }
     }
 
     .ad {
@@ -534,11 +541,11 @@
       padding: 0;
 
       h1 {
-      	margin: 0 0 10px;
+        margin: 0 0 10px;
       }
 
       ul.nav {
-      	margin: 0 0 10px;
+        margin: 0 0 10px;
 
         li {
           i.icon {
@@ -700,29 +707,29 @@
 
     .background-image {
       min-height: 100%;
-	  min-width: 1024px;
+    min-width: 1024px;
       width: 100%;
-	  height: auto;
-	  position: fixed;
-	  top: 0;
-	  left: 0;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
     }
 
     @media screen and (max-width: 1024px) {
-		.background-image {
-			left: 50%;
-			margin-left: -512px;
-		}
-	}
+    .background-image {
+      left: 50%;
+      margin-left: -512px;
+    }
+  }
 
     footer {
       clear: both;
       text-align: center;
       color: #ddd;
       position: fixed;
-  	  bottom: 1em;
-  	  left: 0;
-	    right: 0;
+      bottom: 1em;
+      left: 0;
+      right: 0;
       font-size: 15px;
       text-shadow: 0 0 3px $dark_grey;
 
@@ -747,10 +754,10 @@
   .login-form {
     width: 420px;
     height: 206px;
-  	position: fixed;
-  	left: 50%;
-  	top: 50%;
-  	margin: -133px 0 0 -242px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -133px 0 0 -242px;
     @include gradient(rgba(255, 255, 255, 0.7), rgba(200, 200, 200, 0.7));
     padding: 22px 40px;
     @include box_shadow(0px 6px 10px rgba(0, 0, 0, 0.75));
