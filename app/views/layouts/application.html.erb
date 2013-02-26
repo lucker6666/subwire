@@ -24,7 +24,7 @@
     <% if @current_channel %>
       <div id="new-message-html">
         <%= form_for [@current_channel, @current_channel.messages.build] do |f| %>
-          <%= f.text_area :content, rows: 4 %>
+          <%= f.text_area :content, rows: 4, placeholder: t("application.message_placeholder") %>
 
           <div class="buttons">
             <%= f.submit nil, class: 'btn btn-success' %>
