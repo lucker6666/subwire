@@ -7,7 +7,7 @@ FactoryGirl.define do
     confirmed_at Time.now
     last_activity Time.now
     name 'User'
-  	sequence(:email) { |n| "user#{n}@example.com" }
+    sequence(:email) { |n| "user#{n}@example.com" }
 
     factory :admin do
       name 'Admin'
@@ -35,6 +35,7 @@ FactoryGirl.define do
 
   factory :relationship do
     user
+    admin false
 
     factory :admin_relationship do
       admin true
