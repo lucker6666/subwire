@@ -14,8 +14,9 @@
         %i{:class=>"icon icon-trash"}
 
   .body
-    %h2
-      = link_to message.title, channel_message_path(@current_channel, message)
+    - unless message.title.nil?
+      %h2
+        = link_to message.title, channel_message_path(@current_channel, message)
 
     = full ? preprocess_message(message) : message_teaser(message)
 
