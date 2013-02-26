@@ -49,6 +49,11 @@
     }
   }
 
+  // Remove Chromes yellow border on dropdowns
+  a.dropdown-toggle {
+    outline: none;
+  }
+
   .tooltip {
     white-space: nowrap;
   }
