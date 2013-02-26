@@ -19,7 +19,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :user
 
   # Law of demeter delegations
-  delegate :name, :email, :to => :user, :prefix => true
+  delegate :name, :email, to: :user, prefix: true
 
 
   ### Methods
@@ -58,10 +58,6 @@ class Relationship < ActiveRecord::Base
   end
 
   def email
-    unless user.nil?
-      return user.email
-    end
-
-    return "" # TODO Is that neccessary?
+    return user.email
   end
 end
