@@ -1,0 +1,135 @@
+/*
+ *  Login form
+ */
+
+  body.login {
+    overflow: hidden;
+    background-color: #273B82;
+
+    .navbar .container {
+      text-align: center;
+
+      a {
+        float: none;
+      }
+    }
+
+    .row {
+      margin-left: 0;
+    }
+
+    .background-image {
+      min-height: 100%;
+    min-width: 1024px;
+      width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+    .background-image {
+      left: 50%;
+      margin-left: -512px;
+    }
+  }
+
+    footer {
+      clear: both;
+      text-align: center;
+      color: #ddd;
+      position: fixed;
+      bottom: 1em;
+      left: 0;
+      right: 0;
+      font-size: 15px;
+      text-shadow: 0 0 3px $dark_grey;
+
+      a {
+        color: #ddd;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      ul li {
+        border-left: 1px solid #999;
+      }
+    }
+
+    h4.register {
+      text-align: center;
+    }
+  }
+
+  .login-form {
+    width: 420px;
+    height: 206px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -133px 0 0 -242px;
+    @include gradient(rgba(255, 255, 255, 0.7), rgba(200, 200, 200, 0.7));
+    padding: 22px 40px;
+    @include box_shadow(0px 6px 10px rgba(0, 0, 0, 0.75));
+    @include border_radius(10px);
+    color: $dark_grey;
+
+    .sign-in-with {
+      margin-top: 0.4em;
+      height: 26px;
+
+      span {
+        float: left;
+        margin-right: 5px;
+        display: inline-block;
+        opacity: 0.9;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .links {
+      clear: both;
+      text-align: center;
+      padding-top: 0.7em;
+      margin-top: 1em;
+      border-top: 1px solid #aaa;
+
+      a {
+        color: #666;
+
+        &:hover {
+          color: $dark_grey;
+        }
+      }
+    }
+
+    form {
+      margin: 0;
+
+      input.text_field {
+        width: 400px;
+        font-size: 22px;
+        padding: 5px 10px;
+        line-height: 1.2em;
+        height: 35px;
+        text-align: center;
+        margin-top: 0.4em;
+      }
+    }
+
+    #remember-me i.icon-lock {
+      margin-right: 4px;
+    }
+  }
+
+  form.new_channel {
+    select {
+      width: 422px;
+    }
+  }

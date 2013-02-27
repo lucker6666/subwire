@@ -1,0 +1,263 @@
+/*
+ *	General
+ */
+
+  body {
+    //@include gradient($back_start, $back_end);
+    background-color: #767d8c;
+    background-attachment: fixed;
+    padding-top: 0;
+
+    &.login {
+      background: #ddd none;
+    }
+  }
+
+  h1 {
+    margin: 0 0 29px 0;
+    font-size: 28px;
+    line-height: 25px;
+    color: $dark_grey;
+  }
+
+  a {
+    color: $link;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .big-icon {
+    font-size: 5em;
+    line-height: 1em;
+    text-align: right;
+  }
+
+  .break {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .muted {
+    color: $muted_grey;
+  }
+
+
+
+/*
+ *  Layout
+ */
+
+  div.container {
+    position: relative;
+  }
+
+  div.content {
+    padding-top: 60px;
+  }
+
+  div.maincontent {
+    margin-left: 270px;
+  }
+
+
+
+/*
+ *  jGrowl
+ */
+
+  div.jGrowl div.jGrowl-notification,
+  div.jGrowl div.jGrowl-closer {
+    border-radius: 5px;
+  }
+
+
+
+/*
+ *  Buttons
+ */
+
+  .btn {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.35);
+
+    &:hover {
+      border-bottom-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      border-bottom-width: 1px;
+    }
+
+    &.btn-large {
+      font-size: 14px;
+    }
+
+    &.fixed-width#remember-me {
+      width: 110px;
+    }
+
+    &.fixed-width {
+      width: 174px;
+      float: right;
+      height: 26px;
+      padding: 2px 12px 3px;
+    }
+  }
+
+  .btn-group.pull-left {
+    margin-right: 0.8em;
+  }
+
+  .danger-button {
+    color: #fff !important;
+    width: 95px;
+    font-weight: bold;
+  }
+
+
+
+/*
+ *  Pagination
+ */
+
+  .pagination {
+    text-align: center;
+
+    ul {
+      background-color: #fff;
+    }
+  }
+
+
+/*
+ *  Popovers
+ */
+
+  .popover_help {
+    float: right;
+    font-size: 20pt;
+    margin-top: 0.3em;
+  }
+
+
+
+/*
+ *  Wells
+ */
+
+  .well {
+    background-color: #fafafa;
+    min-height: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid $muted_grey;
+    @include border_radius(5px);
+    @include box_shadow($box_shadow);
+
+    h1 {
+      border-bottom: 1px solid #999;
+      margin: -15px -15px 10px;
+      padding: 6px 15px 5px;
+      font-size: 1.2em;
+      @include gradient(#f1f1f1, #b8b8b8);
+      @include border_radius(5px 5px 0 0);
+    }
+
+    .well {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .form-actions {
+      padding: 0;
+      border-top: 0;
+
+      &.with-padding {
+        padding-left: 160px;
+      }
+    }
+  }
+
+
+
+/*
+ *  Missing Translation
+ */
+
+  .translation_missing {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+  }
+
+
+
+/*
+ *  Forms
+ */
+
+  select {
+    width: 250px;
+  }
+
+  input, textarea {
+    &:focus {
+      @include box_shadow(none);
+    }
+  }
+
+  .field_with_errors {
+    .control-label {
+      color: $error_red;
+    }
+
+    input {
+      color: $error_red;
+      border-color: $error_red;
+    }
+  }
+
+  .form-actions {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    border-top: 1px solid #aaa;
+  }
+
+  input.message-title {
+    width: 99%;
+  }
+
+
+
+/*
+ *  Avatars
+ */
+
+  img.avatar {
+    @include box_shadow(0 0 3px rgba(0, 0, 0, 0.6));
+    border-radius: 5px;
+
+    &.size-list {
+      border-radius: 0;
+    }
+
+    &.pull-left {
+      margin-right: 10px;
+      margin-top: 4px;
+    }
+  }
+
+
+
+/*
+ *  Notifications
+ */
+
+  span.notification-margin {
+    margin-right:10px;
+  }
