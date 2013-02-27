@@ -1,0 +1,394 @@
+/*
+ *  Quick message
+ */
+
+  li#new-message {
+    + div.popover {
+      width: 400px;
+      @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
+
+      form {
+        margin: 0;
+      }
+
+      textarea {
+        width: 383px;
+        resize: none;
+        padding: 9px 14px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        overflow: hidden;
+      }
+
+      div.popover-content {
+        padding: 0;
+      }
+
+      div.buttons {
+        padding: 0 14px 9px 14px;
+      }
+    }
+  }
+
+  #new-message-html {
+    display: none;
+  }
+
+
+
+/*
+ *  Nav
+ */
+
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    position: fixed;
+  }
+
+  .navbar-inner {
+    @include gradient(#f1f1f1, #b8b8b8);
+  }
+
+  .navbar {
+    @include box_shadow(0 0 6px #000);
+    font-size: 14px;
+
+    .nav {
+      li.dropdown.open > .dropdown-toggle {
+        background: transparent none;
+        color: #000;
+      }
+
+      li > a {
+        color: #444;
+
+        &.brand {
+          font-size: 28px;
+          padding-left: 36px;
+          padding-right: 0;
+          font-family: "Yanone Kaffeesatz";
+
+          span {
+            color: #08C;
+          }
+        }
+      }
+    }
+
+    .search-query {
+      width: 140px;
+      margin-right: 13px;
+
+      &:focus {
+        width: 200px;
+      }
+    }
+  }
+
+  .iconOnly > a > i {
+    font-size: 1.6em;
+  }
+
+  li.iconOnly > a.dropdown-toggle {
+    position: relative;
+    padding: 10px 0.5em 8px 0.5em;
+  }
+
+  a.dropdown-toggle span.badge {
+    position: absolute;
+    left: 29px;
+    text-shadow: none;
+    top: 4px;
+    padding: 0px 4px 0px;
+    font-size: 9px;
+    line-height: 14px;
+  }
+
+  li.planner a.dropdown-toggle span.badge {
+    top: 7px;
+    left: 20px;
+  }
+
+  ul.channels-dropdown a.active {
+    font-weight: bold;
+  }
+
+  .dropdown-menu {
+    padding: 0.5em;
+  }
+
+  .notification-dropdown a {
+    clear: both;
+    color: #333333;
+    display: block;
+    font-weight: normal;
+    line-height: 20px;
+    margin-right: 20px;
+    padding: 3px 20px;
+    white-space: nowrap;
+  }
+
+  thead th.weekend {
+    background-color: whiteSmoke;
+  }
+
+  ul.availabilitites th {
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  td.green,
+  td.yellow,
+  td.red {
+    text-align: center;
+  }
+
+  td.green,
+  table.table-striped tr:nth-child(odd) td.green {
+    background-color: #D1F3D1;
+    color: #34A634;
+  }
+
+  td.green a,
+  td.green a:hover {
+    color: #34A634;
+  }
+
+  .table tbody tr:hover td.green {
+    background-color: #BFE1BF;
+  }
+
+  td.yellow,
+  table.table-striped tr:nth-child(odd) td.yellow {
+    background-color: #ffffcc;
+     color: #ffcc00;
+  }
+
+  td.yellow a,
+  td.yellow a:hover {
+    color: #ffcc00;
+  }
+
+  .table tbody tr:hover td.yellow {
+    background-color: #EEEEB3;
+  }
+
+  td.red,
+  table.table-striped tr:nth-child(odd) td.red {
+    background-color: #ffccca;
+    color: #a63333;
+  }
+
+  td.red a,
+  td.red a:hover {
+    color: #a63333;
+  }
+
+  .table tbody tr:hover td.red {
+    background-color: #EAB8B6;
+  }
+
+  ul.nav.logout {
+    position: absolute;
+    right: 0;
+    left: auto;
+  }
+
+  .notification-dropdown {
+    img {
+      float: left;
+      margin: 3px 8px 0 -9px;
+    }
+
+    li.read {
+      opacity: 0.5;
+    }
+  }
+
+  .availabilitites div.dropdown-menu {
+    font-size: 0.9em;
+  }
+
+  .navbar img.current-user {
+    margin: -9px 8px -6px 0;
+    width: 26px;
+    height: 26px;
+  }
+
+  .nav > li > a {
+    padding: 10px;
+  }
+
+  .navbar .divider-vertical {
+    margin: 6px 4px;
+    height: 30px;
+    border-left: 1px solid #b8b8b8;
+    border-right: 1px solid #f1f1f1;
+  }
+
+
+
+/*
+ *  Sidebar
+ */
+
+  div.sidebar {
+    float: left;
+    width: 250px;
+
+    .well {
+      padding: 0;
+      background-color: #dadfe7;
+
+      h1 {
+        margin: 0 0 10px;
+      }
+
+      ul.nav {
+        margin: 0 0 10px;
+
+        li {
+          i.icon {
+            margin-top: 6px;
+          }
+
+          a {
+            padding: 3px 15px;
+            color: #222;
+            border-top: 1px solid #dadfe7;
+
+            &:hover {
+              color: #000;
+              @include gradient(#b1bed7, #8599b7);
+              border-top: 1px solid #a2b1cb;
+            }
+          }
+
+          &.active {
+            a {
+              color: #000;
+              background-color: transparent;
+              text-shadow: none;
+            }
+
+            i.icon.pull-right {
+              margin-top: 3px;
+            }
+          }
+
+          &.sub-navi {
+            .icon {
+              margin-left: 15px;
+            }
+
+            &.active {
+              a {
+                color: 000;
+                @include gradient(#b1bed7, #8599b7);
+                border-top: 1px solid #a2b1cb;
+              }
+
+              .icon {
+                color: #000;
+              }
+            }
+          }
+
+          &:hover .icon {
+            color: #000;
+          }
+        }
+      }
+    }
+
+    ul.bookmarks {
+      list-style-type: none;
+      margin: 0;
+
+      li {
+        word-wrap: break-word;
+      }
+    }
+
+    ul.users .avatar {
+      float: left;
+      margin-right: 5px;
+      margin-top: 8px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    div.sidebar {
+      width:auto;
+    }
+  }
+
+  @media (max-width: 979px) {
+    div.sidebar {
+      position:static;
+      width: auto;
+    }
+  }
+
+
+
+/*
+ *  Footer
+ */
+
+  footer {
+    clear: both;
+    padding: 0.6em 0;
+    text-align: center;
+    color: #666;
+    margin-top: 2em;
+
+
+    a {
+      color: #444;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 1em 0;
+
+      li {
+        display: inline;
+        border-left: 1px solid #999;
+        padding-left: 5px;
+
+        &:first-child {
+          border-left: none;
+        }
+      }
+    }
+  }
+
+
+
+/*
+ *  Hints
+ */
+
+  ul.hint {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    img {
+      border: 1px solid #999;
+      margin-top: 1.5em;
+
+      &.pull-right {
+        margin-left: 1.5em;
+        margin-top: 0;
+      }
+    }
+  }

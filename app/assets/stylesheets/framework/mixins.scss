@@ -1,0 +1,29 @@
+/*
+ *  Macros
+ */
+
+  @mixin border_radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+  }
+
+  @mixin box_shadow($params) {
+    box-shadow: $params;
+    -webkit-box-shadow: $params;
+    -moz-box-shadow: $params;
+  }
+
+  @mixin gradient($from, $to) {
+    background-color: $from;
+    background-image: -moz-linear-gradient($from, $to);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+    background-image: -webkit-linear-gradient($from, $to);
+    background-image: -o-linear-gradient($from, $to);
+  }
+
+  @mixin opacity($val){
+    filter: alpha(opacity= $val* 100);
+    -moz-opacity: $val;
+    opacity: $val;
+  }

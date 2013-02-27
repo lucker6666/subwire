@@ -1,0 +1,23 @@
+/*
+ *  Hacks, Bugfixes, Workarounds
+ */
+
+  // Remove Chromes yellow border on dropdowns
+  a.dropdown-toggle {
+    outline: none;
+  }
+
+  // Avoid line breaks in bootstrap tooltips
+  .tooltip {
+    white-space: nowrap;
+  }
+
+  // Avoid overlaps over the popovers
+  .popover {
+    z-index: 12000;
+  }
+
+  // Workaround for https://github.com/seyhunak/twitter-bootstrap-rails/issues/357
+  [class^="icon-"], [class*=" icon-"] {
+    background-image: none !important;
+  }
