@@ -3,13 +3,12 @@
  */
 
   body {
-    //@include gradient($back_start, $back_end);
-    background-color: #767d8c;
+    background-color: $background_color;
     background-attachment: fixed;
     padding-top: 0;
 
     &.login {
-      background: #ddd none;
+      background: none;
     }
   }
 
@@ -125,7 +124,7 @@
     text-align: center;
 
     ul {
-      background-color: #fff;
+      background-color: $well_background;
     }
   }
 
@@ -147,7 +146,7 @@
  */
 
   .well {
-    background-color: #fafafa;
+    background-color: $well_background;
     min-height: 20px;
     padding: 15px;
     margin-bottom: 20px;
@@ -156,18 +155,18 @@
     @include box_shadow($box_shadow);
 
     h1 {
-      border-bottom: 1px solid #999;
+      border-bottom: 1px solid $border_grey;
       margin: -15px -15px 10px;
       padding: 6px 15px 5px;
       font-size: 1.2em;
-      @include gradient(#f1f1f1, #b8b8b8);
+      @include grey_gradient();
       @include border_radius(5px 5px 0 0);
     }
 
     .well {
       background-color: transparent;
       border: 0;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $border_grey;
       border-radius: 0;
       box-shadow: none;
     }
@@ -225,7 +224,7 @@
     background-color: transparent;
     padding-left: 0;
     padding-right: 0;
-    border-top: 1px solid #aaa;
+    border-top: 1px solid $border_grey;
   }
 
   input.message-title {

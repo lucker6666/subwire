@@ -55,23 +55,19 @@
 
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="divider-vertical"></li>
-
               <%= render partial: 'shared/navbar/notifications' %>
               <%= render partial: 'shared/navbar/channelSettings' %>
               <%= render partial: 'shared/navbar/adminMenu' %>
 
-              <li class="divider-vertical"></li>
-
               <% if @current_channel %>
-                <li id="new-message">
+                <li id="new-message" class="iconOnly">
                   <a href="#" onclick="return false;">
                     <i class="icon icon-plus-sign"></i>
-
-                    <%= t ('application.new_message') %>
                   </a>
                 </li>
               <% end %>
+
+              <li class="divider-vertical"></li>
             </ul>
 
             <%= render partial: 'shared/navbar/availability' %>

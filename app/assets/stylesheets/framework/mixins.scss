@@ -27,3 +27,12 @@
     -moz-opacity: $val;
     opacity: $val;
   }
+
+  @mixin grey_gradient() {
+    @include gradient($light_grey, $mid_grey);
+  }
+
+  @mixin highlight() {
+    @include gradient($highlight_background_start, $highlight_background_end);
+    border-top: 1px solid $highlight_border_top_color;
+  }

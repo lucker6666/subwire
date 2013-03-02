@@ -3,7 +3,7 @@
  */
 
   .message {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $mid_grey;
     margin: 0 -15px 15px;
     padding: 0 15px 15px;
     position: relative;
@@ -23,7 +23,7 @@
         display: block;
         visibility: hidden;
         font-size: 0.8em;
-        color: #999;
+        color: $border_grey;
       }
     }
 
@@ -34,7 +34,7 @@
       margin: 0;
 
       a {
-        color: #333;
+        color: $dark_grey;
 
         &:hover {
           background-color: transparent;
@@ -71,7 +71,7 @@
 
     .comment {
       padding: 0.5em 0 0.5em;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid $light_grey;
 
       .body {
         margin-left: 45px;
@@ -79,7 +79,7 @@
 
       textarea {
         width: 100%;
-        border: 1px solid #ccc;
+        border: 1px solid $mid_grey;
         border-radius: 0;
         padding: 3px;
         font-size: 12px;
