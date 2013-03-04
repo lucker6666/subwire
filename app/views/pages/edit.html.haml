@@ -1,0 +1,6 @@
+.well
+  %h1 Editing page
+  = render 'form'
+  = link_to 'Show', @page
+  |
+  \#{link_to 'Back', channel_wiki_index_path(@current_channel)}
