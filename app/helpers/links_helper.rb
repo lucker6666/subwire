@@ -1,9 +1,9 @@
 module LinksHelper
-  def is_dn_link_showed?(idx, size)
+  def display_down_link?(idx, size)
     idx < size - 1
   end
 
-  def is_up_link_showed?(idx)
+  def display_up_link?(idx)
     idx >= 1
   end
 end

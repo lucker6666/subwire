@@ -4,16 +4,16 @@
 <div class="well">
     <table class="table table-striped table-bordered table-condensed">
         <tr>
-        <td rowspan="<%= has_superadmin_privileges? ? 8 : 7 %>" class="span2 avatarCell">
+        <td rowspan="<%= can? :edit, @user ? 8 : 7 %>" class="span2 avatarCell">
           <%= avatar(@user, :default) %>
         </td>
         </tr>
 
-        <% if has_superadmin_privileges? %>
-        <tr>
-          <th class="span3"><%= model_class.human_attribute_name(:email) %>:</th>
-          <td><%= @user.email %></td>
-        </tr>
+        <% if can? :edit, @user %>
+          <tr>
+            <th class="span3"><%= model_class.human_attribute_name(:email) %>:</th>
+            <td><%= @user.email %></td>
+          </tr>
         <% end %>
 
         <tr>
@@ -47,7 +47,7 @@
         </tr>
     </table>
 
-    <% if has_superadmin_privileges? %>
+    <% if can? :edit, @user %>
       <div class="form-actions">
         <%= link_to edit_user_path(@user), class: 'btn' do %>
           <i class="icon icon-pencil"></i>

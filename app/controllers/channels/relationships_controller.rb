@@ -1,6 +1,6 @@
 class Channels::RelationshipsController < ApplicationController
   before_filter :load_channel
-  before_filter :load_relationship, only: [:show, :destroy]
+  before_filter :load_relationship, only: [:show, :edit, :destroy]
   before_filter :section
 
 
@@ -22,7 +22,7 @@ class Channels::RelationshipsController < ApplicationController
 
   # GET /channels/:id/relationships/1/edit
   def edit
-    authorize! :update, Relationship
+    authorize! :update, @relationship
   end
 
 
@@ -74,7 +74,7 @@ class Channels::RelationshipsController < ApplicationController
 
   # PUT /channels/:id/relationships/1
   def update
-    if can? :update, Channel
+    if can? :update, @current_channel
       @relationship.admin = params[:relationship][:admin]
     end
 

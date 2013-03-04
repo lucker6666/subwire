@@ -1,5 +1,5 @@
 <div class="well">
-    <%= form_for @relationship, html: { class: 'form-horizontal' } do |f| %>
+    <%= form_for [@current_channel, @relationship], html: { class: 'form-horizontal' } do |f| %>
         <% if @relationship.id.nil? %>
             <div class="control-group">
                 <%= f.label :email, class: 'control-label' %>
@@ -29,7 +29,7 @@
         <div class="form-actions with-padding">
             <%= f.submit t('relationships.new'), class: 'btn btn-primary' %>
             <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                relationships_path, class: 'btn' %>
+                channel_relationships_path(@current_channel), class: 'btn' %>
         </div>
     <% end %>
 </div>
