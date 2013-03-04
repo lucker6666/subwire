@@ -1,0 +1,17 @@
+.well
+  %p#notice= notice
+  %p
+    %b Title:
+    = @page.title
+  %p
+    %b Content:
+    = @page.content
+  %p
+    %b User:
+    = @page.user
+  %p
+    %b Channel:
+    = @page.channel
+  = link_to 'Edit', edit_channel_wiki_path(@current_channel, @page)
+  |
+  \#{link_to 'Back', channel_wiki_index_path}

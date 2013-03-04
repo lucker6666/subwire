@@ -30,6 +30,9 @@ Subwire::Application.routes.draw do
 
     # Relationships
     resources :relationships
+
+    # Wiki
+    resources :wiki, :controller => "pages"
   end
 
   # Notifications
