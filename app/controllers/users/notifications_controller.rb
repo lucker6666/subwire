@@ -1,4 +1,4 @@
-class NotificationsController < ApplicationController
+class Users::NotificationsController < ApplicationController
   before_filter :load_notification, only: [:show, :destroy]
 
 

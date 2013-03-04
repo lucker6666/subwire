@@ -1,4 +1,4 @@
-class AvailabilitiesController < ApplicationController
+class Channels::AvailabilitiesController < ApplicationController
   before_filter :load_channel
 
 

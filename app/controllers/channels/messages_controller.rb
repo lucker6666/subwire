@@ -1,4 +1,4 @@
-class MessagesController < ApplicationController
+class Channels::MessagesController < ApplicationController
   before_filter :load_channel
   before_filter :load_message, only: [:show, :edit, :update, :destroy, :mark_as_important]
   before_filter :section

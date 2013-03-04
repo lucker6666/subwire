@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Channels::Messages::CommentsController < ApplicationController
   before_filter :load_channel
   before_filter :load_message
   before_filter :load_comment, only: [:destroy, :edit, :update]

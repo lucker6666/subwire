@@ -1,4 +1,4 @@
-class RelationshipsController < ApplicationController
+class Channels::RelationshipsController < ApplicationController
   before_filter :load_channel
   before_filter :load_relationship, only: [:show, :destroy]
   before_filter :section
