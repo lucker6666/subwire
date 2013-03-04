@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <% if has_superadmin_privileges? %>
+    <% if can? :admin, :all %>
       <div class="control-group">
         <%= f.label :is_admin, class: 'control-label' %>
 
@@ -112,31 +112,6 @@
                 <td><%= check_box_tag :Instanz, true, relationship.mail_notification, {id: 'rel'+relationship.id.to_s,name: 'rel'+relationship.id.to_s, class: 'check_box'} %></td>
               </tr>
             <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= label :delete_relationship, " ", class: 'control-label' %>
-
-      <div class="controls">
-        <div class="alert">
-          <table>
-            <tr>
-              <td>
-                <%= link_to t('relationships.delete'),
-                  relationship_path(current_rs),
-                  method: :delete,
-                  class: 'btn btn-warning danger-button no-lock',
-                  confirm: t("helpers.links.confirm") %>
-              </td>
-              <td>
-                <p style="padding-left:35px;">
-                  <%= t('relationships.delete_alert').html_safe %>
-                </p>
-              </td>
-            </tr>
           </table>
         </div>
       </div>

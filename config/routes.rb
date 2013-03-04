@@ -14,10 +14,10 @@ Subwire::Application.routes.draw do
   resources :channels do
     # Links
     get 'links/move_position_up/:id',
-      to: "channels/links#move_position_up", as: "links_move_position_up"
+      to: "channels/links#move_position_up", as: "link_up"
 
     get 'links/move_position_dn/:id',
-      to: "channels/links#move_position_dn", as: "links_move_position_dn"
+      to: "channels/links#move_position_dn", as: "link_down"
 
     resources :links, controller: "channels/links"
 
