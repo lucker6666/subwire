@@ -4,8 +4,8 @@ Subwire::Application.routes.draw do
 
   # Devise
   devise_for :users, controllers: {
-    registrations: "registrations",
-    confirmations: "confirmations",
+    registrations: "users/registrations",
+    confirmations: "users/confirmations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
@@ -13,36 +13,51 @@ Subwire::Application.routes.draw do
   # Channels
   resources :channels do
     # Links
-    get 'links/move_position_up/:id', to: "links#move_position_up", as: "links_move_position_up"
-    get 'links/move_position_dn/:id', to: "links#move_position_dn", as: "links_move_position_dn"
+    get 'links/move_position_up/:id',
+      to: "channels/links#move_position_up", as: "links_move_position_up"
 
-    resources :links
+    get 'links/move_position_dn/:id',
+      to: "channels/links#move_position_dn", as: "links_move_position_dn"
+
+    resources :links, controller: "channels/links"
+
 
     # Messages and comments
-    resources :messages do
-      resources :comments, only: [:index, :create, :update, :destroy]
-      get 'comments/load_all', to: "comments#load_all", as: "comments_load_all"
-      post 'mark_as_important', to: "messages#mark_as_important"
+    resources :messages, controller: "channels/messages" do
+      resources :comments, only: [:index, :create, :update, :destroy],
+        controller: "channels/messages/comments"
+
+      get 'comments/load_all',
+        to: "channels/messages/comments#load_all",
+        as: "comments_load_all"
+
+      post 'mark_as_important', to: "channels/messages#mark_as_important"
     end
 
+
     # Availability Tool
-    post "availability", to: "availabilities#set"
+    post "availability", to: "channels/availabilities#set"
+
 
     # Relationships
-    resources :relationships
+    resources :relationships, controller: "channels/relationships"
+
 
     # Wiki
-    resources :wiki, :controller => "pages"
+    resources :wiki, controller: "channels/pages"
   end
 
+
   # Notifications
-  resources :notifications, only: [:index, :show, :destroy]
+  resources :notifications, only: [:index, :show, :destroy], controller: "users/notifications"
+
 
   # Users
   get "users/finish", to: "users#finish"
   post "users/finish", to: "users#finish_save"
   get "users/user_box", to: "users#user_box"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
+
 
   # Misc
   get "inactive", to: "home#inactive"
@@ -51,6 +66,7 @@ Subwire::Application.routes.draw do
   scope "/:locale" do
     get "/integration", to: "home#integration"
   end
+
 
   # Start page
   get "home/index"

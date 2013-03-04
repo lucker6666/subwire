@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class Channels::PagesController < ApplicationController
   before_filter :load_page, only: [:show, :edit, :update, :destory]
   before_filter :section
 
