@@ -94,7 +94,7 @@ class LinksController < ApplicationController
 
   private
 
-    def load_message
+    def load_link
       @link = Link.find(params[:id])
       authorize! :read, @link
     end
