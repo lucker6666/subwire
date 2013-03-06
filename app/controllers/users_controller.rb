@@ -45,6 +45,17 @@ class UsersController < ApplicationController
 
     @user.show_login_status = params[:show_login_status]
 
+    # If the user has changed his name, notify the users to prevent identity theft
+    if params[:user][:name] != @user.name
+      @user.relationships.each do |rel|
+        Notification.notify_all_users({
+          notification_type: :username_change,
+          provokesUser: @user,
+          href: user_path(@use)
+        }, @rel.channel, current_user)
+      end
+    end
+
     # Gravatar
     if !@user.gravatar && params[:gravatar]
       @mail = @user.email
