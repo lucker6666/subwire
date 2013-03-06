@@ -64,15 +64,17 @@ class Link < ActiveRecord::Base
     end
   end
 
+
+
   private
-  def set_position
-    self.position = next_position
-  end
 
-  def next_position
-    count = Link.count(:group => :channel_id)[1]
-    return 1 unless count
-    count + 1
-  end
+    def set_position
+      self.position = next_position
+    end
 
+    def next_position
+      count = Link.count(:group => :channel_id)[1]
+      return 1 unless count
+      count + 1
+    end
 end
