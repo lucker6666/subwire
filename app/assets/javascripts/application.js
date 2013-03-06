@@ -1,7 +1,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jgrowl.js
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require messenger
 //= require jquery.autogrowtextarea.min.js
 //= require ckeditor/init
 //= require_tree .

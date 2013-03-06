@@ -16,9 +16,12 @@ module ApplicationHelper
     content_tag :i, "", class: (expression ? "icon icon-ok" : "icon icon-remove")
   end
 
-  # Convert String to jGrowl Notification JS Code
-  def jGrowl_message(msg)
-    "$.jGrowl(\"#{msg}\");"
+  # Convert String to Messenger Notification JS Code
+  def message_snippet(msg_obj)
+    msg = j(msg_obj[:msg]) # JS Escaping
+    type = msg_obj[:type].to_s
+
+    "$.globalMessenger().post({message: '#{msg}', type: '#{type}'});"
   end
 
   # Returns the JS Code of all flash messages including Devise model errors
@@ -27,16 +30,16 @@ module ApplicationHelper
 
     # Add all Devise model errors to the result array
     if defined?(@user) && !@user.nil? && !@user.errors.empty?
-      @user.errors.full_messages.map { |msg| messages.push(jGrowl_message(msg)) }
+      @user.errors.full_messages.map { |msg| messages.push(message_snippet(msg)) }
     end
 
     # Add all flash messages to the result array
     flash.each do |key, message|
       # In some cases message maybe an array too
       if message.kind_of? Array
-        message.each { |msg| messages.push(jGrowl_message(msg)) }
+        message.each { |msg| messages.push(message_snippet(msg)) }
       else
-        messages.push(jGrowl_message(message))
+        messages.push(message_snippet(message))
       end
     end
 

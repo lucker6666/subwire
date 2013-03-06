@@ -83,6 +83,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.2.1)
+    ejs (1.0.0)
     em-websocket (0.4.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
@@ -216,6 +217,10 @@ GEM
       activesupport (= 3.2.12)
       bundler (~> 1.0)
       railties (= 3.2.12)
+    rails-backbone (0.7.2)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      railties (>= 3.1.0)
     rails_autolink (1.0.9)
       rails (~> 3.1)
     railties (3.2.12)
@@ -346,6 +351,7 @@ DEPENDENCIES
   pre-commit
   rack-livereload
   rails (~> 3.2.11)
+  rails-backbone
   rails_autolink
   rb-inotify (~> 0.9)
   rmagick
