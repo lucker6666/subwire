@@ -1,4 +1,4 @@
-<% if @channel && @channel.planningTool %>
+<% if @current_channel && @current_channel.planningTool %>
   <ul class="nav pull-right availabilitites">
     <li class="divider-vertical"></li>
 
@@ -10,7 +10,10 @@
 
         <%
           availabilities = Availability.where(
-            "date >= ? and user_id = ?", Date.today, current_user.id
+            "date >= ? and user_id = ? and channel_id = ?",
+            Date.today,
+            current_user.id,
+            @current_channel.id
           )
 
           if availabilities.length < 7
@@ -63,7 +66,7 @@
                     a = Availability.where(
                       date: date,
                       user_id: user.id,
-                      channel_id: current_channel.id
+                      channel_id: @current_channel.id
                     ).first
 
                     if a.nil?
