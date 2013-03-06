@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Channels::AvailabilitiesController" do
+describe Channels::AvailabilitiesController do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
     @rel = @channel.relationships.first

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "Channels::LinksController" do
+describe Channels::LinksController do
 
 end
