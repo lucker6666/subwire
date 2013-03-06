@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NotificationsController do
+describe "Users::NotificationsController" do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
     @rel = @channel.relationships.first

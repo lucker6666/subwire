@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RelationshipsController do
+describe "Channels::RelationshipsController" do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
     @rel = @channel.relationships.first

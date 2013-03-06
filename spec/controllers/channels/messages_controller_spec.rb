@@ -2,7 +2,7 @@ require 'spec_helper'
 
 # FIXME doesn't work. need an integration test here!
 
-describe MessagesController do
+describe "Channels::MessagesController" do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
     @rel = @channel.relationships.first
