@@ -1,8 +1,10 @@
 <script type="text/javascript">
     $(function() {
-        $.jGrowl.defaults.sticky = true;
-        $.jGrowl.defaults.position = "bottom-right";
+      $._messengerDefaults = {
+        extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top messenger-on-right',
+        showCloseButton: true
+      };
 
-        <%= flash_messages() %>
+      <%= flash_messages() %>
     });
 </script>
