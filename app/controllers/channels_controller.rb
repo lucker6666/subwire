@@ -55,11 +55,11 @@ class ChannelsController < ApplicationController
       message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
       message.save
 
-      feedback t('channels.created')
+      feedback t('channels.created'), :success
       redirect_to channel_path(@current_channel)
     else
       # Couldn't save channel
-      feedback t('channels.not_created')
+      feedback t('channels.not_created'), :error
       errors_to_feedback(@current_channel)
       render action: :new
     end
@@ -80,9 +80,9 @@ class ChannelsController < ApplicationController
 
     # Update channel
     if @current_channel.update_attributes(params[:channel])
-      feedback t('channels.updated')
+      feedback t('channels.updated'), :success
     else
-      feedback t('channels.not_updated')
+      feedback t('channels.not_updated'), :error
       errors_to_feedback(@current_channel)
     end
 
@@ -99,7 +99,7 @@ class ChannelsController < ApplicationController
     @current_channel.messages.destroy_all
     @current_channel.destroy
 
-    feedback t('channels.destroyed')
+    feedback t('channels.destroyed'), :success
     redirect_to channels_path
   end
 end

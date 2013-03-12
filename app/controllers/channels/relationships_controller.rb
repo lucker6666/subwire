@@ -38,7 +38,7 @@ class Channels::RelationshipsController < ApplicationController
       user.email = params[:relationship][:email]
       invite_user(user)
 
-      feedback t('relationships.invited')
+      feedback t('relationships.invited'), :success
       redirect_to channel_relationships_path(@current_channel)
     elsif user.is_deleted
       # If user is deleted, send an invitation anyway
@@ -62,10 +62,10 @@ class Channels::RelationshipsController < ApplicationController
           href: user_path(user)
         }, @current_channel, current_user, except: [user])
 
-        feedback t('relationships.created')
+        feedback t('relationships.created'), :success
         redirect_to relationships_path(@article)
       else
-        feedback t('relationships.not_created')
+        feedback t('relationships.not_created'), :error
         render action: "new"
       end
     end
@@ -81,7 +81,7 @@ class Channels::RelationshipsController < ApplicationController
     params[:relationship].delete :admin
 
     if @relationship.update_attributes(params[:relationship])
-      feedback t('relationships.updated')
+      feedback t('relationships.updated'), :success
       redirect_to relationships_path
     else
       render action: "edit"
@@ -102,7 +102,7 @@ class Channels::RelationshipsController < ApplicationController
     end
 
     @relationship.destroy
-    feedback t('relationships.destroyed')
+    feedback t('relationships.destroyed'), :success
     redirect_to "/"
   end
 
