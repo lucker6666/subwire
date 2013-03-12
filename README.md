@@ -6,9 +6,9 @@ Subwire is the system running on [subwire.net](http://subwire.net).
 
 
 ## What is subwire?
-Subwire.net supports you to organize a group of people, share things fast and easy, write documents together, discuss hot topics and plan meetings. If you've got an association or a company, subwire.net provides you a perfect communication and collaboration platform.
+Subwire.net supports you to organize a group of people, share things fast and easy, write documents together, discuss hot topics and plan meetings. If you've got an association or a company, subwire.net provides you a perfect communication and collaboration platform. And if you got some friends (we hope so) you may use subwire to connect with them.
 
-For more information check [subwire.net](http://subwire.net)!
+For more informations check [subwire.net](http://subwire.net)!
 
 
 
