@@ -9,12 +9,12 @@
     - if current_user.is_admin?
       .clearfix
         = f.check_box :advertising, class: 'check_box'
-        = t 'helpers.advertisting'
+        = t('helpers.advertisting')
 
     .clearfix
       = f.check_box :planningTool, class: 'check_box'
       %a{href: "#", rel: "tooltip", title: "#{t('tooltip.planningTool')}"}
-        = t 'helpers.planningTool'
+        = t('helpers.planningTool')
 
     = f.submit nil, class: 'btn btn-success btn-large'
     = link_to t("helpers.links.cancel"), channels_path, class: 'btn btn-large btn-inverse'

@@ -2,7 +2,7 @@
   .pagination
     %ul
       %li.disabled
-        %a{:href => "#prev"}= t "helpers.prev"
+        %a{:href => "#prev"}= t("helpers.prev")
       %li.active
         %a{:href => "#1"} 1
       %li
@@ -14,42 +14,42 @@
       %li
         %a{:href => "#5"} 5
       %li
-        %a{:href => "#next"}= t "helpers.next"
+        %a{:href => "#next"}= t("helpers.next")
   %br/
   .well
     %ul.hint.clearfix
       %li#hint1
         %h3
           %i.icon.icon-info-sign
-          = t "hints.hints_title"
-        = t "hints.hints_content"
+          = t("hints.hints_title")
+        = t("hints.hints_content")
       %li#hint2
         %h3
           %i.icon.icon-question-sign
-          = t "hints.popover_title"
+          = t("hints.popover_title")
         %img.pull-right{:src => "/assets/hints/2.png"}/
-        = t "hints.popover_content"
+        = t("hints.popover_content")
       %li#hint3
         %h3
           %i.icon.icon-home
-          = t "popover.channels_title"
-        = t "popover.channels_content"
+          = t("popover.channels_title")
+        = t("popover.channels_content")
         %br/
         %div{:align => "center"}
           %img{:src => "/assets/hints/3.png"}/
       %li#hint4
         %h3
           %i.icon.icon-user
-          = t "popover.relationship_title"
-        = t "popover.relationship_content"
+          = t("popover.relationship_title")
+        = t("popover.relationship_content")
         %br/
         %div{:align => "center"}
           %img{:src => "/assets/hints/4_#{I18n.locale}.png"}/
       %li#hint5
         %h3
           %i.icon.icon-user
-          = t "popover.links_title"
-        = t "popover.links_content"
+          = t("popover.links_title")
+        = t("popover.links_content")
         %br/
         %div{:align => "center"}
           %img{:src => "/assets/hints/5_#{I18n.locale}.png"}/

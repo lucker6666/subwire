@@ -10,14 +10,14 @@
 \.pull-left.span2
 \%button.btn.btn-success.span2{name: "commit", type: "submit"}
 \%i.icon.icon-off
-\= t "helpers.sign_in"
+\= t("helpers.sign_in")
 
 \.pull-right.span2
 \%input#remember-me-input{name: "user[remember_me]", type: "hidden", value: "0"}
 
 \%a#remember-me.btn.btn-inverse{href: "#", "data-toggle" => "button"}
 \%i.icon-lock.icon-white
-\= t "devise.remember_me"
+\= t("devise.remember_me")
 
 \:javascript
 $(function() {

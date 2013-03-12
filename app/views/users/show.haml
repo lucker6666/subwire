@@ -23,22 +23,22 @@
       %td= t("application." + @user.lang)
     %tr
       %th.span3
-        = t 'users.assignedCount'
+        = t('users.assignedCount')
         \:
       %td= @assignedCount
     %tr
       %th.span3
-        = t 'users.adminCount'
+        = t('users.adminCount')
         \:
       %td= @adminCount
     %tr
       %th.span3
-        = t 'users.messagesCount'
+        = t('users.messagesCount')
         \:
       %td= @messagesCount
     %tr
       %th.span3
-        = t 'users.commentsCount'
+        = t('users.commentsCount')
         \:
       %td= @commentsCount
   - if can? :edit, @user
