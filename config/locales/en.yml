@@ -97,6 +97,7 @@ en:
       second: Seconds
       year: Year
   errors: &errors
+    access_denied: Access denied
     format: ! '%{attribute} %{message}'
     messages:
       accepted: must be accepted
