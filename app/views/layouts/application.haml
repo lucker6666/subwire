@@ -7,9 +7,9 @@
       = @subwireTitle
     = render partial: 'shared/head'
     :javascript
-      if @current_channel.nil? 
+      if @current_channel.nil?
        window.subwireTitle = " @subwireTitle ";
-      else 
+      else
        window.subwireTitle = " @current_channel.name ";
   %body
     = glimpse_code
@@ -71,7 +71,7 @@
     .container-fluid.content
       .row-fluid
         .sidebar
-          = render partial: 'shared/navbar/channelSwitcher'
+          = render partial: 'shared/channelSwitcher'
           - unless @current_channel.nil?
             - if @sidebar_links.length > 0
               .well
