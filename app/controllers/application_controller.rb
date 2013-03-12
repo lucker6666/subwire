@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
 
     # Converts all errors of a model to feedback messages
     def errors_to_feedback(model)
-      model.errors.each { |error, message| feedback message }
+      model.errors.each { |error, message| feedback(message, :error) }
     end
 
 
@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
         channel_id = params[:channel_id] || params[:id]
 
         unless @current_channel = Channel.find_by_id_or_permalink(channel_id)
-          feedback t('not_found.project', id: channel_id)
+          feedback t('not_found.project', id: channel_id), :error
           redirect_to channels_path
         end
 

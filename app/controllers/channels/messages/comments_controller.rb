@@ -20,7 +20,7 @@ class Channels::Messages::CommentsController < ApplicationController
         href: channel_message_path(@current_channel, @message)
       }, @current_channel, current_user)
 
-      feedback t("comments.new_success")
+      feedback t("comments.new_success"), :success
     else
       errors_to_feedback @comment
     end
@@ -54,7 +54,7 @@ class Channels::Messages::CommentsController < ApplicationController
     Notification.where(href: message_path).destroy_all
     @comment.destroy
 
-    feedback t('comments.destroyed')
+    feedback t('comments.destroyed'), :success
     redirect_to message_path
   end
 

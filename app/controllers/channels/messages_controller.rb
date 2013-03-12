@@ -54,13 +54,13 @@ class Channels::MessagesController < ApplicationController
       }, @current_channel, current_user)
 
       # Feedback for the user
-      feedback t('messages.created')
+      feedback t('messages.created'), :success
 
       # Redirection to the new message
       redirect_to channel_messages_path(@current_channel)
     else
       # Tell the user, that his message couldn't be saved and let he try it again
-      feedback t('messages.not_created')
+      feedback t('messages.not_created'), :error
       errors_to_feedback @message
       render action: :new
     end
@@ -85,7 +85,8 @@ class Channels::MessagesController < ApplicationController
 
     # No change summary? Try again!
     if params[:change_summary].blank?
-      feedback "Change summary cannot be empty"
+      # TODO translate
+      feedback "Change summary cannot be empty", :error
       render :action => "edit"
     elsif @message.update_attributes(params[:message])
       # Generate comment from the summary
@@ -104,7 +105,7 @@ class Channels::MessagesController < ApplicationController
       }, @current_channel, current_user)
 
       # Feedback and good bye
-      feedback t('messages.updated')
+      feedback t('messages.updated'), :success
       redirect_to channel_message_path(@current_channel, @message)
     else
       # Couldn't save
@@ -125,7 +126,7 @@ class Channels::MessagesController < ApplicationController
     @message.comments.destroy_all
     @message.destroy
 
-    feedback t('articles.destroyed')
+    feedback t('articles.destroyed'), :error
     redirect_to channel_url(channel)
   end
 

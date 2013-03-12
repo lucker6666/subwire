@@ -75,7 +75,7 @@ class UsersController < ApplicationController
         sign_in(@user, bypass: true)
       end
 
-      feedback t('users.updated')
+      feedback t('users.updated'), :success
       redirect_to user_path(@user)
     else
       render action: :edit
@@ -92,7 +92,8 @@ class UsersController < ApplicationController
       if(@userInChannel.length > 1)
         # Another Admin in this Channel?
         if(@userInChannel.where(is_admin: true).length < 2)
-          feedback "You have an Channel with no other Admin!"
+          # TODO translate
+          feedback "You have an Channel with no other Admin!", :error
           redirect_to :back
         end
       else
@@ -114,7 +115,7 @@ class UsersController < ApplicationController
       sign_out(current_user)
     end
 
-    feedback t('users.destroyed')
+    feedback t('users.destroyed'), :success
     redirect_to :back
   end
 
@@ -139,7 +140,7 @@ class UsersController < ApplicationController
       @user.invitation_pending = false
       @user.save
 
-      feedback t('users.invitation_finished')
+      feedback t('users.invitation_finished'), :success
       redirect_to "/"
     else
       errors_to_feedback @user

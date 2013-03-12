@@ -40,10 +40,10 @@ class Channels::LinksController < ApplicationController
     @link.channel = @current_channel
 
     if @link.save
-      feedback t('links.created')
+      feedback t('links.created'), :success
       redirect_to channel_links_path(@current_channel)
     else
-      feedback t('links.not_created')
+      feedback t('links.not_created'), :error
       render action: "new"
     end
   end
@@ -58,7 +58,7 @@ class Channels::LinksController < ApplicationController
     end
 
     if @link.update_attributes(params[:link])
-      feedback t('users.updated')
+      feedback t('users.updated'), :success
       redirect_to channel_links_path(@current_channel)
     else
       render action: "edit"
