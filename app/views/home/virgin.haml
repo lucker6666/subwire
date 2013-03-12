@@ -1,0 +1,99 @@
+.span5.offset3
+  .pagination
+    %ul
+      %li.disabled
+        %a{:href => "#prev"}= t "helpers.prev"
+      %li.active
+        %a{:href => "#1"} 1
+      %li
+        %a{:href => "#2"} 2
+      %li
+        %a{:href => "#3"} 3
+      %li
+        %a{:href => "#4"} 4
+      %li
+        %a{:href => "#5"} 5
+      %li
+        %a{:href => "#next"}= t "helpers.next"
+  %br/
+  .well
+    %ul.hint.clearfix
+      %li#hint1
+        %h3
+          %i.icon.icon-info-sign
+          = t "hints.hints_title"
+        = t "hints.hints_content"
+      %li#hint2
+        %h3
+          %i.icon.icon-question-sign
+          = t "hints.popover_title"
+        %img.pull-right{:src => "/assets/hints/2.png"}/
+        = t "hints.popover_content"
+      %li#hint3
+        %h3
+          %i.icon.icon-home
+          = t "popover.channels_title"
+        = t "popover.channels_content"
+        %br/
+        %div{:align => "center"}
+          %img{:src => "/assets/hints/3.png"}/
+      %li#hint4
+        %h3
+          %i.icon.icon-user
+          = t "popover.relationship_title"
+        = t "popover.relationship_content"
+        %br/
+        %div{:align => "center"}
+          %img{:src => "/assets/hints/4_#{I18n.locale}.png"}/
+      %li#hint5
+        %h3
+          %i.icon.icon-user
+          = t "popover.links_title"
+        = t "popover.links_content"
+        %br/
+        %div{:align => "center"}
+          %img{:src => "/assets/hints/5_#{I18n.locale}.png"}/
+    %br/
+    %div{:align => "center"}
+      = link_to t("helpers.links.cancel"), channels_path, class: 'btn btn-small'
+  :javascript
+    $(function() {
+        var currentHint = 1;
+        var maxHints = $('ul.hint li').hide().length;
+        var prev = $('a[href="#prev"]').parent();
+        var next = $('a[href="#next"]').parent();
+        $('li#hint' + currentHint).show();
+
+        $('div.pagination a').each(function(i, e) {
+            $(e).click(function(e) {
+                var jumpTo = $(e.target).attr('href').replace('#', '');
+
+                $('a[href="#' + currentHint + '"]').parent().removeClass('active');
+                $('li#hint' + currentHint).hide();
+                prev.removeClass('disabled');
+                next.removeClass('disabled');
+
+                console.log(currentHint, maxHints);
+
+                if (jumpTo == "next" && currentHint < maxHints) {
+                    currentHint++;
+                } else if (jumpTo == "prev" && currentHint > 1) {
+                    currentHint--;
+                } else if (currentHint < maxHints && currentHint > 1) {
+                    currentHint = jumpTo;
+                }
+
+                $('li#hint' + currentHint).show();
+                $('a[href="#' + currentHint + '"]').parent().addClass('active');
+
+                if (currentHint == maxHints) {
+                    next.addClass('disabled');
+                } else if (currentHint == 1) {
+                    prev.addClass('disabled');
+                }
+
+                e.preventDefault;
+                return false;
+            })
+        });
+    });

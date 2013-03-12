@@ -1,0 +1,3 @@
+%p= t('notifications.mailer.hello', user: @toUser.name)
+%p= t('notifications.mailer.body', notification:  t('notifications.mailer.' + @notification.notification_type.to_s), user: @fromUser.name, topic: @notification.subject)
+%p= link_to t('notifications.mailer.read_now'), notification_path(@notification, only_path: false)

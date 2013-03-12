@@ -1,0 +1,99 @@
+!!!
+%html
+  %head
+    %title
+      - if @unread_notification_count > 0
+        (#{@unread_notification_count}) &nbsp;
+      = @subwireTitle
+    = render partial: 'shared/head'
+    :javascript
+      if @current_channel.nil? 
+       window.subwireTitle = " @subwireTitle ";
+      else 
+       window.subwireTitle = " @current_channel.name ";
+  %body
+    = glimpse_code
+    - if @current_channel
+      #new-message-html
+        = form_for [@current_channel, @current_channel.messages.build] do |f|
+          = f.text_area :content, rows: 4, placeholder: t("application.message_placeholder")
+          .buttons
+            = f.submit nil, class: 'btn btn-success'
+            = link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn'
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %ul.nav
+            %li
+              - if @current_channel.nil?
+                = link_to "subwire", channels_path, class: "brand"
+              - else
+                = link_to @current_channel.name, channel_path(@current_channel), class: "brand"
+          .nav-collapse
+            %ul.nav
+              = render partial: 'shared/navbar/notifications'
+              = render partial: 'shared/navbar/channelSettings'
+              = render partial: 'shared/navbar/adminMenu'
+              - if @current_channel
+                %li#new-message.iconOnly
+                  %a{:href => "#", :onclick => "return false;"}
+                    %i.icon.icon-plus-sign
+              %li.divider-vertical
+            = render partial: 'shared/navbar/availability'
+            %ul.nav.pull-right
+              - unless @current_channel.nil?
+                = form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do
+                  = text_field_tag :query, params[:query], class: 'search-query', |
+                    placeholder: t('application.search')                          |
+              %li.divider-vertical
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = avatar current_user, :tiny, 'current-user'
+                  = current_user.name
+                  %b.caret
+                %ul.admin-dropdown.dropdown-menu
+                  %li
+                    = link_to user_path(current_user) do
+                      %i.icon.icon-user
+                      = t "application.your_profile"
+                  %li
+                    = link_to edit_user_path(current_user) do
+                      %i.icon.icon-cog
+                      = t "application.edit_your_profile"
+                  %li
+                    = link_to destroy_user_session_path do
+                      %i.icon.icon-remove
+                      = t "application.logout"
+    .container-fluid.content
+      .row-fluid
+        .sidebar
+          = render partial: 'shared/navbar/channelSwitcher'
+          - unless @current_channel.nil?
+            - if @sidebar_links.length > 0
+              .well
+                %h1
+                  %i.icon.icon-heart
+                  = t "application.bookmarks"
+                %ul.bookmarks.nav.nav-list
+                  - @sidebar_links.each do |link|
+                    %li
+                      - if !link.icon.empty?
+                        %i{:class => "icon icon-#{link.icon} pull-left"}
+                      %a{:href => link.href, :target => "_blank"}
+                        = link.name
+            .well
+              %h1
+                %i.icon.icon-user
+                = t "application.user"
+              #user-box
+                = render partial: 'shared/user_box', locals: {sidebar_users: @sidebar_users}
+        .maincontent
+          = yield
+          = render partial: 'shared/footer'
+    = render partial: 'shared/flash_messages'
+    = render partial: 'shared/ga'
+    = glimpse_results
