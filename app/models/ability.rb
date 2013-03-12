@@ -31,12 +31,12 @@ class Ability
 
         # Channel
 
-        can [:create], Channel do |channel|
+        can [:create], Channel do |c|
           Channel.find_all_where_user_is_admin(user).length < 5
         end
 
-        can [:read], Channel do |channel|
-          Relationship.exists?(channel, user)
+        can [:read], Channel do |c|
+          Relationship.exists?(c, user)
         end
 
 
@@ -61,47 +61,49 @@ class Ability
           # Find respective relationship
           @rs = Relationship.find_by_channel_and_user(channel, user)
 
-          # Message
+          if @rs
+            # Message
 
-          can [:manage], Message do |message|
-            Relationship.exists?(message.channel, user)
-          end
+            can [:manage], Message do |message|
+              Relationship.exists?(message.channel, user)
+            end
 
-          can [:update, :destroy, :create], Message, user_id: user.id
-
-
-          # Availability
-
-          can [:manage], Availability do |availability|
-            Relationship.exists?(availability.channel, user)
-          end
-
-          can [:update, :destroy, :create], Availability, user_id: user.id
+            can [:update, :destroy, :create], Message, user_id: user.id
 
 
-          # Comment
+            # Availability
 
-          can [:manage], Comment do |comment|
-            Relationship.exists?(comment.message.channel, user)
-          end
+            can [:manage], Availability do |availability|
+              Relationship.exists?(availability.channel, user)
+            end
 
-          can [:update, :destroy, :create], Comment, user_id: user.id
+            can [:update, :destroy, :create], Availability, user_id: user.id
 
 
-          # Link
+            # Comment
 
-          can [:read], Link do |link|
-            Relationship.exists?(link.channel, user)
-          end
+            can [:manage], Comment do |comment|
+              Relationship.exists?(comment.message.channel, user)
+            end
 
-          if @rs.admin
-            # Admin of current channel
+            can [:update, :destroy, :create], Comment, user_id: user.id
 
-            can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
-            can [:update, :destroy], Channel, id: @rs.channel.id
 
-            can [:manage], Comment do |channel|
-              channel.message.channel == @rs.channel
+            # Link
+
+            can [:read], Link do |link|
+              Relationship.exists?(link.channel, user)
+            end
+
+            if @rs.admin
+              # Admin of current channel
+
+              can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
+              can [:update, :destroy], Channel, id: @rs.channel.id
+
+              can [:manage], Comment do |c|
+                c.message.channel == @rs.channel
+              end
             end
           end
         else
