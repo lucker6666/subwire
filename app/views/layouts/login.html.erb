@@ -10,11 +10,12 @@
     </title>
 
     <%= render partial: 'shared/head' %>
-    <%= stylesheet_link_tag "login", media: "all" %>
+    <%= stylesheet_link_tag "layouts/login", media: "all" %>
   </head>
 
   <body class="login">
     <%= glimpse_code %>
+
     <% @background = login_background %>
 
     <img class="background-image" src="/assets/backgrounds/<%= @background[:file] %>" />
