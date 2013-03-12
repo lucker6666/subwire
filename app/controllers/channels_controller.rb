@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
   # GET /channels/new
   def new
     authorize! :create, Channel
-    @current_channel = Channel.new
+    @channel = Channel.new
   end
 
 
