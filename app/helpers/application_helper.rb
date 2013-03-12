@@ -48,7 +48,7 @@ module ApplicationHelper
 
 
   # Returns the JS Code of all flash messages including Devise model errors
-  def flash_messages
+  def messanger_code
     messages = []
 
     # Add all Devise model errors to the result array
