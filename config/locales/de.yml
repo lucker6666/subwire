@@ -97,6 +97,7 @@ de:
       second: Sekunden
       year: Jahr
   errors: &errors
+    access_denied: Zugriff verweigert
     format: ! '%{attribute} %{message}'
     messages:
       accepted: muss akzeptiert werden

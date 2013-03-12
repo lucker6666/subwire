@@ -29,6 +29,12 @@ class ApplicationController < ActionController::Base
                 :load_notifications
 
 
+  # CanCan
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to channels_path, alert: {msg: t('errors.access_denied'), type: :error}
+  end
+
+
   ### Methods
 
   protected
