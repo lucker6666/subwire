@@ -2,14 +2,17 @@ source 'http://rubygems.org'
 
 # Base
 gem 'rails', '~>3.2.11'
-gem 'sqlite3'
-gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'paperclip'
 gem 'rmagick'
 gem 'exception_notification'
 gem 'haml'
 gem 'has_permalink'
+
+# Databases
+gem 'sqlite3', group: :sqlite
+gem 'mysql2', group: :mysql
+
 
 # Authorization and Authentication
 gem 'devise', '~> 2.2.2'
