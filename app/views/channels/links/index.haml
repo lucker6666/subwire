@@ -1,5 +1,5 @@
 - model_class = Link.new.class
-%h1= t('.title'), default: model_class.model_name.human
+%h1= t('.title', default: model_class.model_name.human)
 .well
   %table.table.table-striped
     %thead
@@ -7,7 +7,7 @@
         %th= model_class.human_attribute_name(:icon)
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:href)
-        %th= t('.actions'), default: t("helpers.actions")
+        %th= t('.actions', default: t("helpers.actions"))
     %tbody
       - @links.each_with_index do |link, idx|
         %tr

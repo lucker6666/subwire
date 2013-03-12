@@ -3,7 +3,7 @@
 .well
   %table.table.table-striped.table-bordered.table-condensed
     %tr
-      %td.span2.avatarCell{:rowspan => can? :edit, @user ? 8 : 7}
+      %td.span2.avatarCell{rowspan: can?(:edit, @user) ? 8 : 7}
         = avatar(@user, :default)
     - if can? :edit, @user
       %tr

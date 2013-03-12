@@ -1,7 +1,7 @@
 - model_class = @user.class
 %h1
-  = t('.title'), default: t('helpers.submit.update', model: model_class.model_name.human, |
-    default: "Edit #{model_class.model_name.human}")                                     |
+  = t('.title', default: t('helpers.submit.update', model: model_class.model_name.human, |
+    default: "Edit #{model_class.model_name.human}"))
 .well
   = form_for @user, html: { class: 'form-horizontal', multipart: true } do |f|
     .control-group
