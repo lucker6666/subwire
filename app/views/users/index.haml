@@ -1,5 +1,5 @@
 - model_class = User.new.class
-%h1= t '.title', default: model_class.model_name.human
+%h1= t('.title'), default: model_class.model_name.human
 .well
   %table.table.table-striped
     %thead
@@ -10,7 +10,7 @@
         %th= model_class.human_attribute_name(:email)
         %th= model_class.human_attribute_name(:is_admin)
         %th= t('users.channels_count')
-        %th= t '.actions', default: t("helpers.actions")
+        %th= t('.actions'), default: t("helpers.actions")
     %tbody
       - @users.each do |user|
         %tr

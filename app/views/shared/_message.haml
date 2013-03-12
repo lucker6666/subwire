@@ -34,6 +34,6 @@
 
         %a{:href=>"#", :onclick=>"return commentToggle(this);"}
           = message.comments.length
-          =t 'comments.plural'
+          =t('comments.plural')
 
     = render partial: 'shared/comments', locals: {comments: message.newest_comments.take(4).reverse, message: message}
