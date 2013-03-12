@@ -6,11 +6,12 @@
         (#{@unread_notification_count}) &nbsp;
       = @subwireTitle
     = render partial: 'shared/head'
-    :javascript
-      if @current_channel.nil?
-       window.subwireTitle = " @subwireTitle ";
-      else
-       window.subwireTitle = " @current_channel.name ";
+    - if @current_channel.nil?
+      :javascript
+        window.subwireTitle = "#{@subwireTitle}";
+    - else
+      :javascript
+        window.subwireTitle = "#{@current_channel.name}";
   %body
     = glimpse_code
     - if @current_channel
