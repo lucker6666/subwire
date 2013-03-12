@@ -1,0 +1,13 @@
+//= require glimpse
+
+#glimpse {
+  z-index: 10000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#glimpse.development {
+  background: url('/assets/glimpse/bar/production.gif') repeat 0 0;
+}
