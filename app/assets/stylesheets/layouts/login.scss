@@ -1,4 +1,16 @@
 /*
+ *= require_self
+ *= require messenger
+ *= require messenger-theme-future
+*/
+
+@import "framework/bootstrap.less";
+@import "framework/variables.scss";
+@import "framework/mixins.scss";
+@import "framework/hacks.scss";
+@import "layout.scss";
+
+/*
  *  Login form
  */
 
