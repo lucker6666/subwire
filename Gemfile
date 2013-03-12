@@ -59,11 +59,17 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'libnotify'
   gem 'guard-rspec'
-  gem 'rb-inotify', '~> 0.9'
-  gem 'better_errors'
-  gem 'awesome_print'
-  gem 'guard-livereload'
-  gem 'rack-livereload'
-  gem 'binding_of_caller'
+end
+
+group :development do
+  gem 'glimpse'
+  gem 'glimpse-git'
+  gem 'glimpse-mysql2'
   gem 'pre-commit'
+  gem 'binding_of_caller'
+  gem 'awesome_print'
+  gem 'rack-livereload'
+  gem 'guard-livereload'
+  gem 'better_errors'
+  gem 'rb-inotify', '~> 0.9'
 end
