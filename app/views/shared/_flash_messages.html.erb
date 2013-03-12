@@ -1,9 +1,10 @@
-:javascript
+<script>
   $(function() {
     $._messengerDefaults = {
       extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top messenger-on-right',
       showCloseButton: true
     };
 
-     flash_messages() 
+     <%= flash_messages %>
   });
+</script>
