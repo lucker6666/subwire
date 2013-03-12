@@ -151,8 +151,8 @@ class ApplicationController < ActionController::Base
     def load_channels
       @channels = Channel.find(
         :all,
-        :joins => :relationships,
-        :conditions => { "relationships.user_id" => current_user.id }
+        joins: :relationships,
+        conditions: { "relationships.user_id" => current_user.id }
       )
     end
 
@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
         channel_id = params[:channel_id] || params[:id]
 
         unless @current_channel = Channel.find_by_id_or_permalink(channel_id)
-          feedback t('not_found.project', :id => channel_id)
+          feedback t('not_found.project', id: channel_id)
           redirect_to channels_path
         end
 
