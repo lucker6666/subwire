@@ -1,3 +1,13 @@
+/*
+ *= require_self
+*/
+
+@import "framework/bootstrap.less";
+@import "framework/variables.scss";
+@import "framework/mixins.scss";
+@import "framework/hacks.scss";
+@import "layout.scss";
+
  /*
   *  Integration login form
   */
