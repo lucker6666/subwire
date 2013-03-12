@@ -8,7 +8,7 @@ module ApplicationHelper
 
   # Preproccessing for messages
   def preprocess_message(message)
-    content = auto_link(message.content).strip.html_safe
+    auto_link(message.content).strip.html_safe
   end
 
   # Display boolean values as icon
@@ -18,8 +18,13 @@ module ApplicationHelper
 
   # Convert String to Messenger Notification JS Code
   def message_snippet(msg_obj)
-    msg = j(msg_obj[:msg]) # JS Escaping
-    type = msg_obj[:type].to_s
+    if msg_obj.is_a? String
+      msg = j(msg_obj)
+      type = 'info'
+    else
+      msg = j(msg_obj[:msg]) # JS Escaping
+      type = msg_obj[:type].to_s
+    end
 
     "$.globalMessenger().post({message: '#{msg}', type: '#{type}'});"
   end
