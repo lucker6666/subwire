@@ -22,6 +22,7 @@
 
   <body>
     <%= glimpse_code %>
+
     <% if @current_channel %>
       <div id="new-message-html">
         <%= form_for [@current_channel, @current_channel.messages.build] do |f| %>
