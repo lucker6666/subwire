@@ -1,0 +1,72 @@
+- if @current_channel && @current_channel.planningTool
+  %ul.nav.pull-right.availabilitites
+    %li.divider-vertical
+    %li.dropdown.planner
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %i.icon.icon-calendar
+        = l Date.today, format: :long
+        - availabilities = Availability.where(
+        - "date >= ? and user_id = ? and channel_id = ?",
+        - Date.today,
+        - current_user.id,
+        - @current_channel.id
+        - )
+        - if availabilities.length < 7
+          %span.badge.badge-warning !
+        %b.caret
+      .dropdown-menu
+        %table.table.table-striped.table-bordered.table-condensed
+          %thead
+            %tr
+              %th
+                %a.popover_help{"data-content" => t('popover.planningTool_content'), "data-original-title" => t('popover.planningTool_title'), "data-placement" => "bottom", :href => "#", :rel => "popover"}
+                  %i.icon.icon-question-sign
+              - date = Date.today
+              - 7.times do
+              - day = l(date, format: :day)
+                %th{:class => (day == 'Sat' || day == 'Sun' ? 'weekend' : '')}
+                  %nobr= l date, format: :short
+                  = day
+              - date = date + 1
+              - end
+          %tbody
+            - users = @sidebar_users.select { |u| u != current_user }
+            - users.unshift(current_user)
+            - users.each do |user|
+              %tr
+                %th= user.name
+                - date = Date.today
+                - 7.times do |i|
+                - a = Availability.where(
+                - date: date,
+                - user_id: user.id,
+                - channel_id: @current_channel.id
+                - ).first
+                - if a.nil?
+                - color = 3
+                - else
+                - color = a.value ? 1 : 2
+                - end
+                - if color == 1
+                %td.green
+                  - if user == current_user
+                    %a.availability_cell{:alt => date, :href => "#"}
+                      %i.icon.icon-ok
+                  - else
+                    %i.icon.icon-ok
+            - elsif color == 2
+              %td.red
+                - if user == current_user
+                  %a.availability_cell{:alt => date, :href => "#"}
+                    %i.icon.icon-remove
+                - else
+                  %i.icon.icon-remove
+            - else
+              %td.yellow
+                - if user == current_user
+                  %a.availability_cell{:alt => date, :href => "#"}
+                    %i.icon.icon-question-sign
+                - else
+                  %i.icon.icon-question-sign
+- date = date + 1
+- end

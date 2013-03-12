@@ -1,0 +1,21 @@
+%li.dropdown.iconOnly
+  %a.dropdown-toggle{"data-placement" => "bottom", "data-toggle" => "dropdown", :href => "#", :rel => "tooltip", :title => t 'tooltip.notifications'}
+    %i.icon.icon-comment
+    - if @unread_notification_count > 0
+      %span.notification-badge.badge.badge-info
+        = @unread_notification_count
+  %ul.notification-dropdown.dropdown-menu
+    - if @all_notifications.length > 0
+      - @all_notifications.each do |notification|
+        %li{:class => notification.is_read ? 'read' : ''}
+          %a{:href => notification_path(notification)}
+            = avatar(User.find(notification.provokesUser), :tiny)
+            = notification.message.html_safe
+        %li.divider
+      %li.divider
+      %li
+        %a#markAllNotificationsAsRead{:href => "#"}
+          %i.icon.icon-eye-open
+          %b= t'notifications.mark_as_read'
+    - else
+      %li= t "application.notifications_unread"

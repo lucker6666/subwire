@@ -1,0 +1,30 @@
+= form_for [@current_channel, @link], html: { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, { class: 'text_field', autocomplete: :off }
+  .control-group
+    = f.label :href, class: 'control-label'
+    .controls
+      = f.text_field :href, { class: 'text_field', autocomplete: :off }
+  .control-group
+    = f.label :icon, class: 'control-label'
+    .controls
+      = f.select :icon, icons, class: 'text_field'
+      \&nbsp;
+      %i.icon.icon-glass
+  :javascript
+    $(function() {
+      select = $('#link_icon');
+      i = $('#link_icon + i');
+
+      select.change(function(e) {
+        i.attr('class', 'icon icon-' + select.val());
+      });
+
+      i.attr('class', 'icon icon-' + select.val());
+    });
+  .form-actions.with-padding
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), |
+      channel_links_path(@current_channel), class: 'btn'        |

@@ -1,0 +1,31 @@
+- model_class = User.new.class
+%h1= t '.title', default: model_class.model_name.human
+.well
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          %i.icon.icon-user
+        %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:email)
+        %th= model_class.human_attribute_name(:is_admin)
+        %th= t('users.channels_count')
+        %th= t '.actions', default: t("helpers.actions")
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= avatar(user, :list)
+          %td= link_to user.name, user_path(user)
+          %td= user.email
+          %td= boolean_icon(user.is_admin?)
+          %td= user.channel_count
+          %td
+            = link_to edit_user_path(user), class: 'btn btn-mini' do
+              %i.icon.icon-pencil
+            - if user != current_user
+              = link_to user_path(user),                                             |
+                method: :delete,                                                     |
+                data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, |
+                class: 'btn btn-mini btn-danger' do                                  |
+                %i.icon.icon-trash
+  = will_paginate @users

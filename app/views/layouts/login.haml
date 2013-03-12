@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %title
+      - if @notificationCount && @notificationCount > 0
+        (#{@notificationCount}) &nbsp;
+      = @subwireTitle
+    = render partial: 'shared/head'
+    = stylesheet_link_tag "layouts/login", media: "all"
+  %body.login
+    = glimpse_code
+    - @background = login_background
+    %img.background-image{:src => "/assets/backgrounds/#{@background[:file]}"}/
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          - if current_user
+            %ul.nav.logout
+              %li
+                = link_to destroy_user_session_path do
+                  %i.icon.icon-remove
+                  = t "application.logout"
+          %a.brand{:href => "/"}
+            %span> Sub
+            wire
+    .container
+      .row
+        %div{:class => "login-form #{@containerClass}"}
+          = yield
+      = render partial: 'shared/footer', :locals => {:background => @background}
+    = render partial: 'shared/flash_messages'
+    = render partial: 'shared/ga'
+    = glimpse_results
