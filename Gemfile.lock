@@ -111,6 +111,8 @@ GEM
     glimpse-git (1.0.1)
     glimpse-mysql2 (1.0.0)
       mysql2
+    glimpse-rails (0.0.1)
+      rails (>= 3)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -341,6 +343,7 @@ DEPENDENCIES
   glimpse
   glimpse-git
   glimpse-mysql2
+  glimpse-rails
   guard-livereload
   guard-rspec
   haml
