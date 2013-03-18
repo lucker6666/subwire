@@ -1,18 +1,20 @@
 branches:
   only:
     - 'master'
-    - 'V3-0'
+
 env:
   - DB=mysql
   - DB=sqlite
+
 language: ruby
+
 rvm:
   - 1.9.3
+  - 2.0.0
+
 before_script:
   - "cp config/database.$DB.yml config/database.yml"
   - "cp config/initializers/config.example.rb config/initializers/config.rb"
-  - "bundle exec rake db:create RAILS_ENV=test"
-  - "bundle exec rake db:migrate RAILS_ENV=test"
-  - "bundle exec rake subwire:setup RAILS_ENV=test"
-  - "bundle exec rake db:test:prepare"
+  - "bundle exec rake db:setup subwire:setup db:test:prepare RAILS_ENV=test"
+
 script: "bundle exec rspec"
