@@ -69,6 +69,7 @@ group :development do
   gem 'glimpse-git'
   gem 'glimpse-mysql2'
   gem 'glimpse-rails'
+  gem 'glimpse-performance_bar'
   gem 'pre-commit'
   gem 'binding_of_caller'
   gem 'awesome_print'
