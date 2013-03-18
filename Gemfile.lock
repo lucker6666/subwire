@@ -111,6 +111,8 @@ GEM
     glimpse-git (1.0.1)
     glimpse-mysql2 (1.0.0)
       mysql2
+    glimpse-performance_bar (1.1.0)
+      glimpse
     glimpse-rails (0.0.1)
       rails (>= 3)
     guard (1.6.2)
@@ -343,6 +345,7 @@ DEPENDENCIES
   glimpse
   glimpse-git
   glimpse-mysql2
+  glimpse-performance_bar
   glimpse-rails
   guard-livereload
   guard-rspec
