@@ -69,6 +69,7 @@ class Channels::MessagesController < ApplicationController
 
   # GET /channel/:id/messages/new
   def new
+    @message = Message.new
     authorize! :create, Message
   end
 
