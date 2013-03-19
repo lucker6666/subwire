@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20130304220434) do
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-07-23 20:23:07'
+    t.datetime "last_activity",          :default => '2012-09-28 08:14:39'
     t.boolean  "show_login_status",      :default => true
     t.string   "provider"
     t.string   "uid"
