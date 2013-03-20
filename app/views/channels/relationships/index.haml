@@ -33,7 +33,7 @@
               %i.icon.icon-trash
   = will_paginate @relationships
   = link_to t('relationships.new', default: t("helpers.relationships.new")), |
-    "/relationships/new",                                                    |
+    new_channel_relationship_path(@current_channel),                                                    |
     class: 'btn btn-primary'                                                 |
   %a.popover_help{"data-content" => t('popover.relationship_content'), "data-original-title" => t('popover.relationship_title'), :href => "#", :rel => "popover"}
     %i.icon.icon-question-sign

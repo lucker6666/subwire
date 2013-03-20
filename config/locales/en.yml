@@ -409,6 +409,8 @@ en:
         channel_id: Channel ID
         user_id: User ID
         admin: Admin?
+        invitation_text: Invitation Text
+        email: E-Mail
       channel:
         channel_id: Channel ID
         name: Name
