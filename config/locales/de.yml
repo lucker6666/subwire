@@ -408,6 +408,8 @@ de:
         channel_id: Channel ID
         user_id: Benutzer ID
         admin: Admin?
+        invitation_text: Begrüßungstext
+        email: E-Mail
       channel:
         channel_id: Channel ID
         name: Name
