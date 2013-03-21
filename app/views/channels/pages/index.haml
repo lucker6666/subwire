@@ -1,5 +1,8 @@
 .well
-  %h1= t('wiki.headline')
+  %h1
+    = t('wiki.headline')
+    = link_to new_channel_wiki_path(@current_channel), {class: 'btn btn-small'} do
+      %i.icon.icon-plus-sign
 
   %ul#wikiTabs.nav.nav-tabs
     %li.active
@@ -9,10 +12,15 @@
 
   .tab-content
     #home.tab-pane.active
-      tab1
+      TODO: page content
 
     #pages.tab-pane
-      tab2
+      %ul
+        - @pages.each do |page|
+          %li
+            link_to page.title, page
+            .pull_right
+              link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' }
 
   :javascript
     $(function () {
@@ -23,24 +31,3 @@
         $(this).tab('show');
       });
     })
-
-  %table
-    %tr
-      %th Title
-      %th Content
-      %th User
-      %th Channel
-      %th
-      %th
-      %th
-    - @pages.each do |page|
-      %tr
-        %td= page.title
-        %td= page.content
-        %td= page.user
-        %td= page.channel
-        %td= link_to 'Show', page
-        %td= link_to 'Edit', edit_channel_wiki_path(page)
-        %td= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' }
-  %br/
-  = link_to 'New Page', new_channel_wiki_path(@current_channel)
