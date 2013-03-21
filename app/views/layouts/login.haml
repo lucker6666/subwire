@@ -8,7 +8,6 @@
     = render partial: 'shared/head'
     = stylesheet_link_tag "layouts/login", media: "all"
   %body.login
-    = glimpse_code
     - @background = login_background
     %img.background-image{:src => "/assets/backgrounds/#{@background[:file]}"}/
     .navbar.navbar-fixed-top
@@ -30,5 +29,3 @@
       = render partial: 'shared/footer', :locals => {:background => @background}
     = render partial: 'shared/flash_messages'
     = render partial: 'shared/ga'
-    = glimpse_results
-    = render 'glimpse/results/performance_bar'

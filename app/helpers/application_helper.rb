@@ -30,23 +30,6 @@ module ApplicationHelper
   end
 
 
-  # In development mode, the neccassary code for glimpse will be returned
-  def glimpse_code
-    if Rails.env.development?
-      bar = render('glimpse/bar')
-      js = javascript_include_tag('development.js')
-      style = stylesheet_link_tag('development.css')
-      return bar + js + style
-    else
-      ''
-    end
-  end
-
-  def glimpse_results
-    return Rails.env.development? ? render('glimpse/results') : ''
-  end
-
-
   # Returns the JS Code of all flash messages including Devise model errors
   def messanger_code
     messages = []

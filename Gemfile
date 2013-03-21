@@ -61,15 +61,11 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'libnotify'
+  #gem 'growl'
   gem 'guard-rspec'
 end
 
 group :development do
-  gem 'glimpse'
-  gem 'glimpse-git'
-  gem 'glimpse-mysql2'
-  gem 'glimpse-rails'
-  gem 'glimpse-performance_bar'
   gem 'pre-commit'
   gem 'binding_of_caller'
   gem 'awesome_print'

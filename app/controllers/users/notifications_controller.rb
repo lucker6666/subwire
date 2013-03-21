@@ -23,7 +23,6 @@ class Users::NotificationsController < ApplicationController
   end
 
 
-
   private
 
     def load_notification

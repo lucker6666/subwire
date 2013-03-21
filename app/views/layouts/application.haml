@@ -13,7 +13,6 @@
       :javascript
         window.subwireTitle = "#{@current_channel.name}";
   %body
-    = glimpse_code
     - if @current_channel
       #new-message-html
         = form_for [@current_channel, @current_channel.messages.build] do |f|
@@ -30,14 +29,10 @@
             %span.icon-bar
           %ul.nav
             %li
-              - if @current_channel.nil?
-                = link_to "subwire", channels_path, class: "brand"
-              - else
-                = link_to @current_channel.name, channel_path(@current_channel), class: "brand"
+              = link_to "subwire", channels_path, class: "brand"
           .nav-collapse
             %ul.nav
               = render partial: 'shared/navbar/notifications'
-              = render partial: 'shared/navbar/channelSettings'
               = render partial: 'shared/navbar/adminMenu'
               - if @current_channel
                 %li#new-message.iconOnly
@@ -97,5 +92,3 @@
           = render partial: 'shared/footer'
     = render partial: 'shared/flash_messages'
     = render partial: 'shared/ga'
-    = glimpse_results
-    = render 'glimpse/results/performance_bar'

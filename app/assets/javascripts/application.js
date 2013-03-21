@@ -88,6 +88,7 @@ function switchAvailability(event) {
 function updateNotificationsInner(data) {
     var notifications = "";
     var notificationsCount = 0;
+    var notifcationsChannelCount = [];
 
     $.each(data, function(key, val) {
         classAttr = '';
@@ -96,12 +97,27 @@ function updateNotificationsInner(data) {
             classAttr = ' class="read"';
         } else {
             ++notificationsCount;
+            if(notifcationsChannelCount[val.channel_id])
+                ++notifcationsChannelCount[val.channel_id];
+            else
+                notifcationsChannelCount[val.channel_id] = 1;
         }
 
         notifications += '<li' + classAttr + '><a href="/notifications/' + val.id + '">';
         notifications += '<img class="avatar" height="30" src="' + val.avatar_path + '" width="30">';
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
+
+    //Update channel badge
+    $.each(notifcationsChannelCount, function(key, val) {
+        if($('.channel-' + key + ' .badge').length > 0) {
+            $('.channel-' + key + ' .badge').html(val);
+        } else {
+            $('.channel-' + key)
+                .prepend('<span class="notification-badge badge badge-info">' + val + '</span>&nbsp;');
+        }
+    });
+
 
     notifications += '<li class="divider"></li><li><a id="markAllNotificationsAsRead" href="#">' + $('#markAllNotificationsAsRead').html() + '</a></li>';
     var ul = $('ul.notification-dropdown');
