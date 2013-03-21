@@ -1,5 +1,29 @@
 .well
-  %h1 Listing pages
+  %h1= t('wiki.headline')
+
+  %ul#wikiTabs.nav.nav-tabs
+    %li.active
+      %a{href: "#home"}= t('wiki.tabs.home')
+    %li
+      %a{href: "#pages"}= t('wiki.tabs.pages')
+
+  .tab-content
+    #home.tab-pane.active
+      tab1
+
+    #pages.tab-pane
+      tab2
+
+  :javascript
+    $(function () {
+      $('#wikiTabs a:first').tab('show');
+
+      $('#wikiTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+      });
+    })
+
   %table
     %tr
       %th Title

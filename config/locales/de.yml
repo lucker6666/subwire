@@ -425,3 +425,9 @@ de:
           attributes:
             name:
               too_long: Name zu lang. Maximal 20 Buchstaben erlaubt.
+
+  wiki:
+    headline: Wiki
+    tabs:
+      home: Startseite
+      pages: Alle Seiten

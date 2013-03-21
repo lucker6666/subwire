@@ -426,3 +426,8 @@ en:
           attributes:
             name:
               too_long: Name too long. 20 characters maximum allowed.
+  wiki:
+    headline: Wiki
+    tabs:
+      home: Home
+      pages: All pages
