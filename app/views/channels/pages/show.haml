@@ -1,7 +1,1 @@
-.well
-  .h1= @page.title
-  %p
-    = @page.content
-  = link_to 'Edit', edit_channel_wiki_path(@current_channel, @page)
-  |
-  \#{link_to 'Back', channel_wiki_index_path}
+= render partial: 'frame', locals: {title: @page.title}

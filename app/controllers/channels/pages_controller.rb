@@ -1,12 +1,12 @@
 class Channels::PagesController < ApplicationController
-  before_filter :load_page, only: [:show, :edit, :update, :destory]
+  before_filter :load_page, only: [:show, :edit, :update, :destroy]
   before_filter :section
+  before_filter :load_all_pages, only: [:show, :edit, :new, :index]
 
 
 
   # GET /channels/:id/wiki
   def index
-    @pages = Page.all
     @page = Page.where(is_home: true, channel_id: @current_channel.id).first
   end
 
@@ -63,6 +63,10 @@ class Channels::PagesController < ApplicationController
     def load_page
       @page = Page.find(params[:id])
       authorize! :read, @page
+    end
+
+    def load_all_pages
+      @pages = Page.all
     end
 
     def section
