@@ -41,19 +41,8 @@ class ChannelsController < ApplicationController
 
     if @current_channel.save
       # The relationship between current user and the new channel
-      rel = Relationship.new
-      rel.user = current_user
-      rel.channel = @current_channel
-      rel.admin = true
-      rel.save
-
-      # Default message
-      message = Message.new
-      message.user = current_user
-      message.channel = @current_channel
-      message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
-      message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
-      message.save
+      create_relationship
+      create_default_message
 
       feedback t('channels.created'), :success
       redirect_to channel_path(@current_channel)
@@ -102,4 +91,24 @@ class ChannelsController < ApplicationController
     feedback t('channels.destroyed'), :success
     redirect_to channels_path
   end
+
+
+  private
+
+      def create_relationship
+        rel = Relationship.new
+        rel.user = current_user
+        rel.channel = @current_channel
+        rel.admin = true
+        rel.save
+      end
+
+      def create_default_message
+        message = Message.new
+        message.user = current_user
+        message.channel = @current_channel
+        message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
+        message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
+        message.save
+      end
 end
