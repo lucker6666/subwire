@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304220434) do
+ActiveRecord::Schema.define(:version => 20130321192349) do
 
   create_table "availabilities", :force => true do |t|
     t.integer "user_id"
@@ -107,8 +107,9 @@ ActiveRecord::Schema.define(:version => 20130304220434) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "is_home",    :default => false, :null => false
   end
 
   add_index "pages", ["channel_id"], :name => "index_pages_on_channel_id"
@@ -146,7 +147,7 @@ ActiveRecord::Schema.define(:version => 20130304220434) do
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-09-28 08:14:39'
+    t.datetime "last_activity",          :default => '2012-07-23 20:23:07'
     t.boolean  "show_login_status",      :default => true
     t.string   "provider"
     t.string   "uid"
