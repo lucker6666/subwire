@@ -47,7 +47,7 @@ class Notification < ActiveRecord::Base
   def self.notify_user(from, user, notification_type, provokesUser, subject, href, channel)
     notification = Notification.new({
       notification_type: notification_type,
-      provokesUser: provokesUser.id,
+      provokesUser: provokesUser,
       subject: subject,
       href: href,
       created_by: from.id

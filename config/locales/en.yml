@@ -336,6 +336,7 @@ en:
     invitation_finished: 'Now, you can sign in!'
     delete_alert: 'With that button you will remove yourself from the current channel.<br /><b>Note:</b> You my be not the only Admin in one Channel.'
     delete: 'Quit this channel'
+    exist: User already exists
     mail:
       notification: 'Mail Notification?'
       invitation:
