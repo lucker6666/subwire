@@ -48,7 +48,8 @@
  *  Layout
  */
 
-  div.container {
+  div.container,
+  div.row-fluid {
     position: relative;
   }
 
@@ -57,7 +58,9 @@
   }
 
   div.maincontent {
-    margin-left: 270px;
+    position: absolute;
+    left: 270px;
+    right: 0;
   }
 
 
