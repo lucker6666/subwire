@@ -1,0 +1,41 @@
+.well
+  %h1
+    = title
+    = link_to new_channel_wiki_path(@current_channel), {class: 'btn btn-small'} do
+      %i.icon.icon-plus-sign
+
+  %ul#wikiTabs.nav.nav-tabs
+    - unless @page.is_home
+      %li.home
+        %a{href: "#home"}= t('wiki.tabs.home')
+    %li.active
+      %a{href: "#home"}= @page.title
+    %li
+      %a{href: "#pages"}= t('wiki.tabs.pages')
+
+  .tab-content
+    #home.tab-pane.active
+      - if @page
+        = @page.content
+
+    #pages.tab-pane
+      %ul
+        - @pages.each do |page|
+          %li
+            = link_to channel_wiki_path(@current_channel, page), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini pull-right' do
+              %i.icon.icon-trash
+            = link_to page.title, channel_wiki_path(@current_channel, page)
+
+  :javascript
+    $(function () {
+      $('#wikiTabs a').click(function (e) {
+        var el = $(this);
+        e.preventDefault();
+
+        if (el.parent().hasClass('home')) {
+          window.location.href = "#{channel_wiki_index_path(@current_channel)}";
+        } else {
+          el.tab('show');
+        }
+      });
+    })
