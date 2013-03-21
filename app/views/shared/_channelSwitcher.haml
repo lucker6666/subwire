@@ -2,6 +2,8 @@
   %h1
     %i.icon.icon-home
     Channels
+    = link_to new_channel_path, {class: 'btn btn-small'} do
+      %i.icon.icon-plus-sign
   %ul.channels.nav.nav-list
     - channels.each do |channel|
       - active = channel == @current_channel
