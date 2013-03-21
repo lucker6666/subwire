@@ -1,7 +1,7 @@
 - model_class = @message.class
 
-%h1
-  =t('.title'), default: t('helpers.titles.edit', model: model_class.model_name.human)
-
 .well
+  %h1
+    =t('.title'), default: t('helpers.titles.edit', model: model_class.model_name.human)
+
   = render partial: 'form'
