@@ -431,3 +431,6 @@ de:
     tabs:
       home: Startseite
       pages: Alle Seiten
+    default_page:
+      title: Startseite
+      content: Das ist die Startseite des Wikis. Du kannst Sie nach Belieben ändern!

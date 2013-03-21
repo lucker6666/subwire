@@ -7,6 +7,7 @@ class Channels::PagesController < ApplicationController
   # GET /channels/:id/wiki
   def index
     @pages = Page.all
+    @page = Page.where(is_home: true, channel_id: @current_channel.id).first
   end
 
 

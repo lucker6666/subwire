@@ -431,3 +431,6 @@ en:
     tabs:
       home: Home
       pages: All pages
+    default_page:
+      title: Home
+      content: This is the startpage of your wiki. Feel free to change that page!

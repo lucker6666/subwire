@@ -43,6 +43,7 @@ class ChannelsController < ApplicationController
       # The relationship between current user and the new channel
       create_relationship
       create_default_message
+      create_wiki_home
 
       feedback t('channels.created'), :success
       redirect_to channel_path(@current_channel)
@@ -110,5 +111,15 @@ class ChannelsController < ApplicationController
         message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
         message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
         message.save
+      end
+
+      def create_wiki_home
+        page = Page.new
+        page.user = current_user
+        page.channel = @current_channel
+        page.is_home = true
+        page.title = t('wiki.default_page.title')
+        page.content = t('wiki.default_page.content')
+        page.save
       end
 end
