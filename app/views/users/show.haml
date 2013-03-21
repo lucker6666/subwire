@@ -1,6 +1,7 @@
 - model_class = @user.class
-%h1= @user.name
+
 .well
+  %h1= @user.name
   %table.table.table-striped.table-bordered.table-condensed
     %tr
       %td.span2.avatarCell{rowspan: can?(:edit, @user) ? 8 : 7}
