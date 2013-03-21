@@ -164,6 +164,10 @@
       font-size: 1.2em;
       @include grey_gradient();
       @include border_radius(5px 5px 0 0);
+
+      .btn {
+        float: right;
+      }
     }
 
     .well {
