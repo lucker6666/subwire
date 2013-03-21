@@ -31,8 +31,12 @@ class Channels::RelationshipsController < ApplicationController
     authorize! :create, Relationship
 
     user = User.find_by_email(params[:relationship][:email])
+    relationship = Relationship.where(user: user, channel: @current_channel)
 
-    if user.nil?
+    if !relationship.nil?
+      feedback t('relationships.exist')
+      redirect_to channel_relationships_path(@current_channel)
+    elsif user.nil?
       user = User.new
       user.name = "unkown"
       user.email = params[:relationship][:email]
