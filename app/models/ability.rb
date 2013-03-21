@@ -52,8 +52,17 @@ class Ability
 
 
         # User
+        can [:read], User do |u|
+          read = false
+          u.relationships.each do |r|
+            if Relationship.find_by_channel_and_user(r.channel, user)
+              read = true
+            end
+          end
+          read
+        end
 
-        can [:read, :update, :destroy], User, id: user.id
+        can [:update, :destroy], User, id: user.id
 
 
 
