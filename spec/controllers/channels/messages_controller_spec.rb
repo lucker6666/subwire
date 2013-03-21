@@ -28,6 +28,7 @@ describe Channels::MessagesController do
       message = Message.new
       message.id = 1
       message.is_editable = true
+      message.content = 'foobar'
       message.should_receive(:save).and_return(true)
       Message.should_receive(:new).and_return(message)
       Notification.stub(:notify_all_users)
