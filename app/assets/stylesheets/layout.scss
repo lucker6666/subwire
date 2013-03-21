@@ -61,6 +61,10 @@
     position: absolute;
     left: 270px;
     right: 0;
+
+    > .well {
+      min-height: 450px;
+    }
   }
 
 
