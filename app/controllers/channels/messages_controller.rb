@@ -45,11 +45,18 @@ class Channels::MessagesController < ApplicationController
     @message.channel = @current_channel
 
     if @message.save
+
+      if @message.title.nil?
+        notifySubject = @message.content[0,75] + '...'
+      else
+        notifySubject = @message.title
+      end
+
       # Notify all users in that about the new message
       Notification.notify_all_users({
         notification_type: :new_message,
         provokesUser: @message.user,
-        subject: @message.title,
+        subject: notifySubject,
         href: channel_message_path(@current_channel, @message)
       }, @current_channel, current_user)
 

@@ -61,7 +61,7 @@ class Channels::RelationshipsController < ApplicationController
       if @relationship.save
         Notification.notify_all_users({
           notification_type: :new_user,
-          provokesUser: user.id,
+          provokesUser: user,
           subject: "",
           href: user_path(user)
         }, @current_channel, current_user, except: [user])
