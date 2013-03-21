@@ -63,7 +63,7 @@ class Channels::RelationshipsController < ApplicationController
         }, @current_channel, current_user, except: [user])
 
         feedback t('relationships.created'), :success
-        redirect_to relationships_path(@article)
+        redirect_to channel_relationships_path(@current_channel)
       else
         feedback t('relationships.not_created'), :error
         render action: "new"
@@ -82,7 +82,7 @@ class Channels::RelationshipsController < ApplicationController
 
     if @relationship.update_attributes(params[:relationship])
       feedback t('relationships.updated'), :success
-      redirect_to relationships_path
+      redirect_to channel_relationships_path(@current_channel)
     else
       render action: "edit"
     end
@@ -103,7 +103,12 @@ class Channels::RelationshipsController < ApplicationController
 
     @relationship.destroy
     feedback t('relationships.destroyed'), :success
-    redirect_to "/"
+
+    if @relationship.user == @current_user
+      redirect_to "/"
+    else
+      redirect_to channel_relationships_path(@current_channel)
+    end
   end
 
 

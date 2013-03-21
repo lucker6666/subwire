@@ -6,7 +6,7 @@
     - channels.each do |channel|
       - active = channel == @current_channel
       - notificationCount = channel.notification_count(current_user)
-      %li{:class => active ? 'active' : ''}
+      %li{:class => "#{active ? 'active' : ''} channel-#{channel.id}"}
         %i{:class => "icon icon-chevron-#{active ? 'down' : 'right'} pull-left"}
         = link_to channel_path(channel) do
           - if notificationCount > 0
@@ -20,14 +20,14 @@
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
           %i{:class => "#{active ? '' : 'muted'} icon icon-comment pull-left"}
           %a{:href => channel_messages_path(@current_channel)}
-            Discussions
+            #{t('application.message_management')}
             - if active
               %i.icon.icon-chevron-right.pull-right
         - active = @active_section == :wiki
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
           %i{:class => "#{active ? '' : 'muted'} icon icon-book pull-left"}
           %a{:href => channel_wiki_index_path(@current_channel)}
-            Wiki
+            #{t('application.page_management')}
             - if active
               %i.icon.icon-chevron-right.pull-right
         - if can? :edit, @current_channel
@@ -35,14 +35,21 @@
           %li{:class => "sub-navi #{active ? 'active' : ''}"}
             %i{:class => "#{active ? '' : 'muted'} icon icon-user pull-left"}
             %a{:href => channel_relationships_path(@current_channel)}
-              Members
+              #{t('application.user_management')}
+              - if active
+                %i.icon.icon-chevron-right.pull-right
+          - active = @active_section == :bookmarks
+          %li{:class => "sub-navi #{active ? 'active' : ''}"}
+            %i{:class => "#{active ? '' : 'muted'} icon icon-screenshot pull-left"}
+            %a{:href => channel_links_path(@current_channel)}
+              #{t('application.link_management')}
               - if active
                 %i.icon.icon-chevron-right.pull-right
           - active = @active_section == :settings
           %li{:class => "sub-navi #{active ? 'active' : ''}"}
             %i{:class => "#{active ? '' : 'muted'} icon icon-cog pull-left"}
             %a{:href => edit_channel_path(@current_channel)}
-              Settings
+              #{t('channels.edit')}
               - if active
                 %i.icon.icon-chevron-right.pull-right
         %li &nbsp;

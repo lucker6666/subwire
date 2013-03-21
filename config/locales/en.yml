@@ -228,6 +228,8 @@ en:
     notifications_unread: There are no unread notifications.
     no_permission_for_channel: Permission denied!
     user_management: Users
+    page_management: Wiki
+    message_management: Discussions
     link_management: Bookmarks
     new_message: New Message
     message_details: Details ...
