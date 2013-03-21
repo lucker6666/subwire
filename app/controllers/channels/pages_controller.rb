@@ -29,8 +29,12 @@ class Channels::PagesController < ApplicationController
 
   # POST /channels/:id/wiki
   def create
+    @page = Page.new(params[:page])
+    @page.channel = @current_channel
+    @page.user = current_user
+
     if @page.save
-      redirect_to @page, notice: 'Page was successfully created.'
+      redirect_to channel_wiki_path(@current_channel, @page), notice: 'Page was successfully created.'
     else
       render action: "new"
     end
