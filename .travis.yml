@@ -3,19 +3,20 @@ branches:
     - 'master'
 
 env:
-  - DB=mysql
-  - DB=sqlite
+  - RAILS_ENV=test DB=mysql
+  - RAILS_ENV=test DB=sqlite
 
 language: ruby
 
 rvm:
+  - 1.9.1
+  - 1.9.2
   - 1.9.3
   - 2.0.0
 
 before_script:
-  - "export RAILS_ENV=test"
   - "cp config/database.$DB.yml config/database.yml"
   - "cp config/initializers/config.example.rb config/initializers/config.rb"
-  - "bundle exec rake db:setup subwire:setup db:test:prepare"
+  - "bundle exec rake db:create db:setup subwire:setup db:test:prepare"
 
 script: "bundle exec rspec"
