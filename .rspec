@@ -1,1 +1,6 @@
---colour -fs
+--color
+--format Fuubar
+--order random
+--drb
+--fail-fast
+-b
