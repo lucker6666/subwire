@@ -13,8 +13,9 @@ rvm:
   - 2.0.0
 
 before_script:
+  - "export RAILS_ENV=test"
   - "cp config/database.$DB.yml config/database.yml"
   - "cp config/initializers/config.example.rb config/initializers/config.rb"
-  - "bundle exec rake db:setup subwire:setup db:test:prepare RAILS_ENV=test"
+  - "bundle exec rake db:setup subwire:setup db:test:prepare"
 
 script: "bundle exec rspec"
