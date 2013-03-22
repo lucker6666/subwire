@@ -58,6 +58,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'fuubar'
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'libnotify'
