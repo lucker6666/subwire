@@ -97,6 +97,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_invite_user_to_channels(user)
+    canInvite = Array.new
+    Channel.find_all_where_user_is_admin(self).each do |c|
+      if Relationship.find_by_channel_and_user(c, user).nil?
+        canInvite.push(c)
+      end
+    end
+    canInvite
+  end
+
   def login_status(name)
     login_status_by_time Time.now, name
   end

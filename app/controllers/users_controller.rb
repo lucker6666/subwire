@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @adminCount = Relationship.where(user_id: @user.id, admin: true).length
     @messagesCount = Message.where(user_id: @user.id).length
     @commentsCount = Comment.where(user_id: @user.id).length
+    @canInvite = @current_user.can_invite_user_to_channels(@user)
   end
 
 
