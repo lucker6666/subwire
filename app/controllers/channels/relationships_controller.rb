@@ -31,7 +31,7 @@ class Channels::RelationshipsController < ApplicationController
     authorize! :create, Relationship
 
     user = User.find_by_email(params[:relationship][:email])
-    relationship = Relationship.where(user: user, channel: @current_channel)
+    relationship = Relationship.find_by_channel_and_user(@current_channel, user)
 
     if !relationship.nil?
       feedback t('relationships.exist')
