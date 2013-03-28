@@ -49,6 +49,14 @@ $(function() {
 		html: true,
 		content: $('#new-message-html').html()
 	});
+
+    // Planning tool link
+    $('#planning-tool').popover({
+		placement: 'bottom',
+		title: "When you're available?",
+		html: true,
+		content: $('#planning-tool-html').html()
+	});
 });
 
 

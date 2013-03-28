@@ -1,0 +1,55 @@
+- if @current_channel
+  #new-message-html
+    = form_for [@current_channel, @current_channel.messages.build] do |f|
+      = f.text_area :content, rows: 4, placeholder: t("application.message_placeholder")
+      .buttons
+        = f.submit nil, class: 'btn btn-success'
+        = link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn'
+
+
+  / Planning Tool
+  - if @current_channel.planningTool
+    #planning-tool-html
+      %table.table.table-striped.table-bordered.table-condensed
+        %thead
+          %tr
+            %th
+            - date = Date.today
+            - 7.times do
+              - day = l(date, format: :day)
+              %th{class: (['Sat', 'Sun'].include?(day) ? 'weekend' : '')}
+                %nobr= l date, format: :short
+                = day
+              - date += 1
+        %tbody
+          - users = @sidebar_users.select { |u| u != current_user }
+          - users.unshift(current_user)
+          - users.each do |user|
+            %tr
+              %th= user.name
+              - date = Date.today
+              - 7.times do |i|
+                - a = Availability.where(date: date, user_id: user.id, channel_id: @current_channel.id).first
+                - color = a.nil? ? 3 : (a.value ? 1 : 2)
+                - if color == 1
+                  %td.green
+                    - if user == current_user
+                      %a.availability_cell{:alt => date, :href => "#"}
+                        %i.icon.icon-ok
+                    - else
+                      %i.icon.icon-ok
+                - elsif color == 2
+                  %td.red
+                    - if user == current_user
+                      %a.availability_cell{:alt => date, :href => "#"}
+                        %i.icon.icon-remove
+                    - else
+                      %i.icon.icon-remove
+                - else
+                  %td.yellow
+                    - if user == current_user
+                      %a.availability_cell{:alt => date, :href => "#"}
+                        %i.icon.icon-question-sign
+                    - else
+                      %i.icon.icon-question-sign
+                - date = date + 1

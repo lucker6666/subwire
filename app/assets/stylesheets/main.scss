@@ -5,6 +5,7 @@
   li#new-message {
     + div.popover {
       width: 400px;
+      max-width: 400px;
       @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
 
       form {
@@ -32,6 +33,51 @@
   }
 
   #new-message-html {
+    display: none;
+  }
+
+
+
+/*
+ *  Planning tool
+ */
+
+  li#planning-tool {
+    + div.popover {
+      width: 540px;
+      max-width: 540px;
+      @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
+
+      div.popover-content {
+        padding: 0;
+
+        table {
+          border: none;
+          margin-bottom: 0;
+          @include border-radius(0);
+
+          th {
+            font-size: 13px;
+            font-weight: normal;
+          }
+
+          td,
+          th {
+            height: 26px;
+            vertical-align: middle;
+            @include border-radius(0);
+          }
+
+          th:first-child,
+          td:first-child {
+            border-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #planning-tool-html {
     display: none;
   }
 
@@ -84,25 +130,25 @@
         width: 200px;
       }
     }
-  }
 
-  .iconOnly > a > i {
-    font-size: 1.6em;
-  }
+    li.iconOnly {
+      font-size: 1.6em;
 
-  li.iconOnly > a.dropdown-toggle {
-    position: relative;
-    padding: 10px 0.5em 8px 0.5em;
-  }
+      > a {
+        position: relative;
+        padding: 10px 0.4em 8px 0.4em;
 
-  a.dropdown-toggle span.badge {
-    position: absolute;
-    left: 29px;
-    text-shadow: none;
-    top: 4px;
-    padding: 0px 4px 0px;
-    font-size: 9px;
-    line-height: 14px;
+        span.badge {
+          position: absolute;
+          left: 29px;
+          text-shadow: none;
+          top: 4px;
+          padding: 0px 4px 0px;
+          font-size: 9px;
+          line-height: 14px;
+        }
+      }
+    }
   }
 
   li.planner a.dropdown-toggle span.badge {
