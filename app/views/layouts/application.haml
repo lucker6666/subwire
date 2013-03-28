@@ -13,13 +13,8 @@
       :javascript
         window.subwireTitle = "#{@current_channel.name}";
   %body
-    - if @current_channel
-      #new-message-html
-        = form_for [@current_channel, @current_channel.messages.build] do |f|
-          = f.text_area :content, rows: 4, placeholder: t("application.message_placeholder")
-          .buttons
-            = f.submit nil, class: 'btn btn-success'
-            = link_to t('application.message_details'), new_channel_message_path(@current_channel), class: 'btn'
+    = render partial: 'shared/popovers'
+
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
@@ -38,8 +33,7 @@
                 %li#new-message.iconOnly
                   %a{:href => "#", :onclick => "return false;"}
                     %i.icon.icon-plus-sign
-              %li.divider-vertical
-            = render partial: 'shared/navbar/availability'
+              = render partial: 'shared/navbar/availability'
             %ul.nav.pull-right
               - unless @current_channel.nil?
                 = form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do
