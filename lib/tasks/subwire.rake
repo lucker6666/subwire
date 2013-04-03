@@ -1,13 +1,13 @@
 namespace :subwire do
     desc "Add the default channel 'Default'"
     task default_channel: :environment do
-        ins = Channel.new(
+        channel = Channel.new(
             name: 'Default',
             planningTool: true
         )
 
-        ins.advertising = false
-        ins.save!
+        channel.advertising = false
+        channel.save!
     end
 
     desc "Add the default superadmin 'admin@example.com' with password 'admin'"
@@ -43,8 +43,19 @@ namespace :subwire do
         message.save!
     end
 
+    desc "Add a wiki home page"
+    task default_page: :environment do
+        page = Page.new
+        page.user = User.first
+        page.channel = Channel.first
+        page.is_home = true
+        page.title = "Home"
+        page.content = "This is the startpage of your wiki. Feel free to change that page!"
+        page.save!
+    end
+
     desc "Run all setup tasks"
-    task setup: [:default_channel, :default_user, :default_message]
+    task setup: [:default_channel, :default_user, :default_message, :default_page]
 
     desc "Run all test tasks"
     task test: []
