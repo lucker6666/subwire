@@ -134,6 +134,10 @@
     li.iconOnly {
       font-size: 1.6em;
 
+      li {
+        font-size: 14px;
+      }
+
       > a {
         position: relative;
         padding: 10px 0.4em 8px 0.4em;
@@ -158,21 +162,6 @@
 
   ul.channels-dropdown a.active {
     font-weight: bold;
-  }
-
-  .dropdown-menu {
-    padding: 0.5em;
-  }
-
-  .notification-dropdown a {
-    clear: both;
-    color: $dark_grey;
-    display: block;
-    font-weight: normal;
-    line-height: 20px;
-    margin-right: 20px;
-    padding: 3px 20px;
-    white-space: nowrap;
   }
 
   thead th.weekend {
@@ -242,6 +231,8 @@
   }
 
   .notification-dropdown {
+    padding: 0.5em;
+
     img {
       float: left;
       margin: 3px 8px 0 -9px;
@@ -249,6 +240,17 @@
 
     li.read {
       opacity: 0.5;
+    }
+
+    a {
+      clear: both;
+      color: $dark_grey;
+      display: block;
+      font-weight: normal;
+      line-height: 20px;
+      margin-right: 20px;
+      padding: 3px 20px;
+      white-space: nowrap;
     }
   }
 
