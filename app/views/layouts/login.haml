@@ -29,3 +29,7 @@
       = render partial: 'shared/footer', :locals => {:background => @background}
     = render partial: 'shared/flash_messages'
     = render partial: 'shared/ga'
+    :javascript
+      $(function() {
+        $('input#user_email').focus();
+      });
