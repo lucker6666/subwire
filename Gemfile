@@ -61,9 +61,12 @@ group :development, :test do
   gem 'fuubar'
   gem 'simplecov'
   gem 'factory_girl_rails'
-  gem 'libnotify'
-  #gem 'growl'
+  gem 'libnotify', :require => false
+  gem 'growl', :require => false
   gem 'guard-rspec'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
 end
 
 group :development do
@@ -73,5 +76,4 @@ group :development do
   gem 'rack-livereload'
   gem 'guard-livereload'
   gem 'better_errors'
-  gem 'rb-inotify', '~> 0.9'
 end
