@@ -31,12 +31,8 @@ class Channels::RelationshipsController < ApplicationController
     authorize! :create, Relationship
 
     user = User.find_by_email(params[:relationship][:email])
-    relationship = Relationship.find_by_channel_and_user(@current_channel, user)
 
-    if !relationship.nil?
-      feedback t('relationships.exist')
-      redirect_to channel_relationships_path(@current_channel)
-    elsif user.nil?
+    if user.nil?
       user = User.new
       user.name = "unkown"
       user.email = params[:relationship][:email]
@@ -44,33 +40,40 @@ class Channels::RelationshipsController < ApplicationController
 
       feedback t('relationships.invited'), :success
       redirect_to channel_relationships_path(@current_channel)
-    elsif user.is_deleted
-      # If user is deleted, send an invitation anyway
-      user.is_deleted = false
-      invite_user(user)
     else
-      @relationship = Relationship.new
+      relationship = Relationship.find_by_channel_and_user(@current_channel, user)
 
-      @relationship.user = user
-      @relationship.channel = @current_channel
-
-      if can? :change, @current_channel
-        @relationship.admin = params[:relationship][:admin]
-      end
-
-      if @relationship.save
-        Notification.notify_all_users({
-          notification_type: :new_user,
-          provokesUser: user,
-          subject: "",
-          href: user_path(user)
-        }, @current_channel, current_user, except: [user])
-
-        feedback t('relationships.created'), :success
+      if !relationship.nil?
+        feedback t('relationships.exist')
         redirect_to channel_relationships_path(@current_channel)
+      elsif user.is_deleted
+        # If user is deleted, send an invitation anyway
+        user.is_deleted = false
+        invite_user(user)
       else
-        feedback t('relationships.not_created'), :error
-        render action: "new"
+        @relationship = Relationship.new
+
+        @relationship.user = user
+        @relationship.channel = @current_channel
+
+        if can? :change, @current_channel
+          @relationship.admin = params[:relationship][:admin]
+        end
+
+        if @relationship.save
+          Notification.notify_all_users({
+            notification_type: :new_user,
+            provokesUser: user,
+            subject: "",
+            href: user_path(user)
+          }, @current_channel, current_user, except: [user])
+
+          feedback t('relationships.created'), :success
+          redirect_to channel_relationships_path(@current_channel)
+        else
+          feedback t('relationships.not_created'), :error
+          render action: "new"
+        end
       end
     end
   end
