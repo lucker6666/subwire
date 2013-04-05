@@ -8,7 +8,7 @@
     %div{:class => "clearfix"}
       = f.text_field :email, class: 'text_field', placeholder: t('helpers.email')
 
-    %div{:align => "center"}
-      %button{:class => "btn btn-success", :name => "commit", :type => "submit"}
-        = t('devise.passwords.send_instructions_button')
-      = link_to t("helpers.links.cancel"), new_session_path(resource_name), class: "btn"
+    %br/
+    %button{:class => "btn btn-success", :name => "commit", :type => "submit"}
+      = t('devise.passwords.send_instructions_button')
+    = link_to t("helpers.links.cancel"), new_session_path(resource_name), class: "btn btn-inverse"
