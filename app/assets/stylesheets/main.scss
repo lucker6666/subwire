@@ -1,4 +1,79 @@
 /*
+ *   Popovers
+ */
+
+  #new-message-html,
+  #planning-tool-html,
+  #notifications-html {
+    display: none;
+  }
+
+  li#notifications,
+  li#new-message,
+  li#planning-tool {
+    + div.popover div.popover-content {
+      padding: 0;
+    }
+  }
+
+  div.popover {
+    @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
+  }
+
+
+
+/*
+ *  Notifications
+ */
+
+  li#notifications {
+    + div.popover {
+      width: 400px;
+      max-width: 400px;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li a {
+          display: block;
+          padding: 8px;
+          clear: both;
+          height: 50px;
+          border-bottom: 1px solid $mid_grey;
+
+          &:hover {
+            background-color: $well_background;
+            color: black;
+          }
+
+          img {
+            float: left;
+            margin-right: 1em;
+          }
+
+          &#read-all {
+            padding: 6px;
+            height: auto;
+            border-bottom: none;
+            color: $border_grey;
+            font-size: 12px;
+            float: right;
+            background-color: transparent;
+
+            &:hover {
+              color: $grey;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+/*
  *  Quick message
  */
 
@@ -6,7 +81,6 @@
     + div.popover {
       width: 400px;
       max-width: 400px;
-      @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
 
       form {
         margin: 0;
@@ -22,18 +96,10 @@
         overflow: hidden;
       }
 
-      div.popover-content {
-        padding: 0;
-      }
-
       div.buttons {
         padding: 0 14px 9px 14px;
       }
     }
-  }
-
-  #new-message-html {
-    display: none;
   }
 
 
@@ -46,11 +112,8 @@
     + div.popover {
       width: 540px;
       max-width: 540px;
-      @include box_shadow(0 3px 25px rgba(0, 0, 0, 0.8));
 
       div.popover-content {
-        padding: 0;
-
         table {
           border: none;
           margin-bottom: 0;
@@ -75,10 +138,6 @@
         }
       }
     }
-  }
-
-  #planning-tool-html {
-    display: none;
   }
 
 

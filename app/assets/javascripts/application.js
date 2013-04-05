@@ -42,10 +42,18 @@ $(function() {
     	$(e.currentTarget).tooltip('hide');
     });
 
+    // Notifications link
+    $('#notifications').popover({
+		placement: 'bottom',
+		title: 'Notifications', // TODO translation
+		html: true,
+		content: $('#notifications-html').html()
+	});
+
     // New Message link
     $('#new-message').popover({
 		placement: 'bottom',
-		title: 'New message',
+		title: 'New message', // TODO translation
 		html: true,
 		content: $('#new-message-html').html()
 	});
@@ -53,7 +61,7 @@ $(function() {
     // Planning tool link
     $('#planning-tool').popover({
 		placement: 'bottom',
-		title: "When you're available?",
+		title: "When you're available?", // TODO translation
 		html: true,
 		content: $('#planning-tool-html').html()
 	});
