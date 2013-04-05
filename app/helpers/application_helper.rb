@@ -87,7 +87,7 @@ module ApplicationHelper
   # Random background image for login page
   def login_background
     backgrounds = Subwire::Application.config.backgrounds
-    return backgrounds[Random.new.rand(0..(backgrounds.length - 1))]
+    return backgrounds[(Time.now.min / 5) % backgrounds.length]
   end
 
   # Existing icons
