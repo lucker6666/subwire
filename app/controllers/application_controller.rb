@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
 
   ### Methods
 
+  def after_sign_in_path_for(resource)
+    channels_path
+  end
+
+
+
   protected
     # For debugging purposes
     def show_actual_url
