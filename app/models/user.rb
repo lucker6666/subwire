@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
   ### Validations
   # Make sure, name, email, lang, timezone are not empty
-  validates :lang, :timezone, :email, :password, presence: true
+  validates :lang, :timezone, :email, presence: true
 
   # Make sure name contains no invalid chars and length is between 3 and 30
   validates :name, format: { with: /^[a-zA-Z0-9\-_. ]+$/ },
