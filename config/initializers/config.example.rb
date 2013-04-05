@@ -54,18 +54,23 @@ module Subwire
       },
       {
         file: '3.jpg',
-        artist: 'Sergey Gabdurakhmanov',
-        link: 'http://www.flickr.com/photos/gabdurakhmanov/3636079474/sizes/l/in/photostream/'
+        artist: 'a4gpa',
+        link: 'http://commons.wikimedia.org/wiki/File:Autumn_mountain_trail.jpg'
       },
       {
         file: '4.jpg',
-        artist: 'gnuckx',
-        link: 'http://www.flickr.com/photos/gnuckx/4836339101/sizes/l/in/photostream/'
+        artist: 'Kiatisakj',
+        link: 'http://commons.wikimedia.org/wiki/File:3d-wallpaper-widescreen-3.jpg'
       },
       {
         file: '5.jpg',
-        artist: 'ilovegreenland',
-        link: 'http://www.flickr.com/photos/ilovegreenland/8261005084/sizes/l/in/photostream/'
+        artist: 'Nitot',
+        link: 'http://commons.wikimedia.org/wiki/File:Eiffel_tower_at_dawn_horizontal.jpg'
+      },
+      {
+        file: '6.jpg',
+        artist: 'tajai',
+        link: 'http://www.flickr.com/photos/49503037845@N01/390601'
       }
     ]
   end
