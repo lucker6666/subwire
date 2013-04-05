@@ -10,6 +10,7 @@ de:
       unauthenticated: 'Du musst dich zuerst anmelden.'
       unconfirmed: 'Du musst deinen Acoount zuerst bestätigen.'
       locked: 'Dein Account ist gesperrt.'
+      not_found_in_database: 'Falscher Benutzername oder falsches Passwort.'
       invalid: 'Falscher Benutzername oder falsches Passwort.'
       invalid_token: 'Ungültiger Schlüssel.'
       timeout: 'Die Sitzung ist abgelaufen, bitte melde dich erneut an.'
