@@ -116,17 +116,6 @@ function updateNotificationsInner(data) {
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
 
-    //Update channel badge
-    $.each(notifcationsChannelCount, function(key, val) {
-        if($('.channel-' + key + ' .badge').length > 0) {
-            $('.channel-' + key + ' .badge').html(val);
-        } else {
-            $('.channel-' + key)
-                .prepend('<span class="notification-badge badge badge-info">' + val + '</span>&nbsp;');
-        }
-    });
-
-
     notifications += '<li class="divider"></li><li><a id="markAllNotificationsAsRead" href="#">' + $('#markAllNotificationsAsRead').html() + '</a></li>';
     var ul = $('ul.notification-dropdown');
     var a = ul.siblings("a");
@@ -139,7 +128,7 @@ function updateNotificationsInner(data) {
         if (a.children("span").length > 0) {
             a.children("span").html(notificationsCount);
         } else {
-            a.append("<span class='notification-badge badge badge-info'>" +
+            a.append("<span class='notification-badge badge badge-important'>" +
                     notificationsCount + "</span>");
         }
 

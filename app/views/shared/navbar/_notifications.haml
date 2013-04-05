@@ -2,7 +2,7 @@
   %a.dropdown-toggle{"data-placement" => "bottom", "data-toggle" => "dropdown", href: "#", rel: "tooltip", title: t('tooltip.notifications')}
     %i.icon.icon-comment
     - if @unread_notification_count > 0
-      %span.notification-badge.badge.badge-info
+      %span.notification-badge.badge.badge-important
         = @unread_notification_count
 
   %ul.notification-dropdown.dropdown-menu

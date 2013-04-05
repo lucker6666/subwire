@@ -11,10 +11,6 @@
       %li{:class => "#{active ? 'active' : ''} channel-#{channel.id}"}
         %i{:class => "icon icon-chevron-#{active ? 'down' : 'right'} pull-left"}
         = link_to channel_path(channel) do
-          - if notificationCount > 0
-            %span.notification-badge.badge.badge-info
-              = notificationCount
-            \&nbsp;
           %strong
             = channel.name
       - if active
