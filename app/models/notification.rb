@@ -19,7 +19,8 @@
 
 class Notification < ActiveRecord::Base
   ### Attributes
-  attr_accessible :notification_type, :message, :is_read, :provokesUser, :subject, :href, :created_by
+  attr_accessible :notification_type, :message, :is_read, :provokesUser, :subject, :href,
+    :created_by, :data1, :data2
 
   ### Associations
   belongs_to :user
@@ -38,20 +39,28 @@ class Notification < ActiveRecord::Base
 
     Relationship.find_all_users_by_channel(channel).each do |user|
       unless user == from || except.include?(user)
-        self.notify_user(from, user, data[:notification_type], data[:provokesUser], data[:subject],
-          data[:href], channel)
+        data[:from] = from
+        self.notify_user(user, channel, data)
       end
     end
   end
 
-  def self.notify_user(from, user, notification_type, provokesUser, subject, href, channel)
+  def self.notify_user(user, channel, params = {})
+    type = params[:notification_type].to_sym
+
     notification = Notification.new({
-      notification_type: notification_type,
-      provokesUser: provokesUser.id,
-      subject: subject,
-      href: href,
-      created_by: from.id
+      notification_type: type,
+      provokesUser: params[:provokesUser].id,
+      subject: params[:subject],
+      href: params[:href],
+      created_by: params[:from].id
     })
+
+    # Additional data
+    if params[:data].kind_of?(Array)
+      notification.data1 = params[:data][0] || nil
+      notification.data2 = params[:data][1] || nil
+    end
 
     notification.is_read = false
     notification.user = user
@@ -62,10 +71,10 @@ class Notification < ActiveRecord::Base
     # Notify user via email if neccessary
     active = (user.last_activity != nil && user.last_activity >= Time.now - 120)
     notifications_enabled = Relationship.find_by_channel_and_user(channel, user).mail_notification
-    relevant_type = [:new_message, :new_comment].include?(notification_type.to_sym)
+    relevant_type = [:new_message, :new_comment].include?(type)
 
     if (active && notifications_enabled && relevant_type)
-      NotifyMailer.notify(User.find(provokesUser), user, notification).deliver
+      NotifyMailer.notify(User.find(params[:provokesUser]), user, notification).deliver
     end
   end
 
@@ -80,7 +89,21 @@ class Notification < ActiveRecord::Base
   end
 
   def message
-    "<strong>" + I18n.t("notifications." + self.notification_type, user: User.find(self.provokesUser).name) + "</strong> <br />#{self.subject}"
+    args = {
+      user: User.find(self.provokesUser).name
+    }
+
+    if self.data1
+      args[:data1] = self.data1
+    end
+
+    if self.data2
+      args[:data1] = self.data2
+    end
+
+    message = I18n.t("notifications." + self.notification_type, args)
+
+    "<strong>#{message}</strong> <br />#{self.subject}"
   end
 
   def read!

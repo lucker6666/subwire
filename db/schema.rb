@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321192349) do
+ActiveRecord::Schema.define(:version => 20130405161456) do
 
   create_table "availabilities", :force => true do |t|
     t.integer "user_id"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20130321192349) do
     t.integer  "created_by"
     t.integer  "provokesUser"
     t.string   "subject"
+    t.string   "data1"
+    t.string   "data2"
   end
 
   add_index "notifications", ["channel_id"], :name => "index_notifications_on_channel_id"
@@ -147,7 +149,7 @@ ActiveRecord::Schema.define(:version => 20130321192349) do
     t.boolean  "is_deleted",             :default => false
     t.boolean  "invitation_pending",     :default => false
     t.string   "gravatar"
-    t.datetime "last_activity",          :default => '2012-07-23 20:23:07'
+    t.datetime "last_activity"
     t.boolean  "show_login_status",      :default => true
     t.string   "provider"
     t.string   "uid"
