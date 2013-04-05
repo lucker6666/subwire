@@ -15,5 +15,6 @@
     %div{:class => "clearfix"}
       = f.password_field :password_confirmation, class: 'text_field', placeholder: t('helpers.password_confirmation')
 
-    = f.submit t("helpers.sign_up"), class: "btn btn-success btn-large"
-    = link_to t("helpers.sign_in"), new_session_path(resource_name), class: "btn btn-inverse btn-large"
+    %br/
+    = f.submit t("helpers.sign_up"), class: "btn btn-success"
+    = link_to t("helpers.back"), new_session_path(resource_name), class: "btn btn-inverse"

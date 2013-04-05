@@ -7,28 +7,18 @@
       = @subwireTitle
     = render partial: 'shared/head'
     = stylesheet_link_tag "layouts/login", media: "all"
+
   %body.login
     - @background = login_background
     %img.background-image{:src => "/assets/backgrounds/#{@background[:file]}"}/
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          - if current_user
-            %ul.nav.logout
-              %li
-                = link_to destroy_user_session_path do
-                  %i.icon.icon-remove
-                  = t("application.logout")
-          %a.brand{:href => "/"}
-            %span> Sub
-            wire
-    .container
-      .row
-        %div{:class => "login-form #{@containerClass}"}
-          = yield
-      = render partial: 'shared/footer', :locals => {:background => @background}
+
+    %div{:class => "login-form #{@containerClass}"}
+      = yield
+
+    = render partial: 'shared/footer', :locals => {:background => @background}
     = render partial: 'shared/flash_messages'
     = render partial: 'shared/ga'
+
     :javascript
       $(function() {
         $('input#user_email').focus();
