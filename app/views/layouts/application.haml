@@ -27,18 +27,6 @@
               = link_to "subwire", channels_path, class: "brand"
           .nav-collapse
             %ul.nav
-              = render partial: 'shared/navbar/notifications'
-              = render partial: 'shared/navbar/adminMenu'
-              - if @current_channel
-                %li#new-message.iconOnly
-                  %a{:href => "#", :onclick => "return false;"}
-                    %i.icon.icon-plus-sign
-              = render partial: 'shared/navbar/availability'
-            %ul.nav.pull-right
-              - unless @current_channel.nil?
-                = form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do
-                  = text_field_tag :query, params[:query], class: 'search-query', |
-                    placeholder: t('application.search')                          |
               %li.divider-vertical
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -58,6 +46,19 @@
                     = link_to destroy_user_session_path do
                       %i.icon.icon-remove
                       = t("application.logout")
+              %li.divider-vertical
+              = render partial: 'shared/navbar/notifications'
+              = render partial: 'shared/navbar/adminMenu'
+              - if @current_channel
+                %li#new-message.iconOnly
+                  %a{:href => "#", :onclick => "return false;"}
+                    %i.icon.icon-plus-sign
+              = render partial: 'shared/navbar/availability'
+            %ul.nav.pull-right
+              - unless @current_channel.nil?
+                = form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do
+                  = text_field_tag :query, params[:query], class: 'search-query', |
+                    placeholder: t('application.search')                          |
     .container-fluid.content
       .row-fluid
         .sidebar

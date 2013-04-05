@@ -1,4 +1,21 @@
 - if @current_channel
+  / Notifications
+  #notifications-html
+    - if @all_notifications.length > 0
+      %ul
+        - @all_notifications.each do |notification|
+          %li{:class => notification.is_read ? 'read' : ''}
+            %a{:href => notification_path(notification)}
+              = avatar(User.find(notification.provokesUser), :small)
+              = notification.message.html_safe
+        %li
+          %a#read-all{:href => "#"}
+            %i.icon.icon-eye-open
+            = t('notifications.mark_as_read')
+    - else
+      t("application.notifications_unread")
+
+  / Quick Message
   #new-message-html
     = form_for [@current_channel, @current_channel.messages.build] do |f|
       = f.text_area :content, rows: 4, placeholder: t("application.message_placeholder")
