@@ -317,6 +317,7 @@ de:
   notifications:
     new_message: 'Neue Message von %{user}:'
     edit_message: 'Message von %{user} bearbeitet:'
+    username_change: '%{data1} hat seinen Namen geändert zu: %{user}'
     new_user: Benutzer %{user} wurde hinzugefügt
     new_comment: 'Neuer Kommentar von %{user} zu:'
     mark_as_read: 'Alle als gelesen markieren.'

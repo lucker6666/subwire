@@ -319,6 +319,7 @@ en:
   notifications:
     new_message: 'Message created from %{user}:'
     edit_message: 'Message edited from %{user}:'
+    username_change: '%{data1} changed his name to %{user}'
     new_user: User %{user} joined
     new_comment: 'New Comment from %{user} to:'
     mark_as_read: 'Mark all as read.'
