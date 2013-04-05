@@ -127,6 +127,7 @@ de:
         one: ! 'Konnte %{model} nicht speichern: ein Fehler.'
         other: ! 'Konnte %{model} nicht speichern: %{count} Fehler.'
   helpers:
+    back: Zurück
     delete: Löschen
     edit: Bearbeiten
     advertisting: Werbung
