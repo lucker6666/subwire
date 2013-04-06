@@ -10,6 +10,15 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    # Set all notifications regarding that user as read
+    @notifications = current_user.notifications.where(
+      is_read: false,
+      href: user_path(@user)
+    ).each { |n| n.read! }
+
+    # Update the notifications of the user
+    load_notifications
+
     @assignedCount = Relationship.where(user_id: @user.id).length
     @adminCount = Relationship.where(user_id: @user.id, admin: true).length
     @messagesCount = Message.where(user_id: @user.id).length
