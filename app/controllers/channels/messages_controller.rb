@@ -22,7 +22,7 @@ class Channels::MessagesController < ApplicationController
 
   # GET /channel/:id/messages/:id
   def show
-    # Delete all notifications regarding that article
+    # Set all notifications regarding that message as read
     @notifications = current_user.notifications.where(
       channel_id: @current_channel.id,
       is_read: false,
