@@ -12,7 +12,6 @@ describe Link do
   describe "Validation" do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:href) }
-    it { should validate_presence_of(:icon) }
   end
 
   describe "Respond to" do
@@ -33,14 +32,13 @@ describe Link do
   end
 
   it "should set next position" do
-    l = Link.new href: 'http://example.com', name: 'name', icon: 'icon'
+    l = Link.new href: 'http://example.com', name: 'name'
     l.channel_id = 1
     l.save
 
     l = Link.new
     l.href = 'http://example.com'
     l.name = 'name'
-    l.icon = 'icon'
     l.channel_id = 1
     l.position.should eq(0)
     l.save
@@ -49,7 +47,7 @@ describe Link do
 
   it "Find all links by channel and page" do
     channel = FactoryGirl.create(:channel)
-    link = Link.new href: 'http://example.com', name: 'name', icon: 'icon'
+    link = Link.new href: 'http://example.com', name: 'name'
     link.channel = channel
     link.save!
 
