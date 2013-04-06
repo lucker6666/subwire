@@ -29,17 +29,18 @@ describe User do
 
       should ensure_length_of(:name).is_at_least(3).is_at_most(30)
 
-      should validate_format_of(:name).with('Dr.Evil_58')
-      should validate_format_of(:name).not_with('Dr.Ev!l_58')
+      should allow_value('Dr.Evil_58').for(:name)
+      should_not allow_value('Dr.Ev!l_58').for(:name)
 
       should validate_uniqueness_of(:email)
 
-      should validate_format_of(:email).with('user@foo.com')
-      should validate_format_of(:email).with('THE_USER@foo.bar.org')
-      should validate_format_of(:email).with('first.last@foo.jp')
-      should validate_format_of(:email).not_with('user@foo,com')
-      should validate_format_of(:email).not_with('user_at_foo.org')
-      should validate_format_of(:email).not_with('example.user@foo.')
+      should allow_value('user@foo.com').for(:email)
+      should allow_value('THE_USER@foo.bar.org').for(:email)
+      should allow_value('first.last@foo.jp').for(:email)
+
+      should_not allow_value('user@foo,com').for(:email)
+      should_not allow_value('user_at_foo.org').for(:email)
+      should_not allow_value('example.user@foo.').for(:email)
 
       should ensure_inclusion_of(:lang).in_array(['en', 'de'])
     end
