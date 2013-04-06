@@ -11,7 +11,7 @@
 //= require_tree .
 
 $(function() {
-    $('a.availability_cell').live('click', switchAvailability);
+    $(document).on('click', 'a.availability-cell', switchAvailability);
 
     $('.btn').not('.no-lock').click(function(e) {
         if ($(this).hasClass('btn-disabled')) {
@@ -63,15 +63,19 @@ $(function() {
 		placement: 'bottom',
 		title: "When you're available?", // TODO translation
 		html: true,
-		content: $('#planning-tool-html').html()
+		content: function() {
+			return $('#planning-tool-html').html();
+		}
 	});
 });
 
 
 function switchAvailability(event) {
-    var a = $(event.currentTarget),
+    var a = $('a#' + $(event.currentTarget).attr('id')),
     	icon = a.children('i'),
     	td = a.closest('td');
+
+    console.log(a, $(event.currentTarget), $(event.currentTarget).attr('id'));
 
     switch (td.attr('class')) {
         case "yellow":

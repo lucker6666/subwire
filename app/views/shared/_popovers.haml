@@ -48,25 +48,29 @@
               - 7.times do |i|
                 - a = Availability.where(date: date, user_id: user.id, channel_id: @current_channel.id).first
                 - color = a.nil? ? 3 : (a.value ? 1 : 2)
+
                 - if color == 1
                   %td.green
                     - if user == current_user
-                      %a.availability_cell{:alt => date, :href => "#"}
+                      %a.availability-cell{alt: date, href: "#", id: "cell-#{i}"}
                         %i.icon.icon-ok
                     - else
                       %i.icon.icon-ok
+
                 - elsif color == 2
                   %td.red
                     - if user == current_user
-                      %a.availability_cell{:alt => date, :href => "#"}
+                      %a.availability-cell{alt: date, href: "#", id: "cell-#{i}"}
                         %i.icon.icon-remove
                     - else
                       %i.icon.icon-remove
+
                 - else
                   %td.yellow
                     - if user == current_user
-                      %a.availability_cell{:alt => date, :href => "#"}
+                      %a.availability-cell{alt: date, href: "#", id: "cell-#{i}"}
                         %i.icon.icon-question-sign
                     - else
                       %i.icon.icon-question-sign
+
                 - date = date + 1
