@@ -11,7 +11,7 @@
 //= require_tree .
 
 $(function() {
-    $('a.availability_cell').click(switchAvailability);
+    $('a.availability_cell').live('click', switchAvailability);
 
     $('.btn').not('.no-lock').click(function(e) {
         if ($(this).hasClass('btn-disabled')) {
@@ -69,9 +69,9 @@ $(function() {
 
 
 function switchAvailability(event) {
-    var a = $(event.currentTarget);
-    var icon = a.children('i');
-    var td = a.closest('td');
+    var a = $(event.currentTarget),
+    	icon = a.children('i'),
+    	td = a.closest('td');
 
     switch (td.attr('class')) {
         case "yellow":
@@ -79,7 +79,7 @@ function switchAvailability(event) {
             td.removeClass('yellow').removeClass('red').addClass('green');
             icon.removeClass('icon-remove').removeClass('icon-question-sign').addClass('icon-ok');
 
-            $.post("/availability", {
+            $.post(window.channel_path + "/availability", {
                 date: a.attr('alt'),
                 value: true
             });
@@ -90,7 +90,7 @@ function switchAvailability(event) {
             td.removeClass('green').addClass('red');
             icon.removeClass('icon-ok').addClass('icon-remove');
 
-            $.post("/availability", {
+            $.post(window.channel_path + "/availability", {
                 date: a.attr('alt'),
                 value: false
             });
