@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405161456) do
+ActiveRecord::Schema.define(:version => 20130406121137) do
 
   create_table "availabilities", :force => true do |t|
     t.integer "user_id"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20130405161456) do
   create_table "links", :force => true do |t|
     t.string   "name"
     t.string   "href"
-    t.string   "icon"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "channel_id", :default => 1, :null => false
