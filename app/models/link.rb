@@ -6,20 +6,19 @@
 #   channel_id    :integer    not null, index
 #   name          :string
 #   href          :string
-#   icon          :string
 #   created_at    :datetime    not null
 #   updated_at    :datetime    not null
 
 class Link < ActiveRecord::Base
   ### Attributes
-  attr_accessible :href, :name, :icon, :position
+  attr_accessible :href, :name, :position
 
   ### Associations
   belongs_to :channel
 
   ### Validations
-  # Make sure, name, href and icon are not empty
-  validates :name, :href, :icon, presence: true
+  # Make sure, name and href are not empty
+  validates :name, :href, presence: true
 
   # Make sure, href is a url
   validates :href, format: {
@@ -62,6 +61,13 @@ class Link < ActiveRecord::Base
       self.position += 1
       save
     end
+  end
+
+  def icon
+    require 'open-uri'
+    href_encoded = URI::encode(self.href)
+
+    "<img class='favicon' src='http://g.etfv.co/#{href_encoded}' />".html_safe
   end
 
 

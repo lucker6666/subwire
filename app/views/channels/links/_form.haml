@@ -3,27 +3,30 @@
     = f.label :name, class: 'control-label'
     .controls
       = f.text_field :name, { class: 'text_field', autocomplete: :off }
+
   .control-group
     = f.label :href, class: 'control-label'
     .controls
       = f.text_field :href, { class: 'text_field', autocomplete: :off }
-  .control-group
-    = f.label :icon, class: 'control-label'
-    .controls
-      = f.select :icon, icons, class: 'text_field'
-      \&nbsp;
-      %i.icon.icon-glass
+      &nbsp;
+      %img.hidden{src: ''}
+
   :javascript
     $(function() {
-      select = $('#link_icon');
-      i = $('#link_icon + i');
+      var input = $('#link_href'),
+          img = $('#link_href + img');
 
-      select.change(function(e) {
-        i.attr('class', 'icon icon-' + select.val());
+      input.keyup(function(e) {
+        var val = input.val();
+        if(val.length > 10) {
+          img.attr('src', 'http://g.etfv.co/' + encodeURIComponent(val));
+          img.removeClass('hidden');
+        } else {
+          img.addClass('hidden');
+        }
       });
-
-      i.attr('class', 'icon icon-' + select.val());
     });
+
   .form-actions.with-padding
     = f.submit nil, class: 'btn btn-primary'
     = link_to t('.cancel', default: t("helpers.links.cancel")), |

@@ -72,8 +72,7 @@
                 %ul.bookmarks.nav.nav-list
                   - @sidebar_links.each do |link|
                     %li
-                      - if !link.icon.empty?
-                        %i{:class => "icon icon-#{link.icon} pull-left"}
+                      = link.icon
                       %a{:href => link.href, :target => "_blank"}
                         = link.name
             .well

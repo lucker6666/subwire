@@ -12,7 +12,7 @@
       - @links.each_with_index do |link, idx|
         %tr
           %td
-            %i{:class => "icon icon-#{link.icon}"}
+            = link.icon
           %td= link_to link.name, link.href
           %td.break= link.href
           %td
