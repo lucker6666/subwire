@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :availabilities
   has_many :notifications
   has_many :relationships
+  has_many :pages
   has_many :channels, through: :relationships
 
   ### Paperclip Avatar

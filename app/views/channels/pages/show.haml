@@ -1,1 +1,2 @@
-= render partial: 'frame', locals: {title: @page.title}
+= render layout: 'frame', locals: {title: @page.title} do
+  = @page.content

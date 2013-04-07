@@ -436,3 +436,5 @@ de:
     default_page:
       title: Startseite
       content: Das ist die Startseite des Wikis. Du kannst Sie nach Belieben ändern!
+    new: Neue Seite anlegen
+    edit: Seite bearbeiten

@@ -45,6 +45,7 @@ Subwire::Application.routes.draw do
 
     # Wiki
     resources :wiki, controller: "channels/pages"
+    get 'wiki/home', to: "channels/pages#home"
   end
 
 
