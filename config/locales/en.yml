@@ -436,3 +436,5 @@ en:
     default_page:
       title: Home
       content: This is the startpage of your wiki. Feel free to change that page!
+    new: Create a new page
+    edit: Edit that page
