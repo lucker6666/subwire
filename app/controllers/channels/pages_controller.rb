@@ -56,6 +56,13 @@ class Channels::PagesController < ApplicationController
   end
 
 
+  # GET /channels/:id/wiki/home
+  def home
+    @page = Page.where(is_home: true, channel_id: @current_channel.id).first
+    render 'show'
+  end
+
+
   private
 
     def load_page
