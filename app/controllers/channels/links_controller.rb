@@ -1,6 +1,6 @@
 class Channels::LinksController < ApplicationController
   before_filter :load_channel
-  before_filter :load_link, only: [:show, :edit, :update, :destory]
+  before_filter :load_link, only: [:show, :edit, :update, :destroy]
   before_filter :section
 
 
