@@ -74,10 +74,6 @@ class Ability
           if @rs
             # Message
 
-            can [:manage], Message do |message|
-              Relationship.exists?(message.channel, user)
-            end
-
             can [:update, :destroy, :create], Message, user_id: user.id
 
 
