@@ -17,6 +17,9 @@
   %h1
     Messages
 
+    = link_to new_channel_message_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('messages.new')} do
+      %i.icon.icon-plus-sign
+
   - @messages.each do |message|
     = render partial: 'shared/message', locals: {message: message, full: false}
 

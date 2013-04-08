@@ -284,6 +284,9 @@ de:
     standard_content: Nun kannst du weitere Benutzer in diesen Channel einladen und Lesezeichen hinzufügen! <br /><br /> Für Fragen, Verbesserungsvorschläge und Ähnliches, stehen wir Dir gerne zur Verfügung. Schreib uns, wenn dir danach ist! <a href="http://www.subwire.net/contact" target="_blank">Zum Kontaktformular</a>
     search_result: Suchergebnis
     search_counter: "Für deine Suche nach '%{query}' wurden %{count} Messages gefunden."
+    new: Neue Message erstellen
+    edit: Diese Message bearbeiten
+    delete: Diese Message löschen
 
   users:
     add: Benutzer hinzufügen
