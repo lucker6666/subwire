@@ -119,12 +119,8 @@ class Ability
             if @rs.admin
               # Admin of current channel
 
-              can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
+              can [:manage], [Message, Link, Relationship, Comment], channel_id: @rs.channel.id
               can [:update, :destroy], Channel, id: @rs.channel.id
-
-              can [:manage], Comment do |c|
-                c.message.channel == @rs.channel
-              end
             end
           end
         else
