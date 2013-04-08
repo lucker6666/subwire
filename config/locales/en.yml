@@ -287,6 +287,9 @@ en:
     standard_content: Now you may add further users to that channel and add bookmarks. <br /><br /> If you got questions or improvement proposals, write us! <a href="http://www.subwire.net/contact" target="_blank">To the contact form</a>
     search_result: Search Result
     search_counter: "Your search ('%{query}') match %{count} Messages"
+    new: Create a new message
+    edit: Edit that message
+    delete: Delete that message
 
   users:
     add: Add user
