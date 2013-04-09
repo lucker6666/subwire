@@ -15,8 +15,8 @@ For more informations check [subwire.net](http://subwire.net)!
 ## Features
 * Multi-User system with invitations
 * Login with Twitter, Google or Github
-* Manage multiple channels
-* Discussions
+* Manage multiple channels each with it's own users
+* Messages and discussions
 * Wikis
 * Bookmarks
 * Notifications (with optinal E-Mail notifications)
@@ -25,7 +25,7 @@ For more informations check [subwire.net](http://subwire.net)!
 
 
 ## Usage
-Just visit subwire.net. That's our hosted version of subwire and the easiest way to use subwire. Alternative you may want to host subwire yourself in your intranet or extranet. Just take a look at the installation instructions.
+Just visit [subwire.net](http://subwire.net). That's the official hosted version of subwire and the easiest way to use subwire. Alternative you may want to host subwire yourself in your intranet or extranet. Just take a look at the installation instructions.
 
 
 ## Productive Installation
