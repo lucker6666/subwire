@@ -22,6 +22,13 @@
     background-image: -o-linear-gradient($from, $to);
   }
 
+  @mixin placeholder_text($color) {
+     &:-moz-placeholder            { color: @color; } // Firefox 4-18
+     &::-moz-placeholder           { color: @color; } // Firefox 19+
+     &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+     &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+  }
+
   @mixin opacity($val){
     filter: alpha(opacity= $val* 100);
     -moz-opacity: $val;
@@ -35,4 +42,10 @@
   @mixin highlight() {
     @include gradient($highlight_background_start, $highlight_background_end);
     border-top: 1px solid $highlight_border_top_color;
+  }
+
+  @mixin center() {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
