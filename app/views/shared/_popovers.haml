@@ -1,21 +1,27 @@
-- if @current_channel
-  / Notifications
-  #notifications-html
-    - if @all_notifications.length > 0
-      %ul
-        - @all_notifications.each do |notification|
-          %li{:class => notification.is_read ? 'read' : ''}
-            %a{:href => notification_path(notification)}
-              = avatar(User.find(notification.provokesUser), :small)
-              = notification.message.html_safe
-        %li
-          %a#read-all{:href => "#"}
-            %i.icon.icon-eye-open
-            = t('notifications.mark_as_read')
-    - else
-      .no-unread-notifications
-        = t("application.notifications_unread")
+/ Notifications
+#notifications-html
+  - if @all_notifications.length > 0
+    %ul
+      - @all_notifications.each do |notification|
+        %li{:class => notification.is_read ? 'read' : ''}
+          %a{:href => notification_path(notification)}
+            = avatar(User.find(notification.provokesUser), :small)
+            = notification.message.html_safe
+            %span.date
+              = l notification.created_at, format: :short
 
+              - unless @current_channel
+                | Channel:
+                = notification.channel.name
+      %li
+        %a#read-all{:href => "#"}
+          %i.icon.icon-eye-open
+          = t('notifications.mark_as_read')
+  - else
+    .no-unread-notifications
+      = t("application.notifications_unread")
+
+- if @current_channel
   / Quick Message
   #new-message-html
     = form_for [@current_channel, @current_channel.messages.build] do |f|

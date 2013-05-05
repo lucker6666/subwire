@@ -26,6 +26,17 @@
  *  Notifications
  */
 
+  span.notification-margin {
+    margin-right:10px;
+  }
+
+  .no-unread-notifications {
+    height: 3em;
+    padding-top: 1em;
+    text-align: center;
+    color: $border_grey;
+  }
+
   li#notifications {
     + div.popover {
       width: 400px;
@@ -47,6 +58,8 @@
             clear: both;
             height: 50px;
             border-bottom: 1px solid $mid_grey;
+            line-height: 17px;
+            font-size: 13px;
 
             &:hover {
               background-color: $well_background;
@@ -70,6 +83,12 @@
               &:hover {
                 color: $grey;
               }
+            }
+
+            .date {
+              display: block;
+              color: $border_grey;
+              font-size: 11px;
             }
           }
         }
