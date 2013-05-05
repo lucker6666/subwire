@@ -61,12 +61,12 @@ class User < ActiveRecord::Base
   validates :lang, :timezone, :email, presence: true
 
   # Make sure name contains no invalid chars and length is between 3 and 30
-  validates :name, format: { with: /^[a-zA-Z0-9\-_. ]+$/ },
+  validates :name, format: { with: /\A[a-zA-Z0-9\-_. ]+\z/ },
     length: { minimum: 3, maximum: 30 }
 
   # Make sure email looks like an email adress
   validates :email, format: {
-    with: /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$/
+    with: /\A[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name))\z/
   }
 
   # Make sure lang contains "de" or "en"
