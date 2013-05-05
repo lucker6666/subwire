@@ -22,11 +22,11 @@ class Channels::AvailabilitiesController < ApplicationController
       availability = Availability.new(paramSet)
       availability.user = current_user
       availability.channel = @current_channel
-      availability.save
+      availability.save!
     else
       # Otherwise change the value of that availability
       authorize! :update, availability
-      availability.update_attributes(paramSet)
+      availability.update_attributes!(paramSet)
     end
 
     head :no_content

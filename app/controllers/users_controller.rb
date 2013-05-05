@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     # Relationships
     @relationships.each do |relationship|
       relationship.mail_notification = params['rel' + relationship.id.to_s]
-      relationship.save
+      relationship.save!
     end
 
     @user.show_login_status = params[:show_login_status]
@@ -60,10 +60,10 @@ class UsersController < ApplicationController
       @mail = @user.email
       @mail.strip!
       @user.gravatar = Digest::MD5.hexdigest(@mail.downcase)
-      @user.save
+      @user.save!
     elsif !params[:gravatar] && @user.gravatar
       @user.gravatar = nil
-      @user.save
+      @user.save!
     end
 
     old_name = @user.name
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       if can?(:admin, :all)
         @user.is_admin = params[:is_admin]
-        @user.save
+        @user.save!
       else
         sign_in(@user, bypass: true)
       end
@@ -122,7 +122,7 @@ class UsersController < ApplicationController
 
     # Destroy the user not really, set only a flag
     @user.is_deleted = true
-    @user.save
+    @user.save!
 
     # End session
     unless can? :admin, :all
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       @user.invitation_pending = false
-      @user.save
+      @user.save!
 
       feedback t('users.invitation_finished'), :success
       redirect_to "/"

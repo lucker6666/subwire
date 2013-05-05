@@ -162,7 +162,7 @@ class Channels::RelationshipsController < ApplicationController
         rel.admin = params[:relationship][:admin]
       end
 
-      rel.save
+      rel.save!
 
       # Send invitation Mail
       RelationshipMailer.invitation(user, current_user, params[:invitation_text]).deliver

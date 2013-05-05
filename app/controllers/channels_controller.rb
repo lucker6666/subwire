@@ -101,7 +101,7 @@ class ChannelsController < ApplicationController
         rel.user = current_user
         rel.channel = @current_channel
         rel.admin = true
-        rel.save
+        rel.save!
       end
 
       def create_default_message
@@ -110,7 +110,7 @@ class ChannelsController < ApplicationController
         message.channel = @current_channel
         message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
         message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
-        message.save
+        message.save!
       end
 
       def create_wiki_home
@@ -120,6 +120,6 @@ class ChannelsController < ApplicationController
         page.is_home = true
         page.title = t('wiki.default_page.title')
         page.content = t('wiki.default_page.content')
-        page.save
+        page.save!
       end
 end

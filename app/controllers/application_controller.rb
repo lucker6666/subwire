@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
       if current_user
         # Set last ctivity
         current_user.last_activity = Time.now
-        current_user.save
+        current_user.save!
       end
     end
 
