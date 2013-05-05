@@ -441,3 +441,7 @@ en:
       content: This is the startpage of your wiki. Feel free to change that page!
     new: Create a new page
     edit: Edit that page
+
+  will_paginate:
+    previous_label: Previous
+    next_label: Next
