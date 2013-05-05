@@ -19,7 +19,7 @@ class Users::NotificationsController < ApplicationController
   # GET /notifications/:id
   def show
     @notification.read!
-    redirect_to @notification.href
+    redirect_to URI.parse(@notification.href).path
   end
 
 
