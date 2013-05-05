@@ -13,7 +13,8 @@
             %i.icon.icon-eye-open
             = t('notifications.mark_as_read')
     - else
-      t("application.notifications_unread")
+      .no-unread-notifications
+        = t("application.notifications_unread")
 
   / Quick Message
   #new-message-html
