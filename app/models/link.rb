@@ -22,7 +22,7 @@ class Link < ActiveRecord::Base
 
   # Make sure, href is a url
   validates :href, format: {
-    with: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/,
+    with: /\A(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?\z/,
   }
 
   before_create :set_position
