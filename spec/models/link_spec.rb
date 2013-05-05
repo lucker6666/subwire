@@ -20,13 +20,13 @@ describe Link do
   end
 
   it "should move position to up" do
-    l = Link.new position: 5
+    l = Link.new position: 5, name: "dummy", href: "http://example.com"
     l.move_position_up!
     l.position.should be(4)
   end
 
   it "should move position to dn" do
-    l = Link.new position: 5
+    l = Link.new position: 5, name: "dummy", href: "http://example.com"
     l.move_position_dn!
     l.position.should be(6)
   end
