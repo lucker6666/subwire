@@ -15,9 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if(@user.length > 0)
       @user.each do |u|
-        u.update_attributes(params[:user])
+        u.update_attributes!(params[:user])
         u.is_deleted = false
-        u.save
+        u.save!
         sign_in(u)
       end
 

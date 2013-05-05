@@ -42,11 +42,11 @@ class Link < ActiveRecord::Base
       prev = Link.find_by_channel_id_and_position self.channel_id, self.position - 1
       if prev
         prev.position += 1
-        prev.save
+        prev.save!
       end
 
       self.position -= 1
-      save
+      save!
     end
   end
 
@@ -55,11 +55,11 @@ class Link < ActiveRecord::Base
       next_link = Link.find_by_channel_id_and_position self.channel_id, self.position + 1
       if next_link
         next_link.position -= 1
-        next_link.save
+        next_link.save!
       end
 
       self.position += 1
-      save
+      save!
     end
   end
 

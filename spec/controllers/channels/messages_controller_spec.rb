@@ -40,7 +40,7 @@ describe Channels::MessagesController do
     end
   end
 
-  describe "POST add summary change" do
+  describe "PUT add summary change" do
     before do
       Comment.destroy_all
     end

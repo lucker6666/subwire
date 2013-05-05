@@ -6,7 +6,7 @@ class Channels::MessagesController < ApplicationController
 
   # GET /channel/:id/messages
   def index
-     if params[:query].present?
+    if params[:query].present?
       @messages = Message.search(params[:query],
         load: true,
         page: params[:page],
@@ -45,7 +45,6 @@ class Channels::MessagesController < ApplicationController
     @message.channel = @current_channel
 
     if @message.save
-
       if @message.title.nil?
         notifySubject = @message.content[0,75] + '...'
       else
@@ -102,7 +101,7 @@ class Channels::MessagesController < ApplicationController
       change_summary_comment.content = params[:change_summary]
       change_summary_comment.user = current_user
       @message.comments << change_summary_comment
-      @message.save
+      @message.save!
 
       # Notify all users
       Notification.notify_all_users({
@@ -144,7 +143,7 @@ class Channels::MessagesController < ApplicationController
     authorize! :update, @message
 
     @message.is_important = params[:is_important]
-    render :json => {:r => @message.save}
+    render :json => {:r => @message.save!}
   end
 
 

@@ -66,7 +66,7 @@ class Notification < ActiveRecord::Base
     notification.user = user
     notification.channel = channel
 
-    notification.save
+    notification.save!
 
     # Notify user via email if neccessary
     active = (user.last_activity != nil && user.last_activity >= Time.now - 120)
@@ -108,7 +108,7 @@ class Notification < ActiveRecord::Base
 
   def read!
     self.is_read = true
-    self.save
+    self.save!
   end
 
   # Returns an array of notifications for an user and an channel
@@ -128,5 +128,9 @@ class Notification < ActiveRecord::Base
         user_id: user_id,
         is_read: false
     ).size
+  end
+
+  def channel_name
+    self.channel.name
   end
 end
