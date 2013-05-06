@@ -46,7 +46,7 @@ describe Channels::MessagesController do
     end
 
     it "should create comment containing summary change" do
-      post :update,
+      put :update,
         channel_id: @channel.id,
         id: @message.id,
         message: {content: 'test'},
@@ -56,7 +56,7 @@ describe Channels::MessagesController do
     end
 
     it "should not create due to empty summary change" do
-      post :update,
+      put :update,
         channel_id: @channel.id,
         id: @message.id,
         message: {content: 'test'},
