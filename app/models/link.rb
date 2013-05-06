@@ -67,7 +67,7 @@ class Link < ActiveRecord::Base
     require 'open-uri'
     href_encoded = URI::encode(self.href)
 
-    "<img class='favicon' src='http://g.etfv.co/#{href_encoded}' />".html_safe
+    "<img class='favicon' src='https://plus.google.com/_/favicon?alt=page&domain=#{href_encoded}' />".html_safe
   end
 
 
