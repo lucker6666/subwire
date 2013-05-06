@@ -20,21 +20,33 @@ describe Link do
   end
 
   it "should move position to up" do
-    l = Link.new position: 5, name: "dummy", href: "http://example.com"
-    l.move_position_up!
-    l.position.should be(4)
+    l1 = Link.new position: 1, name: "dummy", href: "http://example.com"
+    l2 = Link.new position: 2, name: "dummy", href: "http://example.com"
+
+    l1.save!
+    l2.save!
+
+    l2.position.should be(2)
+    l2.move_position_up!
+    Link.find(l2.id).position.should be(1)
   end
 
   it "should move position to dn" do
-    l = Link.new position: 5, name: "dummy", href: "http://example.com"
-    l.move_position_dn!
-    l.position.should be(6)
+    l1 = Link.new position: 1, name: "dummy", href: "http://example.com"
+    l2 = Link.new position: 2, name: "dummy", href: "http://example.com"
+
+    l1.save!
+    l2.save!
+
+    l2.position.should be(2)
+    l2.move_position_up!
+    Link.find(l2.id).position.should be(1)
   end
 
   it "should set next position" do
     l = Link.new href: 'http://example.com', name: 'name'
     l.channel_id = 1
-    l.save
+    l.save!
 
     l = Link.new
     l.href = 'http://example.com'
