@@ -17,7 +17,7 @@ describe Notification do
   end
 
   describe "Respond to" do
-    it { should respond_to(:avatar_path) }
+    it { should respond_to(:creator) }
     it { should respond_to(:message) }
     it { should respond_to(:read!) }
   end
