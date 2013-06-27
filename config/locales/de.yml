@@ -287,6 +287,7 @@ de:
     new: Neue Message erstellen
     edit: Diese Message bearbeiten
     delete: Diese Message löschen
+    empty_screen: Dieser Channel hat noch keine Messages. Erstelle eine neue mit dem "+"-Button rechts oben!
 
   users:
     add: Benutzer hinzufügen
@@ -315,7 +316,8 @@ de:
     not_created: Lesezeichen konnte nicht erstellt werden.
     updated: Lesezeichen aktualisiert.
     not_updated: Lesezeichen konnte nicht gespeichert werden.
-    new: "Neues Lesezeichen erstellen"
+    new: Neues Lesezeichen erstellen
+    empty_screen: Dieser Channel hat noch keine Lesezeichen. Erstelle ein neues mit dem "+"-Button rechts oben!
 
   notifications:
     new_message: 'Neue Message von %{user}:'

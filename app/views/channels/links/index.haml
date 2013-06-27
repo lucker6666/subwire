@@ -1,32 +1,37 @@
 - model_class = Link.new.class
 .well
-  %h1= t('.title', default: model_class.model_name.human)
-  %table.table.table-striped
-    %thead
-      %tr
-        %th= model_class.human_attribute_name(:icon)
-        %th= model_class.human_attribute_name(:name)
-        %th= model_class.human_attribute_name(:href)
-        %th= t('.actions', default: t("helpers.actions"))
-    %tbody
-      - @links.each_with_index do |link, idx|
+  %h1
+    = t('.title', default: model_class.model_name.human)
+
+    = link_to(new_channel_link_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('links.new')}) do
+      %i.icon.icon-plus-sign
+
+  - if @links.count > 0
+    %table.table.table-striped
+      %thead
         %tr
-          %td
-            = link.icon
-          %td= link_to link.name, link.href
-          %td.break= link.href
-          %td
-            = link_to edit_channel_link_path(@current_channel, link), class: 'btn btn-mini' do
-              %i.icon.icon-pencil
-            = link_to channel_link_path(@current_channel, link),                                    |
-              method: :delete, data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, |
-              class: 'btn btn-mini btn-danger' do                                                   |
-              %i.icon.icon-trash
-            = link_to('', channel_link_up_path(@current_channel, link.id), {class: 'icon-chevron-up'}) if display_up_link?(idx)
-            = link_to('', channel_link_down_path(@current_channel, link.id), {class: 'icon-chevron-down'}) if display_down_link?(idx, @links.size)
-  = will_paginate @links
-  = link_to t('links.new'),                  |
-    new_channel_link_path(@current_channel), |
-    class: 'btn btn-primary'                 |
-  %a.popover_help{"data-content" => t('popover.links_content'), "data-original-title" => t('popover.links_title'), :href => "#", :rel => "popover"}
-    %i.icon.icon-question-sign
+          %th= model_class.human_attribute_name(:icon)
+          %th= model_class.human_attribute_name(:name)
+          %th= model_class.human_attribute_name(:href)
+          %th= t('.actions', default: t("helpers.actions"))
+      %tbody
+        - @links.each_with_index do |link, idx|
+          %tr
+            %td
+              = link.icon
+            %td= link_to link.name, link.href
+            %td.break= link.href
+            %td
+              = link_to edit_channel_link_path(@current_channel, link), class: 'btn btn-mini' do
+                %i.icon.icon-pencil
+              = link_to channel_link_path(@current_channel, link),                                    |
+                method: :delete, data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, |
+                class: 'btn btn-mini btn-danger' do                                                   |
+                %i.icon.icon-trash
+              = link_to('', channel_link_up_path(@current_channel, link.id), {class: 'icon-chevron-up'}) if display_up_link?(idx)
+              = link_to('', channel_link_down_path(@current_channel, link.id), {class: 'icon-chevron-down'}) if display_down_link?(idx, @links.size)
+    = will_paginate @links
+    %a.popover_help{"data-content" => t('popover.links_content'), "data-original-title" => t('popover.links_title'), :href => "#", :rel => "popover"}
+      %i.icon.icon-question-sign
+  - else
+    = render partial: 'no_links'

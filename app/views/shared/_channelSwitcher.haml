@@ -16,14 +16,14 @@
       - if active
         - active = @active_section == :discussions
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
-          %i{:class => "#{active ? '' : 'muted'} icon icon-comment pull-left"}
+          %i{:class => "#{active ? '' : 'muted'} icon icon-comments pull-left"}
           %a{:href => channel_messages_path(@current_channel)}
             #{t('application.message_management')}
             - if active
               %i.icon.icon-chevron-right.pull-right
         - active = @active_section == :wiki
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
-          %i{:class => "#{active ? '' : 'muted'} icon icon-book pull-left"}
+          %i{:class => "#{active ? '' : 'muted'} icon icon-bookmark pull-left"}
           %a{:href => channel_wiki_home_path(@current_channel)}
             #{t('application.page_management')}
             - if active
