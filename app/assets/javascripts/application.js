@@ -7,6 +7,7 @@
 //= require backbone_datalink
 //= require messenger
 //= require jquery.autogrowtextarea.min.js
+//= require jquery.color.min.js
 //= require ckeditor/init
 //= require_tree .
 
@@ -174,4 +175,25 @@ function getAllNotifications() {
             $('#channel-switcher').html(html);
             setTimeout("getAllNotifications()", 30000);
         });
+}
+
+function emptyScreenBlink() {
+	$('.maincontent .well h1 a.btn').each(function() {
+    	var e = $(this);
+    	e.animate({'background-color': '#e4e4e4'}, 400);
+
+	    setInterval(function() {
+	        if (e.hasClass('anim-state')) {
+	            e.animate({
+	            	'background-color': '#e4e4e4'
+	            }, 400);
+	        } else {
+	            e.animate({
+	            	'background-color': '#fff'
+	            }, 400);
+	        }
+
+	        e.toggleClass('anim-state');
+	    }, 800);
+	});
 }

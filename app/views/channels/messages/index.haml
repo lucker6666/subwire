@@ -17,7 +17,8 @@
   %h1
     Messages
 
-    = link_to new_channel_message_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('messages.new')} do
+    = link_to(new_channel_message_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('messages.new')}) do
+
       %i.icon.icon-plus-sign
 
   - if @messages.count > 0
@@ -25,5 +26,6 @@
       = render partial: 'shared/message', locals: {message: message, full: false}
   - else
     = render partial: 'no_messages'
+    = render partial: 'shared/empty_screen_blink'
 
 = will_paginate @messages

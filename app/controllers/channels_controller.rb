@@ -42,7 +42,6 @@ class ChannelsController < ApplicationController
     if @current_channel.save
       # The relationship between current user and the new channel
       create_relationship
-      create_default_message
       create_wiki_home
 
       feedback t('channels.created'), :success
@@ -102,15 +101,6 @@ class ChannelsController < ApplicationController
         rel.channel = @current_channel
         rel.admin = true
         rel.save!
-      end
-
-      def create_default_message
-        message = Message.new
-        message.user = current_user
-        message.channel = @current_channel
-        message.title = t('messages.standard_title', locale: @current_channel.defaultLanguage)
-        message.content = t('messages.standard_content', locale: @current_channel.defaultLanguage)
-        message.save!
       end
 
       def create_wiki_home
