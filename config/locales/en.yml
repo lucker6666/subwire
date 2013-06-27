@@ -290,6 +290,7 @@ en:
     new: Create a new message
     edit: Edit that message
     delete: Delete that message
+    empty_screen: There are no messages in this channel yet. Create a new one with the "+" button in the upper right!
 
   users:
     add: Add user
@@ -318,6 +319,7 @@ en:
     updated: Link was successfully updated.
     not_updated: Link couldn't be saved.
     new: "Create new bookmark"
+    empty_screen: There are no bookmarks in this channel yet. Create a new one with the "+" button in the upper right!
 
   notifications:
     new_message: 'Message created from %{user}:'

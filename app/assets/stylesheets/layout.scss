@@ -290,3 +290,22 @@
   .navbar .divider-vertical {
     margin: 6px 10px;
   }
+
+
+/*
+ *  Empty screens
+ */
+
+  .empty-screen {
+    text-align: center;
+
+    .empty-screen-illustration {
+      font-size: 18em;
+      color: $link;
+    }
+
+    div {
+      margin-top: 2em;
+      font-weight: bold;
+    }
+  }

@@ -20,7 +20,10 @@
     = link_to new_channel_message_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('messages.new')} do
       %i.icon.icon-plus-sign
 
-  - @messages.each do |message|
-    = render partial: 'shared/message', locals: {message: message, full: false}
+  - if @messages.count > 0
+    - @messages.each do |message|
+      = render partial: 'shared/message', locals: {message: message, full: false}
+  - else
+    = render partial: 'no_messages'
 
 = will_paginate @messages
