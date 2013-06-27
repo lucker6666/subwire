@@ -23,7 +23,7 @@
               %i.icon.icon-chevron-right.pull-right
         - active = @active_section == :wiki
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
-          %i{:class => "#{active ? '' : 'muted'} icon icon-bookmark pull-left"}
+          %i{:class => "#{active ? '' : 'muted'} icon icon-book pull-left"}
           %a{:href => channel_wiki_home_path(@current_channel)}
             #{t('application.page_management')}
             - if active
@@ -38,7 +38,7 @@
                 %i.icon.icon-chevron-right.pull-right
           - active = @active_section == :bookmarks
           %li{:class => "sub-navi #{active ? 'active' : ''}"}
-            %i{:class => "#{active ? '' : 'muted'} icon icon-screenshot pull-left"}
+            %i{:class => "#{active ? '' : 'muted'} icon icon-bookmark pull-left"}
             %a{:href => channel_links_path(@current_channel)}
               #{t('application.link_management')}
               - if active
