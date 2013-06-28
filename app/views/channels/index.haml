@@ -4,8 +4,7 @@
   %h1
     = t('.title', default: model_class.model_name.human)
 
-    = link_to(new_channel_path, {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('channels.new')}) do
-      %i.icon.icon-plus-sign
+    = render partial: 'shared/new', locals: {url: new_channel_path, tip: 'channels.new'}
 
   .empty-screen
     = render partial: 'shared/empty_screen_blink'
