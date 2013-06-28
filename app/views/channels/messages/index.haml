@@ -17,9 +17,7 @@
   %h1
     Messages
 
-    = link_to(new_channel_message_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('messages.new')}) do
-
-      %i.icon.icon-plus-sign
+    = render partial: 'shared/new', locals: {url: new_channel_message_path(@current_channel), tip: 'messages.new'}
 
   - if @messages.count > 0
     - @messages.each do |message|

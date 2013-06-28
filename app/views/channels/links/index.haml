@@ -3,8 +3,7 @@
   %h1
     = t('.title', default: model_class.model_name.human)
 
-    = link_to(new_channel_link_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('links.new')}) do
-      %i.icon.icon-plus-sign
+    = render partial: 'shared/new', locals: {url: new_channel_link_path(@current_channel), tip: 'links.new'}
 
   - if @links.count > 0
     %table.table.table-striped

@@ -14,7 +14,5 @@
         = link_to edit_channel_wiki_path(@current_channel, @page), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.edit')} do
           %i.icon.icon-pencil
 
-      = link_to new_channel_wiki_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.new')} do
-        %i.icon.icon-plus-sign
-
+      = render partial: 'shared/new', locals: {url: new_channel_wiki_path(@current_channel), tip: 'wiki.new'}
   = yield
