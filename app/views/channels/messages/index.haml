@@ -26,6 +26,5 @@
       = render partial: 'shared/message', locals: {message: message, full: false}
   - else
     = render partial: 'no_messages'
-    = render partial: 'shared/empty_screen_blink'
 
 = will_paginate @messages

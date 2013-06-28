@@ -8,6 +8,8 @@
       %i.icon.icon-plus-sign
 
   .empty-screen
+    = render partial: 'shared/empty_screen_blink'
+
     %i.icon.icon-home.empty-screen-illustration
     %div
       - if channels.length == 0
