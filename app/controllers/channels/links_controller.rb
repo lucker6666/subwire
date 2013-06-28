@@ -100,6 +100,6 @@ class Channels::LinksController < ApplicationController
     end
 
     def section
-      set_section :settings
+      set_section :bookmarks
     end
 end
