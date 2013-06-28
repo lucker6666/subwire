@@ -276,6 +276,8 @@ en:
     not_updated: Channel couldn't be saved.
     destroyed: Channel deleted!
     overview: Back to overview
+    empty_screen: You don't have any channels yet. Create a new one with the "+" button in the upper right!
+    choose_one: Please choose a channel from the left side or create a new one with the "+" button in the upper right!
 
   messages:
     created: Message was successfully created.
