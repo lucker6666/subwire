@@ -273,6 +273,8 @@ de:
     not_updated: Channel konnte nicht gespeichert werden.
     destroyed: Der Channel wurde erfolgreich gelöscht.
     overview: Channel-Übersicht
+    empty_screen: Du hast noch keine Channels. Erstelle einen neuen mit dem "+"-Button oben rechts!
+    choose_one: Bitte wähle einen Channel auf der linken Seite oder erstelle einen neuen mit dem "+"-Button oben rechts!
 
   messages:
     created: Message wurde erfolgreich erstellt.
