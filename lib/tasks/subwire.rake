@@ -11,12 +11,6 @@ namespace :subwire do
         user.confirmed_at = Time.now
         user.invitation_pending = false
         user.save!
-
-        rel = Relationship.new
-        rel.channel = Channel.first
-        rel.user = user
-        rel.admin = true
-        rel.save!
     end
 
     desc "Run all setup tasks"
