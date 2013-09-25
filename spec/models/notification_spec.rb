@@ -54,31 +54,6 @@ describe Notification do
       end
     end
 
-    describe :avatar_path do#
-      before do
-        @notification = Notification.find_all_by_user_id(@rels[2].user.id).first
-        @user = User.find(@notification.created_by)
-      end
-
-      context "while user has not enabled gravatar option" do
-        it "should return the avatar path for the respective user" do
-          @notification.avatar_path.should eq(@user.avatar.url)
-        end
-      end
-
-      context "while user has enabled gravatar option" do
-        it "should return gravatar path for the respective user" do
-          gravatar = Digest::MD5.hexdigest(@user.email.strip.downcase)
-          @user.gravatar = gravatar
-          @user.password = 'foobar'
-          @user.password_confirmation = 'foobar'
-          @user.save!
-
-          @notification.avatar_path.should eq('http://www.gravatar.com/avatar/' + gravatar + '?s=30')
-        end
-      end
-    end
-
     describe :message do
       it "should return a string containing the subject" do
         user = @rels[1].user
