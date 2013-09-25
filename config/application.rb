@@ -40,5 +40,8 @@ module Subwire
 
     ## Partially load application for faster asset precompilition
     config.assets.initialize_on_precompile = false
+
+    ## Assets to compile
+    config.assets.precompile += ['layouts/login.scss', 'layouts/integration.scss']
   end
 end
