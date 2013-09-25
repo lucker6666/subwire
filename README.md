@@ -62,7 +62,7 @@ And if you want to work with us and get part of the [Yaana Labs](http://yaana.de
 3. Run <code>bundle</code>
 4. Setup a <code>config/database.yml</code>
 5. Setup a <code>config/initializers/config.rb</code>
-6. Run <code>rake db:create db:setup subwire:setup</code>
+6. Run <code>rake db:create db:setup subwire:setup db:test:prepare</code>
 7. Run <code>bundle exec rspec spec/</code> and see how everything passes (green)
 8. (Optional) Run <code>bundle exec guard</code> for livereload and rspec
 9. (Optional) Run <code>bundle exec rails server</code> to start webserver
