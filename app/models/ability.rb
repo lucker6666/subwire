@@ -99,11 +99,12 @@ class Ability
 
             # Comment
 
-            can [:manage], Comment do |comment|
+						can [:read], Comment do |comment|
               Relationship.exists?(comment.message.channel, user)
             end
+            
 
-            can [:update, :destroy, :create], Comment, user_id: user.id
+						can [:manage], Comment, user_id: user.id
 
 
             # Link
@@ -115,7 +116,10 @@ class Ability
             if @rs.admin
               # Admin of current channel
 
-              can [:manage], [Message, Link, Relationship, Comment], channel_id: @rs.channel.id
+              can [:manage], [Message, Link, Relationship], channel_id: @rs.channel.id
+              can [:manage], Comment do |comment|
+              	comment.message.channel == @rs.channel
+              end
               can [:update, :destroy], Channel, id: @rs.channel.id
             end
           end
