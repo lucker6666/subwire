@@ -42,6 +42,6 @@ module Subwire
     config.assets.initialize_on_precompile = false
 
     ## Assets to compile
-    config.assets.precompile += ['layouts/login.scss', 'layouts/integration.scss']
+    config.assets.precompile += ['layouts/*']
   end
 end
