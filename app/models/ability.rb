@@ -74,6 +74,10 @@ class Ability
           if @rs
             # Message
 
+            can [:read], Message do |message|
+              Relationship.exists?(message.channel, user)
+            end
+						
             can [:update, :destroy, :create], Message, user_id: user.id
 
 
@@ -90,7 +94,7 @@ class Ability
 
             # Availability
 
-            can [:manage], Availability do |availability|
+            can [:read], Availability do |availability|
               Relationship.exists?(availability.channel, user)
             end
 
@@ -102,10 +106,8 @@ class Ability
 						can [:read], Comment do |comment|
               Relationship.exists?(comment.message.channel, user)
             end
-            
 
-						can [:manage], Comment, user_id: user.id
-
+            can [:update, :destroy, :create], Comment, user_id: user.id
 
             # Link
 
