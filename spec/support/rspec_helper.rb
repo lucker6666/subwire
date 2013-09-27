@@ -1,4 +1,4 @@
-require 'plymouth'
+require 'plymouth' if Rails.env == "development"
 
 module Subwire
   module RSpecHelper
