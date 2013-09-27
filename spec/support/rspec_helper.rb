@@ -1,4 +1,7 @@
-require 'plymouth' if Rails.env == "development"
+if Rails.env == "development"
+  require 'continuation'
+  require 'plymouth'
+end
 
 module Subwire
   module RSpecHelper

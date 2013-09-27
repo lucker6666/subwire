@@ -77,5 +77,5 @@ group :development do
   gem 'rack-livereload'
   gem 'guard-livereload'
   gem 'better_errors'
-  gem 'plymouth'
+  gem 'plymouth', require: false
 end
