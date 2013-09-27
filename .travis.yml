@@ -3,6 +3,9 @@ branches:
     - 'master'
 
 env:
+  global:
+    - "JRUBY_OPTS=-Xcext.enabled=true"
+
   - RAILS_ENV=test DB=mysql
   - RAILS_ENV=test DB=sqlite
 
@@ -14,8 +17,6 @@ rvm:
   - 2.0.0
   - jruby-19mode
   - rbx-19mode
-  - ruby-head
-  - jruby-head
 
 bundler_args: "--without development assets"
 
