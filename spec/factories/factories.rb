@@ -25,7 +25,7 @@ FactoryGirl.define do
     after(:create) do |channel|
       FactoryGirl.create_list(:relationship, 3, channel: channel)
       FactoryGirl.create(:admin_relationship, channel: channel)
-      FactoryGirl.create(:message, channel: channel)
+      FactoryGirl.create(:message, channel: channel, user: channel.relationships.first.user)
     end
   end
 
