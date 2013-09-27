@@ -42,6 +42,7 @@ gem 'rmagick'
 gem 'html_truncator'
 gem 'less-rails'
 gem 'therubyracer', '~> 0.10.0'
+gem 'chosen-rails'
 
 # Search engine
 gem 'tire'
