@@ -9,6 +9,7 @@
 //= require jquery.autogrowtextarea.min.js
 //= require jquery.color.min.js
 //= require ckeditor/init
+//= require chosen-jquery
 //= require_tree .
 
 $(function() {

@@ -47,7 +47,7 @@
         %th.span3
           = 'Invite User to'
         %td 
-          %select
+          %select{ class: 'chosen-select'}
             - @canInvite.each do |c|
               %option 
                 = c.name
