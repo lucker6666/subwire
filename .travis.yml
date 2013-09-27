@@ -5,7 +5,6 @@ branches:
 env:
   global:
     - "JRUBY_OPTS=-Xcext.enabled=true"
-
   - RAILS_ENV=test DB=mysql
   - RAILS_ENV=test DB=sqlite
 
