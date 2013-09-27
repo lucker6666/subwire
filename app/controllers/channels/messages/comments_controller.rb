@@ -17,15 +17,15 @@ class Channels::Messages::CommentsController < ApplicationController
         notification_type: :new_comment,
         provokesUser: @comment.user,
         subject: @message.title,
-        href: channel_message_path(@current_channel, @message)
-      }, @current_channel, current_user)
+        href: channel_message_path(current_channel, @message)
+      }, current_channel, current_user)
 
       feedback t("comments.new_success"), :success
     else
       errors_to_feedback @comment
     end
 
-    redirect_to channel_message_path(@current_channel, @message)
+    redirect_to channel_message_path(current_channel, @message)
   end
 
 
@@ -49,7 +49,7 @@ class Channels::Messages::CommentsController < ApplicationController
   def destroy
     authorize! :destroy, @comment
 
-    message_path = channel_message_path(@current_channel, @message)
+    message_path = channel_message_path(current_channel, @message)
 
     Notification.where(href: message_path).destroy_all
     @comment.destroy

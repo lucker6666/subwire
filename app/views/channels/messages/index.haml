@@ -17,7 +17,7 @@
   %h1
     Messages
 
-    = render partial: 'shared/new', locals: {url: new_channel_message_path(@current_channel), tip: 'messages.new'}
+    = render partial: 'shared/new', locals: {url: new_channel_message_path(current_channel), tip: 'messages.new'}
 
   - if @messages.count > 0
     - @messages.each do |message|

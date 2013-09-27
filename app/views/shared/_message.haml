@@ -2,13 +2,13 @@
   = avatar(message.user, :small, 'pull-left')
 
   .buttons
-    - if can?(:edit, @current_channel) || message.user == current_user
-      = link_to edit_channel_message_path(@current_channel, message) do
+    - if can?(:edit, current_channel) || message.user == current_user
+      = link_to edit_channel_message_path(current_channel, message) do
         %i{:class=>"icon icon-pencil"}
 
       &nbsp;
 
-      = link_to channel_message_path(@current_channel, message),
+      = link_to channel_message_path(current_channel, message),
         method: :delete,
         data: {confirm: t('.confirm', default: t("helpers.links.confirm"))} do
         %i{:class=>"icon icon-trash"}
@@ -16,7 +16,7 @@
   .body
     - unless message.title.nil?
       %h2
-        = link_to message.title, channel_message_path(@current_channel, message)
+        = link_to message.title, channel_message_path(current_channel, message)
 
     = full ? preprocess_message(message) : message_teaser(message)
 

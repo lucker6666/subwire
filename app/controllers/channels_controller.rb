@@ -9,7 +9,7 @@ class ChannelsController < ApplicationController
 
   # GET /channels/:id
   def show
-    redirect_to channel_messages_path(@current_channel)
+    redirect_to channel_messages_path(current_channel)
   end
 
 
@@ -22,7 +22,7 @@ class ChannelsController < ApplicationController
 
   # GET /channels/:id/edit
   def edit
-    authorize! :update, @current_channel
+    authorize! :update, current_channel
     set_section :settings
   end
 
@@ -36,20 +36,20 @@ class ChannelsController < ApplicationController
     params[:channel].delete :advertising
 
     # Create channel, set advertising setting and save
-    @current_channel = Channel.new(params[:channel])
-    @current_channel.advertising = advertising
+    set_channel Channel.new(params[:channel])
+    current_channel.advertising = advertising
 
-    if @current_channel.save
+    if current_channel.save
       # The relationship between current user and the new channel
       create_relationship
       create_wiki_home
 
       feedback t('channels.created'), :success
-      redirect_to channel_path(@current_channel)
+      redirect_to channel_path(current_channel)
     else
       # Couldn't save channel
       feedback t('channels.not_created'), :error
-      errors_to_feedback(@current_channel)
+      errors_to_feedback(current_channel)
       render action: :new
     end
   end
@@ -57,36 +57,36 @@ class ChannelsController < ApplicationController
 
   # PUT /channels/1
   def update
-    authorize! :update, @current_channel
+    authorize! :update, current_channel
 
     # Make sure that advertising is not set to false while user is not a superadmin
-    @current_channel.advertising = params[:channel][:advertising]
-    if !params[:channel][:advertising].nil? && !can?(:disable_ads, @current_channel)
-      @current_channel.advertising = true
+    current_channel.advertising = params[:channel][:advertising]
+    if !params[:channel][:advertising].nil? && !can?(:disable_ads, current_channel)
+      current_channel.advertising = true
     end
 
     params[:channel].delete :advertising
 
     # Update channel
-    if @current_channel.update_attributes(params[:channel])
+    if current_channel.update_attributes(params[:channel])
       feedback t('channels.updated'), :success
     else
       feedback t('channels.not_updated'), :error
-      errors_to_feedback(@current_channel)
+      errors_to_feedback(current_channel)
     end
 
-    redirect_to channel_path(@current_channel)
+    redirect_to channel_path(current_channel)
   end
 
 
   # DELETE /channels/1
   def destroy
-    authorize! :destroy, @current_channel
+    authorize! :destroy, current_channel
 
-    @current_channel.notifications.destroy_all
-    @current_channel.relationships.destroy_all
-    @current_channel.messages.destroy_all
-    @current_channel.destroy
+    current_channel.notifications.destroy_all
+    current_channel.relationships.destroy_all
+    current_channel.messages.destroy_all
+    current_channel.destroy
 
     feedback t('channels.destroyed'), :success
     redirect_to channels_path
@@ -98,7 +98,7 @@ class ChannelsController < ApplicationController
       def create_relationship
         rel = Relationship.new
         rel.user = current_user
-        rel.channel = @current_channel
+        rel.channel = current_channel
         rel.admin = true
         rel.save!
       end
@@ -106,7 +106,7 @@ class ChannelsController < ApplicationController
       def create_wiki_home
         page = Page.new
         page.user = current_user
-        page.channel = @current_channel
+        page.channel = current_channel
         page.is_home = true
         page.title = t('wiki.default_page.title')
         page.content = t('wiki.default_page.content')

@@ -5,7 +5,7 @@ class Channels::PagesController < ApplicationController
 
   # GET /channels/:id/wiki
   def index
-    @pages = Page.where(channel_id: @current_channel.id)
+    @pages = Page.where(channel_id: current_channel.id)
   end
 
 
@@ -28,11 +28,11 @@ class Channels::PagesController < ApplicationController
   # POST /channels/:id/wiki
   def create
     @page = Page.new(params[:page])
-    @page.channel = @current_channel
+    @page.channel = current_channel
     @page.user = current_user
 
     if @page.save
-      redirect_to channel_wiki_path(@current_channel, @page), notice: 'Page was successfully created.'
+      redirect_to channel_wiki_path(current_channel, @page), notice: 'Page was successfully created.'
     else
       render action: "new"
     end
@@ -58,7 +58,7 @@ class Channels::PagesController < ApplicationController
 
   # GET /channels/:id/wiki/home
   def home
-    @page = Page.where(is_home: true, channel_id: @current_channel.id).first
+    @page = Page.where(is_home: true, channel_id: current_channel.id).first
     render 'show'
   end
 

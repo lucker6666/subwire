@@ -14,7 +14,7 @@
     %tbody
       - @relationships.each do |rel|
         - next unless rel.user
-        - relationship = Relationship.find_by_channel_and_user(@current_channel, rel.user)
+        - relationship = Relationship.find_by_channel_and_user(current_channel, rel.user)
         %tr
           %td= avatar(relationship.user, :list)
           %td= link_to relationship.user_name, user_path(relationship.user)
@@ -25,16 +25,16 @@
             - else
               = boolean_icon(relationship.admin)
           %td
-            = link_to edit_channel_relationship_path(@current_channel, relationship), class: 'btn btn-mini' do
+            = link_to edit_channel_relationship_path(current_channel, relationship), class: 'btn btn-mini' do
               %i.icon.icon-pencil
-            = link_to channel_relationship_path(@current_channel, relationship),   |
+            = link_to channel_relationship_path(current_channel, relationship),   |
               method: :delete,                                                     |
               data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, |
               class: 'btn btn-mini btn-danger' do                                  |
               %i.icon.icon-trash
   = will_paginate @relationships
   = link_to t('relationships.new', default: t("helpers.relationships.new")), |
-    new_channel_relationship_path(@current_channel),                                                    |
+    new_channel_relationship_path(current_channel),                          |
     class: 'btn btn-primary'                                                 |
   %a.popover_help{"data-content" => t('popover.relationship_content'), "data-original-title" => t('popover.relationship_title'), :href => "#", :rel => "popover"}
     %i.icon.icon-question-sign

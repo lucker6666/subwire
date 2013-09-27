@@ -6,13 +6,13 @@
         (#{@unread_notification_count}) &nbsp;
       = @subwireTitle
     = render partial: 'shared/head'
-    - if @current_channel.nil?
+    - if current_channel.nil?
       :javascript
         window.subwireTitle = "#{@subwireTitle}";
     - else
       :javascript
-        window.subwireTitle = "#{@current_channel.name}";
-        window.channel_path = "#{channel_path(@current_channel)}"
+        window.subwireTitle = "#{current_channel.name}";
+        window.channel_path = "#{channel_path(current_channel)}"
   %body
     = render partial: 'shared/popovers'
 
@@ -50,21 +50,21 @@
               %li.divider-vertical
               = render partial: 'shared/navbar/notifications'
               = render partial: 'shared/navbar/adminMenu'
-              - if @current_channel
+              - if current_channel
                 %li#new-message.iconOnly
                   %a{:href => "#", :onclick => "return false;"}
                     %i.icon.icon-plus-sign
               = render partial: 'shared/navbar/availability'
             %ul.nav.pull-right
-              - unless @current_channel.nil?
-                = form_tag channel_path(@current_channel), class: 'navbar-search', method: :get do
+              - unless current_channel.nil?
+                = form_tag channel_path(current_channel), class: 'navbar-search', method: :get do
                   = text_field_tag :query, params[:query], class: 'search-query', |
                     placeholder: t('application.search')                          |
     .container-fluid.content
       .row-fluid
         .sidebar
           = render partial: 'shared/channelSwitcher'
-          - unless @current_channel.nil?
+          - unless current_channel.nil?
             - if @sidebar_links.length > 0
               .well
                 %h1

@@ -1,4 +1,4 @@
-= form_for [@current_channel, @link], html: { class: 'form-horizontal' } do |f|
+= form_for [current_channel, @link], html: { class: 'form-horizontal' } do |f|
   .control-group
     = f.label :name, class: 'control-label'
     .controls
@@ -30,4 +30,4 @@
   .form-actions.with-padding
     = f.submit nil, class: 'btn btn-primary'
     = link_to t('.cancel', default: t("helpers.links.cancel")), |
-      channel_links_path(@current_channel), class: 'btn'        |
+      channel_links_path(current_channel), class: 'btn'        |

@@ -13,7 +13,7 @@ class Channels::AvailabilitiesController < ApplicationController
 
     # Find regarding availability
     availability = current_user.availabilities.where(
-      channel_id: @current_channel.id,
+      channel_id: current_channel.id,
       date: params[:date]
     ).first
 
@@ -21,7 +21,7 @@ class Channels::AvailabilitiesController < ApplicationController
     if availability.nil?
       availability = Availability.new(paramSet)
       availability.user = current_user
-      availability.channel = @current_channel
+      availability.channel = current_channel
       availability.save!
     else
       # Otherwise change the value of that availability

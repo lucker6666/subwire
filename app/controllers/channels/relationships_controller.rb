@@ -7,7 +7,7 @@ class Channels::RelationshipsController < ApplicationController
   # GET /channels/:id/relationships
   def index
     @relationships = Relationship.find_all_by_channel_id_and_page(
-      @current_channel.id,
+      current_channel.id,
       params[:page]
     )
   end
@@ -39,13 +39,13 @@ class Channels::RelationshipsController < ApplicationController
       invite_user(user)
 
       feedback t('relationships.invited'), :success
-      redirect_to channel_relationships_path(@current_channel)
+      redirect_to channel_relationships_path(current_channel)
     else
-      relationship = Relationship.find_by_channel_and_user(@current_channel, user)
+      relationship = Relationship.find_by_channel_and_user(current_channel, user)
 
       if !relationship.nil?
         feedback t('relationships.exist')
-        redirect_to channel_relationships_path(@current_channel)
+        redirect_to channel_relationships_path(current_channel)
       elsif user.is_deleted
         # If user is deleted, send an invitation anyway
         user.is_deleted = false
@@ -54,9 +54,9 @@ class Channels::RelationshipsController < ApplicationController
         @relationship = Relationship.new
 
         @relationship.user = user
-        @relationship.channel = @current_channel
+        @relationship.channel = current_channel
 
-        if can? :change, @current_channel
+        if can? :change, current_channel
           @relationship.admin = params[:relationship][:admin]
         end
 
@@ -66,10 +66,10 @@ class Channels::RelationshipsController < ApplicationController
             provokesUser: user,
             subject: "",
             href: user_path(user)
-          }, @current_channel, current_user, except: [user])
+          }, current_channel, current_user, except: [user])
 
           feedback t('relationships.created'), :success
-          redirect_to channel_relationships_path(@current_channel)
+          redirect_to channel_relationships_path(current_channel)
         else
           feedback t('relationships.not_created'), :error
           render action: "new"
@@ -81,7 +81,7 @@ class Channels::RelationshipsController < ApplicationController
 
   # PUT /channels/:id/relationships/1
   def update
-    if can? :update, @current_channel
+    if can? :update, current_channel
       @relationship.admin = params[:relationship][:admin]
     end
 
@@ -89,7 +89,7 @@ class Channels::RelationshipsController < ApplicationController
 
     if @relationship.update_attributes(params[:relationship])
       feedback t('relationships.updated'), :success
-      redirect_to channel_relationships_path(@current_channel)
+      redirect_to channel_relationships_path(current_channel)
     else
       render action: "edit"
     end
@@ -114,7 +114,7 @@ class Channels::RelationshipsController < ApplicationController
     if @relationship.user == @current_user
       redirect_to "/"
     else
-      redirect_to channel_relationships_path(@current_channel)
+      redirect_to channel_relationships_path(current_channel)
     end
   end
 
@@ -135,7 +135,7 @@ class Channels::RelationshipsController < ApplicationController
 
       # Timezone and language are taken from the current user
       user.timezone = @current_user.timezone
-      user.lang = @current_channel.defaultLanguage
+      user.lang = current_channel.defaultLanguage
 
       user.invitation_pending = true
 
@@ -154,11 +154,11 @@ class Channels::RelationshipsController < ApplicationController
       # Create relationship
       rel = Relationship.new
       rel.user = user
-      rel.channel = @current_channel
+      rel.channel = current_channel
 
       rel.admin = false
 
-      if can? :update, @current_channel
+      if can? :update, current_channel
         rel.admin = params[:relationship][:admin]
       end
 
