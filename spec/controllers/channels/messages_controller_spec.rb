@@ -5,8 +5,9 @@ require 'spec_helper'
 describe Channels::MessagesController do
   before (:each) do
     @channel = FactoryGirl.create(:channel)
-    @rel = @channel.relationships.first
     @message = @channel.messages.first
+
+    @rel = Relationship.find_by_channel_and_user(@channel, @message.user)
 
     # Log in first
     sign_in @rel.user
