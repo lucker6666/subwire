@@ -9,7 +9,7 @@ describe Channels::AvailabilitiesController do
   describe "GET 'set'" do
     context "while not authorized" do
       it "should not set an availability" do
-        get :set, channel_id: @channel.id, value: 1, date: Date.today
+        get :set, channel_id: @channel.id, value: true, date: Date.today
         Availability.all.any?.should be false
       end
     end
@@ -23,13 +23,13 @@ describe Channels::AvailabilitiesController do
       it "should set an availability for that date" do
         date = Date.today
 
-        get :set, channel_id: @channel.id, value: 1, date: date
-        Availability.where(value: 1, date: date).any?.should be true
+        get :set, channel_id: @channel.id, value: true, date: date
+        Availability.where(value: true, date: date).any?.should be true
 
         date -= 1
 
-        get :set, channel_id: @channel.id, value: 0, date: date
-        Availability.where(value: 0, date: date).any?.should be true
+        get :set, channel_id: @channel.id, value: false, date: date
+        Availability.where(value: false, date: date).any?.should be true
       end
     end
   end
