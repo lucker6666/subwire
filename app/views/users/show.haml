@@ -48,8 +48,8 @@
       %tr{colspan: 2}
         %th.span3
           = 'Invite User to'
-        %td
-          %select
+        %td 
+          %select{ class: 'chosen-select'}
             - @canInvite.each do |c|
               %option
                 = c.name
