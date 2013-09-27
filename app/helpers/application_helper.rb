@@ -235,4 +235,8 @@ module ApplicationHelper
        'fullscreen'
     ]
   end
+
+  def current_channel
+    @current_channel
+  end
 end

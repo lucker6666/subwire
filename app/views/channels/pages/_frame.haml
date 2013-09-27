@@ -3,16 +3,16 @@
     = title
 
     .btn-group
-      = link_to channel_wiki_home_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.tabs.home')} do
+      = link_to channel_wiki_home_path(current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.tabs.home')} do
         %i.icon.icon-home
 
-      = link_to channel_wiki_index_path(@current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.tabs.pages')} do
+      = link_to channel_wiki_index_path(current_channel), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.tabs.pages')} do
         %i.icon.icon-list
 
     .btn-group
-      = render partial: 'shared/new', locals: {url: new_channel_wiki_path(@current_channel), tip: 'wiki.new'}
+      = render partial: 'shared/new', locals: {url: new_channel_wiki_path(current_channel), tip: 'wiki.new'}
 
       - if @page
-        = link_to edit_channel_wiki_path(@current_channel, @page), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.edit')} do
+        = link_to edit_channel_wiki_path(current_channel, @page), {class: 'btn btn-small', data: {container: 'body'}, rel: 'tooltip', title: t('wiki.edit')} do
           %i.icon.icon-pencil
   = yield

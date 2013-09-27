@@ -7,7 +7,7 @@ class Channels::LinksController < ApplicationController
   # GET /channels/:id/links
   def index
     authorize! :read, Channel
-    @links = Link.find_all_by_channel_id_and_page(@current_channel.id, params[:page])
+    @links = Link.find_all_by_channel_id_and_page(current_channel.id, params[:page])
   end
 
 
@@ -37,11 +37,11 @@ class Channels::LinksController < ApplicationController
     end
 
     @link = Link.new(params[:link])
-    @link.channel = @current_channel
+    @link.channel = current_channel
 
     if @link.save
       feedback t('links.created'), :success
-      redirect_to channel_links_path(@current_channel)
+      redirect_to channel_links_path(current_channel)
     else
       feedback t('links.not_created'), :error
       render action: "new"
@@ -59,7 +59,7 @@ class Channels::LinksController < ApplicationController
 
     if @link.update_attributes(params[:link])
       feedback t('users.updated'), :success
-      redirect_to channel_links_path(@current_channel)
+      redirect_to channel_links_path(current_channel)
     else
       render action: "edit"
     end
@@ -71,7 +71,7 @@ class Channels::LinksController < ApplicationController
     authorize! :destroy, @link
 
     @link.destroy
-    redirect_to channel_links_path(@current_channel)
+    redirect_to channel_links_path(current_channel)
   end
 
 
@@ -79,7 +79,7 @@ class Channels::LinksController < ApplicationController
     authorize! :update, @link
 
     @link.move_position_up!
-    redirect_to channel_links_path(@current_channel)
+    redirect_to channel_links_path(current_channel)
   end
 
 
@@ -87,7 +87,7 @@ class Channels::LinksController < ApplicationController
     authorize! :update, @link
 
     @link.move_position_dn!
-    redirect_to channel_links_path(@current_channel)
+    redirect_to channel_links_path(current_channel)
   end
 
 

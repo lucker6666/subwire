@@ -82,8 +82,8 @@ class ApplicationController < ActionController::Base
     # Call that everytime you change notifications
     def load_notifications
       if current_user
-        if @current_channel
-          @all_notifications = Notification.find_all_relevant(@current_channel, current_user)
+        if current_channel
+          @all_notifications = Notification.find_all_relevant(current_channel, current_user)
           @all_channels_notifications = Notification.all_notifications_count(current_user.id)
         else
           @all_notifications = Notification.where(user_id: current_user.id)
@@ -172,16 +172,20 @@ class ApplicationController < ActionController::Base
       if params[:channel_id] || (params[:id] && params[:controller] == 'channels')
         channel_id = params[:channel_id] || params[:id]
 
-        unless @current_channel = Channel.find_by_id_or_permalink(channel_id)
+        channel = Channel.find_by_id_or_permalink(channel_id)
+
+        unless channel
           feedback t('not_found.project', id: channel_id), :error
           redirect_to channels_path
         end
 
-        authorize! :read, @current_channel
+        set_channel channel
+        authorize! :read, current_channel
 
-        @sidebar_users = Relationship.find_all_users_by_channel(@current_channel).sort_by(&:name)
-        @sidebar_links = Link.find_all_by_channel_id(@current_channel.id)
-        @subwireTitle = @current_channel.name
+
+        @sidebar_users = Relationship.find_all_users_by_channel(current_channel).sort_by(&:name)
+        @sidebar_links = Link.find_all_by_channel_id(current_channel.id)
+        @subwireTitle = current_channel.name
       end
     end
 
@@ -189,12 +193,20 @@ class ApplicationController < ActionController::Base
       @active_section = section
     end
 
+    def set_channel(channel)
+      @current_channel = channel
+    end
+
+    def current_channel
+      @current_channel
+    end
+
 
 
   private
 
     def current_ability
-      @current_ability ||= Ability.new(current_user, @current_channel)
+      @current_ability ||= Ability.new(current_user, current_channel)
     end
 
     def handle_cancan_error(exception)
