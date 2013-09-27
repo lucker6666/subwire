@@ -3,12 +3,8 @@ branches:
     - 'master'
 
 env:
-  - RAILS_ENV=test DB=mysql
-  - RAILS_ENV=test DB=sqlite
-
-env:
-  global:
-    - JRUBY_OPTS=-Xcext.enabled=true
+  - RAILS_ENV=test DB=mysql JRUBY_OPTS=-Xcext.enabled=true
+  - RAILS_ENV=test DB=sqlite JRUBY_OPTS=-Xcext.enabled=true
 
 language: ruby
 
