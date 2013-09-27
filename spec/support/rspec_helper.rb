@@ -1,3 +1,5 @@
+require 'plymouth'
+
 module Subwire
   module RSpecHelper
     def login(user)
