@@ -315,6 +315,7 @@ en:
     delete_alert: 'Here you can delete your Account. Remember that you lose your membership in each channel.<br /><b>Note:</b> You my be not the only Admin in one Channel.'
     delete_account: 'Delete your account'
     finish_registration: 'Finish registration'
+    invite: 'Invite to channel'
 
   links:
     created: Link was successfully created.
