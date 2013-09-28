@@ -312,6 +312,7 @@ de:
     delete_alert: 'Hier kannst du deinen Account löschen. Bedenke, dass du die Mitgliedschaft in jedem Channel verlierst.<br /><b>Hinweis:</b> Du darfst in keinem Channel der einzige Administrator sein.'
     delete_account: 'Benutzerkonto löschen'
     finish_registration: 'Registrierung abschließen'
+    invite: 'Nutzer in Channel einladen'
 
   links:
     created: Lesezeichen wurde erfolgreich erstellt.

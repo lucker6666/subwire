@@ -45,7 +45,7 @@
     - if @canInvite.length > 0
       %tr{colspan: 2}
         %th.span3
-          = 'Invite User to'
+          = t('users.invite')
         %td 
           %select{ class: 'chosen-select'}
             - @canInvite.each do |c|
