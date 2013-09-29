@@ -47,10 +47,12 @@
         %th.span3
           = t('users.invite')
         %td 
-          %select{ class: 'chosen-select'}
-            - @canInvite.each do |c|
-              %option 
-                = c.name
+          = form_tag(user_path(@user) + "/invite", method: "post") do
+            %select{ name: 'channel', class: 'chosen-select'}
+              - @canInvite.each do |c|
+                %option{:value => c.id} 
+                  = c.name
+            = submit_tag(t('relationships.new'))
   - if can? :edit, @user
     .form-actions
       = link_to edit_user_path(@user), class: 'btn' do
