@@ -60,6 +60,7 @@ Subwire::Application.routes.draw do
   get "users/finish", to: "users#finish"
   post "users/finish", to: "users#finish_save"
   get "users/user_box", to: "users#user_box"
+  post "users/:id/invite", to: "users#invite_user"
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
 

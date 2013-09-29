@@ -166,6 +166,35 @@ class UsersController < ApplicationController
       render :finish, layout: "login"
     end
   end
+  
+  def invite_user
+    @user = User.find(params[:id])
+    @channel = Channel.find(params[:channel])
+    if Relationship.is_user_admin_of_channel?(current_user, @channel) && !Relationship.exists?(@channel, @user)
+        @relationship = Relationship.new
+
+        @relationship.user = @user
+        @relationship.channel = @channel
+        @relationship.admin = false
+
+        if @relationship.save
+          Notification.notify_all_users({
+            notification_type: :new_user,
+            provokesUser: @user,
+            subject: "",
+            href: user_path(@user)
+            }, @channel, current_user, except: [@user])
+
+          feedback t('relationships.created'), :success 
+        else
+          feedback t('relationships.not_created'), :error
+        end
+    else
+      feedback t('relationships.not_created'), :error
+    end
+    
+    redirect_to :back
+  end
 
 
   private
