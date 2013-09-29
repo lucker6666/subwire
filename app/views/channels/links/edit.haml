@@ -1,4 +1,4 @@
 - model_class = @link.class
 .well
-  %h1= t('.title')
+  %h1= t('.title', default: t('helpers.submit.update', model: model_class.model_name.human))
   = render partial: 'form'
