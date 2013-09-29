@@ -1,19 +1,10 @@
-= form_for(@page, url: channel_wiki_index_path(current_channel)) do |f|
-  - if @page.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@page.errors.count, "error")
-        prohibited this page from being saved:
-      %ul
-        - @page.errors.full_messages.each do |msg|
-          %li= msg
-  .field
-    = f.label :title
-    %br/
-    = f.text_field :title
-  .field
-    = f.label :content
-    %br/
-    = f.text_area :content
-  .actions
-    = f.submit
+= form_for [current_channel, @page], html: { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.text_field :title, { class: 'text_field message-title', placeholder:  t("helpers.title"), autocomplete: :off }
+  
+  .control-group
+    = f.cktext_area :content
+    
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), channel_wiki_path(current_channel), class: 'btn'
