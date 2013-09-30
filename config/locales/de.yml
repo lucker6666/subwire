@@ -445,6 +445,8 @@ de:
       content: Das ist die Startseite des Wikis. Du kannst Sie nach Belieben ändern!
     new: Neue Seite anlegen
     edit: Seite bearbeiten
+    added: Wiki-Seite wurde erfolgreich angelegt
+    updated: Wiki-Seite wurde erfolgreich aktualisiert.
 
   will_paginate:
     previous_label: Vorherige

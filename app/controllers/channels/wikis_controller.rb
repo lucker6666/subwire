@@ -32,7 +32,7 @@ class Channels::WikisController < ApplicationController
     @wiki.user = current_user
 
     if @wiki.save
-      redirect_to channel_wiki_path(current_channel, @wiki), notice: 'Wiki was successfully created.'
+      redirect_to channel_wiki_path(current_channel, @wiki), notice: t('wiki.added')
     else
       render action: "new"
     end
@@ -42,9 +42,9 @@ class Channels::WikisController < ApplicationController
   # PUT /channels/:id/wiki/:id
   def update
     if @wiki.update_attributes(params[:wiki])
-      redirect_to channel_wiki_path(current_channel, @wiki), notice: 'Wiki was successfully updated.'
+      redirect_to channel_wiki_path(current_channel, @wiki), notice: t('wiki.updated')
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 
