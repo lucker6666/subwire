@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
                 :finish_invitation,
                 :set_locale,
                 :set_timezone,
+                :set_version,
                 :cleanup,
                 :load_channel,
                 :update_last_activity,
@@ -158,6 +159,11 @@ class ApplicationController < ActionController::Base
       else
         Time.zone =  'Central Time (US & Canada)'
       end
+    end
+
+    # Subwires current version
+    def set_version
+      @subwire_version = '3.1.0 (Northstar)'
     end
 
     def load_channels

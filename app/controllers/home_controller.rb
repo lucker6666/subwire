@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   end
 
   def virgin
-    render "virgin", layout: :empty
+    render "virgin", layout: 'empty'
   end
 
   def integration
@@ -29,5 +29,9 @@ class HomeController < ApplicationController
       @user = User.new
       render "login", layout: 'integration'
     end
+  end
+
+  def about
+    render 'about', layout: 'empty'
   end
 end
