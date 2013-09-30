@@ -1,0 +1,8 @@
+= render layout: 'frame', locals: {title: t('wiki.headline')} do
+  %ul.wikis
+    - @wikis.each do |wiki|
+      %li
+        = link_to wiki.title, channel_wiki_path(current_channel, wiki), class: 'wiki-link'
+
+        = link_to channel_wiki_path(current_channel, wiki), method: :delete, data: { confirm: 'Are you sure?' }, class: 'trash-link' do
+          %i.icon.icon-trash

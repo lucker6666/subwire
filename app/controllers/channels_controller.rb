@@ -104,12 +104,12 @@ class ChannelsController < ApplicationController
       end
 
       def create_wiki_home
-        page = Page.new
-        page.user = current_user
-        page.channel = current_channel
-        page.is_home = true
-        page.title = t('wiki.default_page.title')
-        page.content = t('wiki.default_page.content')
-        page.save!
+        wiki = Wiki.new
+        wiki.user = current_user
+        wiki.channel = current_channel
+        wiki.is_home = true
+        wiki.title = t('wiki.default_page.title')
+        wiki.content = t('wiki.default_page.content')
+        wiki.save!
       end
 end

@@ -24,8 +24,8 @@
         - active = @active_section == :wiki
         %li{:class => "sub-navi #{active ? 'active' : ''}"}
           %i{:class => "#{active ? '' : 'muted'} icon icon-book pull-left"}
-          %a{:href => channel_wiki_home_path(current_channel)}
-            #{t('application.page_management')}
+          %a{:href => channel_wikis_home_path(current_channel)}
+            #{t('application.wiki_management')}
             - if active
               %i.icon.icon-chevron-right.pull-right
         - if can? :edit, current_channel
