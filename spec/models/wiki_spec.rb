@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Page do
+describe Wiki do
   describe "Associations" do
     it { should belong_to(:user) }
     it { should belong_to(:channel) }
