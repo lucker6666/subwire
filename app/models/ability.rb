@@ -82,14 +82,7 @@ class Ability
 
 
             # Wiki
-
-            can [:read, :update], Wiki do |wiki|
-              Relationship.exists?(wiki.channel, user)
-            end
-
-            can [:create, :destroy], Wiki do |wiki|
-              Relationship.exists?(wiki.channel, user) && !wiki.is_home
-            end
+            can [:create, :read, :update, :destroy], Wiki, channel_id: channel.id
 
 
             # Availability
