@@ -22,7 +22,7 @@ class Ability
         can :manage, Notification
         can :manage, Relationship
         can :manage, User
-        can :manage, Page
+        can :manage, Wiki
         can :index,  User
         can :disable_ads, Channel
         can :admin, :all
@@ -77,18 +77,18 @@ class Ability
             can [:read], Message do |message|
               Relationship.exists?(message.channel, user)
             end
-						
+
             can [:update, :destroy, :create], Message, user_id: user.id
 
 
             # Wiki
 
-            can [:read, :update], Page do |page|
-              Relationship.exists?(page.channel, user)
+            can [:read, :update], Wiki do |wiki|
+              Relationship.exists?(wiki.channel, user)
             end
 
-            can [:create, :destroy], Page do |page|
-              Relationship.exists?(page.channel, user) && !page.is_home
+            can [:create, :destroy], Wiki do |wiki|
+              Relationship.exists?(wiki.channel, user) && !wiki.is_home
             end
 
 
