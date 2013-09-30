@@ -452,3 +452,16 @@ en:
   will_paginate:
     previous_label: Previous
     next_label: Next
+
+  about:
+    product_of: Subwire is a product a of YaanaLabs
+    write_us: Write us!
+    source_code: Source Code
+    at_github: Subwire at GitHub
+    issues: "Issues (for bugs, feature requests ...):"
+    contributors:
+      headline: "Contributors:"
+      overview: Overview
+    licences:
+      headline: "Licence attributions:"
+      visualpharm: Social icons on the login page
