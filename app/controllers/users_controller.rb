@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    authorize! :manage, User
     @users = User.find_all_active_by_page params[:page]
   end
 
@@ -29,13 +30,15 @@ class UsersController < ApplicationController
 
   # GET /users/edit/:id
   def edit
-    @relationships = Relationship.where(user_id:@user.id)
+    authorize! :update, @user
+
+    @relationships = Relationship.where(user_id: @user.id)
   end
 
 
   # PUT /users/:id
   def update
-    authorize! :edit, @user
+    authorize! :update, @user
 
     @relationships = Relationship.where(user_id: @user.id)
 
@@ -99,6 +102,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/:id
   def destroy
+    authorize! :destroy, @user
+
     # Check channels of the User
     Relationship.where(user_id: @user.id, admin: true).each do |o|
       @userInChannel = Relationship.find_all_users_by_channel(o)

@@ -6,6 +6,7 @@ class Channels::RelationshipsController < ApplicationController
 
   # GET /channels/:id/relationships
   def index
+    authorize! :admin, current_channel
     @relationships = Relationship.find_all_by_channel_id_and_page(
       current_channel.id,
       params[:page]

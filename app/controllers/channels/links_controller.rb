@@ -19,6 +19,7 @@ class Channels::LinksController < ApplicationController
   # GET /channels/:id/links/new
   def new
     @link = Link.new
+    authorize! :create, Link
   end
 
 
