@@ -137,6 +137,7 @@ en:
     delete: Delete
     edit: Edit
     advertisting: Advertising
+    confirm: Are you sure?
     select:
       prompt: Please select
     submit:
@@ -444,7 +445,9 @@ en:
       title: Home
       content: This is the startpage of your wiki. Feel free to change that page!
     new: Create a new page
-    edit: Edit that page
+    edit: Edit page
+    added: Wiki page was successfully created.
+    updated: Wiki page was successfully updated.
 
   will_paginate:
     previous_label: Previous
