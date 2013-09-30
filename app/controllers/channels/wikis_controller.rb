@@ -5,6 +5,7 @@ class Channels::WikisController < ApplicationController
 
   # GET /channels/:id/wiki
   def index
+    authorize! :read, current_channel
     @wikis = Wiki.where(channel_id: current_channel.id)
   end
 
@@ -16,17 +17,21 @@ class Channels::WikisController < ApplicationController
 
   # GET /channels/:id/wiki/new
   def new
+    authorize! :create, Wiki
     @wiki = Wiki.new
   end
 
 
   # GET /channels/:id/wiki/:id/edit
   def edit
+    authorize! :update, @wiki
   end
 
 
   # POST /channels/:id/wiki
   def create
+    authorize! :create, @wiki
+
     @wiki = Wiki.new(params[:wiki])
     @wiki.channel = current_channel
     @wiki.user = current_user
@@ -41,6 +46,8 @@ class Channels::WikisController < ApplicationController
 
   # PUT /channels/:id/wiki/:id
   def update
+    authorize! :update, @wiki
+
     if @wiki.update_attributes(params[:wiki])
       redirect_to channel_wiki_path(current_channel, @wiki), notice: t('wiki.updated')
     else
@@ -51,6 +58,8 @@ class Channels::WikisController < ApplicationController
 
   # DELETE /channels/:id/wiki/:id
   def destroy
+    authorize! :destroy, @wiki
+
     @wiki.destroy
     redirect_to wikis_url
   end
@@ -58,6 +67,7 @@ class Channels::WikisController < ApplicationController
 
   # GET /channels/:id/wiki/home
   def home
+    authorize! :read, current_channel
     @wiki = Wiki.where(is_home: true, channel_id: current_channel.id).first
     render 'show'
   end
