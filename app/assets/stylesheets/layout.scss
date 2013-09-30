@@ -44,6 +44,19 @@
 
 
 /*
+ *	Empty layout
+ */
+
+	body.empty .maincontent {
+		position: relative;
+		left: auto;
+		right: auto;
+		margin: 0 auto;
+		width: 50%;
+	}
+
+
+/*
  *  Layout
  */
 

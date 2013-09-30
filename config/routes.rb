@@ -63,6 +63,7 @@ Subwire::Application.routes.draw do
   # Misc
   get "inactive", to: "home#inactive"
   get "virgin", to: "home#virgin"
+  get "about", to: "home#about"
 
   scope "/:locale" do
     get "/integration", to: "home#integration"

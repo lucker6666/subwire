@@ -1,0 +1,94 @@
+.well
+  %h1
+    = 'Subwire ' + @subwire_version
+
+  %strong
+    = t('about.product_of')
+
+  %br/
+
+  = link_to 'http://yaana.de', target: '_blank' do
+    YaanaLabs Website
+
+  %br/
+  %br/
+
+  %strong
+    = t('about.write_us')
+  %br/
+
+  = link_to 'mailto:info@yaana.de' do
+    info@yaana.de
+
+
+  %br/
+  %br/
+
+  %strong
+    = t('about.source_code')
+  %br/
+
+  = link_to 'https://github.com/YaanaLabs/subwire', target: '_blank' do
+    = t('about.at_github')
+
+  %br/
+  %br/
+
+  %strong
+    = t('about.issues')
+  %br/
+
+  = link_to 'https://github.com/YaanaLabs/subwire/issues?milestone=1&state=open', target: '_blank' do
+    Subwire Issue Tracker
+
+  %br/
+  %br/
+
+  %strong
+    = t('about.contributors.headline')
+
+  %br/
+
+  %ul
+    %li
+      = link_to 'https://github.com/YaanaLabs/subwire/graphs/contributors', target: '_blank' do
+        = t('about.contributors.overview')
+
+    %li
+      Benjamin Kammerl (
+      = link_to 'https://github.com/phortx', target: '_blank' do
+        phortx
+      )
+
+    %li
+      Markus Genz (
+      = link_to 'https://github.com/ich-net-du', target: '_blank' do
+        ich-net-du
+      )
+
+    %li
+      Benjamin August (
+      = link_to 'https://github.com/TheBenji', target: '_blank' do
+        TheBenji
+      )
+
+    %li
+      Sebastian Brozda (
+      = link_to 'https://github.com/sebastianbrozda', target: '_blank' do
+        sebastianbrozda
+      )
+
+  %br/
+
+  %strong
+    = t('about.licences.headline')
+  %br/
+
+  %ul
+    %li
+      = link_to 'http://www.visualpharm.com/', target: '_blank' do
+        visualpharm:
+      = t('about.licences.visualpharm')
+
+  %br/
+  &nbsp;
