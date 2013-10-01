@@ -129,9 +129,9 @@ function updateNotificationsInner(data) {
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
 
-    notifications += '<li class="divider"></li><li><a id="markAllNotificationsAsRead" href="#">' + $('#markAllNotificationsAsRead').html() + '</a></li>';
-    var ul = $('ul.notification-dropdown');
-    var a = ul.siblings("a");
+    notifications += '<li><a id="read-all" href="#">' + $('#read-all').html() + '</a></li>';
+    var ul = $('<ul></ul>');
+    var a = $('#notifications').children('a');
     a.children("span").remove();
     if (notifications) {
         ul.html(notifications);
@@ -149,19 +149,8 @@ function updateNotificationsInner(data) {
     } else {
         $('title').html(window.subwireTitle);
     }
+   return ul;
 }
-
-function updateNotifications() {
-    $.getJSON('/notifications.json', function(data) {
-        updateNotificationsInner(data);
-    });
-}
-
-/*
-if (window.pollNotifications) {
-    setInterval("updateNotifications();", 60000);
-}
-*/
 
 function refreshUserBox() {
     $.get('/ajax/users/load_user_box?r=' + Math.random(), {}, function(c) {
@@ -171,15 +160,9 @@ function refreshUserBox() {
 }
 
 function getAllNotifications() {
-   /* $.get('/ajax/notifications/load_all_notifications',
-        {},
-        function(html) {
-            $('#channel-switcher').html(html);
-            setTimeout("getAllNotifications()", 30000);
-        });
-        */
       $.getJSON('/notifications.json', function(data) {
-        updateNotificationsInner(data);
+        $('#notifications').data('popover').options.content = updateNotificationsInner(data);
+        setTimeout("getAllNotifications()", 30000);
     });
 }
 
