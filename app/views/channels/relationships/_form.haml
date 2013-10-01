@@ -4,11 +4,11 @@
       .control-group
         = f.label :email, class: 'control-label'
         .controls
-          = f.text_field :email, { value: "", class: 'text_field', autocomplete: :off }
-    .control-group
-      = f.label :invitation_text, class: 'control-label'
-      .controls
-        = text_area_tag :invitation_text, '', { value: "", class: 'text_field', autocomplete: :off }
+          = f.text_field :email, { value: "", class: 'text_field', autocomplete: :off, 'data-provide'=> 'typeahead', 'data-source' => @inviteable }
+      .control-group
+        = f.label :invitation_text, class: 'control-label'
+        .controls
+          = text_area_tag :invitation_text, '', { value: "", class: 'text_field', autocomplete: :off }
     .control-group
       = f.label :admin, class: 'control-label'
       .controls

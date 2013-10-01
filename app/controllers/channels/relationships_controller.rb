@@ -18,6 +18,7 @@ class Channels::RelationshipsController < ApplicationController
   def new
     authorize! :create, Relationship
     @relationship = Relationship.new
+    @inviteable = '["albert", "alles", "abc"]'
   end
 
 
