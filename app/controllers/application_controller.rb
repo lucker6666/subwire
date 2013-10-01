@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
           @all_notifications = Notification.find_all_relevant(current_channel, current_user)
           @all_channels_notifications = Notification.all_notifications_count(current_user.id)
         else
-          @all_notifications = Notification.where(user_id: current_user.id)
+          @all_notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(user_id: current_user.id)
           @all_channels_notifications = @all_notifications.count
         end
 
