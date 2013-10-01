@@ -21,9 +21,7 @@ class Link < ActiveRecord::Base
   validates :name, :href, presence: true
 
   # Make sure, href is a url
-  validates :href, format: {
-    with: /\A(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?\z/,
-  }
+  validates_format_of :href, :with => URI::regexp(%w(http https))
 
   before_create :set_position
 
