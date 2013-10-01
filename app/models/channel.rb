@@ -81,5 +81,17 @@ class Channel < ActiveRecord::Base
       is_read: false
     ).length
   end
+  
+  def can_invite_users_to_channel()
+    relationships = Array.new
+    Channel.find_all_by_user(current_user).each do |c|
+      if c != current_channel
+        Relationship.find_all_by_channel_id(c.id).each do |r|
+          
+        end
+      end
+    end
+    
+  end
 
 end
