@@ -157,9 +157,11 @@ function updateNotifications() {
     });
 }
 
+/*
 if (window.pollNotifications) {
     setInterval("updateNotifications();", 60000);
 }
+*/
 
 function refreshUserBox() {
     $.get('/ajax/users/load_user_box?r=' + Math.random(), {}, function(c) {
@@ -169,12 +171,16 @@ function refreshUserBox() {
 }
 
 function getAllNotifications() {
-    $.get('/ajax/notifications/load_all_notifications',
+   /* $.get('/ajax/notifications/load_all_notifications',
         {},
         function(html) {
             $('#channel-switcher').html(html);
             setTimeout("getAllNotifications()", 30000);
         });
+        */
+      $.getJSON('/notifications.json', function(data) {
+        updateNotificationsInner(data);
+    });
 }
 
 function emptyScreenBlink() {
