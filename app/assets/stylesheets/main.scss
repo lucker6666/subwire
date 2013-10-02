@@ -38,6 +38,10 @@
   }
 
   li#notifications {
+  	&.unread i {
+		text-shadow: 0 0 15px #d00;
+	}
+
     + div.popover {
       width: 400px;
       max-width: 400px;
