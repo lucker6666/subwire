@@ -1,7 +1,9 @@
 - model_class = User.new.class
 
 .well
-  %h1= t('.title', default: model_class.model_name.human)
+  %h1
+    %i.icon.icon-user
+    = t('.title', default: model_class.model_name.human)
   %table.table.table-striped
     %thead
       %tr

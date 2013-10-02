@@ -2,6 +2,7 @@
 
 .well
   %h1
+    %i.icon.icon-user
     = t('.title', default: t('helpers.submit.update', model: model_class.model_name.human, |
     default: "Edit #{model_class.model_name.human}"))
   = form_for @user, html: { class: 'form-horizontal', multipart: true } do |f|

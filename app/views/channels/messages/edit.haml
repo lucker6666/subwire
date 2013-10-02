@@ -2,6 +2,7 @@
 
 .well
   %h1
+    %i.icon.icon-comments
     = t('.title', default: t('helpers.submit.update', model: model_class.model_name.human))
 
   = render partial: 'form'
