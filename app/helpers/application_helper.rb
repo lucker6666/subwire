@@ -13,7 +13,7 @@ module ApplicationHelper
 
   # Display boolean values as icon
   def boolean_icon(expression)
-    content_tag :i, "", class: (expression ? "icon icon-ok" : "icon icon-remove")
+    content_tag :i, "", class: (expression ? "icon icon-ok text-success" : "icon icon-remove text-error")
   end
 
   # Convert String to Messenger Notification JS Code
