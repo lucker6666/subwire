@@ -1,5 +1,5 @@
 %li#notifications.iconOnly
-  %a{href: "#", :onclick => "return false;"}
+  %a.dropdown-toggle{"data-placement" => "bottom", "data-toggle" => "dropdown", :href => "#", :rel => "tooltip", :title => t('application.notifications'), :onclick => "return false;"}
     %i.icon.icon-comment
     - if @unread_notification_count > 0
       %span.notification-badge.badge.badge-important
