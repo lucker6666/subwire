@@ -4,10 +4,6 @@ class Users::NotificationsController < ApplicationController
 
   # GET /notifications.json
   def index
-    #@notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
-    #  user_id: current_user.id
-    #)
-    
     load_notifications
 
     respond_to do |format|
