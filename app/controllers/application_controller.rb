@@ -83,14 +83,8 @@ class ApplicationController < ActionController::Base
     # Call that everytime you change notifications
     def load_notifications
       if current_user
-        #That make actually no sense, does it?
-        if current_channel
-          @all_notifications = Notification.find_all_relevant(current_channel, current_user)
-          @all_channels_notifications = Notification.all_notifications_count(current_user.id)
-        else
-          @all_notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(user_id: current_user.id)
-          @all_channels_notifications = @all_notifications.count
-        end
+        @all_notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(user_id: current_user.id)
+        @all_channels_notifications = @all_notifications.count
 
         if @all_notifications.count > 0
           @unread_notification_count = @all_notifications.where(is_read: false).count
