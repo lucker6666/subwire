@@ -14,6 +14,11 @@
         %i{:class=>"icon icon-trash"}
 
   .body
+    - if message.comments.length > 0
+      .comment-counter
+        %span.notification-badge.badge
+          %i.icon.icon-comment
+          = message.comments.length
     - unless message.title.nil?
       %h2
         = link_to message.title, channel_message_path(current_channel, message)
