@@ -427,9 +427,9 @@ en:
       channel:
         channel_id: Channel ID
         name: Name
-        defaultLangugage: default Language
+        defaultLanguage: Default language
         advertising: Advertising?
-        planningTool: Planning Tool?
+        planningTool: Planning tool?
       wiki:
         title: Title
         content: Content
