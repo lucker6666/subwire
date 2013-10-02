@@ -137,6 +137,7 @@ en:
     delete: Delete
     edit: Edit
     advertisting: Advertising
+    confirm: Are you sure?
     select:
       prompt: Please select
     submit:
@@ -229,7 +230,7 @@ en:
     notifications_unread: There are no unread notifications.
     no_permission_for_channel: Permission denied!
     user_management: Users
-    page_management: Wiki
+    wiki_management: Wiki
     message_management: Discussions
     link_management: Bookmarks
     new_message: New Message
@@ -429,6 +430,9 @@ en:
         defaultLangugage: default Language
         advertising: Advertising?
         planningTool: Planning Tool?
+      wiki:
+        title: Title
+        content: Content
     errors:
       models:
         channel:
@@ -444,7 +448,11 @@ en:
       title: Home
       content: This is the startpage of your wiki. Feel free to change that page!
     new: Create a new page
-    edit: Edit that page
+    edit: Edit page
+    added: Wiki page was successfully created.
+    updated: Wiki page was successfully updated.
+    not_created: Wiki page couldn't be created.
+    not_updated: Wiki page couldn't be saved.
 
   will_paginate:
     previous_label: Previous

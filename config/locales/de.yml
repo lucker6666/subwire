@@ -226,7 +226,7 @@ de:
     notifications_unread: Keine ungelesenen Benachrichtigungen.
     no_permission_for_channel: Zugriff verweigert!
     user_management: Benutzer
-    page_management: Wiki
+    wiki_management: Wiki
     message_management: Unterhaltungen
     link_management: Lesezeichen
     new_message: Neue Message
@@ -428,6 +428,9 @@ de:
         defaultLangugage: Standardsprache
         advertising: Werbung?
         planningTool: Planungstool?
+      wiki:
+        title: Titel
+        content: Inhalt
     errors:
       models:
         channel:
@@ -445,6 +448,10 @@ de:
       content: Das ist die Startseite des Wikis. Du kannst Sie nach Belieben ändern!
     new: Neue Seite anlegen
     edit: Seite bearbeiten
+    added: Wiki-Seite wurde erfolgreich angelegt
+    updated: Wiki-Seite wurde erfolgreich aktualisiert.
+    not_created: Wiki-Seite konnte nicht erstellt werden.
+    not_updated: Wiki-Seite konnte nicht gespeichert werden.
 
   will_paginate:
     previous_label: Vorherige
