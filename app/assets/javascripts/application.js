@@ -131,7 +131,7 @@ function updateNotificationsInner(data) {
 
     notifications += '<li><a id="read-all" href="#">' + $('#read-all').html() + '</a></li>';
     var ul = $('<ul></ul>');
-    var a = $('#notifications').children('a');
+    var a = $('#notifications > a');
     a.children("span").remove();
     if (notifications) {
         ul.html(notifications);
@@ -146,8 +146,10 @@ function updateNotificationsInner(data) {
         }
 
         $('title').html(' (' + notificationsCount + ')' + window.subwireTitle);
+        $('#notifications').addClass('unread');
     } else {
         $('title').html(window.subwireTitle);
+        $('#notifications').removeClass('unread');
     }
    return ul;
 }
