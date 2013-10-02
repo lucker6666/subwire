@@ -430,6 +430,9 @@ en:
         defaultLangugage: default Language
         advertising: Advertising?
         planningTool: Planning Tool?
+      wiki:
+        title: Title
+        content: Content
     errors:
       models:
         channel:
@@ -448,6 +451,8 @@ en:
     edit: Edit page
     added: Wiki page was successfully created.
     updated: Wiki page was successfully updated.
+    not_created: Wiki page couldn't be created.
+    not_updated: Wiki page couldn't be saved.
 
   will_paginate:
     previous_label: Previous

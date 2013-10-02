@@ -37,8 +37,17 @@ class Channels::WikisController < ApplicationController
     @wiki.user = current_user
 
     if @wiki.save
+      Notification.notify_all_users({
+        notification_type: :new_wiki,
+        provokesUser: current_user,
+        subject: @wiki.title,
+        href: channel_wiki_path(current_channel, @wiki)
+      }, current_channel, current_user)
+
       redirect_to channel_wiki_path(current_channel, @wiki), notice: t('wiki.added')
     else
+      feedback t('wikis.not_created'), :error
+      errors_to_feedback(@wiki)
       render action: "new"
     end
   end
@@ -49,8 +58,17 @@ class Channels::WikisController < ApplicationController
     authorize! :update, @wiki
 
     if @wiki.update_attributes(params[:wiki])
+      Notification.notify_all_users({
+        notification_type: :edit_wiki,
+        provokesUser: current_user,
+        subject: @wiki.title,
+        href: channel_wiki_path(current_channel, @wiki)
+      }, current_channel, current_user)
+
       redirect_to channel_wiki_path(current_channel, @wiki), notice: t('wiki.updated')
     else
+      feedback t('wikis.not_updated'), :error
+      errors_to_feedback(@wiki)
       render action: 'edit'
     end
   end
