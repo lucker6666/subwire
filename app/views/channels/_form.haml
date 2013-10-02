@@ -1,21 +1,30 @@
-= form_for current_channel do |f|
-  %fieldset
-    .clearfix
+= form_for current_channel, html: { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
       = f.text_field :name, {class: 'text_field', placeholder: t('helpers.name'), autocomplete: :off}
 
-    .clearfix
+  .control-group
+    = f.label :defaultLanguage, class: 'control-label'
+    .controls
       = select :channel, :defaultLanguage, [[t("application.de"), "de"], [t("application.en"), "en"]]
 
-    - if current_user.is_admin?
-      .clearfix
+  - if current_user.is_admin?
+    .control-group
+      = f.label :advertising, class: 'control-label'
+      .controls
         = f.check_box :advertising, class: 'check_box'
         = t('helpers.advertisting')
 
-    .clearfix
-      = f.check_box :planningTool, class: 'check_box'
-      %a{href: "#", rel: "tooltip", title: "#{t('tooltip.planningTool')}"}
-        = t('helpers.planningTool')
+  - if current_user.is_admin?
+    .control-group
+      = f.label :planningTool, class: 'control-label'
+      .controls
+        = f.check_box :planningTool, class: 'check_box'
+        %a{href: "#", rel: "tooltip", title: "#{t('tooltip.planningTool')}"}
+          = t('helpers.planningTool')
 
-    = f.submit nil, class: 'btn btn-success btn-large'
-    = link_to t("helpers.links.cancel"), channels_path, class: 'btn btn-large btn-inverse'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t("helpers.links.cancel"), channels_path, class: 'btn'
 
