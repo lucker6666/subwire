@@ -1,4 +1,4 @@
 - if current_channel && current_channel.planningTool
   %li#planning-tool.iconOnly
-    %a{href: "#", :onclick => "return false;"}
+    %a.dropdown-toggle{"data-placement" => "bottom", "data-toggle" => "dropdown", :href => "#", :rel => "tooltip", :title => t('popover.planningTool_title'), :onclick => "return false;"}
       %i.icon.icon-calendar
