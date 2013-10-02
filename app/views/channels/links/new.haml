@@ -1,6 +1,8 @@
 - model_class = @link.class
 
 .well
-  %h1= t('.title', default: t('helpers.submit.create', model: model_class.model_name.human, |
+  %h1
+    %i.icon.icon-bookmark
+    = t('.title', default: t('helpers.submit.create', model: model_class.model_name.human, |
       default: "New #{model_class.model_name.human}"))
   = render partial: 'form'
