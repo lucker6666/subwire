@@ -428,6 +428,9 @@ de:
         defaultLangugage: Standardsprache
         advertising: Werbung?
         planningTool: Planungstool?
+      wiki:
+        title: Titel
+        content: Inhalt
     errors:
       models:
         channel:
@@ -447,6 +450,8 @@ de:
     edit: Seite bearbeiten
     added: Wiki-Seite wurde erfolgreich angelegt
     updated: Wiki-Seite wurde erfolgreich aktualisiert.
+    not_created: Wiki-Seite konnte nicht erstellt werden.
+    not_updated: Wiki-Seite konnte nicht gespeichert werden.
 
   will_paginate:
     previous_label: Vorherige

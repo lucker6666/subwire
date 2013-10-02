@@ -10,6 +10,9 @@ module NotificationsHelper
         icon = "comment"
       when :new_calendar
         icon = "calendar"
+      when :edit_wiki
+      when :new_wiki
+        icon = "book"
     end
 
     return "<i class=\"icon-#{icon}\"></i>".html_safe
