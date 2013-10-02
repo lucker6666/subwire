@@ -208,6 +208,17 @@ class ApplicationController < ActionController::Base
       @current_channel
     end
 
+    def create_wiki_home
+      wiki = Wiki.new
+      wiki.user = current_user
+      wiki.channel = current_channel
+      wiki.is_home = true
+      wiki.title = t('wiki.default_page.title')
+      wiki.content = t('wiki.default_page.content')
+      wiki.save!
+      wiki
+    end
+
 
 
   private

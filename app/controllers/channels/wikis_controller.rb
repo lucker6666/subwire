@@ -30,7 +30,7 @@ class Channels::WikisController < ApplicationController
 
   # POST /channels/:id/wiki
   def create
-    authorize! :create, @wiki
+    authorize! :create, Wiki
 
     @wiki = Wiki.new(params[:wiki])
     @wiki.channel = current_channel
@@ -69,6 +69,11 @@ class Channels::WikisController < ApplicationController
   def home
     authorize! :read, current_channel
     @wiki = Wiki.where(is_home: true, channel_id: current_channel.id).first
+
+    unless @wiki
+      # No wiki page exists, create a new one
+      @wiki = create_wiki_home
+    end
     render 'show'
   end
 
