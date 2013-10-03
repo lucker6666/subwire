@@ -2,7 +2,8 @@
 
 .well
   %h1
-    = t('.title', default: model_class.model_name.human)
+    %i.icon.icon-home
+    = t('.title', default: model_class.model_name.human.pluralize)
 
     = render partial: 'shared/new', locals: {url: new_channel_path, tip: 'channels.new'}
 

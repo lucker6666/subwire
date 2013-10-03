@@ -52,7 +52,7 @@
               = render partial: 'shared/navbar/adminMenu'
               - if current_channel
                 %li#new-message.iconOnly
-                  %a{:href => "#", :onclick => "return false;"}
+                  %a.dropdown-toggle{"data-placement" => "bottom", "data-toggle" => "dropdown", :href => "#", :rel => "tooltip", :title => t('application.new_message'), :onclick => "return false;"}
                     %i.icon.icon-plus-sign
               = render partial: 'shared/navbar/availability'
             %ul.nav.pull-right
