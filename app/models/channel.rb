@@ -65,6 +65,18 @@ class Channel < ActiveRecord::Base
       conditions: { "relationships.user_id" => user.id }
     )
   end
+  
+  def self.can_invite_users_to_channel(user, channel)
+    relationships = Array.new
+    Channel.find_all_by_user(user).each do |c|
+      if c != channel
+        Relationship.find_all_by_channel_id(c.id).each do |r|
+          relationships.push(r)
+        end
+      end
+    end
+    relationships
+  end
 
   def message_count
     Message.find_all_by_channel_id(id).length
@@ -81,17 +93,4 @@ class Channel < ActiveRecord::Base
       is_read: false
     ).length
   end
-  
-  def can_invite_users_to_channel()
-    relationships = Array.new
-    Channel.find_all_by_user(current_user).each do |c|
-      if c != current_channel
-        Relationship.find_all_by_channel_id(c.id).each do |r|
-          
-        end
-      end
-    end
-    
-  end
-
 end
