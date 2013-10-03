@@ -11,7 +11,10 @@ Subwire::Application.routes.draw do
 
 
   # Channels
+  get 'channels/all', to: 'channels#all'
+
   resources :channels do
+
     # Links
     get 'links/move_position_up/:id',
       to: "channels/links#move_position_up", as: "link_up"

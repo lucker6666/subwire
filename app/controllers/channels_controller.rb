@@ -1,6 +1,13 @@
 class ChannelsController < ApplicationController
   before_filter :load_channels, only: [:index]
 
+  # GET /all
+  def all
+    authorize! :manage, Channel
+
+    @channels = Channel.paginate(page: params['page'], per_page: 8)
+  end
+
   # GET /channels
   def index
     authorize! :read, Channel
