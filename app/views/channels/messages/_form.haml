@@ -3,7 +3,7 @@
     = f.text_field :title, { class: 'text_field message-title', placeholder:  t("helpers.title"), autocomplete: :off }
 
   .control-group
-    = f.cktext_area :content
+    = f.cktext_area :content, id: 'message_form_content'
 
   - if @message.new_record?
     .control-group

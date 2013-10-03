@@ -2,6 +2,7 @@
 
 .well
   %h1
+    %i.icon.icon-home
     = t('.title', default: t('helpers.titles.edit', model: model_class.model_name.human, default: "Edit #{model_class.model_name.human}"))
 
   = render partial: 'form', locals: {current_channel: current_channel}

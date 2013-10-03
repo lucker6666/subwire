@@ -1,6 +1,7 @@
 .well
   - if @message.title
     %h1
+      %i.icon.icon-comments
       = @message.title
 
   = render partial: 'shared/message', locals: {message: @message, full: true}

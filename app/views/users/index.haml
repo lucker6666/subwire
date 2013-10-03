@@ -1,8 +1,11 @@
 - model_class = User.new.class
 
 .well
-  %h1= t('.title', default: model_class.model_name.human.pluralize)
-  %table.table.table-hover.table-striped.table-condensed
+  %h1
+    %i.icon.icon-users
+    = t('.title', default: model_class.model_name.human.pluralize)
+
+  %table.table.table-striped
     %thead
       %tr
         %th

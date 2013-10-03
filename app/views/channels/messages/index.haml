@@ -15,7 +15,9 @@
 
 .well
   %h1
-    Messages
+    %i.icon.icon-comments
+    = t('application.message_management')
+
 
     = render partial: 'shared/new', locals: {url: new_channel_message_path(current_channel), tip: 'messages.new'}
 
