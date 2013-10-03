@@ -3,21 +3,23 @@
 .well
   %h1
     %i.icon.icon-user
-    = t('.title', default: model_class.model_name.human)
-  %table.table.table-striped
+    = t('.title', default: model_class.model_name.human.pluralize)
+
+  %table.table.table-hover.table-condensed.table-striped
     %thead
       %tr
         %th
           %i.icon.icon-user
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:email)
-        %th= model_class.human_attribute_name(:is_admin)
+        %th
+          Admin?
         %th= t('.actions', default: t("helpers.actions"))
     %tbody
       - @relationships.each do |rel|
         - next unless rel.user
         - relationship = Relationship.find_by_channel_and_user(current_channel, rel.user)
-        %tr
+        %tr{class: relationship.admin ? 'warning' : ''}
           %td= avatar(relationship.user, :list)
           %td= link_to relationship.user_name, user_path(relationship.user)
           %td= relationship.user_email

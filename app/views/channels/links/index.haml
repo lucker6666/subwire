@@ -7,20 +7,17 @@
     = render partial: 'shared/new', locals: {url: new_channel_link_path(current_channel), tip: 'links.new'}
 
   - if @links.count > 0
-    %table.table.table-striped
+    %table.table.table-hover.table-striped.table-condensed
       %thead
         %tr
-          %th= model_class.human_attribute_name(:icon)
+          %th{width: '1'}= model_class.human_attribute_name(:icon)
           %th= model_class.human_attribute_name(:name)
-          %th= model_class.human_attribute_name(:href)
-          %th= t('.actions', default: t("helpers.actions"))
+          %th{width: '100'}= t('.actions', default: t("helpers.actions"))
       %tbody
         - @links.each_with_index do |link, idx|
           %tr
-            %td
-              = link.icon
+            %td= link.icon
             %td= link_to link.name, link.href
-            %td.break= link.href
             %td
               = link_to edit_channel_link_path(current_channel, link), class: 'btn btn-mini' do
                 %i.icon.icon-pencil
@@ -30,8 +27,11 @@
                 %i.icon.icon-trash
               = link_to('', channel_link_up_path(current_channel, link.id), {class: 'icon-chevron-up'}) if display_up_link?(idx)
               = link_to('', channel_link_down_path(current_channel, link.id), {class: 'icon-chevron-down'}) if display_down_link?(idx, @links.size)
-    = will_paginate @links
+
     %a.popover_help{"data-content" => t('popover.links_content'), "data-original-title" => t('popover.links_title'), :href => "#", :rel => "popover"}
       %i.icon.icon-question-sign
   - else
     = render partial: 'no_links'
+
+- if @links.count > 0
+  = will_paginate @links

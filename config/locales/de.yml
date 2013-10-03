@@ -374,7 +374,7 @@ de:
     relationship_content: Hier kannst du einen Benutzer zu diesem Channel hinzufügen. Wenn der Benutzer noch nicht auf subwire.net angemeldet ist, bekommt er eine E-Mail mit einer Einladung und wird nach der Anmeldung sofort diesem Channel zugeordnet.
     links_title: Lesezeichen
     links_content: Jeder Channel kann eigene Lesezeichen für die Gruppe beinhalten. Einfacher kannst du die wichtigsten Links nicht mit deinem Team teilen!
-    planningTool_title: Planungstool
+    planningTool_title: Planungs-Werkzeug
     planningTool_content: 'Jeder Benutzer dieses Channels kann hier für jeden Tag angeben, ob er Zeit hat oder nicht. Durch Klicken auf das entsprechende Feld kann der Wert geändert werden.'
 
   hints:
@@ -425,9 +425,9 @@ de:
       channel:
         channel_id: Channel ID
         name: Name
-        defaultLangugage: Standardsprache
+        defaultLanguage: Standardsprache
         advertising: Werbung?
-        planningTool: Planungstool?
+        planningTool: Planungs-Werkzeug?
       wiki:
         title: Titel
         content: Inhalt

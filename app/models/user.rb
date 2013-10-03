@@ -146,6 +146,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_all_active_by_page(page)
-    where(is_deleted: false, invitation_pending: false).paginate(page: page, per_page: 10)
+    where(is_deleted: false, invitation_pending: false).paginate(page: page, per_page: 8)
   end
 end
