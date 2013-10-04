@@ -32,7 +32,15 @@ class Channels::RelationshipsController < ApplicationController
   def create
     authorize! :create, Relationship
 
-    user = User.find_by_email(params[:relationship][:email])
+    if params[:email].nil? && !params[:existingUser]
+      #We use the relationship.id 'cause it is easier to check that we're actually supposed to invite the user
+      rel = Relationship.find(params[:existingUser])
+      if Relationship.exists?(current_user, rel.channel)
+        user = rel.user
+      end
+    else
+      user = User.find_by_email(params[:relationship][:email])
+    end
 
     if user.nil?
       user = User.new

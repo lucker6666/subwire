@@ -5,10 +5,18 @@
         = f.label :email, class: 'control-label'
         .controls
           = f.text_field :email, { value: "", class: 'text_field', autocomplete: :off }
-      .control-group
-        = f.label :existUser, class: 'control-label'
-        .controls
-          = f.text_field :existUser, { value: "", class: 'text_field', autocomplete: :off, 'data-provide'=> 'typeahead', 'data-source' => @inviteable }    
+      - if @inviteable.length > 0
+        .control-group
+          %label{ class: 'control-label' }
+            = t('relationships.inviteExisting')
+          .controls
+            %select{ name: 'existingUser', class: 'chosen-select' }
+              %option{ :value => ''}
+              - @inviteable.each do |c|
+                %optgroup{ :label => c.first.channel.name}
+                  - c.each do |r|
+                    %option{ :value => r.id}
+                      = r.user.name
       .control-group
         = f.label :invitation_text, class: 'control-label'
         .controls
