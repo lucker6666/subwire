@@ -75,7 +75,7 @@ module ApplicationHelper
       height = 100
     end
 
-    className += "#{size}"
+    className += " #{size}"
 
     if user.gravatar
       image_tag 'http://www.gravatar.com/avatar/' + user.gravatar + '?s=' + width.to_s(),
