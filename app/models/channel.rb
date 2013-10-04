@@ -67,15 +67,21 @@ class Channel < ActiveRecord::Base
   end
   
   def self.can_invite_users_to_channel(user, channel)
-    relationships = Array.new
+    channels = Array.new
     Channel.find_all_by_user(user).each do |c|
       if c != channel
+        relationships = Array.new
         Relationship.find_all_by_channel_id(c.id).each do |r|
-          relationships.push(r)
+          if r.user != user
+            relationships.push(r)
+          end
+        end
+        if relationships.length > 0
+          channels.push(relationships)
         end
       end
     end
-    relationships
+    channels
   end
 
   def message_count
