@@ -36,7 +36,7 @@
   }
 
   @mixin grey_gradient() {
-    @include gradient($light_grey, $mid_grey);
+    @include gradient($ultralight_grey, $mid_grey);
   }
 
   @mixin highlight() {

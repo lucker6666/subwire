@@ -3,7 +3,7 @@
  */
 
   body {
-    background: $background_color url('back.jpg') fixed 0 0;
+    background: $background_color url('back.png') fixed 0 0;
     padding-top: 0;
 
     &.login {
@@ -271,8 +271,8 @@
  */
 
   img.avatar {
-    @include box_shadow(0 0 3px rgba(0, 0, 0, 0.6));
-    border-radius: 5px;
+    @include box_shadow(0 1px 3px 0 rgba(0, 0, 0, 0.3));
+    border-radius: 50%;
 
     &.size-list {
       border-radius: 0;

@@ -228,7 +228,7 @@
 
       > a {
         position: relative;
-        padding: 10px 0.4em 8px 0.4em;
+        padding: 10px 0.4em 7px 0.4em;
 
         span.badge {
           position: absolute;
@@ -357,7 +357,7 @@
   }
 
   .navbar .divider-vertical {
-    margin: 6px 4px;
+    margin: 6px 4px 5px;
     height: 30px;
     border-left: 1px solid $mid_grey;
     border-right: 1px solid $light_grey;

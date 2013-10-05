@@ -3,9 +3,8 @@
  */
 
   .maincontent .message {
-    border-bottom: 1px solid $mid_grey;
-    margin: 0 -15px 15px;
-    padding: 0 15px 15px;
+    margin: 0 -15px;
+    padding: 15px;
     position: relative;
     min-height: 70px;
 
@@ -13,11 +12,15 @@
       visibility: hidden;
       position: absolute;
       left: 22px;
-      top: 60px;
+      top: 75px;
     }
 
     .body {
       margin-left: 68px;
+      border-radius: 8px;
+      background-color: $light_grey;
+      border: 1px solid $mid_grey;
+      padding: 10px 20px;
 
       nobr {
         display: block;
@@ -27,11 +30,27 @@
       }
     }
 
+    .arrow {
+    	width: 0;
+    	height: 0;
+    	position: absolute;
+    	border: 10px solid transparent;
+    	border-right-color: $mid_grey;
+    	top: 34px;
+		left: 64px;
+    	z-index: 1;
+    }
+
+    &.odd .body {
+    	background-color: $light_grey_odd;
+    }
+
     h2 {
       font-size: 1em;
       line-height: 1.3em;
       padding-top: 1px;
       margin: 0;
+      color: $grey;
 
       a {
         color: $dark_grey;
@@ -44,6 +63,19 @@
     }
 
     &:hover {
+      .body,
+      .avatar {
+      	box-shadow: 0 0 10px $link;
+      }
+
+      .body {
+      	border-color: $link;
+      }
+
+      .arrow {
+      	border-right-color: $link;
+      }
+
       nobr {
         visibility: visible;
       }
