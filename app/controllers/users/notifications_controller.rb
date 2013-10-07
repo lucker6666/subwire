@@ -19,6 +19,18 @@ class Users::NotificationsController < ApplicationController
     @notification.read!
     redirect_to URI.parse(@notification.href).path
   end
+  
+  def destroy 
+    Notification.mark_all_as_read(current_user.id)
+    
+    load_notifications
+
+    respond_to do |format|
+      format.json do
+        render json: @all_notifications, methods: [:message, :avatar_path]
+      end
+    end
+  end
 
 
   private

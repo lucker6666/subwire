@@ -133,6 +133,14 @@ class Notification < ActiveRecord::Base
         is_read: false
     ).size
   end
+  
+  def self.mark_all_as_read(user_id)
+    @notifications = Notification.where(user_id: user_id)
+    
+    @notifications.each do |n|
+      n.read! 
+    end
+  end
 
   def channel_name
     self.channel.name

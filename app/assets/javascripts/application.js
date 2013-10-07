@@ -24,17 +24,6 @@ $(function() {
         }
     });
 
-    $('#markAllNotificationsAsRead').click(function(e) {
-        $.ajax({
-            url: '/notifications/1.json',
-            type: 'DELETE',
-            dataType: 'json',
-            success: function(data) {
-                updateNotificationsInner(data);
-            }
-        });
-    });
-
     refreshUserBox();
     getAllNotifications();
 
@@ -70,6 +59,16 @@ $(function() {
 	});
 });
 
+function markAllAsRead(){
+  $.ajax({
+    url: '/notifications/1.json',
+    type: 'DELETE',
+    dataType: 'json',
+    success: function(data) {
+      updateNotificationsInner(data);
+    }
+  });
+}
 
 function switchAvailability(event) {
     var a = $('a#' + $(event.currentTarget).attr('id')),
@@ -129,7 +128,7 @@ function updateNotificationsInner(data) {
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
 
-    notifications += '<li><a id="read-all" href="#">' + $('#read-all').html() + '</a></li>';
+  notifications += '<li><a id="read-all" href="#" onclick="markAllAsRead()">' + $('#read-all').html() + '</a></li>';
     var ul = $('<ul></ul>');
     var a = $('#notifications > a');
     a.children("span").remove();
