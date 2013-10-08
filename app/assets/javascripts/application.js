@@ -128,7 +128,7 @@ function updateNotificationsInner(data) {
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
 
-  notifications += '<li><a id="read-all" href="#" onclick="markAllAsRead()">' + $('#read-all').html() + '</a></li>';
+    notifications += '<li><a id="read-all" href="#" onclick="markAllAsRead()">' + $('#read-all').html() + '</a></li>';
     var ul = $('<ul></ul>');
     var a = $('#notifications > a');
     a.children("span").remove();
