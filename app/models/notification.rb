@@ -77,7 +77,17 @@ class Notification < ActiveRecord::Base
       NotifyMailer.notify(User.find(params[:provokesUser]), user, notification).deliver
     end
   end
+  
+	def avatar_path
+		@user = User.find(self.provokesUser)
 
+		if(@user.gravatar)
+			'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
+		else
+			@user.avatar.url
+		end
+	end
+  
   def creator
     User.find(self.created_by)
   end
@@ -122,6 +132,14 @@ class Notification < ActiveRecord::Base
         user_id: user_id,
         is_read: false
     ).size
+  end
+  
+  def self.mark_all_as_read(user_id)
+    @notifications = Notification.where(user_id: user_id)
+    
+    @notifications.each do |n|
+      n.read! 
+    end
   end
 
   def channel_name

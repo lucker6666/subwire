@@ -60,7 +60,8 @@
             display: block;
             padding: 8px;
             clear: both;
-            height: 50px;
+            min-height: 50px;
+            height: auto;
             border-bottom: 1px solid $mid_grey;
             line-height: 17px;
             font-size: 13px;
@@ -78,6 +79,7 @@
             &#read-all {
               padding: 6px;
               height: auto;
+              min-height: 0;
               border-bottom: none;
               color: $border_grey;
               font-size: 12px;
