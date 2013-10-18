@@ -54,7 +54,7 @@
               - @canInvite.each do |c|
                 %option{:value => c.id} 
                   = c.name
-            = submit_tag(t('relationships.new'))
+            = submit_tag(t('relationships.new'), class: 'btn')
   - if can? :edit, @user
     .form-actions
       = link_to edit_user_path(@user), class: 'btn' do
