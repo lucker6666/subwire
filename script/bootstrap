@@ -95,4 +95,6 @@ run "sensible-browser http://localhost:3000/"
 
 puts
 puts
-puts "Finished! Happy hacking! :)"
+puts "Done!"
+puts "Log in with admin@example.com // admin"
+puts "Happy hacking! :)"
