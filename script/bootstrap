@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+# Usage: script/bootstrap
+#
+# Fast setup of your local development environment for subwire
+
+require 'pathname'
+
+# Calculate the root directory of rails
+root = Pathname.new(File.dirname(__FILE__) + '/../').realdirpath
+
+
+# Methods
+
+def run(cmd)
+  output = `#{cmd} 2>&1`
+
+  unless $? == 0
+    puts "\nFAIlED!\n#{output}"
+    exit
+  end
+
+  $?
+end
+
+
+# 1. Dependencies
+puts "1. Checking Dependencies ..."
+
+# 1.1 MySQL or sqlite?
+print "    - Checking for mysql ..."
+
+use_mysql = false
+
+if run "which mysql > /dev/null"
+
+  if run "ps aux | grep -i mysqld | grep -v 'grep'"
+    use_mysql = true
+    puts " ok!"
+  else
+    puts
+    puts
+    "MySQL installed but not running, please start MySQL"
+    exit
+  end
+else
+  puts "no (dosen't matter, will use sqlite)"
+end
+
+
+# 2. Running bundler
+puts "2. Running bundler ..."
+
+# 2.1 Get CPU count for optimal bundler performance
+cpus = `lscpu | grep -i 'CPU(s)' | head -n1 | awk '{ print $2 }'`.to_i - 1
+cpus = cpus < 1 ? 1 : cpus
+
+# 2.2 Run bundler
+run "bundle install --binstubs --without production #{use_mysql ? '' : 'mysql'} BUNDLE_JOBS=#{cpus}"
+
+
+# 3. Setup configs
+puts "3. Setup configs ..."
+
+# 3.1 Setup config.rb
+puts "    - Setup config.rb"
+run "cp #{root}/config/initializers/config.example.rb #{root}/config/initializers/config.rb"
+
+if use_mysql
+  puts "    - Setup database.yml for mysql"
+  print "    - Please enter your mysql root password: "
+  pw = gets
+  pw.strip!
+
+  run "cp #{root}/config/database.mysql.yml #{root}/config/database.yml"
+  run "sed 's/password: root/password: #{pw}/' -i #{root}/config/database.yml"
+else
+  puts "    - Setup database.yml for sqlite"
+  run "cp #{root}/config/database.sqlite.yml #{root}/config/database.yml"
+end
+
+
+# 4. Setup Database
+puts "4. Setup databse ..."
+run "rake db:create db:setup subwire:setup db:test:prepare"
+
+
+# 5. Start rails server
+puts "5. Start the rails server ..."
+run "bundle exec rails server -d"
+
+
+# 6. Open application in the browser
+puts "6. Open the application in the browser ..."
+run "sensible-browser http://localhost:3000/"
+
+puts
+puts
+puts "Finished! Happy hacking! :)"
