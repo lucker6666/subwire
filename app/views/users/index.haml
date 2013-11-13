@@ -17,7 +17,7 @@
         %th= t('.actions', default: t("helpers.actions"))
     %tbody
       - @users.each do |user|
-        %tr
+        %tr{class: user.is_admin ? 'warning' : ''}
           %td= avatar(user, :list)
           %td= link_to user.name, user_path(user)
           %td= user.email
@@ -32,4 +32,4 @@
                 data: {confirm: t('.confirm', default: t("helpers.links.confirm"))}, |
                 class: 'btn btn-mini btn-danger' do                                  |
                 %i.icon.icon-trash
-  = will_paginate @users
+= will_paginate @users

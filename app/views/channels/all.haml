@@ -3,9 +3,9 @@
 .well
   %h1
     %i.icon.icon-home
-    = t('.title'), default: model_class.model_name.human
+	   = t('.title', default: model_class.model_name.human.pluralize)
 
-  %table.table.table-striped
+  %table.table.table-striped.table-hover.table-condensed
     %thead
       %tr
         %th= model_class.human_attribute_name(:name)
@@ -14,11 +14,11 @@
         %th= model_class.human_attribute_name(:planningTool)
         %th= model_class.human_attribute_name(:users)
         %th= model_class.human_attribute_name(:messages)
-        %th=t('.actions'), default: t("helpers.actions")
+        %th= t('.actions', default: t("helpers.actions"))
 
     %tbody
       - @channels.each do |channel|
-        %tr
+        %tr{class: channel.advertising ? '' : 'warning'}
           %td= link_to channel.name, channel_path(channel)
           %td= boolean_icon(channel.advertising)
           %td= channel.defaultLanguage
