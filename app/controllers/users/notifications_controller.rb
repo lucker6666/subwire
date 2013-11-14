@@ -4,13 +4,11 @@ class Users::NotificationsController < ApplicationController
 
   # GET /notifications.json
   def index
-    @notifications = Notification.order("is_read").order("created_at DESC").limit(5).where(
-      user_id: current_user.id
-    )
+    load_notifications
 
     respond_to do |format|
       format.json do
-        render json: @notifications, methods: [:message, :avatar_path]
+        render json: @all_notifications, methods: [:message, :avatar_path]
       end
     end
   end
@@ -20,6 +18,18 @@ class Users::NotificationsController < ApplicationController
   def show
     @notification.read!
     redirect_to URI.parse(@notification.href).path
+  end
+  
+  def destroy 
+    Notification.mark_all_as_read(current_user.id)
+    
+    load_notifications
+
+    respond_to do |format|
+      format.json do
+        render json: @all_notifications, methods: [:message, :avatar_path]
+      end
+    end
   end
 
 

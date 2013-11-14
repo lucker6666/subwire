@@ -18,20 +18,28 @@
     %i.icon.icon-comments
     = t('application.message_management')
 
+<<<<<<< HEAD
     &nbsp;
     &nbsp;
 
     %span.badge.badge-info
       %i.icon.icon-comments
       = @messages.count
+=======
+>>>>>>> master
 
     = render partial: 'shared/new', locals: {url: new_channel_message_path(current_channel), tip: 'messages.new'}
 
   - if @messages.count > 0
+<<<<<<< HEAD
     - counter = 0
     - @messages.each do |message|
       = render partial: 'shared/message', locals: {message: message, full: false, counter: counter}
       - counter += 1
+=======
+    - @messages.each do |message|
+      = render partial: 'shared/message', locals: {message: message, full: false}
+>>>>>>> master
   - else
     = render partial: 'no_messages'
 

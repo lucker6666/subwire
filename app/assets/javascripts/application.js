@@ -24,17 +24,6 @@ $(function() {
         }
     });
 
-    $('#markAllNotificationsAsRead').click(function(e) {
-        $.ajax({
-            url: '/notifications/1.json',
-            type: 'DELETE',
-            dataType: 'json',
-            success: function(data) {
-                updateNotificationsInner(data);
-            }
-        });
-    });
-
     refreshUserBox();
     getAllNotifications();
 
@@ -70,6 +59,16 @@ $(function() {
 	});
 });
 
+function markAllAsRead(){
+  $.ajax({
+    url: '/notifications/1.json',
+    type: 'DELETE',
+    dataType: 'json',
+    success: function(data) {
+      updateNotificationsInner(data);
+    }
+  });
+}
 
 function switchAvailability(event) {
     var a = $('a#' + $(event.currentTarget).attr('id')),
@@ -129,9 +128,9 @@ function updateNotificationsInner(data) {
         notifications += val.message + '</a></li><li class="divider"></li>';
     });
 
-    notifications += '<li class="divider"></li><li><a id="markAllNotificationsAsRead" href="#">' + $('#markAllNotificationsAsRead').html() + '</a></li>';
-    var ul = $('ul.notification-dropdown');
-    var a = ul.siblings("a");
+    notifications += '<li><a id="read-all" href="#" onclick="markAllAsRead()">' + $('#read-all').html() + '</a></li>';
+    var ul = $('<ul></ul>');
+    var a = $('#notifications > a');
     a.children("span").remove();
     if (notifications) {
         ul.html(notifications);
@@ -146,19 +145,12 @@ function updateNotificationsInner(data) {
         }
 
         $('title').html(' (' + notificationsCount + ')' + window.subwireTitle);
+        $('#notifications').addClass('unread');
     } else {
         $('title').html(window.subwireTitle);
+        $('#notifications').removeClass('unread');
     }
-}
-
-function updateNotifications() {
-    $.getJSON('/notifications.json', function(data) {
-        updateNotificationsInner(data);
-    });
-}
-
-if (window.pollNotifications) {
-    setInterval("updateNotifications();", 60000);
+   return ul;
 }
 
 function refreshUserBox() {
@@ -169,12 +161,10 @@ function refreshUserBox() {
 }
 
 function getAllNotifications() {
-    $.get('/ajax/notifications/load_all_notifications',
-        {},
-        function(html) {
-            $('#channel-switcher').html(html);
-            setTimeout("getAllNotifications()", 30000);
-        });
+      $.getJSON('/notifications.json', function(data) {
+        $('#notifications').data('popover').options.content = updateNotificationsInner(data);
+        setTimeout("getAllNotifications()", 30000);
+    });
 }
 
 function emptyScreenBlink() {
