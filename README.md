@@ -65,20 +65,17 @@ And if you want to work with us one further awesome project and get part of the 
 ### How to contribute code
 1. Fork subwire via the github fork button
 2. Clone your fork to your local machine
-3. Run <code>bundle</code>
-4. Setup a <code>config/database.yml</code>
-5. Setup a <code>config/initializers/config.rb</code>
-6. Run <code>rake db:create db:setup subwire:setup db:test:prepare</code>
-7. Run <code>bundle exec rspec spec/</code> and see how everything passes (green)
-8. (Optional) Run <code>bundle exec guard</code> for livereload and rspec
-9. (Optional) Run <code>bundle exec rails server</code> to start webserver
-10. Make changes
-11. Run <code>bundle exec rspec spec/</code> and repeat 10. and 11. until everything passes
-12. Commit
-13. Repeat 10. - 12. until you're done
-14. <code>git push</code>
-15. Open a pull request
-16. Wait for merge
+3. Run <code>script/bootstrap</code>
+4. Run <code>bundle exec rspec spec/</code> and see how everything passes (green)
+5. (Optional) Run <code>bundle exec guard</code> for livereload and rspec
+6. (Optional) Run <code>bundle exec rails server</code> to start webserver
+7. Make changes
+8. Run <code>bundle exec rspec spec/</code> and repeat 10. and 11. until everything passes
+9. Commit
+10. Repeat 10. - 12. until you're done
+11. <code>git push</code>
+12. Open a pull request
+13. Wait for merge
 
 
 
