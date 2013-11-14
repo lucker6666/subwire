@@ -1,5 +1,7 @@
-.message
+.message{class: counter % 2 == 0 ? 'even' : 'odd'}
   = avatar(message.user, :small, 'pull-left')
+
+  .arrow
 
   .buttons
     - if can?(:edit, current_channel) || message.user == current_user
@@ -16,7 +18,7 @@
   .body
     - if message.comments.length > 0
       .comment-counter
-        %span.notification-badge.badge
+        %span.badge
           %i.icon.icon-comment
           = message.comments.length
     - unless message.title.nil?

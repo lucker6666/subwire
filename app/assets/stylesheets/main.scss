@@ -60,8 +60,7 @@
             display: block;
             padding: 8px;
             clear: both;
-            min-height: 50px;
-            height: auto;
+            height: 50px;
             border-bottom: 1px solid $mid_grey;
             line-height: 17px;
             font-size: 13px;
@@ -79,7 +78,6 @@
             &#read-all {
               padding: 6px;
               height: auto;
-              min-height: 0;
               border-bottom: none;
               color: $border_grey;
               font-size: 12px;
@@ -183,7 +181,8 @@
   }
 
   .navbar-inner {
-    @include grey_gradient();
+    //@include grey_gradient();
+    background: none #f1f1f1;
   }
 
   .navbar {
@@ -230,7 +229,7 @@
 
       > a {
         position: relative;
-        padding: 10px 0.4em 8px 0.4em;
+        padding: 10px 0.4em 7px 0.4em;
 
         span.badge {
           position: absolute;
@@ -359,7 +358,7 @@
   }
 
   .navbar .divider-vertical {
-    margin: 6px 4px;
+    margin: 6px 4px 5px;
     height: 30px;
     border-left: 1px solid $mid_grey;
     border-right: 1px solid $light_grey;

@@ -78,15 +78,15 @@ class Notification < ActiveRecord::Base
     end
   end
   
-	def avatar_path
-		@user = User.find(self.provokesUser)
+  def avatar_path
+    @user = User.find(self.provokesUser)
 
-		if(@user.gravatar)
-			'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
-		else
-			@user.avatar.url
-		end
-	end
+    if(@user.gravatar)
+      'http://www.gravatar.com/avatar/' + @user.gravatar + '?s=30'
+    else
+      @user.avatar.url
+    end
+  end
   
   def creator
     User.find(self.created_by)
