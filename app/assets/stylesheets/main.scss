@@ -181,7 +181,8 @@
   }
 
   .navbar-inner {
-    @include grey_gradient();
+    //@include grey_gradient();
+    background: none #f1f1f1;
   }
 
   .navbar {
