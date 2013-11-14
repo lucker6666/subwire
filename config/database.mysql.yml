@@ -17,6 +17,7 @@ test:
   database: subwire_test
   username: root
   password: root
+  password: 
   pool: 5
 
 production:
