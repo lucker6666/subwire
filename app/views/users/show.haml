@@ -44,14 +44,14 @@
         = t('users.commentsCount')
         \:
       %td= @commentsCount
-    - if @canInvite.length > 0
+    - if @can_invite.length > 0
       %tr{colspan: 2}
         %th.span3
           = t('users.invite')
         %td 
           = form_tag(user_path(@user) + "/invite", method: "post") do
-            %select{ name: 'channel', class: 'chosen-select'}
-              - @canInvite.each do |c|
+            %select.chosen-select{ name: 'channel'}
+              - @can_invite.each do |c|
                 %option{:value => c.id} 
                   = c.name
             = submit_tag(t('relationships.new'), class: 'btn')

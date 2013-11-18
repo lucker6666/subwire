@@ -67,7 +67,7 @@ class Channel < ActiveRecord::Base
   end
   
   def self.can_invite_users_to_channel(user, channel)
-    channels = Array.new
+    channels = []
     Channel.find_all_by_user(user).each do |c|
       if c != channel
         relationships = Array.new

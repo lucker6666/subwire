@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @adminCount = Relationship.where(user_id: @user.id, admin: true).length
     @messagesCount = Message.where(user_id: @user.id).length
     @commentsCount = Comment.where(user_id: @user.id).length
-    @canInvite = @current_user.can_invite_user_to_channels(@user)
+    @can_invite = @current_user.can_invite_user_to_channels(@user)
   end
 
 
@@ -168,7 +168,7 @@ class UsersController < ApplicationController
   end
   
   def invite_user
-    @user = User.find(params[:id])
+    load_user
     @channel = Channel.find(params[:channel])
     if Relationship.is_user_admin_of_channel?(current_user, @channel) && !Relationship.exists?(@channel, @user)
         @relationship = Relationship.new
