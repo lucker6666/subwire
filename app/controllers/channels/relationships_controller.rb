@@ -18,7 +18,7 @@ class Channels::RelationshipsController < ApplicationController
   def new
     authorize! :create, Relationship
     @relationship = Relationship.new
-    @inviteable = Channel.can_invite_users_to_channel(current_user, current_channel)
+    @invitable = Channel.can_invite_users_to_channel(current_user, current_channel)
   end
 
 

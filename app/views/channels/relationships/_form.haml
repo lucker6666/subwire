@@ -5,12 +5,12 @@
         = f.label :email, class: 'control-label'
         .controls
           = f.text_field :email, { value: "", class: 'text_field', autocomplete: :off }
-      - if @inviteable.length > 0
+      - if @invitable.any?
         .control-group
-          %label{ class: 'control-label' }
+          %label.control-label
             = t('relationships.inviteExisting')
           .controls
-            %select{ name: 'existingUser', class: 'chosen-select' }
+            %select.chosen-select{ name: 'existingUser' }
               %option{ :value => ''}
               - @inviteable.each do |c|
                 %optgroup{ :label => c.first.channel.name}

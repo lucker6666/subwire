@@ -348,7 +348,7 @@ en:
     delete_alert: 'With that button you will remove yourself from the current channel.<br /><b>Note:</b> You my be not the only Admin in one Channel.'
     delete: 'Quit this channel'
     exist: This user is already assigned to that channel
-    inviteExisting: or add existing user
+    inviteExisting: or add an existing user
     mail:
       notification: 'Mail Notification?'
       invitation:

@@ -348,7 +348,7 @@ de:
     delete_alert: 'Mit diesem Button kannst du dich selbst aus dem aktuellen Channel entfernen.<br /><b>Hinweis:</b> Du darfst nicht der einzige Administrator in diesem Channel sein.'
     delete: 'Aus dem Channel entfernen'
     exist: Dieser Benutzer ist dem Channel bereits zugewiesen
-    inviteExisting: oder lade bestehenden Nutzer ein
+    inviteExisting: oder lade einen bestehenden Nutzer ein
     mail:
       notification: 'E-Mail Benachrichtigung?'
       invitation:
